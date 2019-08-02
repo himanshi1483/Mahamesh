@@ -1,0 +1,217 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    .carousel {
+        padding: 0 380px;
+    }
+
+    .carousel__button--prev, .carousel__button--next {
+        position: absolute;
+        top: 62px;
+        /*bottom: 0;*/
+    }
+
+    .carousel__button--prev {
+        left: 20%;
+    }
+
+    .carousel__button--next {
+        right: 20%;
+    }
+
+    .carousel__container {
+        overflow: hidden;
+        height: 150px;
+    }
+
+    .carousel__list {
+        position: relative;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .carousel__list.unwrap {
+            flex-wrap: nowrap;
+        }
+
+    .carousel__item {
+        flex: 1 0 250px;
+        /* 	max-width: 300px; */
+        height: 200px;
+        background-color: transparent;
+        text-align: center;
+        line-height: 100px;
+        /*border: 1px solid #fff;*/
+    }
+</style>
+
+<div class="container body-content" id="#maincontent">
+    <section>
+        <div class="col-lg-2 col-md-2" style="font-size:14px;">
+            <div class="vertical-menu" style="float:left">
+                <a href="#" class="active">Scientific Research</a>
+                <a href="#">Technology Development</a>
+                <a href="#">Technology Missions Division</a>
+                <a href="#">Women Scientists Program    </a>
+                <a href="#">Link 4</a>
+                <a href="#">Link 4</a>
+                @*<a href="#">Link 4</a>*@
+            </div>
+        </div> <div class="col-lg-1 col-md-1">
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="panel panel-default" style="margin-bottom:3px !important">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
+                </div>
+                <div class="panel-body" style="padding:0px !important">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <ul class="news-demo-down-auto">
+                                <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
+                                <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer" style="padding-bottom:8px !important">
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 col-md-1">
+        </div>
+        <div class="col-lg-2 col-md-2" style="font-size:14px;">
+            <div class="vertical-menu" style="float:right">
+                <a href="#" class="active">Scientific Research</a>
+                <a href="#">Technology Development</a>
+                <a href="#">Technology Missions Division</a>
+                <a href="#">Women Scientists Program    </a>
+                <a href="#">Link 4</a>
+                <a href="#">Link 4</a>
+                @*<a href="#">Link 4</a>*@
+            </div>
+        </div>
+    </section>
+    <!-- Start Slider -->
+    <section id="mu-slider">
+        <!-- Start single slider item -->
+        <div class="mu-slider-single">
+            <div class="mu-slider-img">
+                <figure>
+                    <img src="~/Images/3.jpg" alt="img">
+                </figure>
+            </div>
+            <div class="mu-slider-content">
+                <h4>Lorem ipsum dolor sit amet</h4>
+                <span></span>
+                <h2>Lorem ipsum dolor sit amet</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                <a href="#" class="mu-read-more-btn">Read More</a>
+            </div>
+        </div>
+        <!-- Start single slider item -->
+        <!-- Start single slider item -->
+        <div class="mu-slider-single">
+            <div class="mu-slider-img">
+                <figure>
+                    <img src="~/Images/1.jpg" alt="img">
+                </figure>
+            </div>
+            <div class="mu-slider-content">
+                <h4>Slider 1</h4>
+                <span></span>
+                <h2>Lorem ipsum dolor sit amet</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                <a href="#" class="mu-read-more-btn">Read More</a>
+            </div>
+        </div>
+        <!-- Start single slider item -->
+        <!-- Start single slider item -->
+        <div class="mu-slider-single">
+            <div class="mu-slider-img">
+                <figure>
+                    <img src="~/Images/6.jpg" alt="img">
+                </figure>
+            </div>
+            <div class="mu-slider-content">
+                <h4>Lorem ipsum dolor sit amet</h4>
+                <span></span>
+                <h2>Lorem ipsum dolor sit amet</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                <a href="#" class="mu-read-more-btn">Read More</a>
+            </div>
+        </div>
+        <!-- Start single slider item -->
+        <!-- End Slider -->
+        <hr />
+    </section>
+
+
+
+</div>
+<!-- start footer top -->
+<div style="background:#4b8cbb">
+    <div class="container">
+        <div class="mu-footer-top-area">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-8">
+                    <div class="mu-footer-widget">
+                        <h3 style="color:#ffffff">Related Links</h3>
+                        <ul>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other DST Sites</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other Dept Funding Schemes</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Professional Bodies</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Science Wings Abroad</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Statutory Board</a></li>
+
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div class="mu-footer-widget">
+                        <h3 style="color:#ffffff">Miscellaneous</h3>
+                        <ul>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Tenders</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Pension Grievance Redressal</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Public Grievances</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Parliament Q & A</a></li>
+                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Right To Information</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Start carousel  -->
+<section id="mu-menu" style="background:url(/Images/carousel-bg.png) repeat;margin-left:0px !important;margin-right: 0px !important;">
+    <div class="carousel js-carousel">
+        <div class="carousel__container js-carousel-container">
+            <div class="carousel__list js-carousel-list">
+                <div class="carousel__item js-carousel-item"><img src="~/Images/digital-india.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/e-gazette.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/goidirectory.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/iig-logo_1.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/india-gov.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/logo_swach.jpg" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/makeinindia.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/mygov.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/myvisit-logo.png" /></div>
+                <div class="carousel__item js-carousel-item"><img src="~/Images/pg-portal.png" /></div>
+            </div>
+        </div>
+        <div class="carousel__nav">
+            <button class="carousel__button--prev js-carousel-button btn-link" data-dir="prev">&lt;</button>
+            <button class="carousel__button--next js-carousel-button btn-link" data-dir="next">&gt;</button>
+        </div>
+    </div>
+</section>
+<!-- End carousel  -->
