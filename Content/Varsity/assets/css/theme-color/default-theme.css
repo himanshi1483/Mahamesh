@@ -26,8 +26,9 @@ Author URI : http://www.markups.io/
   color: #01bafd;
 }
 #mu-menu .navbar-default .navbar-nav li > a:hover, #mu-menu .navbar-default .navbar-nav li > a:focus {
+    background-color:#d8d8d8;
   border-color: #01bafd;
-  color: #01bafd;
+  color: #fff;
 }
 #mu-menu .navbar-default .navbar-nav li .dropdown-menu {
   border-top: 2px solid #01bafd;

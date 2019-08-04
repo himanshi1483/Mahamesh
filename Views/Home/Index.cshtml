@@ -2,6 +2,68 @@
     ViewBag.Title = "Home Page";
 }
 <style>
+    /* define a fixed width for the entire menu */
+    .navigation {
+        width: 250px;
+        font-size: 13px;
+    }
+
+    /* reset our lists to remove bullet points and padding */
+    .mainmenu, .submenu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        /* make ALL links (main and submenu) have padding and background color */
+        .mainmenu a {
+            display: block;
+            background-color: #52b2fa;
+            text-decoration: none;
+            padding: 6px;
+            color: #fff;
+            border-bottom: 1px solid #fff;
+        }
+
+            /* add hover behaviour */
+            .mainmenu a:hover {
+                background-color: #C5C5C5;
+            }
+
+
+        /* when hovering over a .mainmenu item,
+      display the submenu inside it.
+      we're changing the submenu's max-height from 0 to 200px;
+    */
+
+        .mainmenu li:hover .submenu {
+            display: block;
+            max-height: 200px;
+        }
+
+        /*
+      we now overwrite the background-color for .submenu links only.
+      CSS reads down the page, so code at the bottom will overwrite the code at the top.
+    */
+
+        .submenu a {
+            background-color: #999;
+        }
+
+            /* hover behaviour for links inside .submenu */
+            .submenu a:hover {
+                background-color: #666;
+            }
+
+    /* this is the initial state of all submenus.
+      we set it to max-height: 0, and hide the overflowed content.
+    */
+    .submenu {
+        overflow: hidden;
+        max-height: 0;
+        -webkit-transition: all 0.5s ease-out;
+    }
+
     .carousel {
         padding: 0 380px;
     }
@@ -48,57 +110,129 @@
 
 <div class="container body-content" id="#maincontent">
     <section>
-        <div class="col-lg-2 col-md-2" style="font-size:14px;">
-            <div class="vertical-menu" style="float:left">
-                <a href="#" class="active">Scientific Research</a>
-                <a href="#">Technology Development</a>
-                <a href="#">Technology Missions Division</a>
-                <a href="#">Women Scientists Program    </a>
-                <a href="#">Link 4</a>
-                <a href="#">Link 4</a>
-                @*<a href="#">Link 4</a>*@
+        <div class="row col-lg-12">
+            <div class="col-lg-3 col-md-3">
+                <img src="~/Images/default-image.png" style="border:1px solid black;float:left" height="250" width="250" />
             </div>
-        </div> <div class="col-lg-1 col-md-1">
-        </div>
-        <div class="col-lg-6 col-md-6">
-            <div class="panel panel-default" style="margin-bottom:3px !important">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
-                </div>
-                <div class="panel-body" style="padding:0px !important">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <ul class="news-demo-down-auto">
-                                <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
-                                <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
-                                <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
-                                <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
-                                <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
-                                <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer" style="padding-bottom:8px !important">
-
-                </div>
+            <div class="col-lg-6 col-md-6" style="text-align:center">
+                <video id='video' controls="controls" preload='none'
+                     width="450" height="260"  poster="http://media.w3.org/2010/05/sintel/poster.png">
+                    <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+                    @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
+                <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
+                </video>
             </div>
-        </div>
-        <div class="col-lg-1 col-md-1">
-        </div>
-        <div class="col-lg-2 col-md-2" style="font-size:14px;">
-            <div class="vertical-menu" style="float:right">
-                <a href="#" class="active">Scientific Research</a>
-                <a href="#">Technology Development</a>
-                <a href="#">Technology Missions Division</a>
-                <a href="#">Women Scientists Program    </a>
-                <a href="#">Link 4</a>
-                <a href="#">Link 4</a>
-                @*<a href="#">Link 4</a>*@
+            <div class="col-lg-3 col-md-3">
+                <img src="~/Images/default-image.png" style="border:1px solid black;float:right" height="250" width="250" />
             </div>
         </div>
     </section>
+    <section>
+        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-3 col-md-3" style="font-size:14px;float:left">
+                <nav class="navigation">
+                    <ul class="mainmenu">
+                        <li><a href="">Products at Farm</a></li>
+                        <li><a href="">Products - Wool</a></li>
+                        <li><a href="">Department Guidelines</a></li>
+                        <li><a href="">Beneficiary List</a></li>
+                        <li><a href="">Project Status</a></li>
+                        <li><a href="">Press Information</a></li>
+                        <li>
+                            <a href="">Office Documents</a>
+                            <ul class="submenu">
+                                <li><a href="">Acts</a></li>
+                                <li><a href="">Circulars</a></li>
+                                <li><a href="">Rules & Regulations</a></li>
+                                <li><a href="">White Papers - case studies</a></li>
+                                <li><a href="">Budget</a></li>
+                                <li><a href="">Minutes of Meeting</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="">Audited Reports</a></li>
+                        <li>
+                            <a href="">Information for Farmers</a>
+                            <ul class="submenu">
+                                <li><a href="">List of Officers</a></li>
+                                <li><a href="">Information Regarding Insemination</a></li>
+                                <li><a href="">Information reg Hospitals  - Vets -Dispensary</a></li>
+                                <li><a href="">List of Available Breeds</a></li>
+                                <li><a href="">List of Vaccinations - Diseases - RTemedies</a></li>
+                                <li><a href="">Information Regarding Feeding</a></li>
+                                <li><a href="">Information Regarding breeding</a></li>
+                                <li><a href="">Ongoing Schemes</a></li>
+                                <li><a href="">Animal Trading Policy</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="">Model Scheme</a>
+                            <ul class="submenu">
+                                <li><a href="">Feed and Fodder</a></li>
+                                <li><a href="">Availability of Stock  - Semen - Products</a></li>
+                                <li><a href=""> Feed and Fodder</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="">Success Stories</a></li>
+                        <li><a href="">List of Progressive Farmers</a></li>
+                        <li><a href="">Livestock Insurance</a></li>
+                        <li><a href="">Precaution during drought and Flood - Natural Calamity</a></li>
+                    </ul>
+                </nav>
+                @*<div class="vertical-menu" style="float:left">
+                <a href="#">Products at Farm</a>
+                <a href="#">Products - Wool</a>
+                <a href="#">Department Guidelines</a>
+                <a href="#">Beneficiary List</a>
+                <a href="#">Project Status</a>
+                <a href="#">Press Information</a>
+                <a href="#">Office Documents</a>
+                <button class="dropdown-btn">
+                    Dropdown
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+                <a href="#">Pohara</a>
+                <a href="#">Ranjini</a>
+                <a href="#">Tirth</a>
+            </div>*@
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div style="background:#52b2fa;height:35px;text-align:center;color:#fff;font-weight:bold;padding-top:1px;"><h5>Vision</h5></div>
+                <p style="text-align:justify">We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand information for every client to satisfy their queries is the main work and mission of sheep and Goat Gyan knowledge portal.</p>
+
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="panel panel-default" style="margin-bottom:3px !important">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
+                    </div>
+                    <div class="panel-body" style="padding:0px !important">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="news-demo-down-auto">
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer" style="padding-bottom:8px !important">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+            </section>
     <!-- Start Slider -->
     <section id="mu-slider">
         <!-- Start single slider item -->

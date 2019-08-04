@@ -34,6 +34,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -184,12 +186,115 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Varsity\404.html" />
+    <Content Include="Content\Varsity\assets\css\bootstrap.css" />
+    <Content Include="Content\Varsity\assets\css\font-awesome.css" />
+    <Content Include="Content\Varsity\assets\css\jquery.fancybox.css" />
+    <Content Include="Content\Varsity\assets\css\slick.css" />
+    <Content Include="Content\Varsity\assets\css\style.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\burlywood-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\dark-red-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\default-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\green-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\orange-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\pink-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\purple-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\red-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\violet-theme.css" />
+    <Content Include="Content\Varsity\assets\css\theme-color\yellow-theme.css" />
+    <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Varsity\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Varsity\assets\img\about-us.jpg" />
+    <Content Include="Content\Varsity\assets\img\blog\blog-1.jpg" />
+    <Content Include="Content\Varsity\assets\img\blog\blog-2.jpg" />
+    <Content Include="Content\Varsity\assets\img\blog\blog-3.jpg" />
+    <Content Include="Content\Varsity\assets\img\counter-bg.jpg" />
+    <Content Include="Content\Varsity\assets\img\courses\1.jpg" />
+    <Content Include="Content\Varsity\assets\img\courses\2.jpg" />
+    <Content Include="Content\Varsity\assets\img\courses\3.jpg" />
+    <Content Include="Content\Varsity\assets\img\favicon.ico" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\1.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\2.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\3.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\4.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\5.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\6.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\7.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\8.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\big\9.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_buttons.png" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_loading%402x.gif" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_loading.gif" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_overlay.png" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_sprite%402x.png" />
+    <Content Include="Content\Varsity\assets\img\gallery\fancybox_sprite.png" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\1.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\2.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\3.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\4.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\5.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\6.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\7.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\8.jpg" />
+    <Content Include="Content\Varsity\assets\img\gallery\small\9.jpg" />
+    <Content Include="Content\Varsity\assets\img\loader.gif" />
+    <Content Include="Content\Varsity\assets\img\logo.png" />
+    <Content Include="Content\Varsity\assets\img\slider\1.jpg" />
+    <Content Include="Content\Varsity\assets\img\slider\2.jpg" />
+    <Content Include="Content\Varsity\assets\img\slider\3.jpg" />
+    <Content Include="Content\Varsity\assets\img\teachers\teacher-01.png" />
+    <Content Include="Content\Varsity\assets\img\teachers\teacher-02.png" />
+    <Content Include="Content\Varsity\assets\img\teachers\teacher-03.png" />
+    <Content Include="Content\Varsity\assets\img\teachers\teacher-04.png" />
+    <Content Include="Content\Varsity\assets\img\testimonial-1.png" />
+    <Content Include="Content\Varsity\assets\img\testimonial-2.png" />
+    <Content Include="Content\Varsity\assets\img\testimonial-3.png" />
+    <Content Include="Content\Varsity\assets\img\testimonial-bg.jpg" />
+    <Content Include="Content\Varsity\assets\js\bootstrap.js" />
+    <Content Include="Content\Varsity\assets\js\custom.js" />
+    <Content Include="Content\Varsity\assets\js\jquery.counterup.js" />
+    <Content Include="Content\Varsity\assets\js\jquery.fancybox.pack.js" />
+    <Content Include="Content\Varsity\assets\js\jquery.min.js" />
+    <Content Include="Content\Varsity\assets\js\jquery.mixitup.js" />
+    <Content Include="Content\Varsity\assets\js\newsbox.js" />
+    <Content Include="Content\Varsity\assets\js\slick.js" />
+    <Content Include="Content\Varsity\assets\js\waypoints.js" />
+    <Content Include="Content\Varsity\blog-archive.html" />
+    <Content Include="Content\Varsity\blog-single.html" />
+    <Content Include="Content\Varsity\contact.html" />
+    <Content Include="Content\Varsity\course-detail.html" />
+    <Content Include="Content\Varsity\course.html" />
+    <Content Include="Content\Varsity\gallery.html" />
+    <Content Include="Content\Varsity\index.html" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\default-image.png" />
+    <Content Include="Images\logo.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Varsity\assets\fonts\FontAwesome.otf" />
+    <Content Include="Content\Varsity\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Varsity\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Varsity\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Varsity\scss\base\_base.scss" />
+    <Content Include="Content\Varsity\scss\base\_mixins.scss" />
+    <Content Include="Content\Varsity\scss\base\_variables.scss" />
+    <Content Include="Content\Varsity\scss\layouts\_footer.scss" />
+    <Content Include="Content\Varsity\scss\layouts\_header.scss" />
+    <Content Include="Content\Varsity\scss\layouts\_nav.scss" />
+    <Content Include="Content\Varsity\scss\modules\_buttons.scss" />
+    <Content Include="Content\Varsity\scss\modules\_responsive.scss" />
+    <Content Include="Content\Varsity\scss\modules\_sections.scss" />
+    <Content Include="Content\Varsity\scss\modules\_theme-color.scss" />
+    <Content Include="Content\Varsity\scss\modules\_typography.scss" />
+    <Content Include="Content\Varsity\scss\style.scss" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -235,6 +340,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Web - Copy.config" />
+    <Content Include="Web - Copy.Debug.config">
+      <DependentUpon>Web - Copy.config</DependentUpon>
+    </Content>
+    <Content Include="Web - Copy.Release.config">
+      <DependentUpon>Web - Copy.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -270,7 +382,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>62158</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44352/</IISUrl>
+          <IISUrl>http://localhost:44353/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -280,6 +392,13 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
+  <Target Name="CopyRoslynFiles" AfterTargets="AfterBuild" Condition="!$(Disable_CopyWebApplication) And '$(OutDir)' != '$(OutputPath)'">
+    <ItemGroup>
+      <RoslynFiles Include="$(CscToolPath)\*" />
+    </ItemGroup>
+    <MakeDir Directories="$(WebProjectOutputDir)\bin\roslyn" />
+    <Copy SourceFiles="@(RoslynFiles)" DestinationFolder="$(WebProjectOutputDir)\bin\roslyn" SkipUnchangedFiles="true" Retries="$(CopyRetryCount)" RetryDelayMilliseconds="$(CopyRetryDelayMilliseconds)" />
+  </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
