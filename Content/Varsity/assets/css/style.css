@@ -47,6 +47,8 @@ body {
     border: none;
 }
 
+
+
 /* MODULES - Individual site components */
 ul {
     padding: 0;
@@ -2322,6 +2324,9 @@ img {
     display: inline;
     float: left;
     width: 100%;
+    /*position: fixed;
+   left: 0;
+   bottom: 0;*/
      /*padding-top: 30px;*/
 }
 

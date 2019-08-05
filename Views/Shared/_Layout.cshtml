@@ -39,6 +39,19 @@
         .resizable {
             font-size: 14px;
         }
+
+
+        .secParagraph {
+            margin-top: 70px;
+            padding-top: 20px;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            padding-bottom: 20px;
+            margin-bottom: 150px;
+            background: #e5f2ff;
+            /*padding-left: 30px;
+        margin-right: 30px;*/
+        }
         /*.skip {
             position: absolute;
             top: -1000px;
@@ -183,20 +196,20 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organization <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Ministers</a></li>
-                                <li><a href="course-detail.html">Key Officials</a></li>
-                                <li><a href="course-detail.html">Objects of Organization</a></li>
-                                <li><a href="course-detail.html">Various Committees</a></li>
-                                <li><a href="course-detail.html">Office Bearers</a></li>
-                                <li><a href="course-detail.html">Board of Directors</a></li>
+                                <li><a href="@Url.Action("Ministers", "Organization")">Ministers</a></li>
+                                <li><a href="@Url.Action("KeyOfficials", "Organization")">Key Officials</a></li>
+                                <li><a href="@Url.Action("ObjectOfOrganization", "Organization")">Objects of Organization</a></li>
+                                <li><a href="@Url.Action("VariousCommittees", "Organization")">Various Committees</a></li>
+                                <li><a href="@Url.Action("OfficeBearers", "Organization")">Office Bearers</a></li>
+                                <li><a href="@Url.Action("BoardofDirectors", "Organization")">Board of Directors</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Schemes <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Schemes - Yearwise</a></li>
-                                <li><a href="course-detail.html">Implimented Schemes</a></li>
-                                <li><a href="course-detail.html">In Progress Schemes</a></li>
+                                <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Schemes - Yearwise</a></li>
+                                <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Implimented Schemes</a></li>
+                                <li><a href="@Url.Action("InProgressSchemes", "Schemes")">In Progress Schemes</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

@@ -170,8 +170,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DevelopmentActivityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\SchemesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -271,8 +274,31 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\1.jpg" />
+    <Content Include="Images\3.jpg" />
+    <Content Include="Images\6.jpg" />
+    <Content Include="Images\carousel-bg.png" />
+    <Content Include="Images\cmf-logo.png" />
     <Content Include="Images\default-image.png" />
+    <Content Include="Images\digital-india.png" />
+    <Content Include="Images\download.jpg" />
+    <Content Include="Images\e-gazette.png" />
+    <Content Include="Images\emblem-of-india-logo-vector.png" />
+    <Content Include="Images\favicon.ico" />
+    <Content Include="Images\favicon_image.png" />
+    <Content Include="Images\goidirectory.png" />
+    <Content Include="Images\iig-logo_1.png" />
+    <Content Include="Images\india-gov.png" />
     <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo_swach.jpg" />
+    <Content Include="Images\makeinindia.png" />
+    <Content Include="Images\mygov.png" />
+    <Content Include="Images\myvisit-logo.png" />
+    <Content Include="Images\pg-portal.png" />
+    <Content Include="Images\slider1.jpg" />
+    <Content Include="Images\slider2.jpg" />
+    <Content Include="Images\swachhbharat.png" />
+    <Content Include="Images\vikaskabudget-2.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.eot" />
@@ -361,6 +387,18 @@
     <Content Include="Views\Home\Pohara.cshtml" />
     <Content Include="Views\Home\Ranjini.cshtml" />
     <Content Include="Views\Home\Tirth.cshtml" />
+    <Content Include="Views\Organization\Ministers.cshtml" />
+    <Content Include="Views\Organization\KeyOfficials.cshtml" />
+    <Content Include="Views\Organization\ObjectOfOrganization.cshtml" />
+    <Content Include="Views\Organization\VariousCommittees.cshtml" />
+    <Content Include="Views\Organization\OfficeBearers.cshtml" />
+    <Content Include="Views\Organization\BoardOfDirectors.cshtml" />
+    <Content Include="Views\Schemes\ImplimentedSchemes.cshtml" />
+    <Content Include="Views\Schemes\InProgressSchemes.cshtml" />
+    <Content Include="Views\DevelopmentActivity\DistributionBreeding.cshtml" />
+    <Content Include="Views\DevelopmentActivity\Distribution.cshtml" />
+    <Content Include="Views\DevelopmentActivity\Training.cshtml" />
+    <Content Include="Views\DevelopmentActivity\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
