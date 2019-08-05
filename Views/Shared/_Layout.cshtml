@@ -171,7 +171,15 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav main-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="dropdown">
+                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown">Home <span class="fa fa-angle-down"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="@Url.Action("Vision", "Home")">Vision</a></li>
+                                <li><a href="@Url.Action("Mission", "Home")">Mission</a></li>
+                                <li><a href="@Url.Action("History", "Home")">History</a></li>
+                         
+                            </ul>
+                        </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organization <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -236,9 +244,9 @@
                                 @*<span class="fa fa-angle-down"></span>*@
                             </a>
                             @*<ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Course Archive</a></li>
-                                <li><a href="course-detail.html">Course Detail</a></li>
-                            </ul>*@
+                <li><a href="course.html">Course Archive</a></li>
+                <li><a href="course-detail.html">Course Detail</a></li>
+            </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown">
@@ -265,9 +273,9 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Useful Links
 
-                              
+
                             </a>
-                           
+
                         </li>
                         <li><a href="contact.html">Contact Us</a></li>
                         @*<li><a href="404.html">404 Page</a></li>
@@ -280,11 +288,11 @@
     <!-- End menu -->
 
 
-    @*<div class="container body-content" id="#maincontent">*@
+    <div class="container body-content" id="#maincontent">
         @RenderBody()
        
 
-    @*</div>*@
+    </div>
    
     <!-- Start footer -->
     <footer id="mu-footer">
@@ -428,7 +436,7 @@
 
 
             $(".news-demo-down-auto").bootstrapNews({
-                newsPerPage: 4,
+                newsPerPage: 8,
                 autoplay: true,
                 pauseOnHover: true,
                 navigation: false,
