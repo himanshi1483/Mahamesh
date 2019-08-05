@@ -4,7 +4,7 @@
 <style>
     /* define a fixed width for the entire menu */
     .navigation {
-        width: 250px;
+        max-width: 250px;
         font-size: 13px;
     }
 
@@ -108,188 +108,187 @@
     }
 </style>
 
-<div class="container body-content" id="#maincontent">
+@*<div class="container  body-content" id="#maincontent">*@
     <section>
         <div class="row col-lg-12">
             <div class="col-lg-3 col-md-3">
-                <img src="~/Images/default-image.png" style="border:1px solid black;float:left" height="250" width="250" />
+                <img src="~/Images/default-image.png" style="border:1px solid black;float:left;max-width:250px;max-height:250px" />
             </div>
             <div class="col-lg-6 col-md-6" style="text-align:center">
-                <video id='video' controls="controls" preload='none'
-                     width="450" height="260"  poster="http://media.w3.org/2010/05/sintel/poster.png">
+                <video id='video' controls="controls" preload='none' style="max-width:550px;max-height:260px"
+                       poster="http://media.w3.org/2010/05/sintel/poster.png">
                     <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
                     @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
-                <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
+                        <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
                 </video>
             </div>
             <div class="col-lg-3 col-md-3">
-                <img src="~/Images/default-image.png" style="border:1px solid black;float:right" height="250" width="250" />
+                <img src="~/Images/default-image.png" style="border:1px solid black;float:right;max-width:250px;max-height:250px" />
             </div>
         </div>
     </section>
     <section>
-        <div class="col-lg-12 col-md-12">
-            <div class="col-lg-3 col-md-3" style="font-size:14px;float:left">
-                <nav class="navigation">
-                    <ul class="mainmenu">
-                        <li><a href="">Products at Farm</a></li>
-                        <li><a href="">Products - Wool</a></li>
-                        <li><a href="">Department Guidelines</a></li>
-                        <li><a href="">Beneficiary List</a></li>
-                        <li><a href="">Project Status</a></li>
-                        <li><a href="">Press Information</a></li>
-                        <li>
-                            <a href="">Office Documents</a>
-                            <ul class="submenu">
-                                <li><a href="">Acts</a></li>
-                                <li><a href="">Circulars</a></li>
-                                <li><a href="">Rules & Regulations</a></li>
-                                <li><a href="">White Papers - case studies</a></li>
-                                <li><a href="">Budget</a></li>
-                                <li><a href="">Minutes of Meeting</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Audited Reports</a></li>
-                        <li>
-                            <a href="">Information for Farmers</a>
-                            <ul class="submenu">
-                                <li><a href="">List of Officers</a></li>
-                                <li><a href="">Information Regarding Insemination</a></li>
-                                <li><a href="">Information reg Hospitals  - Vets -Dispensary</a></li>
-                                <li><a href="">List of Available Breeds</a></li>
-                                <li><a href="">List of Vaccinations - Diseases - RTemedies</a></li>
-                                <li><a href="">Information Regarding Feeding</a></li>
-                                <li><a href="">Information Regarding breeding</a></li>
-                                <li><a href="">Ongoing Schemes</a></li>
-                                <li><a href="">Animal Trading Policy</a></li>
-
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">Model Scheme</a>
-                            <ul class="submenu">
-                                <li><a href="">Feed and Fodder</a></li>
-                                <li><a href="">Availability of Stock  - Semen - Products</a></li>
-                                <li><a href=""> Feed and Fodder</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Success Stories</a></li>
-                        <li><a href="">List of Progressive Farmers</a></li>
-                        <li><a href="">Livestock Insurance</a></li>
-                        <li><a href="">Precaution during drought and Flood - Natural Calamity</a></li>
-                    </ul>
-                </nav>
-                @*<div class="vertical-menu" style="float:left">
-                <a href="#">Products at Farm</a>
-                <a href="#">Products - Wool</a>
-                <a href="#">Department Guidelines</a>
-                <a href="#">Beneficiary List</a>
-                <a href="#">Project Status</a>
-                <a href="#">Press Information</a>
-                <a href="#">Office Documents</a>
-                <button class="dropdown-btn">
-                    Dropdown
-                    <i class="fa fa-caret-down"></i>
-                </button>
-                <div class="dropdown-container">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-                <a href="#">Pohara</a>
-                <a href="#">Ranjini</a>
-                <a href="#">Tirth</a>
-            </div>*@
-            </div>
-            <div class="col-lg-6 col-md-6">
-                <div style="background:#52b2fa;height:35px;text-align:center;color:#fff;font-weight:bold;padding-top:1px;"><h5>Vision</h5></div>
-                <p style="text-align:justify">We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand information for every client to satisfy their queries is the main work and mission of sheep and Goat Gyan knowledge portal.</p>
-
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <div class="panel panel-default" style="margin-bottom:3px !important">
-                    <div class="panel-heading">
-                        <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
-                    </div>
-                    <div class="panel-body" style="padding:0px !important">
-                        <div class="row">
-                            <div class="col-xs-12">
-                                <ul class="news-demo-down-auto">
-                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+        <div class="row col-lg-12 col-md-12">
+          
+                <div class="col-lg-3 col-md-3" style="font-size:13px;float:left">
+                    <nav class="navigation">
+                        <ul class="mainmenu">
+                            <li><a href="">Products at Farm</a></li>
+                            <li><a href="">Products - Wool</a></li>
+                            <li><a href="">Department Guidelines</a></li>
+                            <li><a href="">Beneficiary List</a></li>
+                            <li><a href="">Project Status</a></li>
+                            <li><a href="">Press Information</a></li>
+                            <li>
+                                <a href="">Office Documents</a>
+                                <ul class="submenu">
+                                    <li><a href="">Acts</a></li>
+                                    <li><a href="">Circulars</a></li>
+                                    <li><a href="">Rules & Regulations</a></li>
+                                    <li><a href="">White Papers - case studies</a></li>
+                                    <li><a href="">Budget</a></li>
+                                    <li><a href="">Minutes of Meeting</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Audited Reports</a></li>
+                            <li>
+                                <a href="">Information for Farmers</a>
+                                <ul class="submenu">
+                                    <li><a href="">List of Officers</a></li>
+                                    <li><a href="">Information Regarding Insemination</a></li>
+                                    <li><a href="">Information reg Hospitals  - Vets -Dispensary</a></li>
+                                    <li><a href="">List of Available Breeds</a></li>
+                                    <li><a href="">List of Vaccinations - Diseases - RTemedies</a></li>
+                                    <li><a href="">Information Regarding Feeding</a></li>
+                                    <li><a href="">Information Regarding breeding</a></li>
+                                    <li><a href="">Ongoing Schemes</a></li>
+                                    <li><a href="">Animal Trading Policy</a></li>
 
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="">Model Scheme</a>
+                                <ul class="submenu">
+                                    <li><a href="">Feed and Fodder</a></li>
+                                    <li><a href="">Availability of Stock  - Semen - Products</a></li>
+                                    <li><a href=""> Feed and Fodder</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="">Success Stories</a></li>
+                            <li><a href="">List of Progressive Farmers</a></li>
+                            <li><a href="">Livestock Insurance</a></li>
+                            <li><a href="">Precaution during drought and Flood - Natural Calamity</a></li>
+                        </ul>
+                    </nav>
+                    @*<div class="vertical-menu" style="float:left">
+                    <a href="#">Products at Farm</a>
+                    <a href="#">Products - Wool</a>
+                    <a href="#">Department Guidelines</a>
+                    <a href="#">Beneficiary List</a>
+                    <a href="#">Project Status</a>
+                    <a href="#">Press Information</a>
+                    <a href="#">Office Documents</a>
+                    <button class="dropdown-btn">
+                        Dropdown
+                        <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-container">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                    <a href="#">Pohara</a>
+                    <a href="#">Ranjini</a>
+                    <a href="#">Tirth</a>
+                </div>*@
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <section id="mu-slider" style="max-width:550px;">
+                        <!-- Start single slider item -->
+                        <div class="mu-slider-single">
+                            <div class="mu-slider-img">
+                                <figure>
+                                    <img src="~/Images/slider1.jpg" alt="img" style="max-height:400px;">
+                                </figure>
+                            </div>
+                            @*<div class="mu-slider-content">
+                            <h4>Lorem ipsum dolor sit amet</h4>
+                            <span></span>
+                            <h2>Lorem ipsum dolor sit amet</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                            <a href="#" class="mu-read-more-btn">Read More</a>
+                        </div>*@
+                        </div>
+                        <!-- Start single slider item -->
+                        <!-- Start single slider item -->
+                        <div class="mu-slider-single">
+                            <div class="mu-slider-img">
+                                <figure>
+                                    <img src="~/Images/slider2.jpg" alt="img" style="max-height:400px;">
+                                </figure>
+                            </div>
+                            @*<div class="mu-slider-content">
+                            <h4>Slider 1</h4>
+                            <span></span>
+                            <h2>Lorem ipsum dolor sit amet</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                            <a href="#" class="mu-read-more-btn">Read More</a>
+                        </div>*@
+                        </div>
+                        <!-- Start single slider item -->
+                        <!-- Start single slider item -->
+                        <div class="mu-slider-single">
+                            <div class="mu-slider-img">
+                                <figure>
+                                    <img src="~/Images/slider1.jpg" alt="img" style="max-height:400px;">
+                                </figure>
+                            </div>
+                            @*<div class="mu-slider-content">
+                            <h4>Lorem ipsum dolor sit amet</h4>
+                            @*<span></span>
+                            <h2>Lorem ipsum dolor sit amet</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
+                            <a href="#" class="mu-read-more-btn">Read More</a>
+                        </div>*@
+                        </div>
+                        <!-- Start single slider item -->
+                        <!-- End Slider -->
+
+                    </section>
+
+                </div>
+                <div class="col-lg-3 col-md-3" style="max-width:300px;padding-left:32px;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
+                        </div>
+                        <div class="panel-body" style="padding:0px !important">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <ul class="news-demo-down-auto">
+                                        <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                        <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
+                                        <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                        <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                        <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                        <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer" style="padding-bottom:8px !important">
-
+                     
                     </div>
                 </div>
-            </div>
+            
         </div>
-            </section>
-    <!-- Start Slider -->
-    <section id="mu-slider">
-        <!-- Start single slider item -->
-        <div class="mu-slider-single">
-            <div class="mu-slider-img">
-                <figure>
-                    <img src="~/Images/3.jpg" alt="img">
-                </figure>
-            </div>
-            <div class="mu-slider-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <span></span>
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                <a href="#" class="mu-read-more-btn">Read More</a>
-            </div>
-        </div>
-        <!-- Start single slider item -->
-        <!-- Start single slider item -->
-        <div class="mu-slider-single">
-            <div class="mu-slider-img">
-                <figure>
-                    <img src="~/Images/1.jpg" alt="img">
-                </figure>
-            </div>
-            <div class="mu-slider-content">
-                <h4>Slider 1</h4>
-                <span></span>
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                <a href="#" class="mu-read-more-btn">Read More</a>
-            </div>
-        </div>
-        <!-- Start single slider item -->
-        <!-- Start single slider item -->
-        <div class="mu-slider-single">
-            <div class="mu-slider-img">
-                <figure>
-                    <img src="~/Images/6.jpg" alt="img">
-                </figure>
-            </div>
-            <div class="mu-slider-content">
-                <h4>Lorem ipsum dolor sit amet</h4>
-                <span></span>
-                <h2>Lorem ipsum dolor sit amet</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                <a href="#" class="mu-read-more-btn">Read More</a>
-            </div>
-        </div>
-        <!-- Start single slider item -->
-        <!-- End Slider -->
-        <hr />
     </section>
+    <!-- Start Slider -->
 
 
 
-</div>
+
+
 <!-- start footer top -->
 <div style="background:#4b8cbb">
     <div class="container">

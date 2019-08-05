@@ -189,6 +189,7 @@
     <Content Include="Content\Varsity\404.html" />
     <Content Include="Content\Varsity\assets\css\bootstrap.css" />
     <Content Include="Content\Varsity\assets\css\font-awesome.css" />
+    <Content Include="Content\Varsity\assets\css\grid.css" />
     <Content Include="Content\Varsity\assets\css\jquery.fancybox.css" />
     <Content Include="Content\Varsity\assets\css\slick.css" />
     <Content Include="Content\Varsity\assets\css\style.css" />
@@ -347,6 +348,9 @@
     <Content Include="Web - Copy.Release.config">
       <DependentUpon>Web - Copy.config</DependentUpon>
     </Content>
+    <Content Include="Views\Home\Vision.cshtml" />
+    <Content Include="Views\Home\Mission.cshtml" />
+    <Content Include="Views\Home\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
