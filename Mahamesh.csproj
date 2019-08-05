@@ -351,6 +351,16 @@
     <Content Include="Views\Home\Vision.cshtml" />
     <Content Include="Views\Home\Mission.cshtml" />
     <Content Include="Views\Home\History.cshtml" />
+    <Content Include="Views\Home\Ambajogai.cshtml" />
+    <Content Include="Views\Home\Bilakhed.cshtml" />
+    <Content Include="Views\Home\Bondri.cshtml" />
+    <Content Include="Views\Home\Dahiwadi.cshtml" />
+    <Content Include="Views\Home\Mahud.cshtml" />
+    <Content Include="Views\Home\Mukhed.cshtml" />
+    <Content Include="Views\Home\Padegaon.cshtml" />
+    <Content Include="Views\Home\Pohara.cshtml" />
+    <Content Include="Views\Home\Ranjini.cshtml" />
+    <Content Include="Views\Home\Tirth.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

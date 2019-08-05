@@ -34,5 +34,45 @@ namespace Mahamesh.Controllers
 
             return View();
         }
+        public ActionResult Ambajogai()
+        {
+            return View();
+        }
+        public ActionResult Bilakhed()
+        {
+            return View();
+        }
+        public ActionResult Bondri()
+        {
+            return View();
+        }
+        public ActionResult Dahiwadi()
+        {
+            return View();
+        }
+        public ActionResult Mahud()
+        {
+            return View();
+        }
+        public ActionResult Mukhed()
+        {
+            return View();
+        }
+        public ActionResult Padegaon()
+        {
+            return View();
+        }
+        public ActionResult Pohara()
+        {
+            return View();
+        }
+        public ActionResult Ranjini()
+        {
+            return View();
+        }
+        public ActionResult Tirth()
+        {
+            return View();
+        }
     }
 }

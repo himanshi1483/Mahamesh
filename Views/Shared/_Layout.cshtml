@@ -155,7 +155,7 @@
     </div>
     <!-- End header  -->
     <!-- Start menu -->
-    
+
     <section id="mu-menu">
         <nav class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -172,12 +172,12 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav main-nav">
                         <li class="dropdown">
-                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle" data-toggle="dropdown">Home <span class="fa fa-angle-down"></span></a>
+                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">Home  <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="@Url.Action("Vision", "Home")">Vision</a></li>
                                 <li><a href="@Url.Action("Mission", "Home")">Mission</a></li>
                                 <li><a href="@Url.Action("History", "Home")">History</a></li>
-                         
+
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -244,9 +244,9 @@
                                 @*<span class="fa fa-angle-down"></span>*@
                             </a>
                             @*<ul class="dropdown-menu" role="menu">
-                <li><a href="course.html">Course Archive</a></li>
-                <li><a href="course-detail.html">Course Detail</a></li>
-            </ul>*@
+                                    <li><a href="course.html">Course Archive</a></li>
+                                    <li><a href="course-detail.html">Course Detail</a></li>
+                                </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown">
@@ -279,55 +279,53 @@
                         </li>
                         <li><a href="contact.html">Contact Us</a></li>
                         @*<li><a href="404.html">404 Page</a></li>
-        <li><a href="#" id="mu-search-icon"><i class="fa fa-search"></i></a></li>*@
+                            <li><a href="#" id="mu-search-icon"><i class="fa fa-search"></i></a></li>*@
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
     </section>
     <!-- End menu -->
+    @*<div class="container body-content" id="#maincontent">*@
+    @RenderBody()
 
 
-    <div class="container body-content" id="#maincontent">
-        @RenderBody()
-       
+    @*</div>*@
 
-    </div>
-   
     <!-- Start footer -->
     <footer id="mu-footer">
         <!-- start footer top -->
         @*<div class="mu-footer-top">
-            <div class="container">
-                <div class="mu-footer-top-area">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-8 col-sm-8">
-                            <div class="mu-footer-widget">
-                                <h4>Related Links</h4>
-                                <ul>
-                                    <li><a href="#">About Us</a></li>
-                                    <li><a href="">Features</a></li>
-                                    <li><a href="">Course</a></li>
+                <div class="container">
+                    <div class="mu-footer-top-area">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="mu-footer-widget">
+                                    <h4>Related Links</h4>
+                                    <ul>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="">Features</a></li>
+                                        <li><a href="">Course</a></li>
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-4">
-                            <div class="mu-footer-widget">
-                                <h4>More Help</h4>
-                                <ul>
-                                    <li><a href="">Get Started</a></li>
-                                    <li><a href="#">My Questions</a></li>
-                                    <li><a href="">Download Files</a></li>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="mu-footer-widget">
+                                    <h4>More Help</h4>
+                                    <ul>
+                                        <li><a href="">Get Started</a></li>
+                                        <li><a href="#">My Questions</a></li>
+                                        <li><a href="">Download Files</a></li>
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>*@
+            </div>*@
         <div class="mu-footer-bottom2">
 
             <ul>
@@ -436,7 +434,7 @@
 
 
             $(".news-demo-down-auto").bootstrapNews({
-                newsPerPage: 8,
+                newsPerPage: 7,
                 autoplay: true,
                 pauseOnHover: true,
                 navigation: false,
