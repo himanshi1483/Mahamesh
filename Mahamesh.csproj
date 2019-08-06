@@ -176,6 +176,7 @@
     <Compile Include="Controllers\FarmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\RTIController.cs" />
     <Compile Include="Controllers\SchemesController.cs" />
@@ -435,6 +436,34 @@
     <Content Include="Views\RTI\PromotionStatus.cshtml" />
     <Content Include="Views\UsefulLinks\Index.cshtml" />
     <Content Include="Views\UsefulLinks\FAQ.cshtml" />
+    <Content Include="Views\Menu\WebsitePolicy.cshtml" />
+    <Content Include="Views\Menu\Precautions.cshtml" />
+    <Content Include="Views\Menu\LivestockInsurance.cshtml" />
+    <Content Include="Views\Menu\FarmersList.cshtml" />
+    <Content Include="Views\Menu\SuccessStories.cshtml" />
+    <Content Include="Views\Menu\ProductAvailibility.cshtml" />
+    <Content Include="Views\Menu\FeedandFodder.cshtml" />
+    <Content Include="Views\Menu\ModelScheme.cshtml" />
+    <Content Include="Views\Menu\AnimalTradingPolicy.cshtml" />
+    <Content Include="Views\Menu\OngoingSchemes.cshtml" />
+    <Content Include="Views\Menu\BreedingInformation.cshtml" />
+    <Content Include="Views\Menu\FeedingInformation.cshtml" />
+    <Content Include="Views\Menu\VaccinationList.cshtml" />
+    <Content Include="Views\Menu\BreedsAvailable.cshtml" />
+    <Content Include="Views\Menu\HospitalsInformation.cshtml" />
+    <Content Include="Views\Menu\InseminationInformation.cshtml" />
+    <Content Include="Views\Menu\OfficersList.cshtml" />
+    <Content Include="Views\Menu\Information.cshtml" />
+    <Content Include="Views\Menu\AuditedReports.cshtml" />
+    <Content Include="Views\Menu\OfficeDocuments.cshtml" />
+    <Content Include="Views\Menu\ProjectStatus.cshtml" />
+    <Content Include="Views\Menu\BeneficiaryList.cshtml" />
+    <Content Include="Views\Menu\DeptGuidelinesGR.cshtml" />
+    <Content Include="Views\Menu\DeptGuidelines.cshtml" />
+    <Content Include="Views\Menu\ProductsWool.cshtml" />
+    <Content Include="Views\Menu\ProductsAtFarm.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\StockAvailability.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

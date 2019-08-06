@@ -195,7 +195,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Organization <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle">Organization <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="@Url.Action("Ministers", "Organization")">Ministers</a></li>
                                 <li><a href="@Url.Action("KeyOfficials", "Organization")">Key Officials</a></li>
@@ -206,7 +206,7 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Schemes <span class="fa fa-angle-down"></span></a>
+                            <a href="#" class="dropdown-toggle">Schemes <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Schemes - Yearwise</a></li>
                                 <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Implimented Schemes</a></li>
@@ -222,34 +222,34 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle">
                                 Farms
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Farm Location</a></li>
-                                <li><a href="course-detail.html">Farm Activities</a></li>
-                                <li><a href="course-detail.html">Farm Geo Data - Maps - 712 extracts - Land Mapping drawing</a></li>
-                                <li><a href="course-detail.html">Farm Facilities Available</a></li>
-                                <li><a href="course-detail.html">Farm Livestock</a></li>
-                                <li><a href="course-detail.html">Farm Extension Activities</a></li>
-                                <li><a href="course-detail.html">Farm - Distribution</a></li>
-                                <li><a href="course-detail.html">Farm - Demonstration</a></li>
+                                <li><a href="@Url.Action("FarmLocation", "Farm")">Farm Location</a></li>
+                                <li><a href="@Url.Action("FarmActivities", "Farm")">Farm Activities</a></li>
+                                <li><a href="@Url.Action("FarmGeoData", "Farm")">Farm Geo Data - Maps - 712 extracts - Land Mapping drawing</a></li>
+                                <li><a href="@Url.Action("FarmFacilities", "Farm")">Farm Facilities Available</a></li>
+                                <li><a href="@Url.Action("FarmLivestock", "Farm")">Farm Livestock</a></li>
+                                <li><a href="@Url.Action("FarmExtension", "Farm")">Farm Extension Activities</a></li>
+                                <li><a href="@Url.Action("FarmDistribution", "Farm")">Farm - Distribution</a></li>
+                                <li><a href="@Url.Action("FarmDemonstration", "Farm")">Farm - Demonstration</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle">
                                 Events
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Expo</a></li>
-                                <li><a href="course-detail.html">Training</a></li>
-                                <li><a href="course-detail.html">Bakri Id</a></li>
+                                <li><a href="@Url.Action("Expo", "Event")">Expo</a></li>
+                                <li><a href="@Url.Action("Training", "Event")">Training</a></li>
+                                <li><a href="@Url.Action("Bakari_Id", "Event")">Bakri Id</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="@Url.Action("Index", "CitizenCharter")" class="dropdown-toggle">
                                 Citizen Charter
 
                                 @*<span class="fa fa-angle-down"></span>*@
@@ -261,16 +261,16 @@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tender <span class="fa fa-angle-down"></span></a>
+                            <a href="@Url.Action("Index", "Tender")" class="dropdown-toggle">Tender <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog-archive.html">Tender Notifications</a></li>
-                                <li><a href="blog-single.html">Tender Notices</a></li>
-                                <li><a href="blog-single.html">Office Orders</a></li>
-                                <li><a href="blog-single.html">Adverisement related to Supply</a></li>
+                                <li><a href="@Url.Action("TenderNotifications", "Tender")">Tender Notifications</a></li>
+                                <li><a href="@Url.Action("TenderNotices", "Tender")">Tender Notices</a></li>
+                                <li><a href="@Url.Action("OfficeOrders", "Tender")">Office Orders</a></li>
+                                <li><a href="@Url.Action("Adverisement", "Tender")">Adverisement related to Supply</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle">
                                 Media
                                 <span class="fa fa-angle-down"></span>
                             </a>
@@ -281,14 +281,12 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
                                 Useful Links
-
-
-                            </a>
+                           </a>
 
                         </li>
-                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
                         @*<li><a href="404.html">404 Page</a></li>
                             <li><a href="#" id="mu-search-icon"><i class="fa fa-search"></i></a></li>*@
                     </ul>
