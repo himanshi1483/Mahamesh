@@ -2,70 +2,109 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-    /* define a fixed width for the entire menu */
-    .navigation {
-        /*max-width: 250px;*/
-        font-size: 13px;
-    }
-
-    /* reset our lists to remove bullet points and padding */
-    .mainmenu, .submenu {
+    .vertical-nav {
+        height: auto;
         list-style: none;
-        padding: 0;
-        margin: 0;
+        width: 100%; /******* MODIFIED ********/
+        /*margin: 20px 0 0 0;*/
     }
 
-        /* make ALL links (main and submenu) have padding and background color */
-        .mainmenu a {
-            display: block;
+        .vertical-nav li {
+            height: 30px;
             background-color: #52b2fa;
-            text-decoration: none;
-            padding: 6px;
-            color: #fff;
-            border-bottom: 1px solid #fff;
+            border: 1px solid #fff;
+            text-align: center;
+            display: inline-block;
+            float: left;
+            padding-top: 5px;
+            clear: both;
+            min-width: 282px; /******* MODIFIED ********/
         }
 
-            /* add hover behaviour */
-            .mainmenu a:hover {
-                background-color: #C5C5C5;
+            .vertical-nav li:hover {
+                background-color: #97d2fe;
+                color: #FFFFFF;
             }
 
-
-        /* when hovering over a .mainmenu item,
-      display the submenu inside it.
-      we're changing the submenu's max-height from 0 to 200px;
-    */
-
-        .mainmenu li:hover .submenu {
-            display: block;
-            max-height: 200px;
-        }
-
-        /*
-      we now overwrite the background-color for .submenu links only.
-      CSS reads down the page, so code at the bottom will overwrite the code at the top.
-    */
-
-        .submenu a {
-            background-color: #999;
-        }
-
-            /* hover behaviour for links inside .submenu */
-            .submenu a:hover {
-                background-color: #666;
+            .vertical-nav li a {
+                font-size: 14px;
+                color: #ffffff;
             }
 
-    /* this is the initial state of all submenus.
-      we set it to max-height: 0, and hide the overflowed content.
-    */
-    .submenu {
-        overflow: hidden;
-        max-height: 0;
-        -webkit-transition: all 0.5s ease-out;
+            .vertical-nav li.current {
+                background-color: #97d2fe;
+            }
+
+                .vertical-nav li.current a {
+                    color: #FFFFFF;
+                }
+
+    vertical-nav ul li ul {
+        display: none;
+        list-style-type: none;
+        min-width: 250px;
+        padding: 0px;
+        margin-top: 3px;
+        margin-left: 0px;
     }
+
+    vertical-nav ul li:hover ul {
+        display: block;
+    }
+
+        vertical-nav ul li:hover ul li {
+            background-color: #74a9ea;
+            min-width: 250px;
+            min-height: 30px;
+            display: inline-block;
+        }
+
+    vertical-nav ul li ul li:hover {
+        background-color: #333333;
+    }
+
+    vertical-nav ul li ul li a {
+        color: #FFF;
+        text-decoration: underline;
+    }
+
+        vertical-nav ul li ul li a:hover {
+            text-decoration: none;
+        }
+
+    .vertical-nav li ul {
+        display: none;
+        margin-top: 10px;
+        padding: 0;
+    }
+
+    .vertical-nav li:hover ul {
+        display: block;
+    }
+
+    .vertical-nav li:hover .sub-menu {
+        position: relative;
+        margin-top: -27.5px;
+    }
+
+    .sub-menu li {
+        position: relative;
+        display: block;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        /*min-width: 180px;
+        white-space: nowrap;*/
+        z-index: 1;
+    }
+
+        .sub-menu li a {
+            display: inline-block;
+            padding: 0 10px;
+        }
 
     .carousel {
-        padding: 0 380px;
+        padding: -1px 380px;
     }
 
     .carousel__button--prev, .carousel__button--next {
@@ -75,11 +114,11 @@
     }
 
     .carousel__button--prev {
-        left: 20%;
+        left: 2%;
     }
 
     .carousel__button--next {
-        right: 20%;
+        right: 2%;
     }
 
     .carousel__container {
@@ -135,76 +174,72 @@
         <div class="row col-lg-12 col-md-12">
 
             <div class="col-lg-3 col-md-3">
-                <nav class="navigation">
-                    <ul class="mainmenu">
-                        <li><a href="">Products at Farm</a></li>
-                        <li><a href="">Products - Wool</a></li>
-                        <li><a href="">Department Guidelines</a></li>
-                        <li><a href="">Beneficiary List</a></li>
-                        <li><a href="">Project Status</a></li>
-                        <li><a href="">Press Information</a></li>
-                        <li>
-                            <a href="">Office Documents</a>
-                            <ul class="submenu">
-                                <li><a href="">Acts</a></li>
-                                <li><a href="">Circulars</a></li>
-                                <li><a href="">Rules & Regulations</a></li>
-                                <li><a href="">White Papers - case studies</a></li>
-                                <li><a href="">Budget</a></li>
-                                <li><a href="">Minutes of Meeting</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Audited Reports</a></li>
-                        <li>
-                            <a href="">Information for Farmers</a>
-                            <ul class="submenu">
-                                <li><a href="">List of Officers</a></li>
-                                <li><a href="">Information Regarding Insemination</a></li>
-                                <li><a href="">Information reg Hospitals  - Vets -Dispensary</a></li>
-                                <li><a href="">List of Available Breeds</a></li>
-                                <li><a href="">List of Vaccinations - Diseases - RTemedies</a></li>
-                                <li><a href="">Information Regarding Feeding</a></li>
-                                <li><a href="">Information Regarding breeding</a></li>
-                                <li><a href="">Ongoing Schemes</a></li>
-                                <li><a href="">Animal Trading Policy</a></li>
+                @*<nav id="menu">*@
+                <ul class="vertical-nav">
+                    <li>
+                        <a href="">RTI</a>
+                        <ul class="sub-menu">
+                            <li><a href="">Status</a></li>
+                            <li><a href="">Disposal</a></li>
+                            <li><a href="">Figures and Statistics</a></li>
+                            <li><a href="">Proactive Disclosure</a></li>
+                            <li><a href="">Details of SPIO</a></li>
+                            <li><a href="">Online RTI Application</a></li>
+                            <li><a href="">Online Status of Petition</a></li>
+                            <li><a href="">Promotion Status</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Download Forms</a></li>
+                    <li><a href="">Products at Farm</a></li>
+                    <li><a href="">Products - Wool</a></li>
+                    <li><a href="">Department Guidelines</a></li>
+                    <li><a href="">Beneficiary List</a></li>
+                    <li><a href="">Project Status</a></li>
+                    <li><a href="">Press Information</a></li>
+                    <li>
+                        <a href="">Office Documents</a>
+                        <ul class="sub-menu">
+                            <li><a href="">Acts</a></li>
+                            <li><a href="">Circulars</a></li>
+                            <li><a href="">Rules & Regulations</a></li>
+                            <li><a href="">White Papers - case studies</a></li>
+                            <li><a href="">Budget</a></li>
+                            <li><a href="">Minutes of Meeting</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Audited Reports</a></li>
+                    <li>
+                        <a href="">Information for Farmers</a>
+                        <ul class="sub-menu">
+                            <li><a href="">List of Officers</a></li>
+                            <li><a href="">Information Regarding Insemination</a></li>
+                            <li><a href="">Information reg Hospitals  - Vets -Dispensary</a></li>
+                            <li><a href="">List of Available Breeds</a></li>
+                            <li><a href="">List of Vaccinations - Diseases - RTemedies</a></li>
+                            <li><a href="">Information Regarding Feeding</a></li>
+                            <li><a href="">Information Regarding breeding</a></li>
+                            <li><a href="">Ongoing Schemes</a></li>
+                            <li><a href="">Animal Trading Policy</a></li>
 
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="">Model Scheme</a>
-                            <ul class="submenu">
-                                <li><a href="">Feed and Fodder</a></li>
-                                <li><a href="">Availability of Stock  - Semen - Products</a></li>
-                                <li><a href=""> Feed and Fodder</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="">Success Stories</a></li>
-                        <li><a href="">List of Progressive Farmers</a></li>
-                        <li><a href="">Livestock Insurance</a></li>
-                        <li><a href="">Precaution during drought and Flood - Natural Calamity</a></li>
-                    </ul>
-                </nav>
-                @*<div class="vertical-menu" style="float:left">
-                        <a href="#">Products at Farm</a>
-                        <a href="#">Products - Wool</a>
-                        <a href="#">Department Guidelines</a>
-                        <a href="#">Beneficiary List</a>
-                        <a href="#">Project Status</a>
-                        <a href="#">Press Information</a>
-                        <a href="#">Office Documents</a>
-                        <button class="dropdown-btn">
-                            Dropdown
-                            <i class="fa fa-caret-down"></i>
-                        </button>
-                        <div class="dropdown-container">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
-                        </div>
-                        <a href="#">Pohara</a>
-                        <a href="#">Ranjini</a>
-                        <a href="#">Tirth</a>
-                    </div>*@
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="">Model Scheme</a>
+                        <ul class="sub-menu">
+                            <li><a href="">Feed and Fodder</a></li>
+                            <li><a href="">Availability of Stock  - Semen - Products</a></li>
+                            <li><a href=""> Feed and Fodder</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="">Success Stories</a></li>
+                    <li><a href="">List of Progressive Farmers</a></li>
+                    <li><a href="">Livestock Insurance</a></li>
+                    <li><a href="">Precaution during Natural Calamity</a></li>
+
+                </ul>
+
+
+
             </div>
             <div class="col-lg-6 col-md-6">
                 <section id="mu-slider">
@@ -215,13 +250,7 @@
                                 <img src="~/Images/slider1.jpg" alt="img" class="img-responsive">
                             </figure>
                         </div>
-                        @*<div class="mu-slider-content">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                <span></span>
-                                <h2>Lorem ipsum dolor sit amet</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                                <a href="#" class="mu-read-more-btn">Read More</a>
-                            </div>*@
+
                     </div>
                     <!-- Start single slider item -->
                     <!-- Start single slider item -->
@@ -231,13 +260,7 @@
                                 <img src="~/Images/slider2.jpg" alt="img" class="img-responsive">
                             </figure>
                         </div>
-                        @*<div class="mu-slider-content">
-                                <h4>Slider 1</h4>
-                                <span></span>
-                                <h2>Lorem ipsum dolor sit amet</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                                <a href="#" class="mu-read-more-btn">Read More</a>
-                            </div>*@
+
                     </div>
                     <!-- Start single slider item -->
                     <!-- Start single slider item -->
@@ -247,13 +270,7 @@
                                 <img src="~/Images/slider1.jpg" alt="img" class="img-responsive">
                             </figure>
                         </div>
-                        @*<div class="mu-slider-content">
-                                <h4>Lorem ipsum dolor sit amet</h4>
-                                @*<span></span>
-                                <h2>Lorem ipsum dolor sit amet</h2>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolor amet error eius reiciendis eum sint unde eveniet deserunt est debitis corporis temporibus recusandae accusamus.</p>
-                                <a href="#" class="mu-read-more-btn">Read More</a>
-                            </div>*@
+
                     </div>
                     <!-- Start single slider item -->
                     <!-- End Slider -->
@@ -262,16 +279,16 @@
 
             </div>
             <div class="col-lg-3 col-md-3">
-                <div class="panel panel-default" style="font-size:13px">
+                <div class="panel panel-default" style="font-size:13px;margin-bottom: 25px!important">
                     <div class="panel-heading">
-                        <span class="glyphicon glyphicon-list-alt"></span><b>Technology News</b>
+                        <span class="glyphicon glyphicon-list-alt"></span><b>News</b>
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
                                 <ul class="news-demo-down-auto">
                                     <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
-                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <br />Lorem ipsum dolor sit amet, consectetur adipisicing elit <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit....  <a href="#">Read more...</a></li>
                                     <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
                                     <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
                                     <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
@@ -287,9 +304,39 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-footer" style="height:45px">
-                       
+                    @*<div class="panel-footer" style="height:45px">
+
+                        </div>*@
+                </div>
+
+                <div class="panel panel-default" style="font-size:13px">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-list-alt"></span><b>Tenders</b>
                     </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <ul class="tender-demo-down-auto">
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="panel-footer" style="height:45px">
+
+                        </div>*@
                 </div>
             </div>
 
@@ -297,6 +344,38 @@
     </section>
 
 </div>
+<section id="mu-service">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="mu-service-area">
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-list-alt"></span>
+                        <h4>Mahamesh Yojana</h4>
+                    </div>
+                    <div class="mu-service-single">
+                        <span class="fa fa-list-alt"></span>
+                        <h4>Bakri Id</h4>
+                    </div>
+                    <!-- Start single service -->
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-list-alt"></span>
+                        <h4>Ram Distribution</h4>
+                    </div>
+                    <!-- Start single service -->
+                    <!-- Start single service -->
+                    <div class="mu-service-single">
+                        <span class="fa fa-list-alt"></span>
+                        <h4>Woolen Products</h4>
+                    </div>
+                    <!-- Start single service -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <section id="mu-features">
     <div class="container">
         <div class="row">
@@ -304,86 +383,82 @@
                 <div class="mu-features-area">
                     <!-- Start Title -->
                     <div class="mu-title">
-                        <h3>Our Farms</h3>
+                        <h3 style="margin-bottom:20px">Our Farms</h3>
                     </div>
                     <!-- End Title -->
                     <!-- Start features content -->
                     <div class="mu-features-content">
                         <div class="row">
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
-                                    <span class="fa fa-users"></span>                                   
-                                       <h4><a href="@Url.Action("Ambajogai", "Home")">Ambajogai</a></h4>                                 
+                                    <span class="fa fa-users"></span>
+                                    <h4><a href="@Url.Action("Ambajogai", "Home")">Ambajogai</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Bilakhed", "Home")">Bilakhed</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Bondri", "Home")">Bondri</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Dahiwadi", "Home")">Dahiwadi</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Mahud", "Home")">Mahud</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                        </div>
+                        <div class="row">
+                            @*<div class="col-lg-2 col-md-2 col-sm-4">
+                                    <div class="mu-single-feature">
+                                        @*<span class="fa fa-users"></span>
+                                            <h4><a href="@Url.Action("Padegaon", "Home")">Padegaon</a></h4>
+                                    </div>
+                                </div>*@
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Mukhed", "Home")">Mukhed</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Padegaon", "Home")">Padegaon</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Pohara", "Home")">Pohara</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
-                                <div class="mu-single-feature">
-                                    @*<span class="fa fa-users"></span>
-                                        <h4>Expert Teachers</h4>
-                                        <a href="#">Read More</a>*@
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Ranjani", "Home")">Ranjani</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
+                            <div class="col-lg-2 col-md-2 col-sm-4">
                                 <div class="mu-single-feature">
                                     <span class="fa fa-users"></span>
                                     <h4><a href="@Url.Action("Tirth", "Home")">Tirth</a></h4>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-4">
-                                <div class="mu-single-feature">
-                                    @*<span class="fa fa-users"></span>
-                                        <h4>Expert Teachers</h4>
-                                        <a href="#">Read More</a>*@
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <!-- End features content -->
@@ -394,39 +469,39 @@
 </section>
 <!-- start footer top -->
 @*<div style="background:#4b8cbb">
-    <div class="container">
-        <div class="mu-footer-top-area">
-            <div class="row">
-                <div class="col-lg-8 col-md-8 col-sm-8">
-                    <div class="mu-footer-widget">
-                        <h3 style="color:#ffffff">Related Links</h3>
-                        <ul>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other DST Sites</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other Dept Funding Schemes</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Professional Bodies</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Science Wings Abroad</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Statutory Board</a></li>
+        <div class="container">
+            <div class="mu-footer-top-area">
+                <div class="row">
+                    <div class="col-lg-8 col-md-8 col-sm-8">
+                        <div class="mu-footer-widget">
+                            <h3 style="color:#ffffff">Related Links</h3>
+                            <ul>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other DST Sites</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Other Dept Funding Schemes</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Professional Bodies</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Science Wings Abroad</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Statutory Board</a></li>
 
-                        </ul>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-4">
-                    <div class="mu-footer-widget">
-                        <h3 style="color:#ffffff">Miscellaneous</h3>
-                        <ul>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Tenders</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Pension Grievance Redressal</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Public Grievances</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Parliament Q & A</a></li>
-                            <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Right To Information</a></li>
-                        </ul>
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <div class="mu-footer-widget">
+                            <h3 style="color:#ffffff">Miscellaneous</h3>
+                            <ul>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Tenders</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Pension Grievance Redressal</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Public Grievances</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Parliament Q & A</a></li>
+                                <li><a href="#" style="font-size:16px !important;color:#e9eff3 !important;line-height:30px;">Right To Information</a></li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
 
+                </div>
             </div>
         </div>
-    </div>
-</div>*@
+    </div>*@
 <!-- Start carousel  -->
 <section id="mu-menu" style="background:url(/Images/carousel-bg.png) repeat;margin-left:0px !important;margin-right: 0px !important;">
     <div class="carousel js-carousel">

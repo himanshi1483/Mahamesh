@@ -177,8 +177,10 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
+    <Compile Include="Controllers\RTIController.cs" />
     <Compile Include="Controllers\SchemesController.cs" />
     <Compile Include="Controllers\TenderController.cs" />
+    <Compile Include="Controllers\UsefulLinksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -422,6 +424,17 @@
     <Content Include="Views\Tender\TenderNotices.cshtml" />
     <Content Include="Views\Tender\OfficeOrders.cshtml" />
     <Content Include="Views\Tender\Adverisement.cshtml" />
+    <Content Include="Views\RTI\Index.cshtml" />
+    <Content Include="Views\RTI\RTIStatus.cshtml" />
+    <Content Include="Views\RTI\RTIDisposal.cshtml" />
+    <Content Include="Views\RTI\Statistics.cshtml" />
+    <Content Include="Views\RTI\ProactiveDisclosure.cshtml" />
+    <Content Include="Views\RTI\Details.cshtml" />
+    <Content Include="Views\RTI\OnlineRTIApplication.cshtml" />
+    <Content Include="Views\RTI\OnlineStatus.cshtml" />
+    <Content Include="Views\RTI\PromotionStatus.cshtml" />
+    <Content Include="Views\UsefulLinks\Index.cshtml" />
+    <Content Include="Views\UsefulLinks\FAQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
