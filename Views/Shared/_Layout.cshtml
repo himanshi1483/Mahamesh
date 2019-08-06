@@ -213,14 +213,11 @@
                             </ul>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Development Activity
-                                <span class="fa fa-angle-down"></span>
-                            </a>
+                            <a href="@Url.Action("Index", "DevelopmentActivity")" class="dropdown-toggle">Development Activity  <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Distribution of Rams and Buck for Breeding</a></li>
-                                <li><a href="course-detail.html"> Distribution of Rams and Sheep</a></li>
-                                <li><a href="course-detail.html">Training </a></li>
+                                <li><a href="@Url.Action("DistributionBreeding", "DevelopmentActivity")">Distribution of Rams and Buck for Breeding</a></li>
+                                <li><a href="@Url.Action("Distribution", "DevelopmentActivity")"> Distribution of Rams and Sheep</a></li>
+                                <li><a href="@Url.Action("Training", "DevelopmentActivity")">Training </a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

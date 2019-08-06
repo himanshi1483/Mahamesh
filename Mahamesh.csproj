@@ -170,11 +170,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CitizenCharterController.cs" />
     <Compile Include="Controllers\DevelopmentActivityController.cs" />
+    <Compile Include="Controllers\EventController.cs" />
+    <Compile Include="Controllers\FarmController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\SchemesController.cs" />
+    <Compile Include="Controllers\TenderController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -399,6 +403,25 @@
     <Content Include="Views\DevelopmentActivity\Distribution.cshtml" />
     <Content Include="Views\DevelopmentActivity\Training.cshtml" />
     <Content Include="Views\DevelopmentActivity\Index.cshtml" />
+    <Content Include="Views\Event\Index.cshtml" />
+    <Content Include="Views\Event\Expo.cshtml" />
+    <Content Include="Views\Event\Training.cshtml" />
+    <Content Include="Views\Event\Bakari_id.cshtml" />
+    <Content Include="Views\Farm\Index.cshtml" />
+    <Content Include="Views\Farm\FarmLocation.cshtml" />
+    <Content Include="Views\Farm\FarmActivities.cshtml" />
+    <Content Include="Views\Farm\FarmGeoData.cshtml" />
+    <Content Include="Views\Farm\FarmFacilities.cshtml" />
+    <Content Include="Views\Farm\FarmLivestock.cshtml" />
+    <Content Include="Views\Farm\FarmExtension.cshtml" />
+    <Content Include="Views\Farm\FarmDistribution.cshtml" />
+    <Content Include="Views\Farm\FarmDemonstration.cshtml" />
+    <Content Include="Views\CitizenCharter\Index.cshtml" />
+    <Content Include="Views\Tender\Index.cshtml" />
+    <Content Include="Views\Tender\TenderNotifications.cshtml" />
+    <Content Include="Views\Tender\TenderNotices.cshtml" />
+    <Content Include="Views\Tender\OfficeOrders.cshtml" />
+    <Content Include="Views\Tender\Adverisement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
