@@ -313,8 +313,8 @@ img {
     padding-top: 6px;
 }
     .header-left ul li.dept {
-        padding-left: 10px;
-        margin-left: 10px;
+        /*padding-left: 10px;
+        margin-left: 10px;*/
         border-left: 1px solid #eeeeee;
     }
 
