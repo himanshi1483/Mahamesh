@@ -2,6 +2,547 @@
 @{
     ViewBag.Title = "FarmFacilities";
 }
+<style>
+    #mu-footer {
+        display: inline;
+        float: left;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        /*padding-top: 30px;*/
+    }
 
-<h2>FarmFacilities</h2>
+    .btn-group1 button {
+        background: #8ac8f6;
+        border: 1px solid #8ac8f6;
+        margin-bottom: 10px;
+        padding: 10px 24px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        width: 100%; /* Set a width if needed */
+        display: block; /* Make the buttons appear below each other */
+    }
+</style>
+
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">Farm Facilities</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="btn-group1">
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo1">
+                        <h5 style="font-weight:bold;text-align:left">Ambajogai</h5>
+                    </button>
+                    <div id="demo1" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Bucks for Breeding</td>
+                                    <td class="text-left">Osmanabadi Goat breed is reared at this farm for breeding purpose. The farm produced superior quality bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers for breeding of their ND livestock.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo2">
+                        <h5 style="font-weight:bold;text-align:left">Bilakhed</h5>
+                    </button>
+                    <div id="demo2" class="collapse">
+
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams for Breeding</td>
+                                    <td class="text-left">Deccani (Sangamneri) sheep breed is being reared at this farm for breeding purpose. The farm produced superior quality rams are reared up to attain reproductive age and then after the rams are distributed to farmers for breeding of their ND livestock.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Machine Shearing Program</td>
+                                    <td class="text-left">For improving the quality and quantity of wool of sheep, the machine shearing facility is providing to the sheep breeders by charging nominal cost. </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woolen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.     </td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc. </td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Fodder Plant Nursery </td>
+                                    <td class="text-left">To make available fodder plants for plantation which is useful in sheep and goat, fodder plant nursery is developed at farm. </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo3">
+                        <h5 style="font-weight:bold;text-align:left">Bondri</h5>
+                    </button>
+                    <div id="demo3" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Bucks for Breeding</td>
+                                    <td class="text-left">Local Goat breed is being reared at this farm for breeding purpose. The farm produced bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo4">
+                        <h5 style="font-weight:bold;text-align:left">Dahiwadi</h5>
+                    </button>
+                    <div id="demo4" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams & Bucks for Breeding</td>
+                                    <td class="text-left">Madgyal & Lonand sheep and Osmanabadi Goat breed are reared at this farm for breeding purpose. The farm produced superior quality rams & bucks are reared up to attain reproductive age and then after the rams & bucks are distributed to farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Machine Shearing Program</td>
+                                    <td class="text-left">
+                                        For improving the quality and quantity of wool,  the machine shearing facility is providing to the sheep breeders by charging nominal cost.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo5">
+                        <h5 style="font-weight:bold;text-align:left">Mahud</h5>
+                    </button>
+                    <div id="demo5" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams and Bucks for Breeding </td>
+                                    <td class="text-left">Madgyal sheep and Osmanabadi Goat breed are reared at this farm for breeding purpose. The farm produced superior quality rams & bucks are reared up to attain reproductive age and then after the rams & bucks are distributed to farmers. </td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Machine Shearing Program</td>
+                                    <td class="text-left">
+                                        For improving the quality and quantity of wool,  the machine shearing facility is providing to the sheep breeders by charging nominal cost.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo6">
+                        <h5 style="font-weight:bold;text-align:left">Mukhed</h5>
+                    </button>
+
+                    <div id="demo6" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams for Breeding</td>
+                                    <td class="text-left">Deccani sheep breed is reared at this farm for breeding purpose. The farm produced superior quality rams are reared up to attain reproductive age and then after the rams are distributed to farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo7">
+                        <h5 style="font-weight:bold;text-align:left">Padegaon</h5>
+                    </button>
+                    <div id="demo7" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams and Bucks for Breeding </td>
+                                    <td class="text-left">Deccani (Sangamneri) sheep and Osmanabadi Goat breed are  reared at this farm for breeding purpose. The farm produced superior quality rams & bucks are reared up to attain reproductive age and then after the rams & bucks are distributed to farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Machine Shearing Program</td>
+                                    <td class="text-left">
+                                        For improving the quality and quantity of wool,  the machine shearing facility is providing to the sheep breeders by charging nominal cost.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Fodder Plant Nursery </td>
+                                    <td class="text-left">To make available fodder plants for plantation which is useful in sheep and goat, fodder plant nursery is developed at farm and the plants are available for sale. </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo8">
+                        <h5 style="font-weight:bold;text-align:left">Pohara</h5>
+                    </button>
+                    <div id="demo8" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Bucks for Breeding</td>
+                                    <td class="text-left">Osmanabadi Goat breed is reared at this farm for breeding purpose. The farm produced superior quality bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers. </td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo9">
+                        <h5 style="font-weight:bold;text-align:left">Ranjini</h5>
+                    </button>
+                    <div id="demo9" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Rams and Bucks for Breeding</td>
+                                    <td class="text-left">Madgyal sheep and Osmanabadi goat breeds are reared at this farm for breeding purpose. The farm produced superior quality rams & bucks  are reared up to attain reproductive age and then after the rams & bucks  are distributed to farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Machine Shearing Program</td>
+                                    <td class="text-left">
+                                        For improving the quality and quantity of wool,  the machine shearing facility is providing to the sheep breeders by charging nominal cost.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo10">
+                        <h5 style="font-weight:bold;text-align:left">Tirth</h5>
+                    </button>
+                    <div id="demo10" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Facility</th>
+                                    <th class="text-center">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Supply of Bucks for Breeding</td>
+                                    <td class="text-left">Osmanabadi Goat breed is reared at this farm for breeding purpose. The farm produced superior quality bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers. </td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Farming Training</td>
+                                    <td class="text-left">
+                                        Sheep & Goat Management Training Program is conducted at Sheep & Goat Development Farm in every month.
+                                        Fees: Rs. 500/- per trainee.
+                                        Duration: 3 days.
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Purchase of Wool</td>
+                                    <td class="text-left">Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</td>
+                                </tr>
+                                <tr>
+                                    <td>Production & Supply of Fodder Seed and Stumps of Perennial Grasses</td>
+                                    <td class="text-left">The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</td>
+                                </tr>
+                                <tr>
+                                    <td>Extension Activity</td>
+                                    <td class="text-left">Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</td>
+                                </tr>
+                                <tr>
+                                    <td>Sheep and Goat Unit Distribution</td>
+                                    <td class="text-left">Under various Government schemes, the Sheep & Goat unit is distributed to the farmers.</td>
+                                </tr>
+                                <tr>
+                                    <td>Demonstration and production of Azola</td>
+                                    <td class="text-left">At this farm Azola Cultivation unit has been established for demonstration to the farmers.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

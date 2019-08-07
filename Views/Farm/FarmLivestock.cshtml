@@ -3,5 +3,385 @@
     ViewBag.Title = "FarmLivestock";
 }
 
-<h2>FarmLivestock</h2>
+<style>
+    #mu-footer {
+        display: inline;
+        float: left;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        /*padding-top: 30px;*/
+    }
+
+    .btn-group1 button {
+        background: #8ac8f6;
+        border: 1px solid #8ac8f6;
+        margin-bottom: 10px;
+        padding: 10px 24px; /* Some padding */
+        cursor: pointer; /* Pointer/hand icon */
+        width: 100%; /* Set a width if needed */
+        display: block; /* Make the buttons appear below each other */
+    }
+</style>
+
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">Farm Livestock</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <h4 class="text-center text-info">Livestock Details Update Till 31st March 2019</h4>
+                <div class="btn-group1">
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo1">
+                        <h5 style="font-weight:bold;text-align:left">Ambajogai</h5>
+                    </button>
+                    <div id="demo1" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>55</td>
+                                    <td>190</td>
+                                    <td>19</td>
+                                    <td>27</td>
+                                    <td>291</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo2">
+                        <h5 style="font-weight:bold;text-align:left">Bilakhed</h5>
+                    </button>
+                    <div id="demo2" class="collapse">
+
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Deccani (Sangamneri ) Sheep</td>
+                                    <td>20</td>
+                                    <td>429</td>
+                                    <td>119</td>
+                                    <td>106</td>
+                                    <td>674</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo3">
+                        <h5 style="font-weight:bold;text-align:left">Bondri</h5>
+                    </button>
+                    <div id="demo3" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Local Breed</td>
+                                    <td>09</td>
+                                    <td>112</td>
+                                    <td>46</td>
+                                    <td>41</td>
+                                    <td>208</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo4">
+                        <h5 style="font-weight:bold;text-align:left">Dahiwadi</h5>
+                    </button>
+                    <div id="demo4" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>70</td>
+                                    <td>455</td>
+                                    <td>27</td>
+                                    <td>50</td>
+                                    <td>602</td>
+                                </tr>
+                                <tr>
+                                    <td>Sirohi Goat</td>
+                                    <td>02</td>
+                                    <td>38</td>
+                                    <td>02</td>
+                                    <td>02</td>
+                                    <td>44</td>
+                                </tr>
+                                <tr>
+                                    <td>Sangamneri Goat</td>
+                                    <td>01</td>
+                                    <td>01</td>
+                                    <td>00</td>
+                                    <td>00</td>
+                                    <td>02</td>
+                                </tr>
+                                <tr>
+                                    <td>Madgyal Sheep</td>
+                                    <td>18</td>
+                                    <td>103</td>
+                                    <td>07</td>
+                                    <td>05</td>
+                                    <td>133</td>
+                                </tr>
+                                <tr>
+                                    <td>Lonand Sheep</td>
+                                    <td>07</td>
+                                    <td>74</td>
+                                    <td>14</td>
+                                    <td>13</td>
+                                    <td>108</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo5">
+                        <h5 style="font-weight:bold;text-align:left">Mahud</h5>
+                    </button>
+                    <div id="demo5" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>18</td>
+                                    <td>422</td>
+                                    <td>60</td>
+                                    <td>79</td>
+                                    <td>579</td>
+                                </tr>
+                                <tr>
+                                    <td>Madgyal Sheep</td>
+                                    <td>12</td>
+                                    <td>337</td>
+                                    <td>49</td>
+                                    <td>81</td>
+                                    <td>479</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo6">
+                        <h5 style="font-weight:bold;text-align:left">Mukhed</h5>
+                    </button>
+
+                    <div id="demo6" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Deccani Sheep</td>
+                                    <td>16</td>
+                                    <td>179</td>
+                                    <td>24</td>
+                                    <td>22</td>
+                                    <td>241</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo7">
+                        <h5 style="font-weight:bold;text-align:left">Padegaon</h5>
+                    </button>
+                    <div id="demo7" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>6</td>
+                                    <td>246</td>
+                                    <td>56</td>
+                                    <td>82</td>
+                                    <td>390</td>
+                                </tr>
+                                <tr>
+                                    <td>Sangamneri Goat</td>
+                                    <td>04</td>
+                                    <td>23</td>
+                                    <td>04</td>
+                                    <td>12</td>
+                                    <td>43</td>
+                                </tr>
+                                <tr>
+                                    <td>Deccani (Sangamneri) Sheep</td>
+                                    <td>08</td>
+                                    <td>174</td>
+                                    <td>44</td>
+                                    <td>51</td>
+                                    <td>277</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo8">
+                        <h5 style="font-weight:bold;text-align:left">Pohara</h5>
+                    </button>
+                    <div id="demo8" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>15</td>
+                                    <td>138</td>
+                                    <td>29</td>
+                                    <td>24</td>
+                                    <td>206</td>
+                                </tr>
+                                <tr>
+                                    <td>Berari Goat</td>
+                                    <td>5</td>
+                                    <td>55</td>
+                                    <td>13</td>
+                                    <td>27</td>
+                                    <td>100</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo9">
+                        <h5 style="font-weight:bold;text-align:left">Ranjini</h5>
+                    </button>
+                    <div id="demo9" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>17</td>
+                                    <td>546</td>
+                                    <td>115</td>
+                                    <td>197</td>
+                                    <td>875</td>
+                                </tr>
+                                <tr>
+                                    <td>Madgyal Sheep</td>
+                                    <td>11</td>
+                                    <td>247</td>
+                                    <td>58</td>
+                                    <td>84</td>
+                                    <td>400</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <button data-toggle="collapse" class="btn btn-primary" data-target="#demo10">
+                        <h5 style="font-weight:bold;text-align:left">Tirth</h5>
+                    </button>
+                    <div id="demo10" class="collapse">
+                        <table class="table table-bordered table-responsive table-striped table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Breed</th>
+                                    <th class="text-center">Male</th>
+                                    <th class="text-center">Female</th>
+                                    <th class="text-center">Male Kids</th>
+                                    <th class="text-center">Female Kids</th>
+                                    <th class="text-center">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Osmanabadi Goat</td>
+                                    <td>19</td>
+                                    <td>1441</td>
+                                    <td>47</td>
+                                    <td>42</td>
+                                    <td>549</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

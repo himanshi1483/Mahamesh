@@ -3436,10 +3436,19 @@ fieldset[disabled] .btn-link:focus {
 }
 .btn-lg,
 .btn-group-lg > .btn {
-  padding: 10px 16px;
+    /*padding: 10px 16px;
   font-size: 18px;
   line-height: 1.3333333;
-  border-radius: 6px;
+  border-radius: 6px;*/
+    font-size: 16px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    width: 200px;
+    height:100px;
 }
 .btn-sm,
 .btn-group-sm > .btn {
@@ -3477,10 +3486,14 @@ input[type="button"].btn-block {
   opacity: 1;
 }
 .collapse {
-  display: none;
+    display: none;
+    text-align: justify;
+    /*padding-top: 10px;*/
 }
 .collapse.in {
   display: block;
+  text-align:justify;
+  /*padding-top:10px;*/
 }
 tr.collapse.in {
   display: table-row;
@@ -3489,18 +3502,20 @@ tbody.collapse.in {
   display: table-row-group;
 }
 .collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  -webkit-transition-timing-function: ease;
-       -o-transition-timing-function: ease;
-          transition-timing-function: ease;
-  -webkit-transition-duration: .35s;
-       -o-transition-duration: .35s;
-          transition-duration: .35s;
-  -webkit-transition-property: height, visibility;
-       -o-transition-property: height, visibility;
-          transition-property: height, visibility;
+    position: relative;
+    text-align: justify;
+    /*padding-top: 10px;*/
+    height: 0;
+    overflow: hidden;
+    -webkit-transition-timing-function: ease;
+    -o-transition-timing-function: ease;
+    transition-timing-function: ease;
+    -webkit-transition-duration: .05s;
+    -o-transition-duration: .05s;
+    transition-duration: .05s;
+    -webkit-transition-property: height, visibility;
+    -o-transition-property: height, visibility;
+    transition-property: height, visibility;
 }
 .caret {
   display: inline-block;
