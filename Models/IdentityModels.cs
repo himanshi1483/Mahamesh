@@ -39,5 +39,9 @@ namespace Mahamesh.Models
         public System.Data.Entity.DbSet<Mahamesh.Models.TenderModel> TenderModels { get; set; }
 
         public System.Data.Entity.DbSet<Mahamesh.Models.PressInformationModel> PressInformationModels { get; set; }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.FeedbackModel> FeedbackModels { get; set; }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.MediaGalleryModel> MediaGalleryModels { get; set; }
     }
 }

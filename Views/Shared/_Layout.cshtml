@@ -126,7 +126,17 @@
                                             <button type="button" class="btn btn-xs btn-default"><a class="decrease"><i class="glyphicon glyphicon-minus"></i></a></button>
 
                                             <button type="button" class="btn btn-xs btn-default"><a class="reset"><i class="glyphicon glyphicon-retweet"></i></a></button>
-                                            @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })
+                                            @if (!User.Identity.IsAuthenticated)
+                                            {
+                                                <button type="button" class="btn btn-xs btn-default">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
+
+                                            }
+                                            else
+                                            {
+                                                 @Html.Partial("_LoginPartial")
+
+                                            }
+
                                         </div>
 
 
@@ -255,9 +265,9 @@
                                 @*<span class="fa fa-angle-down"></span>*@
                             </a>
                             @*<ul class="dropdown-menu" role="menu">
-                                    <li><a href="course.html">Course Archive</a></li>
-                                    <li><a href="course-detail.html">Course Detail</a></li>
-                                </ul>*@
+                <li><a href="course.html">Course Archive</a></li>
+                <li><a href="course-detail.html">Course Detail</a></li>
+            </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown">
@@ -286,6 +296,25 @@
                             </a>
                         </li>
                         <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle">
+                                    Admin
+                                    <span class="fa fa-angle-down"></span>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="@Url.Action("Index", "News")">News</a></li>
+                                    <li><a href="@Url.Action("Index", "TenderInfo")">Tenders</a></li>
+                                    <li><a href="@Url.Action("Index", "PressInformation")">Press Information</a></li>
+                                    <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
+                                    <li><a href="@Url.Action("Index", "News")">Media</a></li>
+                                    <li><a href="@Url.Action("Index", "Account")">Users</a></li>
+                                    <li><a href="@Url.Action("Index", "Account")">Roles</a></li>
+                                    <li><a href="@Url.Action("Index", "Account")">Groups</a></li>
+                                </ul>
+                            </li>
+                        }
                     </ul>
                 </div><!--/.nav-collapse -->
             </div>
@@ -301,38 +330,6 @@
 
     <!-- Start footer -->
     <footer id="mu-footer">
-        <!-- start footer top -->
-        @*<div class="mu-footer-top">
-                <div class="container">
-                    <div class="mu-footer-top-area">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="mu-footer-widget">
-                                    <h4>Related Links</h4>
-                                    <ul>
-                                        <li><a href="#">About Us</a></li>
-                                        <li><a href="">Features</a></li>
-                                        <li><a href="">Course</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="mu-footer-widget">
-                                    <h4>More Help</h4>
-                                    <ul>
-                                        <li><a href="">Get Started</a></li>
-                                        <li><a href="#">My Questions</a></li>
-                                        <li><a href="">Download Files</a></li>
-
-                                    </ul>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>*@
         <div class="mu-footer-bottom2">
 
             <ul>
@@ -342,7 +339,7 @@
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="news.asp">  Website Policies</a></li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>
-                <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="contact.asp">Feedback</a></li>
+                <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="@Url.Action("Create", "Feedback")">Feedback</a></li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="about.asp">Help</a></li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>
@@ -468,44 +465,11 @@
 
         });
 
-        $(".js-carousel").each(function () {
-            var $carousel = $(this),
-                $carouselContainer = $carousel.find(".js-carousel-container"),
-                $carouselList = $carousel.find(".js-carousel-list"),
-                $carouselItem = $carousel.find(".js-carousel-item"),
-                $carouselButton = $carousel.find(".js-carousel-button"),
-                setItemWidth = function () {
-                    $carouselList.removeAttr("style");
-                    var curWidth = $($carouselItem[0]).outerWidth() * $carouselItem.length;
-                    $carouselList.css("width", curWidth);
-                },
-                slide = function () {
-                    var $button = $(this),
-                        dir = $button.data("dir"),
-                        curPos = parseInt($carouselList.css("left")) || 0,
-                        moveto = 0,
-                        containerWidth = $carouselContainer.outerWidth(),
-                        listWidth = $carouselList.outerWidth(),
-                        before = (curPos + containerWidth),
-                        after = listWidth + (curPos - containerWidth);
-                    if (dir == "next") {
-                        moveto = (after < containerWidth) ? curPos - after : curPos - containerWidth;
-                    } else {
-                        moveto = (before >= 0) ? 0 : curPos + containerWidth;
-                    }
+        $('.carousel').carousel({
+            interval: 2000
+        })
 
 
-                    $carouselList.animate({
-                        left: moveto
-                    });
-                };
-            $(window).resize(function () {
-                setItemWidth();
-            });
-            setItemWidth();
-
-            $carouselButton.on("click", slide);
-        });
     </script>
 </body>
 </html>

@@ -1,0 +1,81 @@
+﻿@model Mahamesh.Models.MediaGalleryModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">News</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                <div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.MediaType, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MediaType, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MediaType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.MediaName, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MediaName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MediaName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Image</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                <input type="file" id="file" aria-label="File browser example">
+                                <span class="file-custom"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.MediaLocation, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MediaLocation, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MediaLocation, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.Caption, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Caption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-6">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
