@@ -1,6 +1,4 @@
-﻿@model Mahamesh.Models.HomePageViewModel
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
 }
 <style>
@@ -151,6 +149,23 @@
     .img-border {
         border: 1px solid black;
     }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+
+        .video-container video,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
 </style>
 
 <div class="container  body-content" id="#maincontent">
@@ -160,23 +175,40 @@
                 <img src="~/Images/Chairman Photo.jpg" class="img-responsive img-border" />
             </div>
             <div class="col-lg-6 col-md-6" style="text-align:center">
-                <video id='video' controls="controls" preload='none' class="embed-responsive-item" style="max-width:550px;max-height:260px"
-                       poster="http://media.w3.org/2010/05/sintel/poster.png">
-                    <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
-                    @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
-                        <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
-                </video>
+                <div class="video-container">
+                    <video id='video' controls="controls" preload='none' class="embed-responsive-item"
+                           poster="http://media.w3.org/2010/05/sintel/poster.png">
+                        <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+                        @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
+                <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
+                    </video>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <img src="~/Images/MD Photo.jpg" class="img-responsive img-border" />
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3">
-                <img src="~/Images/MD Photo.jpg" class="img-responsive img-border" />
-            </div>
-        </div>
     </section>
     <section>
         <div class="row col-lg-12 col-md-12">
 
             <div class="col-lg-3 col-md-3">
+                @*<nav id="menu">*@
                 <ul class="vertical-nav">
+                    @*<li>
+                        <a href="">RTI</a>
+                        <ul class="sub-menu">
+                            <li><a href="">Status</a></li>
+                            <li><a href="">Disposal</a></li>
+                            <li><a href="">Figures and Statistics</a></li>
+                            <li><a href="">Proactive Disclosure</a></li>
+                            <li><a href="">Details of SPIO</a></li>
+                            <li><a href="">Online RTI Application</a></li>
+                            <li><a href="">Online Status of Petition</a></li>
+                            <li><a href="">Promotion Status</a></li>
+                        </ul>
+                    </li>*@
+                    @*<li><a href="">Download Forms</a></li>*@
                     <li><a href="@Url.Action("ProductsAtFarm", "Menu")">Products at Farm</a></li>
                     <li><a href="@Url.Action("ProductsWool", "Menu")">Products - Wool</a></li>
                     <li><a href="@Url.Action("DeptGuidelines", "Menu")">Department Guidelines</a></li>
@@ -221,7 +253,11 @@
                     <li><a href="@Url.Action("FarmersList", "Menu")">List of Progressive Farmers</a></li>
                     <li><a href="@Url.Action("LivestockInsurance", "Menu")">Livestock Insurance</a></li>
                     <li><a href="@Url.Action("Precautions", "Menu")">Precaution during Natural Calamity</a></li>
+
                 </ul>
+
+
+
             </div>
             <div class="col-lg-6 col-md-6">
                 <section id="mu-slider">
@@ -269,11 +305,18 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <ul class="news-demo-down-auto">
-                                    @foreach (var item in Model.NewsList)
-                                    {
-                                        <li class="news-item">@item.NewsTitle<a href="@Url.Action("Details","News", new { @id = item.NewsId})">Read more...</a></li>
-                                    }
-                                 
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit....  <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
 
                                 </ul>
                             </div>
@@ -292,11 +335,18 @@
                         <div class="row">
                             <div class="col-xs-12">
                                 <ul class="tender-demo-down-auto">
-                                    @foreach (var item in Model.TenderList)
-                                    {
-                                        <li class="news-item">@item.TenderTitle<a href="@Url.Action("Details","TenderInfo", new { @id = item.TenderId })">Read more...</a></li>
-                                    }
-                                    
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit..<a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit.... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit.. <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet, elit ... <a href="#">Read more...</a></li>
+                                    <li class="news-item">Lorem ipsum dolor sit amet,  elit... <a href="#">Read more...</a></li>
 
                                 </ul>
                             </div>
@@ -307,8 +357,10 @@
                         </div>*@
                 </div>
             </div>
+
         </div>
     </section>
+
 </div>
 <section id="mu-service">
     <div class="container">
@@ -433,37 +485,6 @@
         </div>
     </div>
 </section>
-@if(User.IsInRole("Administrator"))
-{ 
-<section id="mu-service">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12">
-                <div class="mu-service-area">
-                    <!-- Start single service -->
-                    <div class="mu-service-single">
-                        <h4><a href="@Url.Action("Index", "News")">News</a></h4>
-                    </div>
-                    <div class="mu-service-single">
-                        <h4><a href="@Url.Action("Index", "TenderInfo")">Tenders</a></h4>
-                    </div>
-                    <!-- Start single service -->
-                    <!-- Start single service -->
-                    <div class="mu-service-single">
-                        <h4><a href="@Url.Action("Index", "PressInformation")">Press Information</a></h4>
-                    </div>
-                    <!-- Start single service -->
-                    <!-- Start single service -->
-                    <div class="mu-service-single">
-                        <h4>Woolen Products</h4>
-                    </div>
-                    <!-- Start single service -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-}
 <!-- start footer top -->
 @*<div style="background:#4b8cbb">
         <div class="container">
