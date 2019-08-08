@@ -149,26 +149,45 @@
     .img-border {
         border: 1px solid black;
     }
+
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+    }
+
+        .video-container video,
+        .video-container object,
+        .video-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+        }
 </style>
 
 <div class="container  body-content" id="#maincontent">
     <section>
         <div class="row col-lg-12">
             <div class="col-lg-3 col-md-3">
-                <img src="~/Images/default-image.png" class="img-responsive img-border" />
+                <img src="~/Images/Chairman Photo.jpg" class="img-responsive img-border" />
             </div>
             <div class="col-lg-6 col-md-6" style="text-align:center">
-                <video id='video' controls="controls" preload='none' class="embed-responsive-item" style="max-width:550px;max-height:260px"
-                       poster="http://media.w3.org/2010/05/sintel/poster.png">
-                    <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
-                    @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
-                        <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
-                </video>
+                <div class="video-container">
+                    <video id='video' controls="controls" preload='none' class="embed-responsive-item"
+                           poster="http://media.w3.org/2010/05/sintel/poster.png">
+                        <source id='mp4' src="http://media.w3.org/2010/05/sintel/trailer.mp4" type='video/mp4' />
+                        @*<source id='webm' src="http://media.w3.org/2010/05/sintel/trailer.webm" type='video/webm' />
+                <source id='ogv' src="http://media.w3.org/2010/05/sintel/trailer.ogv" type='video/ogg' />*@
+                    </video>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3">
+                    <img src="~/Images/MD Photo.jpg" class="img-responsive img-border" />
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3">
-                <img src="~/Images/default-image.png" class="img-responsive img-border" />
-            </div>
-        </div>
     </section>
     <section>
         <div class="row col-lg-12 col-md-12">

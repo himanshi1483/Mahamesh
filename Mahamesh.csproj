@@ -285,6 +285,7 @@
     <Content Include="Images\3.jpg" />
     <Content Include="Images\6.jpg" />
     <Content Include="Images\carousel-bg.png" />
+    <Content Include="Images\Chairman Photo.jpg" />
     <Content Include="Images\cmf-logo.png" />
     <Content Include="Images\default-image.png" />
     <Content Include="Images\digital-india.png" />
@@ -299,9 +300,20 @@
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo_swach.jpg" />
     <Content Include="Images\makeinindia.png" />
+    <Content Include="Images\MD Photo.JPG" />
     <Content Include="Images\mygov.png" />
     <Content Include="Images\myvisit-logo.png" />
     <Content Include="Images\pg-portal.png" />
+    <Content Include="Images\Prod1.jpg" />
+    <Content Include="Images\Prod10.jpg" />
+    <Content Include="Images\Prod2.jpg" />
+    <Content Include="Images\Prod3.jpg" />
+    <Content Include="Images\Prod4.jpg" />
+    <Content Include="Images\Prod5.jpg" />
+    <Content Include="Images\Prod6.jpg" />
+    <Content Include="Images\Prod7.jpg" />
+    <Content Include="Images\Prod8.jpg" />
+    <Content Include="Images\Prod9.jpg" />
     <Content Include="Images\slider1.jpg" />
     <Content Include="Images\slider2.jpg" />
     <Content Include="Images\swachhbharat.png" />
@@ -329,6 +341,7 @@
     <Content Include="Content\Varsity\scss\modules\_theme-color.scss" />
     <Content Include="Content\Varsity\scss\modules\_typography.scss" />
     <Content Include="Content\Varsity\scss\style.scss" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
