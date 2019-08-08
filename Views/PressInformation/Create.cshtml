@@ -1,0 +1,73 @@
+﻿@model Mahamesh.Models.PressInformationModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">Create New Press information</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.InformationTitle, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.InformationTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.InformationTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom:50px">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.InformationDescription, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.InformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.InformationDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.InformationDate, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.InformationDate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.InformationDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Document</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                <input type="file" id="file" aria-label="File browser example">
+                                <span class="file-custom"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.InformationDocument, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-offset-6 col-md-6">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                }
+
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

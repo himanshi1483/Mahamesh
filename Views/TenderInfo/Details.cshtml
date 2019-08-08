@@ -1,0 +1,36 @@
+﻿@model Mahamesh.Models.TenderModel
+
+@{
+    ViewBag.Title = "Details";
+}
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">Tenders</h3>
+        </div>
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="card">
+                    <div class="container-fliud">
+                        <div class="wrapper row">
+                            <div class="preview col-md-6">
+                                <div class="preview-pic tab-content">
+                                    <div class="tab-pane active" id="pic-1"><img src="http://placekitten.com/400/252" /></div>
+                                </div>
+                            </div>
+                            <div class="details col-md-6">
+                                <h3 class="product-title">Title: @Model.TenderTitle</h3>
+                                <br />
+                                <p class="product-description">Description: @Model.TenderDescription</p>
+                                <br />
+                                <h4 class="price">Date: <span>@Model.TenderDate</span></h4>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

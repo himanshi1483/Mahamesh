@@ -1,12 +1,18 @@
-﻿using System.Web.Mvc;
+﻿using Mahamesh.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Mahamesh.Controllers
 {
     public class HomeController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            return View();
+            var model = new HomePageViewModel();
+            model.NewsList = db.NewsModels.ToList();
+            model.TenderList = db.TenderModels.ToList();
+            return View(model);
         }
         public ActionResult Vision()
         {

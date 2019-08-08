@@ -24,10 +24,20 @@ namespace Mahamesh.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        ////public IDbSet<NewsModel> News { get; set; }
+        ////public IDbSet<TenderModel> Tender { get; set; }
+
+        ////public IDbSet<PressInformationModel> PressInformation { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.NewsModel> NewsModels { get; set; }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.TenderModel> TenderModels { get; set; }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.PressInformationModel> PressInformationModels { get; set; }
     }
 }
