@@ -210,6 +210,18 @@
     <Compile Include="Migrations\201908081448212_init6.Designer.cs">
       <DependentUpon>201908081448212_init6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908090630565_init7.cs" />
+    <Compile Include="Migrations\201908090630565_init7.Designer.cs">
+      <DependentUpon>201908090630565_init7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908090632308_init8.cs" />
+    <Compile Include="Migrations\201908090632308_init8.Designer.cs">
+      <DependentUpon>201908090632308_init8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908090708462_init9.cs" />
+    <Compile Include="Migrations\201908090708462_init9.Designer.cs">
+      <DependentUpon>201908090708462_init9.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
@@ -309,6 +321,7 @@
     <Content Include="Content\Varsity\course.html" />
     <Content Include="Content\Varsity\gallery.html" />
     <Content Include="Content\Varsity\index.html" />
+    <Content Include="Content\Varsity\ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -376,6 +389,28 @@
     <Content Include="Content\Varsity\scss\modules\_theme-color.scss" />
     <Content Include="Content\Varsity\scss\modules\_typography.scss" />
     <Content Include="Content\Varsity\scss\style.scss" />
+    <Content Include="Documents\AuditedReports\Annual Report 2016-2017.pdf" />
+    <Content Include="Documents\GR\Est of Corporation GR 1978.pdf" />
+    <Content Include="Documents\GR\Guidelines  40 2  RKVY-Mahamandal.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\1.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\10.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\2.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\3.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\4.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\5.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\6.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\7.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\8.pdf" />
+    <Content Include="Documents\GR\Mafsuarth J.R\9.pdf" />
+    <Content Include="Documents\GR\Transfer of Sheep Breeding farms to the Corporation Incomplete construction works on the farms_Date 31.03.1980.pdf" />
+    <Content Include="Documents\GR\बोंद्री प्रकल्प हस्तांतरण.pdf" />
+    <Content Include="Documents\GR\महामंडळाचे अधिकृत भागभांडवल रु. ५.०० कोटी वरुन रु. ६.०० कोटी करण्याबाबत_दि. ३१.१०.२०१२.pdf" />
+    <Content Include="Documents\GR\महामंडळाच्या नावात बदल.pdf" />
+    <Content Include="Documents\GR\महामंडळास हस्तांतरित मेष पैदास प्रक्षेत्रे.pdf" />
+    <Content Include="Documents\GR\राजे यशवंतराव होळकर महामेष योजना.pdf" />
+    <Content Include="Documents\GR\४ था वेतन आयोग मंजूरी.pdf" />
+    <Content Include="Documents\GR\५ व्या वेतन आयोग मंजूरी.pdf" />
+    <Content Include="Documents\GR\६ वा वेतन आयोग मंजूरी.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -538,6 +573,7 @@
     <Content Include="Views\Media\Details.cshtml" />
     <Content Include="Views\Media\Edit.cshtml" />
     <Content Include="Views\Media\Index.cshtml" />
+    <Content Include="Views\Media\VideoGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -572,6 +608,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908081448212_init6.resx">
       <DependentUpon>201908081448212_init6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090630565_init7.resx">
+      <DependentUpon>201908090630565_init7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090632308_init8.resx">
+      <DependentUpon>201908090632308_init8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908090708462_init9.resx">
+      <DependentUpon>201908090708462_init9.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

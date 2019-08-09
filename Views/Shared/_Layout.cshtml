@@ -40,6 +40,14 @@
             font-size: 14px;
         }
 
+        .sticky {
+            display: inline;
+            float: left;
+            width: 100%;
+            position: fixed;
+            left: 0;
+            bottom: 0;
+        }
 
         .secParagraph {
             margin-top: 70px;
@@ -133,7 +141,7 @@
                                             }
                                             else
                                             {
-                                                 @Html.Partial("_LoginPartial")
+                                                @Html.Partial("_LoginPartial")
 
                                             }
 
@@ -265,9 +273,9 @@
                                 @*<span class="fa fa-angle-down"></span>*@
                             </a>
                             @*<ul class="dropdown-menu" role="menu">
-                <li><a href="course.html">Course Archive</a></li>
-                <li><a href="course-detail.html">Course Detail</a></li>
-            </ul>*@
+                                    <li><a href="course.html">Course Archive</a></li>
+                                    <li><a href="course-detail.html">Course Detail</a></li>
+                                </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown">
@@ -285,16 +293,19 @@
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="blog-archive.html">Media Gallery</a></li>
-                                <li><a href="blog-single.html">Videos</a></li>
-                                <li><a href="blog-single.html">Photos</a></li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="@Url.Action("Create", "Media")">Upload Media</a></li>
+                                }
+                                <li><a href="@Url.Action("VideoGallery", "Media")">Videos</a></li>
+                                <li><a href="@Url.Action("Index", "Media")">Photos</a></li>
                             </ul>
                         </li>
                         @*<li class="dropdown">
-                            <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
-                                Useful Links
-                            </a>
-                        </li>*@
+                                <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
+                                    Useful Links
+                                </a>
+                            </li>*@
                         <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -329,7 +340,7 @@
     @*</div>*@
 
     <!-- Start footer -->
-    <footer id="mu-footer">
+    <footer id="mu-footer" class="sticky">
         <div class="mu-footer-bottom2">
 
             <ul>

@@ -19,7 +19,14 @@ namespace Mahamesh.Controllers
         public ActionResult Index()
         {
             var model = new MediaGalleryModel();
-            model.MediaList = db.MediaGalleryModels.ToList();
+            model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Picture).ToList();
+            return View(model);
+        }
+
+        public ActionResult VideoGallery()
+        {
+            var model = new MediaGalleryModel();
+            model.MediaList = db.MediaGalleryModels.Where(x=>x.MediaType == MediaType.Video).ToList();
             return View(model);
         }
 
@@ -57,21 +64,38 @@ namespace Mahamesh.Controllers
                 {
                     // extract only the filename
                     var fileName = Path.GetFileName(files.FileName);
+                    if(mediaGalleryModel.MediaType == MediaType.Picture)
+                    {
+                        var path = Path.Combine(Server.MapPath("~/Images/Gallery/Pictures"), fileName);
+                        files.SaveAs(path);
+                        var relativePath = "/Images/Gallery/Pictures/" + fileName;
+                        mediaGalleryModel.MediaLocation = relativePath;
+                    }
+                    else if(mediaGalleryModel.MediaType == MediaType.Video)
+                    {
+                        var path = Path.Combine(Server.MapPath("~/Images/Gallery/Videos"), fileName);
+                        files.SaveAs(path);
+                        var relativePath = "/Images/Gallery/Videos/" + fileName;
+                        mediaGalleryModel.MediaLocation = relativePath;
+                    }
                     // store the file inside ~/App_Data/uploads folder
-                    var path = Path.Combine(Server.MapPath("~/Images/Gallery/Pictures"), fileName);
-                    files.SaveAs(path);
-                    var relativePath = "/Images/Gallery/Pictures/" + fileName;
-                    mediaGalleryModel.MediaLocation =relativePath ;
+                    mediaGalleryModel.CreatedBy = User.Identity.Name;
+                    mediaGalleryModel.CreatedDate = DateTime.Now;
+                    db.MediaGalleryModels.Add(mediaGalleryModel);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                else
+                {
+                    ViewBag.Error = "Error uploading your picture. Please try again.";
+                    return View(mediaGalleryModel);
                 }
                 // redirect back to the index action to show the form once again
-                mediaGalleryModel.CreatedBy = User.Identity.Name;
-                mediaGalleryModel.CreatedDate = DateTime.Now;
-                db.MediaGalleryModels.Add(mediaGalleryModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
+            }
             return View(mediaGalleryModel);
+
         }
 
         // GET: Media/Edit/5
@@ -107,7 +131,8 @@ namespace Mahamesh.Controllers
             return View(mediaGalleryModel);
         }
 
-        // GET: Media/Delete/5
+
+        //// GET: Media/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -128,6 +153,11 @@ namespace Mahamesh.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             MediaGalleryModel mediaGalleryModel = db.MediaGalleryModels.Find(id);
+            var fullPath = Server.MapPath(mediaGalleryModel.MediaLocation);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
             db.MediaGalleryModels.Remove(mediaGalleryModel);
             db.SaveChanges();
             return RedirectToAction("Index");

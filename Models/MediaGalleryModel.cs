@@ -11,7 +11,7 @@ namespace Mahamesh.Models
     {
         [Key]
         public int MediaId { get; set; }
-        public string MediaType { get; set; }
+        public MediaType MediaType { get; set; }
         public string MediaName { get; set; }
         public string MediaLocation { get; set; }
         public string Caption { get; set; }
@@ -21,5 +21,11 @@ namespace Mahamesh.Models
         public DateTime? UpdatedDate { get; set; }
         [NotMapped]
         public List<MediaGalleryModel> MediaList { get; set; }
+    }
+
+    public enum MediaType
+    {
+        Picture,
+        Video
     }
 }
