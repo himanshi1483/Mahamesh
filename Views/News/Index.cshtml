@@ -7,29 +7,30 @@
 
 
 <div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
-    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary-2">
             <h3 class="panel-title">News</h3>
         </div>
+        <div style="float:right;padding:10px">
+            <a class="btn btn-info" href="@Url.Action("Create")">Add News</a>
+        </div>
         <div class="panel-body">
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+
             <div class="row">
                 <table class="table table-bordered table-responsive table-striped">
-                    <tr>
+                    <tr class="text-center">
                         <th>
                             @Html.DisplayNameFor(model => model.NewsTitle)
                         </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.NewsDescription)
-                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.NewsDescription)
+                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.NewsDate)
                         </th>
                         @*<th>
-                        @Html.DisplayNameFor(model => model.ImageLocation)
-                    </th>*@
+                                @Html.DisplayNameFor(model => model.ImageLocation)
+                            </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.CreatedBy)
                         </th>
@@ -51,15 +52,15 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.NewsTitle)
                             </td>
-                            <td style="word-break:break-all">
-                                @Html.DisplayFor(modelItem => item.NewsDescription)
-                            </td>
+                            @*<td style="word-break:break-all">
+                                    @Html.DisplayFor(modelItem => item.NewsDescription)
+                                </td>*@
                             <td>
-                                @Html.DisplayFor(modelItem => item.NewsDate)
+                                @Html.DisplayFor(modelItem => item.NewsDate.Value)
                             </td>
                             @*<td>
-                            @Html.DisplayFor(modelItem => item.ImageLocation)
-                        </td>*@
+                                    @Html.DisplayFor(modelItem => item.ImageLocation)
+                                </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.CreatedBy)
                             </td>
@@ -73,9 +74,18 @@
                                 @Html.DisplayFor(modelItem => item.UpdatedDate)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.NewsId }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.NewsId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.NewsId })
+                                <div class="btn-group btn-group-xs mr-2" role="group">
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Edit", new { id = item.NewsId })"><i class="fa fa-edit"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Details", new { id = item.NewsId })"><i class="fa fa-list"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Delete", new { id = item.NewsId })" ><i class="fa fa-remove"></i></a>
+                                    </button>
+                                </div>
+
                             </td>
                         </tr>
                     }

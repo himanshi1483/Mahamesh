@@ -10,25 +10,26 @@
         <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
             <h3 class="panel-title">Tenders</h3>
         </div>
+        <div style="float:right;padding:10px">
+            <a class="btn btn-info" href="@Url.Action("Create")">Add Tender</a>
+        </div>
         <div class="panel-body">
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+
             <div class="row">
                 <table class="table table-bordered table-responsive table-striped">
                     <tr>
                         <th>
                             @Html.DisplayNameFor(model => model.TenderTitle)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.TenderDescription)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.TenderDate)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.TenderDocument)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.CreatedBy)
                         </th>
@@ -46,37 +47,46 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenderTitle)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenderDescription)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenderDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TenderDocument)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CreatedDate)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UpdatedBy)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.UpdatedDate)
-                            </td>
-                            <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.TenderId }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.TenderId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.TenderId })
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenderTitle)
+                        </td>
+                        @*<td>
+            @Html.DisplayFor(modelItem => item.TenderDescription)
+        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TenderDate)
+                        </td>
+                        @*<td>
+                            @Html.DisplayFor(modelItem => item.TenderDocument)
+                        </td>*@
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedBy)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedDate)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs mr-2" role="group">
+                                <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                    <a href="@Url.Action("Edit", new { id = item.TenderId })"><i class="fa fa-edit"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                    <a href="@Url.Action("Details", new { id = item.TenderId })"><i class="fa fa-list"></i></a>
+                                </button>
+                                <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                    <a href="@Url.Action("Delete", new { id = item.TenderId })"><i class="fa fa-remove"></i></a>
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
                     }
 
                 </table>

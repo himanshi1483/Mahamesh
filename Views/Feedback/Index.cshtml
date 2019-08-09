@@ -10,23 +10,24 @@
         <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
             <h3 class="panel-title">Feedbacks</h3>
         </div>
+        <div style="float:right;padding:10px">
+            <a class="btn btn-info" href="@Url.Action("Create")">Add New Feedback</a>
+        </div>
         <div class="panel-body">
-            <p>
-                @Html.ActionLink("Create New", "Create")
-            </p>
+       
             <div class="row">
                 <table class="table table-bordered table-responsive table-striped">
-                    <tr>
+                    <tr class="text-center">
                         <th>
                             @Html.DisplayNameFor(model => model.FeedbackTitle)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.FeedbackDescription)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.FeedbackDate)
                         </th>
-                        <th>
+                        @*<th>
                             @Html.DisplayNameFor(model => model.Email)
                         </th>
                         <th>
@@ -34,7 +35,7 @@
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.PhoneNumber)
-                        </th>
+                        </th>*@
                         <th>
                             @Html.DisplayNameFor(model => model.CreatedBy)
                         </th>
@@ -56,13 +57,13 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.FeedbackTitle)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.FeedbackDescription)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.FeedbackDate)
                             </td>
-                            <td>
+                            @*<td>
                                 @Html.DisplayFor(modelItem => item.Email)
                             </td>
                             <td>
@@ -70,7 +71,7 @@
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.PhoneNumber)
-                            </td>
+                            </td>*@
                             <td>
                                 @Html.DisplayFor(modelItem => item.CreatedBy)
                             </td>
@@ -84,9 +85,17 @@
                                 @Html.DisplayFor(modelItem => item.UpdatedDate)
                             </td>
                             <td>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.FeedbackId }) |
-                                @Html.ActionLink("Details", "Details", new { id = item.FeedbackId }) |
-                                @Html.ActionLink("Delete", "Delete", new { id = item.FeedbackId })
+                                <div class="btn-group btn-group-xs mr-2" role="group">
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Edit", new { id = item.FeedbackId })"><i class="fa fa-edit"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Details", new { id = item.FeedbackId })"><i class="fa fa-list"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Delete", new { id = item.FeedbackId  })"><i class="fa fa-remove"></i></a>
+                                    </button>
+                                </div>
                             </td>
                         </tr>
                     }

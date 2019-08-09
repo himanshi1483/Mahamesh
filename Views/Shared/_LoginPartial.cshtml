@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -12,7 +13,7 @@
                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
             </ul>*@
         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Third group">
-            <button class="btn btn-info btn-xs" >
+            <button class="btn btn-default btn-xs">
 
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </button>
