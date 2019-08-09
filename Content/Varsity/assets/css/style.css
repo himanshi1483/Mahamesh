@@ -30,6 +30,20 @@
 #RESPONSIVE DESIGN
 */
 
+.heading {
+    background: #4D9AD4;
+    height: 37px;
+    padding-top: 1px;
+    color: white;
+}
+
+.heading-green {
+    background: #18CB90;
+    height: 37px;
+    padding-top: 1px;
+    color: white;
+}
+
 /*Vertical Navigation HomePage */
 
 
@@ -227,7 +241,7 @@ a {
     -webkit-box-flex: 1;
     -ms-flex: 1 1 auto;
     flex: 1 1 auto;
-    padding: 1.25rem;
+    /*padding: 1.25rem;*/
 }
 
 .card-title {
@@ -252,10 +266,12 @@ a {
 }
 
 .card-header {
-    padding: 0.75rem 1.25rem;
+    padding: 0.4rem 1.25rem;
     margin-bottom: 0;
-    background-color: rgba(0, 0, 0, 0.03);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+    background: #52b2fa;
+    color: white; font-weight:500;
+    /*background-color: rgba(0, 0, 0, 0.03);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.125);*/
 }
 
     .card-header:first-child {

@@ -6973,6 +6973,30 @@ button.list-group-item-danger {
     .panel-default > .panel-footer + .panel-collapse > .panel-body {
         border-bottom-color: #ddd;
     }
+.panel-primary-3 {
+    border-color: transparent;
+    font-weight: 500
+}
+
+    .panel-primary-3 > .panel-heading {
+        color: #fff;
+        background: #4dd4cb;
+        text-align: center;
+        border-color: transparent;
+    }
+
+        .panel-primary-3 > .panel-heading + .panel-collapse > .panel-body {
+            border-top-color: transparent;
+        }
+
+        .panel-primary-3 > .panel-heading .badge {
+            color: #337ab7;
+            background-color: #fff;
+        }
+
+    .panel-primary-3 > .panel-footer + .panel-collapse > .panel-body {
+        border-bottom-color: #4dd4cb;
+    }
 
 .panel-primary {
     border-color: #337ab7;
@@ -6994,6 +7018,33 @@ button.list-group-item-danger {
         }
 
     .panel-primary > .panel-footer + .panel-collapse > .panel-body {
+        border-bottom-color: #337ab7;
+    }
+
+.panel-primary-2 {
+   
+    border-color: transparent;
+   
+    font-weight: 500
+}
+
+    .panel-primary-2 > .panel-heading {
+        color: #fff;
+        background: #4D9AD4;
+        text-align: center;
+        border-color: transparent;
+    }
+
+        .panel-primary-2 > .panel-heading + .panel-collapse > .panel-body {
+            border-top-color: transparent;
+        }
+
+        .panel-primary-2 > .panel-heading .badge {
+            color: #337ab7;
+            background-color: #fff;
+        }
+
+    .panel-primary-2 > .panel-footer + .panel-collapse > .panel-body {
         border-bottom-color: #337ab7;
     }
 
