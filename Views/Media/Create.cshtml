@@ -11,7 +11,7 @@
         <div class="panel-body">
 
             <div class="row">
-                @using (Html.BeginForm())
+                @using (Html.BeginForm("Create", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
                     @Html.AntiForgeryToken()
 
@@ -40,7 +40,7 @@
                         <div class="col-md-2" style="font-weight:bold">Upload Image</div>
                         <div class="col-md-6">
                             <label class="file">
-                                <input type="file" id="file" aria-label="File browser example">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
                                 <span class="file-custom"></span>
                             </label>
                         </div>

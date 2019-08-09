@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201908081213068_init4.Designer.cs">
       <DependentUpon>201908081213068_init4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908081448212_init6.cs" />
+    <Compile Include="Migrations\201908081448212_init6.Designer.cs">
+      <DependentUpon>201908081448212_init6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
@@ -537,6 +541,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Gallery\Pictures\" />
+    <Folder Include="Images\Gallery\Videos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -563,6 +569,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908081213068_init4.resx">
       <DependentUpon>201908081213068_init4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908081448212_init6.resx">
+      <DependentUpon>201908081448212_init6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

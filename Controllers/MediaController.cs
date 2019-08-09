@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -17,7 +18,9 @@ namespace Mahamesh.Controllers
         // GET: Media
         public ActionResult Index()
         {
-            return View(db.MediaGalleryModels.ToList());
+            var model = new MediaGalleryModel();
+            model.MediaList = db.MediaGalleryModels.ToList();
+            return View(model);
         }
 
         // GET: Media/Details/5
@@ -46,10 +49,23 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaId,MediaType,MediaName,MediaLocation,Caption,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] MediaGalleryModel mediaGalleryModel)
+        public ActionResult Create([Bind(Include = "MediaId,MediaType,MediaName,MediaLocation,Caption,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] MediaGalleryModel mediaGalleryModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
+                    // store the file inside ~/App_Data/uploads folder
+                    var path = Path.Combine(Server.MapPath("~/Images/Gallery/Pictures"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Images/Gallery/Pictures/" + fileName;
+                    mediaGalleryModel.MediaLocation =relativePath ;
+                }
+                // redirect back to the index action to show the form once again
+                mediaGalleryModel.CreatedBy = User.Identity.Name;
+                mediaGalleryModel.CreatedDate = DateTime.Now;
                 db.MediaGalleryModels.Add(mediaGalleryModel);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -82,6 +98,8 @@ namespace Mahamesh.Controllers
         {
             if (ModelState.IsValid)
             {
+                mediaGalleryModel.UpdatedBy = User.Identity.Name;
+                mediaGalleryModel.UpdatedDate = DateTime.Now;
                 db.Entry(mediaGalleryModel).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

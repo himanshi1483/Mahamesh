@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Mahamesh.Models.MediaGalleryModel>
+﻿@model Mahamesh.Models.MediaGalleryModel
 
 @{
     ViewBag.Title = "Index";
@@ -35,23 +35,27 @@
                             <div class="mu-gallery-body">
                                 <ul id="mixit-container" class="row">
                                     <!-- start single gallery image -->
-                                    <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
-                                        <div class="mu-single-gallery">
-                                            <div class="mu-single-gallery-item">
-                                                <div class="mu-single-gallery-img">
-                                                    <a href="#"><img alt="img" src="/Content/Varsity/assets/img/gallery/small/1.jpg"></a>
-                                                </div>
-                                                <div class="mu-single-gallery-info">
-                                                    <div class="mu-single-gallery-info-inner">
-                                                        <h4>Image Title</h4>
-                                                        <p>Web Design</p>
-                                                        <a href="/Content/Varsity/assets/img/gallery/big/1.jpg" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                                                        <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
+                                    @foreach (var item in Model.MediaList)
+                                    {
+                                        <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
+                                            <div class="mu-single-gallery">
+                                                <div class="mu-single-gallery-item">
+                                                    <div class="mu-single-gallery-img">
+                                                        <a href="#"><img alt="img" src="@item.MediaLocation"></a>
+                                                    </div>
+                                                    <div class="mu-single-gallery-info">
+                                                        <div class="mu-single-gallery-info-inner">
+                                                            <h4>@item.MediaName</h4>
+                                                            <p>@item.Caption</p>
+                                                            <a href="@item.MediaLocation" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
+                                                            <a href="#" class="aa-link"><span class="fa fa-link"></span></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    }
+
                                     <!-- start single gallery image -->
                                     <li class="col-md-4 col-sm-6 col-xs-12 mix library">
                                         <div class="mu-single-gallery">
