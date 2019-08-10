@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Mahamesh.App_LocalResources;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+
 
 namespace Mahamesh.Models
 {
@@ -10,7 +12,7 @@ namespace Mahamesh.Models
     {
         [Key]
         public int NewsId { get; set; }
-        [Display(Name ="Title")]
+        [Display(Name ="Title", ResourceType = typeof(Lang))]
         public string NewsTitle { get; set; }
         [Display(Name = "Description")]
         public string NewsDescription { get; set; }

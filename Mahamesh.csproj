@@ -164,12 +164,23 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_LocalResources\Lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_LocalResources\Lang.mr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Lang.mr.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CitizenCharterController.cs" />
     <Compile Include="Controllers\DevelopmentActivityController.cs" />
     <Compile Include="Controllers\EventController.cs" />
@@ -190,6 +201,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CultureHelper.cs" />
     <Compile Include="Migrations\201908071048580_init.cs" />
     <Compile Include="Migrations\201908071048580_init.Designer.cs">
       <DependentUpon>201908071048580_init.cs</DependentUpon>
@@ -340,6 +352,15 @@
     <Content Include="Images\emblem-of-india-logo-vector.png" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\favicon_image.png" />
+    <Content Include="Images\Gallery\Pictures\15723448_10209896588188559_5396313812346479071_o.jpg" />
+    <Content Include="Images\Gallery\Pictures\4.jpg" />
+    <Content Include="Images\Gallery\Pictures\Chairman Photo.jpg" />
+    <Content Include="Images\Gallery\Pictures\DSC_0041.jpg" />
+    <Content Include="Images\Gallery\Pictures\DSC_0823.JPG" />
+    <Content Include="Images\Gallery\Pictures\IMG_20170620_171558017_HDR.jpg" />
+    <Content Include="Images\Gallery\Pictures\MD Photo %281%29.JPG" />
+    <Content Include="Images\Gallery\Pictures\MD Photo.JPG" />
+    <Content Include="Images\Gallery\Videos\SampleVideo_1280x720_1mb.mp4" />
     <Content Include="Images\goidirectory.png" />
     <Content Include="Images\iig-logo_1.png" />
     <Content Include="Images\india-gov.png" />
@@ -412,6 +433,7 @@
     <Content Include="Documents\GR\५ व्या वेतन आयोग मंजूरी.pdf" />
     <Content Include="Documents\GR\६ वा वेतन आयोग मंजूरी.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -577,8 +599,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\Gallery\Pictures\" />
-    <Folder Include="Images\Gallery\Videos\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -594,6 +615,14 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="App_LocalResources\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="App_LocalResources\Lang.mr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.mr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908071048580_init.resx">
       <DependentUpon>201908071048580_init.cs</DependentUpon>
     </EmbeddedResource>

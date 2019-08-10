@@ -1,10 +1,11 @@
 ﻿using Mahamesh.Models;
 using System.Linq;
 using System.Web.Mvc;
+using System.Globalization;
 
 namespace Mahamesh.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()

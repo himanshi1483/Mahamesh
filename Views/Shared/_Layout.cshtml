@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Mahamesh.Helpers
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -80,8 +81,10 @@
             overflow: visible;
         }
     </style>
+     
 </head>
 <body class="resizable">
+    <div id="google_translate_element"></div>
     <!--START SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#">
         <i class="fa fa-angle-up"></i>
@@ -123,8 +126,14 @@
                                             <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                             <li><a href="#"><span class="fa fa-youtube"></span></a></li>
+                                            <li>
+                                                @Url.LangSwitcher("English", ViewContext.RouteData, "en")
+                                            </li>
+                                            <li>
+                                                @Url.LangSwitcher("Marathi", ViewContext.RouteData, "mr")
+                                            </li>
                                         </ul>
-
+                                     
                                         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Second group">
                                             <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a></button>
                                             <button type="button" class="btn btn-xs btn-default">Language</button>
@@ -204,7 +213,7 @@
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="nav navbar-nav main-nav">
                         <li class="dropdown">
-                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">Home  <span class="fa fa-angle-down"></span></a>
+                            <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">@Mahamesh.App_LocalResources.Lang.Home <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="@Url.Action("Vision", "Home")">Vision</a></li>
                                 <li><a href="@Url.Action("Mission", "Home")">Mission</a></li>
@@ -321,8 +330,8 @@
                                     <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
                                     <li>@*<a href="@Url.Action("Index", "News")">Media</a>*@</li>
                                     @*<li><a href="@Url.Action("Index", "Account")">Users</a></li>
-                                    <li><a href="@Url.Action("Index", "Account")">Roles</a></li>
-                                    <li><a href="@Url.Action("Index", "Account")">Groups</a></li>*@
+                                        <li><a href="@Url.Action("Index", "Account")">Roles</a></li>
+                                        <li><a href="@Url.Action("Index", "Account")">Groups</a></li>*@
                                 </ul>
                             </li>
                         }
