@@ -3,7 +3,19 @@
     ViewBag.Title = "Home Page";
 }
 <style>
-  
+    .figure {
+        display: inline-block;
+    }
+
+    .figure-img {
+        margin-bottom: 0.5rem;
+        line-height: 1;
+    }
+
+    .figure-caption {
+        font-size: 90%;
+        color: #6c757d;
+    }
     .carousel {
         padding: -1px 380px;
     }
@@ -73,7 +85,15 @@
     <section>
         <div class="row col-lg-12">
             <div class="col-lg-3 col-md-3">
-                <img src="~/Images/Chairman Photo (1).jpg" class="img-responsive img-border" />
+                <figure class="figure" style="border:1px solid black">
+                    <img src="~/Images/Chairman2.jpg" class="figure-img img-responsive img-border" />
+                    <figcaption class="text-center figure-caption">
+                        Hon. Shri Balasaheb Dodtale<br />
+                     
+                        Chairman
+                    </figcaption>
+                </figure>
+               
             </div>
             <div class="col-lg-6 col-md-6" style="text-align:center">
                 <div class="video-container">
@@ -85,8 +105,21 @@
                     </video>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3">
-                <img src="~/Images/MD Photo (1).jpg" class="img-responsive img-border" />
+            <div class="col-lg-3 col-md-3" style="border:1px solid black">
+                <figure class="figure">
+                    <img src="~/Images/MD2.jpg" class="figure-img img-responsive img-border" />
+                    <figcaption class="text-center figure-caption">
+                        Dr. Mahesh Bansode<br />
+                        Managing Director
+                    </figcaption>
+                </figure>
+                @*<img src="~/Images/MD2.jpg" class="img-responsive img-border" />
+                <div>
+                    Dr. Mahesh Bansode<br />
+                    Managing Director,<br /> Punyashlok Ahilyadevi
+                    Maharashtra Mendhi va Sheli Vikas Mahamandal,
+                    Gokhalenagar, Pune
+                </div>*@
             </div>
         </div>
     </section>

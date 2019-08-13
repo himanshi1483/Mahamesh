@@ -81,7 +81,7 @@
             overflow: visible;
         }
     </style>
-     
+
 </head>
 <body class="resizable">
     <div id="google_translate_element"></div>
@@ -126,17 +126,18 @@
                                             <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                             <li><a href="#"><span class="fa fa-youtube"></span></a></li>
-                                            <li>
-                                                @Url.LangSwitcher("English", ViewContext.RouteData, "en")
+                                            @*<li>
+                                                <button type="button" class="btn btn-xs btn-default"> @Url.LangSwitcher("En", ViewContext.RouteData, "en")</button>
                                             </li>
                                             <li>
-                                                @Url.LangSwitcher("Marathi", ViewContext.RouteData, "mr")
-                                            </li>
+                                                <button type="button" class="btn btn-xs btn-default">   @Url.LangSwitcher("Mr", ViewContext.RouteData, "mr")</button>
+                                            </li>*@
                                         </ul>
-                                     
+
                                         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Second group">
                                             <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a></button>
-                                            <button type="button" class="btn btn-xs btn-default">Language</button>
+                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none"> @Url.LangSwitcher("En ", ViewContext.RouteData, "en")</button>
+                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none">   @Url.LangSwitcher("Mr ", ViewContext.RouteData, "mr")</button>
                                         </div>
                                         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Third group">
                                             <button type="button" class="btn btn-xs btn-default"><a class="increase"><i class="glyphicon glyphicon-plus"></i></a></button>

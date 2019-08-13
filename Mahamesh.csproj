@@ -344,6 +344,7 @@
     <Content Include="Images\carousel-bg.png" />
     <Content Include="Images\Chairman Photo %281%29.jpg" />
     <Content Include="Images\Chairman Photo.jpg" />
+    <Content Include="Images\Chairman2.jpg" />
     <Content Include="Images\cmf-logo.png" />
     <Content Include="Images\default-image.png" />
     <Content Include="Images\digital-india.png" />
@@ -369,6 +370,7 @@
     <Content Include="Images\makeinindia.png" />
     <Content Include="Images\MD Photo %281%29.JPG" />
     <Content Include="Images\MD Photo.JPG" />
+    <Content Include="Images\MD2.jpg" />
     <Content Include="Images\mygov.png" />
     <Content Include="Images\myvisit-logo.png" />
     <Content Include="Images\pg-portal.png" />
