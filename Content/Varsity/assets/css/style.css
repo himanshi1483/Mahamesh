@@ -58,9 +58,10 @@
         height: 30px;
         background-color: #52b2fa;
         border: 1px solid #fff;
-        text-align: center;
+        text-align: left;
         display: inline-block;
         float: left;
+        padding-left:10px;
         padding-top: 5px;
         clear: both;
         /*min-width: 282px;*/
@@ -69,7 +70,7 @@
     }
 
         .vertical-nav li:hover {
-            background-color: #97d2fe;
+            background-color:#fe5719;
             color: #FFFFFF;
         }
 
@@ -141,6 +142,7 @@ vertical-nav ul li ul li a {
     top: 0;
     left: 100%;
     width: 100%;
+    background-color:#fe5719;
     /*min-width: 180px;
         white-space: nowrap;*/
     z-index: 1;
@@ -149,6 +151,11 @@ vertical-nav ul li ul li a {
     .sub-menu li a {
         display: inline-block;
         padding: 0 10px;
+    }
+
+    .sub-menu li:hover {
+          background-color: #52b2fa;
+        border: 1px solid #fff;
     }
 
 @media screen and (max-width: 700px) {
@@ -734,11 +741,11 @@ img {
 .header-left ul li {
     float: left;
     line-height: 132%;
-    font-size: 72%;
+    font-size: 96%;
     font-weight: 600;
     text-transform: uppercase;
     height: 36px;
-    padding-top: 6px;
+    padding-top: 3px;
 }
 
     .header-left ul li.dept {
@@ -789,6 +796,7 @@ img {
 
         #mu-menu .navbar-default .navbar-nav li .dropdown-menu li a:hover, #mu-menu .navbar-default .navbar-nav li .dropdown-menu li a:focus {
             color: #fff;
+
         }
 
 #mu-menu .navbar-default .navbar-nav .open a:hover, #mu-menu .navbar-default .navbar-nav .open a:focus {
@@ -1017,7 +1025,8 @@ img {
 ====================*/
 
 .titleSite {
-    font-size: 19px;
+    font-size: 22px;
+    font-weight:bold;
     padding-top: 4px;
     padding-left: 100px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;

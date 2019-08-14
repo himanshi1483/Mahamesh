@@ -26,25 +26,25 @@ Author URI : http://www.markups.io/
   color: #01bafd;
 }
 #mu-menu .navbar-default .navbar-nav li > a:hover, #mu-menu .navbar-default .navbar-nav li > a:focus {
-    background-color:#d8d8d8;
-  border-color: #01bafd;
+    background-color:#fe5719;
+  border-color: #fe5719;
   color: #fff;
 }
 #mu-menu .navbar-default .navbar-nav li .dropdown-menu {
-  border-top: 2px solid #01bafd;
+  border-top: 2px solid #fe5719;
 }
 #mu-menu .navbar-default .navbar-nav li .dropdown-menu li a:hover, #mu-menu .navbar-default .navbar-nav li .dropdown-menu li a:focus {
-  background-color: #01bafd;
+  background-color: #fe5719;
 }
 #mu-menu .navbar-default .navbar-nav .open a:hover, #mu-menu .navbar-default .navbar-nav .open a:focus {
-  background-color: #01bafd;
+  background-color:#fe5719;
 }
 
 #mu-menu .navbar-default .navbar-nav > .active > a, #mu-menu .navbar-default .navbar-nav > .active > a:hover, #mu-menu .navbar-default .navbar-nav > .active > a:focus {
   color: #fff;
   font-weight:bold;
   border-bottom: 2px solid #fff;
-  background-color: transparent;
+  background-color: #fe5719;
 }
 
 #mu-search .mu-search-area .mu-search-close {
