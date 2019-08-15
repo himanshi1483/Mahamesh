@@ -598,6 +598,8 @@
     <Content Include="Views\Media\Edit.cshtml" />
     <Content Include="Views\Media\Index.cshtml" />
     <Content Include="Views\Media\VideoGallery.cshtml" />
+    <Content Include="Views\Feedback\FeedbackReceived.cshtml" />
+    <Content Include="Views\Menu\MahameshYojana.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

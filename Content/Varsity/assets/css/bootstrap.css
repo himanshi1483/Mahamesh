@@ -1747,6 +1747,22 @@ a.text-danger:focus {
     background-color: #337ab7;
 }
 
+
+.bg-danger-1 {
+    color: #fff;
+    background-color: #d13232;
+}
+
+.bg-warning-1 {
+    color: #fff;
+    background-color: #e9822c;
+}
+
+.bg-success-1 {
+    color: #fff;
+    background-color: #28a962;
+}
+
 a.bg-primary:hover,
 a.bg-primary:focus {
     background-color: #286090;

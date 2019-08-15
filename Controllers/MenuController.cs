@@ -15,6 +15,12 @@ namespace Mahamesh.Controllers
         }
 
         // GET: Menu
+        public ActionResult MahameshYojana()
+        {
+            return View();
+        }
+
+        // GET: Menu
         public ActionResult ProductsAtFarm()
         {
             return View();

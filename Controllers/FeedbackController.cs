@@ -54,10 +54,16 @@ namespace Mahamesh.Controllers
                 feedbackModel.CreatedBy = User.Identity.Name;
                 db.FeedbackModels.Add(feedbackModel);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                ViewBag.FeedbackMsg = "Your Feedback has been received. We will get back to you as soon as possible";
+                return RedirectToAction("FeedbackReceived");
             }
 
             return View(feedbackModel);
+        }
+
+        public ActionResult FeedbackReceived()
+        {
+            return View();
         }
 
         // GET: Feedback/Edit/5

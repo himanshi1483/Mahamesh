@@ -37,6 +37,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+
+        .loginanchor {
+            text-decoration: none;
+            color: white;
+            font-weight: 800;
+        }
         .resizable {
             font-size: 14px;
         }
@@ -99,11 +105,11 @@
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
                                 <div class="mu-header-top-left header-left">
-                                    <ul>                                      
+                                    <ul>
                                         <li class="dept">
-                                            <span>A Government of Maharashtra Company</span>
+                                            @*<span>A Government of Maharashtra Company</span>*@
                                         </li>
-                                    </ul>                                    
+                                    </ul>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -116,26 +122,30 @@
                                             <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
                                             <li><a href="#"><span class="fa fa-youtube"></span></a></li>
                                             @*<li>
-                                                <button type="button" class="btn btn-xs btn-default"> @Url.LangSwitcher("En", ViewContext.RouteData, "en")</button>
-                                            </li>
-                                            <li>
-                                                <button type="button" class="btn btn-xs btn-default">   @Url.LangSwitcher("Mr", ViewContext.RouteData, "mr")</button>
-                                            </li>*@
+                                                    <button type="button" class="btn btn-xs btn-default"> @Url.LangSwitcher("En", ViewContext.RouteData, "en")</button>
+                                                </li>
+                                                <li>
+                                                    <button type="button" class="btn btn-xs btn-default">   @Url.LangSwitcher("Mr", ViewContext.RouteData, "mr")</button>
+                                                </li>*@
                                         </ul>
 
                                         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Second group">
                                             <button type="button" class="btn btn-xs btn-default"><i class="fa fa-search"></i></a></button>
-                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none"> @Url.LangSwitcher("En ", ViewContext.RouteData, "en")</button>
-                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none">   @Url.LangSwitcher("Mr ", ViewContext.RouteData, "mr")</button>
+                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none;font-weight:800"> @Url.LangSwitcher("English", ViewContext.RouteData, "en")</button>
+                                            <button type="button" class="btn btn-xs btn-default" style="list-style:none;font-weight:800">   @Url.LangSwitcher("Marathi", ViewContext.RouteData, "mr")</button>
                                         </div>
                                         <div class="btn-group btn-group-xs mr-2" role="group" aria-label="Third group">
                                             <button type="button" class="btn btn-xs btn-default"><a class="increase"><i class="glyphicon glyphicon-plus"></i></a></button>
                                             <button type="button" class="btn btn-xs btn-default"><a class="decrease"><i class="glyphicon glyphicon-minus"></i></a></button>
 
                                             <button type="button" class="btn btn-xs btn-default"><a class="reset"><i class="glyphicon glyphicon-retweet"></i></a></button>
+
+
+                                        </div>
+                                        <div class="btn-group btn-group-xs mr-2">
                                             @if (!User.Identity.IsAuthenticated)
                                             {
-                                                <button type="button" class="btn btn-xs btn-default">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</button>
+                                                <button type="button" class="btn btn-sm btn-warning">@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "loginanchor" })</button>
 
                                             }
                                             else
@@ -143,10 +153,7 @@
                                                 @Html.Partial("_LoginPartial")
 
                                             }
-
                                         </div>
-
-
                                     </nav>
                                 </div>
 
@@ -158,7 +165,7 @@
         </div>
     </header>
     <div>
-        <div class="container">
+        <div class="container resizable">
             <div class="row">
                 <div class="col-lg-12 col-md-12">
                     <div class="mu-header-area">
@@ -169,7 +176,7 @@
                                     <img src="~/Images/Logo.jpg" height="90" width="90" style="float:left;padding:5px;" />
                                     <div class="titleSite">
 
-                                        <span>Mahamesh Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal</span>
+                                        <span>Mahamesh Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal - A Govt of Maharashtra Company</span>
                                     </div>
                                     <div class="titleSite" style="color:red">पुण्यश्लोक अहिल्यादेवी शेळी व मेंढी विकास महामंडळ</div>
                                 </div>
@@ -202,7 +209,7 @@
 
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
-                    <ul id="top-menu" class="nav navbar-nav main-nav">
+                    <ul id="top-menu" class="resizable nav navbar-nav main-nav">
                         <li class="dropdown">
                             <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">@Mahamesh.App_LocalResources.Lang.Home <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
@@ -419,7 +426,7 @@
             //increases font size when "+" is clicked
             $(".increase").click(function () {
                 var originalFontSize = $(resize).css('font-size');
-                var originalFontNumber = parseFloat(originalFontSize, 10);
+                var originalFontNumber = parseFloat(originalFontSize, 13);
                 var newFontSize = originalFontNumber * 1.2;
                 $(resize).css('font-size', newFontSize);
                 return false;
@@ -429,7 +436,7 @@
 
             $(".decrease").click(function () {
                 var originalFontSize = $(resize).css('font-size');
-                var originalFontNumber = parseFloat(originalFontSize, 10);
+                var originalFontNumber = parseFloat(originalFontSize, 13);
                 var newFontSize = originalFontNumber * 0.8;
                 $(resize).css('font-size', newFontSize);
                 return false;
