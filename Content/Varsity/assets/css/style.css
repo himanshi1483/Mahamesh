@@ -55,14 +55,14 @@
 }
 
     .vertical-nav li {
-        height: 30px;
+        height: 42px; /*//old 30px//*/
         background-color: #52b2fa;
         border: 1px solid #fff;
         text-align: left;
         display: inline-block;
         float: left;
         padding-left:10px;
-        padding-top: 5px;
+        padding-top: 10px; /*old 5px*/
         clear: both;
         /*min-width: 282px;*/
         width: 100%;
@@ -1058,7 +1058,7 @@ img {
             color: #fff;
             display: inline;
             float: left;
-            padding: 28px 15px;
+            padding: 15px 15px; /*padding: 28px 15px;*/
             text-align: center;
             width: 25%;
         }
@@ -1069,7 +1069,8 @@ img {
             color: #fff;
             display: inline;
             float: left;
-            padding: 24px 15px;
+            padding: 15px 15px;
+            /*padding: 24px 15px;*/
             text-align: center;
             width: 50%;
         }

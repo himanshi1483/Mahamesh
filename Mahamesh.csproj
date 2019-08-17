@@ -371,6 +371,8 @@
     <Content Include="Images\MD Photo %281%29.JPG" />
     <Content Include="Images\MD Photo.JPG" />
     <Content Include="Images\MD2.jpg" />
+    <Content Include="Images\mission.jpg" />
+    <Content Include="Images\mission2.png" />
     <Content Include="Images\mygov.png" />
     <Content Include="Images\myvisit-logo.png" />
     <Content Include="Images\pg-portal.png" />
@@ -389,6 +391,10 @@
     <Content Include="Images\slider3.jpg" />
     <Content Include="Images\swachhbharat.png" />
     <Content Include="Images\vikaskabudget-2.png" />
+    <Content Include="Images\vision-2.png" />
+    <Content Include="Images\vision-orginal.png" />
+    <Content Include="Images\vision1.png" />
+    <Content Include="Images\vision3.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.eot" />
