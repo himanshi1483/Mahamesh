@@ -130,7 +130,7 @@
     <section>
         <div class="row col-lg-12 col-md-12">
 
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-3"  style="border-right: 4px solid red;">
                 @*<nav id="menu">*@
                 <ul class="vertical-nav">
 
@@ -368,7 +368,7 @@
                     <li><a href="@Url.Action("AuditedReports", "Menu")">Audited Reports</a></li>
                     <li>
                         <a href="@Url.Action("FarmersInformation", "Menu")">Information for Farmers</a>
-                        <ul class="sub-menu">
+                        <ul class="sub-menu1">
                             <li><a href="@Url.Action("OfficersList", "Menu")">List of Officers</a></li>
                             <li><a href="@Url.Action("InseminationInformation", "Menu")">Information Regarding Insemination</a></li>
                             <li><a href="@Url.Action("HospitalInformation", "Menu")">Information reg Hospitals-Vets-Dispensary</a></li>
@@ -383,7 +383,7 @@
                     </li>
                     <li>
                         <a href="@Url.Action("ModelScheme", "Menu")">Model Scheme</a>
-                        <ul class="sub-menu">
+                        <ul class="sub-menu1">
                             <li><a href="@Url.Action("StockAvailability", "Menu")">Availability of Stock  - Semen - Products</a></li>
                             <li><a href="@Url.Action("FeedandFodder", "Menu")"> Feed and Fodder</a></li>
                         </ul>
@@ -521,7 +521,7 @@
                     <!-- Start single service -->
                     <div class="mu-service-single">
                         <span class="fa fa-list-alt"></span>
-                        <h4>Mahamesh Yojana</h4>
+                        <h4><a href="@Url.Action("MahameshYojana", "Menu")">Mahamesh Yojana</a></h4>
                     </div>
                     <div class="mu-service-single">
                         <span class="fa fa-list-alt"></span>

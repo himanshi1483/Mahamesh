@@ -61,7 +61,7 @@
         text-align: left;
         display: inline-block;
         float: left;
-        padding-left:10px;
+        padding-left:7px;
         padding-top: 10px; /*old 5px*/
         clear: both;
         /*min-width: 282px;*/
@@ -142,7 +142,7 @@ vertical-nav ul li ul li a {
     top: 0;
     left: 100%;
     width: 100%;
-    background-color:#fe5719;
+    background-color:#78c3fb;
     /*min-width: 180px;
         white-space: nowrap;*/
     z-index: 1;
@@ -154,7 +154,29 @@ vertical-nav ul li ul li a {
     }
 
     .sub-menu li:hover {
-          background-color: #52b2fa;
+          background-color: #fe5719;
+        border: 1px solid #fff;
+    }
+
+    .sub-menu1 li {
+    position: relative;
+    display: block;
+    top: 0;
+    right: 103%;
+    width: 100%;
+    background-color:#78c3fb;
+    /*min-width: 180px;
+        white-space: nowrap;*/
+    z-index: 1;
+}
+
+    .sub-menu1 li a {
+        display: inline-block;
+        padding: 0 10px;
+    }
+
+    .sub-menu1 li:hover {
+          background-color: #fe5719;
         border: 1px solid #fff;
     }
 
@@ -1025,10 +1047,10 @@ img {
 ====================*/
 
 .titleSite {
-    font-size: 22px;
+    font-size: 21px;
     font-weight:bold;
-    padding-top: 4px;
-    padding-left: 100px;
+    padding-top: 0px;
+    padding-left: 92px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
