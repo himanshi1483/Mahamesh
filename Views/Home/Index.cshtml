@@ -16,6 +16,7 @@
         font-size: 110%;
         color: #6c757d;
     }
+
     .carousel {
         padding: -1px 380px;
     }
@@ -76,7 +77,7 @@
             position: absolute;
             top: 0;
             left: 10px;
-            padding-right:21px;
+            padding-right: 21px;
             width: 100%;
             height: auto;
         }
@@ -179,7 +180,7 @@
                     <li><a href="@Url.Action("Precautions", "Menu")">Precaution during Natural Calamity</a></li>
                 </ul>
             </div>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-8 col-md-8">
                 <section id="mu-service">
                     <div class="mu-service-area">
 
@@ -360,8 +361,8 @@
                     </section>*@
 
             </div>
-            <div class="col-lg-3 col-md-3">
-                <section>
+            <div class="col-lg-1 col-md-1">
+                @*<section>
                     <div class="panel panel-default" style="margin-bottom: 15px!important;background-color:transparent !important">
                         <div class="panel-heading" style="background-color:transparent !important;margin-top:3px;">
                             <span class="glyphicon glyphicon-list-alt"></span><b>News</b>
@@ -401,10 +402,60 @@
                         </div>
 
                     </div>
-                </section>
+                </section>*@
 
             </div>
 
+        </div>
+        <div class="row col-lg-12 col-md-12">
+            <div class="col-lg-6 col-md-6">
+                <section>
+
+                    <div class="panel panel-default" style="background-color:transparent !important">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-list-alt"></span><b>Tenders</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <ul class="tender-demo-down-auto">
+                                        @foreach (var item in Model.TenderList)
+                                        {
+                                            <li class="news-item">@item.TenderTitle..<a href="@Url.Action("Details", "TenderInfo", new { @id = item.TenderId})">Read more...</a></li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <section>
+                    <div class="panel panel-default" style="margin-bottom: 15px!important;background-color:transparent !important">
+                        <div class="panel-heading" style="background-color:transparent !important;margin-top:3px;">
+                            <span class="glyphicon glyphicon-list-alt"></span><b>News</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <ul class="news-demo-down-auto">
+                                        @foreach (var item in Model.NewsList)
+                                        {
+                                            <li class="news-item">@item.NewsTitle..<a href="@Url.Action("Details", "News", new { @id = item.NewsId})">Read more...</a></li>
+
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+            </div>
         </div>
     </section>
 </div>
