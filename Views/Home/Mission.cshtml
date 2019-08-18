@@ -13,7 +13,6 @@
         bottom: 0;
         /*padding-top: 30px;*/
     }
-
 </style>
 <div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
     <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
@@ -22,9 +21,23 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="alert alert-success"> Coming Soon</div>
+                <p style="text-align:center"><img src="~/Images/mission.png" height="160" /></p>
+                <div class="alert alert-info text-center"> Coming Soon</div>
             </div>
         </div>
     </div>
 </div>
 
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#home').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>

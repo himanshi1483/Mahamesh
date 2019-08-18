@@ -38,6 +38,10 @@
     <![endif]-->
     <style>
 
+        .liMenu active {
+            color: black;
+        }
+
         .loginanchor {
             text-decoration: none;
             color: white;
@@ -173,7 +177,7 @@
                             <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
                                 <div class="mu-header-top-left">
 
-                                    <img src="~/Images/Logo.jpg" height="90" width="90" style="float:left;padding:2px;" />
+                                    <img src="~/Images/Mahamesh Logo.png" height="90" width="90" style="float:left;padding:2px;" />
                                     <div class="titleSite">
                                         <span style="font-size:15px !important">A Govt of Maharashtra Company</span><br />
                                         <span>Mahamesh Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal</span>
@@ -210,71 +214,71 @@
                 </div>
                 <div id="navbar" class="navbar-collapse collapse">
                     <ul id="top-menu" class="resizable nav navbar-nav main-nav">
-                        <li class="dropdown">
+                        <li class="dropdown" id="home">
                             <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">@Mahamesh.App_LocalResources.Lang.Home <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("Vision", "Home")">Vision</a></li>
-                                <li><a href="@Url.Action("Mission", "Home")">Mission</a></li>
-                                <li><a href="@Url.Action("History", "Home")">History</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Vision", "Home")">Vision</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Mission", "Home")">Mission</a></li>
+                                <li class="liMenu"><a href="@Url.Action("History", "Home")">History</a></li>
 
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="org">
                             <a href="#" class="dropdown-toggle">Organization <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("Ministers", "Organization")">Ministers</a></li>
-                                <li><a href="@Url.Action("BoardofDirectors", "Organization")">Board of Directors</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Ministers", "Organization")">Ministers</a></li>
+                                <li class="liMenu"><a href="@Url.Action("BoardofDirectors", "Organization")">Board of Directors</a></li>
 
-                                <li><a href="@Url.Action("KeyOfficials", "Organization")">Key Officials</a></li>
-                                <li><a href="@Url.Action("ObjectOfOrganization", "Organization")">Objects of Organization</a></li>
-                                <li><a href="@Url.Action("VariousCommittees", "Organization")">Various Committees</a></li>
-                                <li><a href="@Url.Action("OfficeBearers", "Organization")">Office Bearers</a></li>
+                                <li class="liMenu"><a href="@Url.Action("KeyOfficials", "Organization")">Key Officials</a></li>
+                                <li class="liMenu"><a href="@Url.Action("ObjectOfOrganization", "Organization")">Objects of Organization</a></li>
+                                <li class="liMenu"><a href="@Url.Action("VariousCommittees", "Organization")">Various Committees</a></li>
+                                <li class="liMenu"><a href="@Url.Action("OfficeBearers", "Organization")">Office Bearers</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="schemes">
                             <a href="#" class="dropdown-toggle">Schemes <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Schemes - Yearwise</a></li>
-                                <li><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Implimented Schemes</a></li>
-                                <li><a href="@Url.Action("InProgressSchemes", "Schemes")">In Progress Schemes</a></li>
+                                <li class="liMenu"><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Schemes - Yearwise</a></li>
+                                <li class="liMenu"><a href="@Url.Action("ImplimentedSchemes", "Schemes")">Implimented Schemes</a></li>
+                                <li class="liMenu"><a href="@Url.Action("InProgressSchemes", "Schemes")">In Progress Schemes</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="dev">
                             <a href="@Url.Action("Index", "DevelopmentActivity")" class="dropdown-toggle">Development Activity  <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("DistributionBreeding", "DevelopmentActivity")">Distribution of Rams and Buck for Breeding</a></li>
-                                <li><a href="@Url.Action("Distribution", "DevelopmentActivity")"> Distribution of Rams and Sheep</a></li>
-                                <li><a href="@Url.Action("Training", "DevelopmentActivity")">Training </a></li>
+                                <li class="liMenu"><a href="@Url.Action("DistributionBreeding", "DevelopmentActivity")">Distribution of Rams and Buck for Breeding</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Distribution", "DevelopmentActivity")"> Distribution of Rams and Sheep</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Training", "DevelopmentActivity")">Training </a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="farms">
                             <a href="#" class="dropdown-toggle">
                                 Farms
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("FarmLocation", "Farm")">Farm Location</a></li>
-                                <li><a href="@Url.Action("FarmActivities", "Farm")">Farm Activities</a></li>
-                                <li><a href="@Url.Action("FarmGeoData", "Farm")">Farm Geo Data - Maps - 712 extracts - Land Mapping drawing</a></li>
-                                <li><a href="@Url.Action("FarmFacilities", "Farm")">Farm Facilities Available</a></li>
-                                <li><a href="@Url.Action("FarmLivestock", "Farm")">Farm Livestock</a></li>
-                                <li><a href="@Url.Action("FarmExtension", "Farm")">Farm Extension Activities</a></li>
-                                <li><a href="@Url.Action("FarmDistribution", "Farm")">Farm - Distribution</a></li>
-                                <li><a href="@Url.Action("FarmDemonstration", "Farm")">Farm - Demonstration</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmLocation", "Farm")">Farm Location</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmActivities", "Farm")">Farm Activities</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmGeoData", "Farm")">Farm Geo Data - Maps - 712 extracts - Land Mapping drawing</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmFacilities", "Farm")">Farm Facilities Available</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmLivestock", "Farm")">Farm Livestock</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmExtension", "Farm")">Farm Extension Activities</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmDistribution", "Farm")">Farm - Distribution</a></li>
+                                <li class="liMenu"><a href="@Url.Action("FarmDemonstration", "Farm")">Farm - Demonstration</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="events">
                             <a href="#" class="dropdown-toggle">
                                 Events
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("Expo", "Event")">Expo</a></li>
-                                <li><a href="@Url.Action("Training", "Event")">Training</a></li>
-                                <li><a href="@Url.Action("Bakari_Id", "Event")">Bakri Id</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Expo", "Event")">Expo</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Training", "Event")">Training</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Bakari_Id", "Event")">Bakri Id</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
+                        <li class="dropdown" id="citizen">
                             <a href="@Url.Action("Index", "CitizenCharter")" class="dropdown-toggle">
                                 Citizen Charter
 
@@ -286,27 +290,27 @@
                                 </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
-                        <li class="dropdown">
+                        <li class="dropdown" id="tender">
                             <a href="@Url.Action("Index", "Tender")" class="dropdown-toggle">Tender <span class="fa fa-angle-down"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="@Url.Action("TenderNotifications", "Tender")">Tender Notifications</a></li>
-                                <li><a href="@Url.Action("TenderNotices", "Tender")">Tender Notices</a></li>
-                                <li><a href="@Url.Action("OfficeOrders", "Tender")">Office Orders</a></li>
-                                <li><a href="@Url.Action("Adverisement", "Tender")">Adverisement related to Supply</a></li>
+                                <li class="liMenu"><a href="@Url.Action("TenderNotifications", "Tender")">Tender Notifications</a></li>
+                                <li class="liMenu"><a href="@Url.Action("TenderNotices", "Tender")">Tender Notices</a></li>
+                                <li class="liMenu"><a href="@Url.Action("OfficeOrders", "Tender")">Office Orders</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Adverisement", "Tender")">Adverisement related to Supply</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle">
+                        <li class="dropdown" id="media">
+                            <a href="@Url.Action("Index", "Media")" class="dropdown-toggle">
                                 Media
                                 <span class="fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
                                 @if (User.Identity.IsAuthenticated)
                                 {
-                                    <li><a href="@Url.Action("Create", "Media")">Upload Media</a></li>
+                                    <li class="liMenu"><a href="@Url.Action("Create", "Media")">Upload Media</a></li>
                                 }
-                                <li><a href="@Url.Action("VideoGallery", "Media")">Videos</a></li>
-                                <li><a href="@Url.Action("Index", "Media")">Photos</a></li>
+                                <li class="liMenu"><a href="@Url.Action("VideoGallery", "Media")">Videos</a></li>
+                                <li class="liMenu"><a href="@Url.Action("Index", "Media")">Photos</a></li>
                             </ul>
                         </li>
                         @*<li class="dropdown">
@@ -314,7 +318,7 @@
                                     Useful Links
                                 </a>
                             </li>*@
-                        <li><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
+                        <li  class="liMenu" id="contact"><a href="@Url.Action("Contact", "Home")">Contact Us</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
@@ -495,6 +499,33 @@
         })
 
 
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.nav li').click(function () {
+                $(this).addClass('active');
+                $(this).siblings().removeClass('active');
+                // alert();
+                //$('.nav li.active').removeClass('active');
+
+                //var $parent = $(this).parent();
+                //var $superparent = $parent.parent();
+                //var $superparent1 = $superparent.parent();
+                //$superparent1.addClass('active');
+              //  e.preventDefault();
+            });
+        });
+
+        //// Add active class to the current button (highlight it)
+        //var header = document.getElementById("navbar");
+        //var btns = header.getElementsByClassName("liMenu a");
+        //for (var i = 0; i < btns.length; i++) {
+        //    btns[i].addEventListener("click", function () {
+        //        var current = document.getElementsByClassName("active");
+        //        current[0].className = current[0].className.replace(" active", "");
+        //        this.className += " active";
+        //    });
+        //}
     </script>
 </body>
 </html>

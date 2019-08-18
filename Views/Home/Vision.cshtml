@@ -12,37 +12,50 @@
         bottom: 0;
         /*padding-top: 30px;*/
     }
+
     .secParagraph {
-        margin-top:70px;
+        margin-top: 70px;
         padding-top: 20px;
-        border:1px solid #808080;
-        border-radius:5px;
+        border: 1px solid #808080;
+        border-radius: 5px;
         padding-bottom: 150px;
         background: #e5f2ff;
         padding-left: 30px;
         padding-right: 30px;
     }
-    
 </style>
-<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom:150px;">
     <div class="panel panel-danger" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-danger text-center">
             <h3 class="panel-title">Vision</h3>
         </div>
         <div class="panel-body">
             <div class="row">
-                <p style="text-align:center"><img src="~/Images/vision3.png"/></p>
+                <p style="text-align:center"><img src="~/Images/vision-orginal.png" height="200" /></p>
                 <p style="text-align:justify">"@Mahamesh.App_LocalResources.Lang.Vision"</p>
             </div>
         </div>
     </div>
 </div>
 @*<div class="container body-content" id="#maincontent">
-    <section class="secParagraph">
-        <h4 class="text-center text-info" style="font-weight:600">Vision</h4>
-        <div class="row col-lg-12">
-            <p style="text-align:justify">We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand information for every client to satisfy their queries is the main work and mission of sheep and Goat Gyan knowledge portal.</p>
-        </div>
-    </section>
-</div>*@
+        <section class="secParagraph">
+            <h4 class="text-center text-info" style="font-weight:600">Vision</h4>
+            <div class="row col-lg-12">
+                <p style="text-align:justify">We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand information for every client to satisfy their queries is the main work and mission of sheep and Goat Gyan knowledge portal.</p>
+            </div>
+        </section>
+    </div>*@
 
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#home').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>
