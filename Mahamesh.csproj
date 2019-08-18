@@ -234,12 +234,29 @@
     <Compile Include="Migrations\201908090708462_init9.Designer.cs">
       <DependentUpon>201908090708462_init9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908181229391_init12.cs" />
+    <Compile Include="Migrations\201908181229391_init12.Designer.cs">
+      <DependentUpon>201908181229391_init12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181236473_init13.cs" />
+    <Compile Include="Migrations\201908181236473_init13.Designer.cs">
+      <DependentUpon>201908181236473_init13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181237299_init14.cs" />
+    <Compile Include="Migrations\201908181237299_init14.Designer.cs">
+      <DependentUpon>201908181237299_init14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908181338156_init15.cs" />
+    <Compile Include="Migrations\201908181338156_init15.Designer.cs">
+      <DependentUpon>201908181338156_init15.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MediaFolders.cs" />
     <Compile Include="Models\MediaGalleryModel.cs" />
     <Compile Include="Models\NewsModel.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
@@ -353,6 +370,7 @@
     <Content Include="Images\emblem-of-india-logo-vector.png" />
     <Content Include="Images\favicon.ico" />
     <Content Include="Images\favicon_image.png" />
+    <Content Include="Images\Folders.png" />
     <Content Include="Images\Gallery\Pictures\15723448_10209896588188559_5396313812346479071_o.jpg" />
     <Content Include="Images\Gallery\Pictures\4.jpg" />
     <Content Include="Images\Gallery\Pictures\Chairman Photo.jpg" />
@@ -606,6 +624,7 @@
     <Content Include="Views\Media\VideoGallery.cshtml" />
     <Content Include="Views\Feedback\FeedbackReceived.cshtml" />
     <Content Include="Views\Menu\MahameshYojana.cshtml" />
+    <Content Include="Views\Media\PictureGallery.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -656,6 +675,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908090708462_init9.resx">
       <DependentUpon>201908090708462_init9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181229391_init12.resx">
+      <DependentUpon>201908181229391_init12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181236473_init13.resx">
+      <DependentUpon>201908181236473_init13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181237299_init14.resx">
+      <DependentUpon>201908181237299_init14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908181338156_init15.resx">
+      <DependentUpon>201908181338156_init15.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

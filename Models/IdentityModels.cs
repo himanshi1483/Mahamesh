@@ -33,6 +33,7 @@ namespace Mahamesh.Models
         {
             return new ApplicationDbContext();
         }
+        public System.Data.Entity.DbSet<Mahamesh.Models.MediaFolders> MediaFolders { get; set; }
 
         public System.Data.Entity.DbSet<Mahamesh.Models.NewsModel> NewsModels { get; set; }
 

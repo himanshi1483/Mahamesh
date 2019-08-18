@@ -19,14 +19,23 @@ namespace Mahamesh.Controllers
         public ActionResult Index()
         {
             var model = new MediaGalleryModel();
-            model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Picture).ToList();
+            var folders = new MediaFolders();
+            model.FolderList = db.MediaFolders.ToList();
+           // model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Picture).ToList();
             return View(model);
         }
 
-        public ActionResult VideoGallery()
+        public ActionResult VideoGallery(string folder)
         {
             var model = new MediaGalleryModel();
-            model.MediaList = db.MediaGalleryModels.Where(x=>x.MediaType == MediaType.Video).ToList();
+            model.MediaList = db.MediaGalleryModels.Where(x=>x.MediaType == MediaType.Video && x.MediaFolder == folder).ToList();
+            return View(model);
+        }
+
+        public ActionResult PictureGallery(string folder)
+        {
+            var model = new MediaGalleryModel();
+            model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Picture && x.MediaFolder == folder).ToList();
             return View(model);
         }
 
@@ -48,6 +57,8 @@ namespace Mahamesh.Controllers
         // GET: Media/Create
         public ActionResult Create()
         {
+            var folders = db.MediaFolders.ToList();
+            ViewBag.Folders = new SelectList(folders, "FolderName", "FolderName");
             return View();
         }
 
@@ -56,10 +67,20 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MediaId,MediaType,MediaName,MediaLocation,Caption,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] MediaGalleryModel mediaGalleryModel, HttpPostedFileBase files)
+        public ActionResult Create(MediaGalleryModel mediaGalleryModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
+                if ((!db.MediaFolders.Select(x=>x.FolderName).ToList().Contains(mediaGalleryModel.MediaFolderNew)) && mediaGalleryModel.MediaFolder == null)
+                {
+                    MediaFolders folders = new MediaFolders();
+                    folders.FolderName = mediaGalleryModel.MediaFolderNew;
+                    folders.MediaType = mediaGalleryModel.MediaType.ToString();
+                    db.MediaFolders.Add(folders);
+                    db.SaveChanges();
+                    mediaGalleryModel.MediaFolder = mediaGalleryModel.MediaFolderNew;
+
+                }
                 if (files != null && files.ContentLength > 0)
                 {
                     // extract only the filename
@@ -101,6 +122,9 @@ namespace Mahamesh.Controllers
         // GET: Media/Edit/5
         public ActionResult Edit(int? id)
         {
+            var folders = db.MediaFolders.ToList();
+            ViewBag.Folders = new SelectList(folders, "FolderName", "FolderName");
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

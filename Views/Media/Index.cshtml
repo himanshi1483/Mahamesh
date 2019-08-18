@@ -26,77 +26,45 @@
         padding-left: 0px !important;
     }
 </style>
-<div class="container body-content" id="#maincontent">
-    <div class="mu-title">
-        <h4>Picture Gallery</h4>
-    </div>
-    <section id="mu-gallery" style="padding: 20px 0px;margin-bottom:10%">
-        @*<div style="float:right">
-            <a class="btn btn-info" href="@Url.Action("Create")">Add Pictures</a>
-        </div>*@
-        <div class="container">
-
+<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+    <div class="panel panel-primary-3" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading"><h5>Media Folders</h5></div>
+        <div class="panel-body">
             <div class="row">
+                <section id="mu-service">
+                    <div class="mu-service-area">
+                        <div class="row" style="padding-top:30px">
+                            @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Pictures"))
+                            {
+                                <figure class="figure col-xs-2 text-center" style="border:1px solid #eeeaea; border-radius:5px;margin-right:3px;">
+                                    <img src="~/Images/FOLDERS.png" height="100" width="100" />
+                                    <figcaption class="figure-caption text-center" style="padding-top:5px;">
+                                        <strong><a href="@Url.Action("PictureGallery", "Media", new {  @folder = item.FolderName})"> @item.FolderName</a></strong>
+                                    </figcaption>
+                                </figure>
 
-                <div class="col-md-12">
-                    @*@Html.ActionLink("Create New", "Create")*@
-                    <div class="mu-gallery-area">
-                        <!-- start title -->
-                        <!-- end title -->
-                        <!-- start gallery content -->
-                        <div class="mu-gallery-content">
-                            <!-- Start gallery menu -->
-                            @*<div class="mu-gallery-top">
-                                <ul>
-                                    <li class="filter active" data-filter="all">All</li>
-                                    <li class="filter" data-filter=".lab">Lab</li>
-                                    <li class="filter" data-filter=".classroom">Class Room</li>
-                                    <li class="filter" data-filter=".library">Library</li>
-                                    <li class="filter" data-filter=".cafe">Cafe</li>
-                                    <li class="filter" data-filter=".others">Others</li>
-                                </ul>
-                            </div>*@
-                            <!-- End gallery menu -->
-                            <div class="mu-gallery-body">
-                                <ul id="mixit-container" class="row">
-                                    <!-- start single gallery image -->
-                                    @foreach (var item in Model.MediaList)
-                                    {
-                                        <li class="col-md-4 col-sm-6 col-xs-12 mix lab">
-                                            <div class="mu-single-gallery">
-                                                <div class="mu-single-gallery-item">
-                                                    <div class="mu-single-gallery-img">
-                                                        <a href="#"><img alt="img" src="@item.MediaLocation"></a>
-                                                    </div>
-                                                    <div class="mu-single-gallery-info">
-                                                        <div class="mu-single-gallery-info-inner">
-                                                            <h4>@item.MediaName</h4>
-                                                            <p>@item.Caption</p>
-                                                            <a href="@item.MediaLocation" data-fancybox-group="gallery" class="fancybox"><span class="fa fa-eye"></span></a>
-                                                            @if (User.Identity.IsAuthenticated)
-                                                            {
-                                                                using (Html.BeginForm("Delete", "Media", new { @id = item.MediaId, nclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
-                                                                {
-                                                                    @Html.AntiForgeryToken()
-                                                                    <div class="form-actions">
-                                                                        <button type="submit" onclick="return confirm('Are you sure you wish to delete this picture?');" value="Delete" class="btn-info aa-link" style="padding:13px;background-color:#01bafd;box-shadow:none"><span class="fa fa-remove"></span></button>
+                            }
 
-                                                                    </div>
-                                                                }
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
                         </div>
-                        <!-- end gallery content -->
+                        <div class="row" style="padding-top:30px">
+                            @foreach (var item in Model.FolderList.Where(x=>x.MediaType == "Videos"))
+                            {
+                                <figure class="figure col-xs-2 text-center" style="border:1px solid #eeeaea; border-radius:5px;margin-right:3px;">
+                                    <img src="~/Images/FOLDERS.png" height="100" width="100" />
+                                    <figcaption class="figure-caption text-center" style="padding-top:5px;">
+                                        <strong><a href="@Url.Action("VideoGallery", "Media", new {  @folder = item.FolderName})"> @item.FolderName</a></strong>
+
+                                    </figcaption>
+                                </figure>
+
+                            }
+
+                        </div>
                     </div>
-                </div>
+                    <!-- end gallery content -->
+
+                </section>
             </div>
         </div>
-    </section>
+    </div>
 </div>

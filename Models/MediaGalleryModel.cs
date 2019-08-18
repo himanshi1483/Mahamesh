@@ -12,6 +12,11 @@ namespace Mahamesh.Models
         [Key]
         public int MediaId { get; set; }
         public MediaType MediaType { get; set; }
+        public string MediaFolder { get; set; }
+        [NotMapped]
+        public string MediaFolderNew { get; set; }
+        [NotMapped]
+        public List<MediaFolders> FolderList { get; set; }
         public string MediaName { get; set; }
         public string MediaLocation { get; set; }
         public string Caption { get; set; }
