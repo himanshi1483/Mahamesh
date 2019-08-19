@@ -14,8 +14,6 @@
         bottom: 0;
         /*padding-top: 30px;*/
     }
-
-   
 </style>
 <div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
@@ -28,7 +26,7 @@
                     <thead>
                         <tr>
                             <th>
-                                Sr.No.   
+                                Sr.No.
                             </th>
                             <th class="text-center">Minister Name</th>
                             <th class="text-center">
@@ -71,3 +69,16 @@
     </div>
 </div>
 
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#org').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>

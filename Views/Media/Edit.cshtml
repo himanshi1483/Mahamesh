@@ -9,7 +9,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>MediaGalleryModel</h4>
         <hr />
@@ -91,3 +91,16 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#media').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>

@@ -47,7 +47,7 @@
 
                         </div>
                         <div class="row" style="padding-top:30px">
-                            @foreach (var item in Model.FolderList.Where(x=>x.MediaType == "Videos"))
+                            @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Videos"))
                             {
                                 <figure class="figure col-xs-2 text-center" style="border:1px solid #eeeaea; border-radius:5px;margin-right:3px;">
                                     <img src="~/Images/FOLDERS.png" height="100" width="100" />
@@ -68,3 +68,16 @@
         </div>
     </div>
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#media').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>

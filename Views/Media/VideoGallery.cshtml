@@ -12,8 +12,8 @@
         border-radius: 3px;
     }
 
-    .container{
-        padding-left:0px !important;
+    .container {
+        padding-left: 0px !important;
     }
 </style>
 <div class="container body-content" id="#maincontent">
@@ -22,14 +22,14 @@
     </div>
     <section id="mu-gallery" style="padding: 20px 0px;;margin-bottom:10%">
         @*<div style="float:right">
-            <a class="btn btn-info" href="@Url.Action("Create")">Add Videos</a>
-        </div>*@
+                <a class="btn btn-info" href="@Url.Action("Create")">Add Videos</a>
+            </div>*@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                   
+
                     <div class="mu-gallery-area">
-                      
+
                         <!-- end title -->
                         <!-- start gallery content -->
                         <div class="mu-gallery-content">
@@ -93,3 +93,16 @@
         </div>
     </section>
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");//this will remove the active class from
+        //previously active menu item
+        $('#media').addClass('active');
+        //for demo
+        //$('#demo').addClass('active');
+        //for sale
+        //$('#sale').addClass('active');
+    });
+</script>
