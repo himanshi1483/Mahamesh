@@ -16,6 +16,7 @@ namespace Mahamesh.Models
         public List<PressInformationModel> PressList { get; set; }
         public List<MediaFolders> FolderList { get; set; }
         public List<FeedbackModel> FeedbackList { get; set; }
+        public MediaFolders Folder { get; set; }
 
     }
 }

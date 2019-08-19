@@ -189,6 +189,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MediaController.cs" />
+    <Compile Include="Controllers\MediaFoldersController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
@@ -640,6 +641,11 @@
     <Content Include="Views\Media\PictureGallery.cshtml" />
     <Content Include="Views\Menu\AdminPanel.cshtml" />
     <Content Include="Views\Shared\_FileIndex.cshtml" />
+    <Content Include="Views\MediaFolders\Create.cshtml" />
+    <Content Include="Views\MediaFolders\Delete.cshtml" />
+    <Content Include="Views\MediaFolders\Details.cshtml" />
+    <Content Include="Views\MediaFolders\Edit.cshtml" />
+    <Content Include="Views\MediaFolders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

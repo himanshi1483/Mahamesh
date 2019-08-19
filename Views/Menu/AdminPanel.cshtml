@@ -21,12 +21,13 @@
                                 <li><a href="#" id="tenderLink">Tenders</a></li>
                                 <li><a href="#" id="newsLink">News</a></li>
                                 <li><a href="#" id="pressLink">Press Information</a></li>
-                                <li><a href="@Url.Action("OfficeDocuments", "Menu")">Images</a></li>
-                                <li><a href="@Url.Action("OfficeDocuments", "Menu")">Videos</a></li>
+                                <li><a href="#">Images</a></li>
+                                <li><a href="#">Videos</a></li>
                             </ul>
                         </li>
                         <li><a href="#" id="feedbackLink">Check Feedbacks</a></li>
-                        <li><a href="@Url.Action("DeptGuidelinesGR", "Menu")">Create Media Folders</a></li>
+                        <li><a href="#" id="imageLink">Create Image Folders</a></li>
+                        <li><a href="#" id="videoLink">Create Video Folders</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9">
@@ -46,24 +47,50 @@
             $("#newsBlock").hide();
             $("#pressBlock").hide();
             $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
         });
         $("#newsLink").click(function () {
             $("#newsBlock").toggle();
             $("#pressBlock").hide();
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
         });
         $("#pressLink").click(function () {
             $("#pressBlock").toggle();
             $("#newsBlock").hide();
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
         });
         $("#feedbackLink").click(function () {
             $("#pressBlock").hide();
             $("#newsBlock").hide();
             $("#tenderBlock").hide();
             $("#feedbackBlock").toggle();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
+        });
+        $("#imageLink").click(function () {
+            $("#pressBlock").hide();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+            $("#imageBlock").toggle();
+            $("#videoBlock").hide();
+            $("#FolderType").val("Pictures");
+        });
+        $("#videoLink").click(function () {
+            $("#pressBlock").hide();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").toggle();
+            $("#Folder_MediaType").val("Videos");
         });
     });
 </script>
