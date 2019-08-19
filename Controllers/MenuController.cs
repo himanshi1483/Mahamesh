@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mahamesh.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,23 @@ namespace Mahamesh.Controllers
 {
     public class MenuController : Controller
     {
+        ApplicationDbContext db = new ApplicationDbContext();
         // GET: Menu
         public ActionResult Index()
         {
             return View();
+        }
+
+        // GET: Menu
+        public ActionResult AdminPanel()
+        {
+            var model = new AdminPanelViewModel();
+            model.TenderList = db.TenderModels.ToList();
+            model.NewsList = db.NewsModels.ToList();
+            model.PressList = db.PressInformationModels.ToList();
+            model.FolderList = db.MediaFolders.ToList();
+            model.FeedbackList = db.FeedbackModels.ToList();
+            return View(model);
         }
 
         // GET: Menu

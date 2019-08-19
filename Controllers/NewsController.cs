@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,16 +47,28 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NewsId,NewsTitle,NewsDescription,NewsDate,ImageLocation,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] NewsModel newsModel)
+        public ActionResult Create([Bind(Include = "NewsId,NewsTitle,NewsDescription,NewsDate,ImageLocation,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] NewsModel newsModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
-                newsModel.CreatedBy = User.Identity.Name;
-                newsModel.CreatedDate = DateTime.Now;
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
 
-                db.NewsModels.Add(newsModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    var path = Path.Combine(Server.MapPath("~/Documents/News"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Documents/News/" + fileName;
+                    newsModel.DocumentName = fileName;
+                    newsModel.NewsDocument = relativePath;
+                    newsModel.CreatedBy = User.Identity.Name;
+                    newsModel.CreatedDate = DateTime.Now;
+
+                    db.NewsModels.Add(newsModel);
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
+              
             }
 
             return View(newsModel);
@@ -81,15 +94,34 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NewsId,NewsTitle,NewsDescription,NewsDate,ImageLocation,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] NewsModel newsModel)
+        public ActionResult Edit([Bind(Include = "NewsId,NewsTitle,NewsDescription,NewsDate,ImageLocation,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] NewsModel newsModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
-                newsModel.UpdatedBy = User.Identity.Name;
-                newsModel.UpdatedDate = DateTime.Now;
-                db.Entry(newsModel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
+
+                    var path = Path.Combine(Server.MapPath("~/Documents/News"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Documents/News/" + fileName;
+                    newsModel.DocumentName = fileName;
+                    newsModel.NewsDocument = relativePath;
+                    newsModel.UpdatedBy = User.Identity.Name;
+                    newsModel.UpdatedDate = DateTime.Now;
+                    db.Entry(newsModel).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
+                else
+                {
+                    newsModel.UpdatedBy = User.Identity.Name;
+                    newsModel.UpdatedDate = DateTime.Now;
+                    db.Entry(newsModel).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
             }
             return View(newsModel);
         }
@@ -117,7 +149,7 @@ namespace Mahamesh.Controllers
             NewsModel newsModel = db.NewsModels.Find(id);
             db.NewsModels.Remove(newsModel);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPanel", "Menu");
         }
 
         protected override void Dispose(bool disposing)

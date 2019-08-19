@@ -1,0 +1,376 @@
+﻿@model  Mahamesh.Models.AdminPanelViewModel
+
+<div id="tenderBlock" style="display:none">
+    <div class="panel panel-default">
+        <div class="panel-heading">Add New Tender</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Create", "TenderInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.Tenders.TenderTitle, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Tenders.TenderTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Tenders.TenderTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom:50px">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.Tenders.TenderDescription, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.Tenders.TenderDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Tenders.TenderDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.Tenders.TenderDate, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.Tenders.TenderDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.Tenders.TenderDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Document</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
+                                <span class="file-custom"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.Tenders.TenderDocument, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 text-center">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive table-striped">
+        <tr>
+            
+            <th>
+                Document Name
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.TenderList)
+        {
+            <tr>
+                
+                <td>
+                    <a href="@item.TenderDocument" target="_blank">@item.DocumentName</a>
+                </td>
+
+                <td>
+                    <div class="btn-group btn-group-xs mr-2" role="group">
+                        @using (Html.BeginForm("Delete", "TenderInfo", new { @id = item.TenderId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
+                        {
+                        @Html.AntiForgeryToken()
+                        <div class="form-actions">
+                            <button type="submit" onclick="return confirm('Are you sure you wish to delete this tender?');" value="Delete" class="btn btn-xs btn-primary-2" style="border:1px solid #808080"><span class="fa fa-remove"></span></button>
+
+                        </div>
+                        }
+                      
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+<div id="newsBlock" style="display:none">
+    <div class="panel panel-default">
+        <div class="panel-heading">Add New News</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.News.NewsTitle, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.News.NewsTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.News.NewsTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom:50px">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.News.NewsDescription, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.News.NewsDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.News.NewsDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.News.NewsDate, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.News.NewsDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.News.NewsDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Document</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
+                                <span class="file-custom"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.News.NewsDocument, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 text-center">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive table-striped">
+        <tr>
+            @*<th>  @Html.DisplayNameFor(model => model.News.NewsTitle)</th>*@
+            <th>
+                Document Name
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.NewsList)
+        {
+            <tr>
+                @*<td>@item.NewsTitle</td>*@
+                <td>
+                    <a href="@item.NewsDocument" target="_blank">@item.DocumentName</a>  
+                </td>
+
+                <td>
+                    <div class="btn-group btn-group-xs mr-2" role="group">
+                        @using (Html.BeginForm("Delete", "News", new { @id = item.NewsId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-actions">
+                                <button type="submit" onclick="return confirm('Are you sure you wish to delete this news?');" value="Delete" class="btn btn-xs btn-primary-2" style="border:1px solid #808080"><span class="fa fa-remove"></span></button>
+
+                            </div>
+                        }
+                     
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+<div id="pressBlock" style="display:none">
+    <div class="panel panel-default">
+        <div class="panel-heading">Add New Press Information</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Create", "PressInformation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.PressInfo.InformationTitle, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.PressInfo.InformationTitle, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PressInfo.InformationTitle, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="padding-bottom:50px">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.PressInfo.InformationDescription, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.TextAreaFor(model => model.PressInfo.InformationDescription, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PressInfo.InformationDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.PressInfo.InformationDate, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.EditorFor(model => model.PressInfo.InformationDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                            @Html.ValidationMessageFor(model => model.PressInfo.InformationDate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Document</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
+                                <span class="file-custom"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.PressInfo.InformationDocument, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 text-center">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <table class="table table-bordered table-responsive table-striped">
+        <tr>
+            @*<th>  @Html.DisplayNameFor(model => model.PressInfo.InformationTitle)</th>*@
+            <th>
+                Document Name
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.PressList)
+        {
+            <tr>
+                @*<td>@item.InformationTitle</td>*@
+                <td>
+               
+                    <a href="@item.InformationDocument" target="_blank">@item.DocumentName</a>
+                </td>
+
+                <td>
+                    <div class="btn-group btn-group-xs mr-2" role="group">
+                        @using (Html.BeginForm("Delete", "PressInformation", new { @id = item.InformationId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            <div class="form-actions">
+                                <button type="submit" onclick="return confirm('Are you sure you wish to delete this news?');" value="Delete" class="btn btn-xs btn-primary-2" style="border:1px solid #808080"><span class="fa fa-remove"></span></button>
+
+                            </div>
+                        }
+                    
+                    </div>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+<div id="feedbackBlock">
+    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+            <h3 class="panel-title">Feedbacks</h3>
+        </div>
+     
+        <div class="panel-body">
+
+            <div class="row">
+                <table class="table table-bordered table-responsive table-striped">
+                    <tr class="text-center">
+                        <th>
+                            @Html.DisplayNameFor(model => model.Feedbacks.FeedbackTitle)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.FeedbackDescription)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Feedbacks.FeedbackDate)
+                        </th>
+                        @*<th>
+                                @Html.DisplayNameFor(model => model.Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.PhoneNumber)
+                            </th>*@
+                        <th>
+                            @Html.DisplayNameFor(model => model.Feedbacks.CreatedBy)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Feedbacks.CreatedDate)
+                        </th>
+                      
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model.FeedbackList)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FeedbackTitle)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.FeedbackDescription)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FeedbackDate)
+                            </td>
+                            @*<td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>*@
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedBy)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreatedDate)
+                            </td>
+                       
+                            <td>
+                                <div class="btn-group btn-group-xs mr-2" role="group">
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Edit", new { id = item.FeedbackId })"><i class="fa fa-edit"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Details", new { id = item.FeedbackId })"><i class="fa fa-list"></i></a>
+                                    </button>
+                                    <button type="button" class="btn btn-xs btn-primary-2" style="border:1px solid #808080">
+                                        <a href="@Url.Action("Delete", new { id = item.FeedbackId  })"><i class="fa fa-remove"></i></a>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+        </div>
+</div>

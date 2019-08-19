@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -17,9 +18,12 @@ namespace Mahamesh.Models
         [Display(Name = "Date")]
         public DateTime? InformationDate { get; set; }
         public string InformationDocument { get; set; }
+        public string DocumentName { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public string UpdatedBy { get; set; }
         public DateTime? UpdatedDate { get; set; }
+        [NotMapped]
+        public List<PressInformationModel> PressList { get; set; }
     }
 }

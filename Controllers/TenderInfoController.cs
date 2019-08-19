@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -18,6 +19,14 @@ namespace Mahamesh.Controllers
         public ActionResult Index()
         {
             return View(db.TenderModels.ToList());
+        }
+
+        public PartialViewResult _FileIndex()
+        {
+            var model = new AdminPanelViewModel();
+            model.TenderList = new List<TenderModel>();
+            model.TenderList = db.TenderModels.ToList();
+            return PartialView("_FileIndex",model);
         }
 
         // GET: TenderInfo/Details/5
@@ -46,15 +55,27 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TenderId,TenderTitle,TenderDescription,TenderDate,TenderDocument,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] TenderModel tenderModel)
+        public ActionResult Create([Bind(Include = "TenderId,TenderTitle,TenderDescription,TenderDate,TenderDocument,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] TenderModel tenderModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
-                tenderModel.CreatedBy = User.Identity.Name;
-                tenderModel.CreatedDate = DateTime.Now;
-                db.TenderModels.Add(tenderModel);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
+                  
+                    var path = Path.Combine(Server.MapPath("~/Documents/Tenders"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Documents/Tenders/" + fileName;
+                    tenderModel.TenderDocument = relativePath;
+                    tenderModel.DocumentName = fileName;
+                    tenderModel.CreatedBy = User.Identity.Name;
+                    tenderModel.CreatedDate = DateTime.Now;
+                    db.TenderModels.Add(tenderModel);
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
+             
             }
 
             return View(tenderModel);
@@ -80,16 +101,36 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "TenderId,TenderTitle,TenderDescription,TenderDate,TenderDocument,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] TenderModel tenderModel)
+        public ActionResult Edit([Bind(Include = "TenderId,TenderTitle,TenderDescription,TenderDate,TenderDocument,CreatedBy,CreatedDate,UpdatedBy,UpdatedDate")] TenderModel tenderModel, HttpPostedFileBase files)
         {
             if (ModelState.IsValid)
             {
-                tenderModel.UpdatedBy = User.Identity.Name;
-                tenderModel.UpdatedDate = DateTime.Now;
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
 
-                db.Entry(tenderModel).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                    var path = Path.Combine(Server.MapPath("~/Documents/Tenders"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Documents/Tenders/" + fileName;
+                    tenderModel.TenderDocument = relativePath;
+                    tenderModel.DocumentName = fileName;
+                    tenderModel.UpdatedBy = User.Identity.Name;
+                    tenderModel.UpdatedDate = DateTime.Now;
+
+                    db.Entry(tenderModel).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
+                else
+                {
+                    tenderModel.UpdatedBy = User.Identity.Name;
+                    tenderModel.UpdatedDate = DateTime.Now;
+
+                    db.Entry(tenderModel).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+                }
             }
             return View(tenderModel);
         }
@@ -117,7 +158,7 @@ namespace Mahamesh.Controllers
             TenderModel tenderModel = db.TenderModels.Find(id);
             db.TenderModels.Remove(tenderModel);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPanel", "Menu");
         }
 
         protected override void Dispose(bool disposing)

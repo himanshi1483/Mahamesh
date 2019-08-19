@@ -2,17 +2,113 @@
 @{
     ViewBag.Title = "Mahamesh Yojana";
 }
+<style type="text/css">
+    /*Dashboard Tiles*/
+    .grid {
+        /* Grid Fallback */
+        display: flex;
+        flex-wrap: wrap;
+        /* Supports Grid */
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        grid-auto-rows: minmax(150px, auto);
+        grid-gap: 1em;
+    }
 
-<div class="container body-content" id="#maincontent" style="margin-top:110px; margin-bottom: 20px;">
-    <div class="panel panel-primary-3" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-        <div class="panel-heading"><h5>Mahamesh Yojana</h5></div>
+    .module {
+        /* Demo-Specific Styles */
+        display: inherit;
+        align-items: center;
+        justify-content: center;
+        height: 160px;
+        /* Flex Fallback */
+        margin-left: 5px;
+        margin-right: 5px;
+        flex: 1 1 200px;
+        color: white !important;
+        padding: 35px 10px;
+        text-align: center;
+    }
+
+        .module a {
+            color: white !important;
+        }
+    /* If Grid is supported, remove the margin we set for the fallback */
+    @@supports (display: grid) {
+        .module {
+            margin: 0;
+        }
+    }
+</style>
+
+<div class="container body-content" id="#maincontent" style="margin-top:100px; margin-bottom: 20px;">
+    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary-2 text-center">
+            <h3 class="panel-title">Mahamesh Yojana Dashboard</h3>
+        </div>
         <div class="panel-body">
             <div class="row">
+
                 <section id="mu-service">
                     <div class="mu-service-area" style="padding-left:37px">
+                        <div class="grid">
 
-                        <div class="row" style="padding-top:30px">
-                            <!-- Start single service -->
+                            <div class="module" style="background:#ff7d7d;">
+                                <div><span style="font-size:24px;" class="fa fa-th-list"></span></div>
+                                <br />
+                                <div>
+                                    <h5><a href="#">Mahamesh Yojana 2019-20 Highlights</a></h5>
+                                </div>
+                            </div>
+                            <div class="module" style="background:#50d2ef">
+                                <span style="font-size:24px" class="fa fa-list-ul"></span>
+                                <div>
+                                    <h5><a href="#">Government Guidelines</a></h5>
+                                </div>
+                            </div>
+                            <div class="module" style="background:#c33737">
+                                <span style="font-size:24px" class="fa fa-line-chart"></span>
+                                <h5><a href="#">Physical and Financial Target</a></h5>
+                            </div>
+
+                            <div class="module"
+                                 style="background:#eaa332">
+                                <span style="font-size:24px" class="fa fa-list"></span>
+                                <h5><a href="#">Beneficiary List Preliminary & Final</a></h5>
+                            </div>
+
+                            <div class="module" style="background:#e9c94f">
+                                <span style="font-size:24px" class="fa fa-sign-in"></span>
+                                <h5><a href="#">User Login</a></h5>
+                            </div>
+                            <div class="module" style="background:#fe7c4c">
+                                <span style="font-size:24px" class="fa fa-user-plus"></span>
+                                <h5><a href="#">Officer Login</a></h5>
+                            </div>
+                            <div class="module" style="background:#7a5f5f">
+                                <span style="font-size:24px" class="fa fa-phone"></span>
+                                <h5><a href="#">Contact Us / Support</a></h5>
+                            </div>
+                            <div class="module" style="background:#60b765">
+                                <span style="font-size:24px" class="fa fa-list-ol"></span>
+                                <h5><a href="#">User Manual</a></h5>
+                            </div>
+                            <div class="module"
+                                 style="background:#1a9b83">
+                                <span style="font-size:24px" class="fa fa-sticky-note"></span>
+                                <h5><a href="#">Download Standard Forms</a></h5>
+                            </div>
+                            <div class="module"
+                                 style="background:#5d5be5">
+                                <span style="font-size:24px" class="fa fa-android"></span>
+                                <h5><a href="#">Android App On Google Play Store</a></h5>
+                            </div>
+                            <div class="module" style="background:#f64f4f">
+                                <span style="font-size:24px" class="fa fa-youtube-play"></span>
+                                <h5><a href="#">YouTube Video</a></h5>
+                            </div>
+                        </div>
+                        @*<div class="row" style="padding-top:30px">
                             <div class="mu-service-single-20" style="background:#fd4401">
                                 <span style="font-size:24px" class="fa fa-th-list"></span>
                                 <h5><a href="#">Mahamesh Yojana 2019-20 Highlights</a></h5>
@@ -29,7 +125,7 @@
                                 <span style="font-size:24px" class="fa fa-android"></span>
                                 <h5><a href="#">Android App On Google Play Store</a></h5>
                             </div>
-                          
+
                         </div>
                         <div class="row">
 
@@ -50,8 +146,8 @@
                                 <h5><a href="#">Officer Login</a></h5>
                             </div>
                         </div>
-                        <div class="row"  style="padding-left:133px">
-                      
+                        <div class="row" style="padding-left:133px">
+
                             <div class="mu-service-single-20" style="background:#7a5f5f">
                                 <span style="font-size:24px" class="fa fa-phone"></span>
                                 <h5><a href="#">Contact Us / Support</a></h5>
@@ -65,8 +161,8 @@
                                 <span style="font-size:24px" class="fa fa-list-ol"></span>
                                 <h5><a href="#">User Manual</a></h5>
                             </div>
-                        </div>
-                        </div>
+                        </div>*@
+                    </div>
                 </section>
             </div>
         </div>

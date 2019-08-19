@@ -1,0 +1,69 @@
+﻿@model Mahamesh.Models.AdminPanelViewModel
+@{
+    ViewBag.Title = "AdminPanel";
+}
+
+<div class="container body-content" id="#maincontent" style="margin-top:100px; margin-bottom: 150px;">
+    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary-2 text-center">
+            <h3 class="panel-title">Admin Panel</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <ul class="vertical-nav">
+
+                        <li><a href="@Url.Action("ProductsAtFarm", "Menu")">Send Messages</a></li>
+                        <li><a href="@Url.Action("ProductsWool", "Menu")">View Registration</a></li>
+                        <li>
+                            <a href="#">Upload Files</a>
+                            <ul class="sub-menu">
+                                <li><a href="#" id="tenderLink">Tenders</a></li>
+                                <li><a href="#" id="newsLink">News</a></li>
+                                <li><a href="#" id="pressLink">Press Information</a></li>
+                                <li><a href="@Url.Action("OfficeDocuments", "Menu")">Images</a></li>
+                                <li><a href="@Url.Action("OfficeDocuments", "Menu")">Videos</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" id="feedbackLink">Check Feedbacks</a></li>
+                        <li><a href="@Url.Action("DeptGuidelinesGR", "Menu")">Create Media Folders</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-9">
+                    @Html.Partial("_FileIndex")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/Content/Varsity/assets/js/jquery.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#tenderLink").click(function () {
+            $("#tenderBlock").toggle();
+            $("#newsBlock").hide();
+            $("#pressBlock").hide();
+            $("#feedbackBlock").hide();
+        });
+        $("#newsLink").click(function () {
+            $("#newsBlock").toggle();
+            $("#pressBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+        });
+        $("#pressLink").click(function () {
+            $("#pressBlock").toggle();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+        });
+        $("#feedbackLink").click(function () {
+            $("#pressBlock").hide();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").toggle();
+        });
+    });
+</script>

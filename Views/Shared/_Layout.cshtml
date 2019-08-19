@@ -180,9 +180,9 @@
                                     <img src="~/Images/logo.jpg" height="90" width="90" style="float:left;padding:2px;" />
                                     <div class="titleSite">
                                         <span style="font-size:15px !important">A Govt of Maharashtra Company</span><br />
-                                        <span>Mahamesh Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal</span>
+                                        <span>Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal</span>
                                     </div>
-                                    <div class="titleSite" style="color:red">पुण्यश्लोक अहिल्यादेवी शेळी व मेंढी विकास महामंडळ</div>
+                                    <div class="titleSite" style="color:red">पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास महामंडळ</div>
                                 </div>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
@@ -322,8 +322,8 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle">
-                                    Admin
+                                <a href="@Url.Action("AdminPanel","Menu")" class="dropdown-toggle">
+                                    Admin Panel
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -356,7 +356,7 @@
         <div class="mu-footer-bottom2">
 
             <ul>
-                <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="default.asp">RTI   </a></li>
+                <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="@Url.Action("Index", "RTI")">RTI   </a></li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px"><a href="default.asp">Download Forms </a></li>
                 <li style="list-style-type: none !important; display: inline;padding-right:15px">|</li>

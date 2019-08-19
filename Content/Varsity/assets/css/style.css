@@ -30,6 +30,25 @@
 #RESPONSIVE DESIGN
 */
 
+@-webkit-keyframes blinker {
+    from {
+        opacity: 1.0;
+    }
+
+    to {
+        opacity: 0.0;
+    }
+}
+
+.blink {
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.4s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-direction: alternate;
+}
+
 .heading {
     background: #4D9AD4;
     height: 37px;
@@ -123,7 +142,7 @@ vertical-nav ul li ul li a {
 
 .vertical-nav li ul {
     display: none;
-    margin-top: 10px;
+    margin-top: -23px;
     padding: 0;
 }
 
@@ -1042,6 +1061,8 @@ img {
             font-size: 10px;
         }
 
+
+
 /*==================
  SERVICE SECTION
 ====================*/
@@ -1097,7 +1118,7 @@ img {
             width: 50%;
         }
 
-            #mu-service .mu-service-area .mu-service-single-20 {
+        #mu-service .mu-service-area .mu-service-single-20 {
             background-color: #01bafd;
             border: 5px solid;
             color: #fff;
@@ -1105,10 +1126,11 @@ img {
             float: left;
             padding: 35px 10px;
             text-align: center;
-            /*width: 20%;*/
-            /*height:0;width:20%;padding-bottom:20%;*/
-             width: 19vw;
-    height: 10vw;
+            width: 25%;
+            height: 10vw;
+            /*width:20%;padding-bottom:20%;*/
+            /*width: 19vw;
+    height: 10vw;*/
         }
 
         #mu-service .mu-service-area .mu-service-single:nth-child(2) {
