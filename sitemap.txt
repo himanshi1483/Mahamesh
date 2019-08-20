@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+<url>
+  <loc>http://test.mahamesh.co.in/</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/mr</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Account/Login</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Vision</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Mission</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/History</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/Ministers</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/BoardofDirectors</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/KeyOfficials</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/ObjectOfOrganization</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/VariousCommittees</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Organization/OfficeBearers</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Schemes/ImplimentedSchemes</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Schemes/InProgressSchemes</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/DevelopmentActivity</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/DevelopmentActivity/DistributionBreeding</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/DevelopmentActivity/Distribution</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/DevelopmentActivity/Training</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmLocation</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmActivities</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmGeoData</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmFacilities</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmLivestock</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmExtension</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmDistribution</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Farm/FarmDemonstration</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Event/Expo</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Event/Training</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Event/Bakari_Id</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/CitizenCharter</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Tender</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Tender/TenderNotifications</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Tender/TenderNotices</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Tender/OfficeOrders</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Tender/Adverisement</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Media</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Media/VideoGallery</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Contact</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/MahameshYojana</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/ProductsAtFarm</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/ProductsWool</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/DeptGuidelinesGR</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/BeneficiaryList</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/ProjectStatus</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Menu/OfficeDocuments</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Ambajogai</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Bilakhed</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Bondri</loc>
+</url>
+<url>
+  <loc>http://test.mahamesh.co.in/Home/Dahiwadi</loc>
+</url>
+</urlset>

@@ -423,6 +423,8 @@
     <Content Include="Images\slider2.jpg" />
     <Content Include="Images\slider3.jpg" />
     <Content Include="Images\swachhbharat.png" />
+    <Content Include="Images\video.ico" />
+    <Content Include="Images\videos.png" />
     <Content Include="Images\vikaskabudget-2.png" />
     <Content Include="Images\vision-2.png" />
     <Content Include="Images\vision-orginal.png" />
@@ -473,6 +475,15 @@
     <Content Include="Documents\GR\४ था वेतन आयोग मंजूरी.pdf" />
     <Content Include="Documents\GR\५ व्या वेतन आयोग मंजूरी.pdf" />
     <Content Include="Documents\GR\६ वा वेतन आयोग मंजूरी.pdf" />
+    <Content Include="Documents\FarmGeoData\ambejogai,beed.-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\amravati-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\bilakhed,jalgaon-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\mukhed,nanded-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\padegaon,aurangabad-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\sangli-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\satara-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\solapur-Layout1.pdf" />
+    <Content Include="Documents\FarmGeoData\tuljapur,osmanabad-Layout1.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

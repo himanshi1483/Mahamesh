@@ -38,7 +38,7 @@
                             @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Pictures"))
                             {
                                 <figure class="figure col-xs-2 text-center" style="border:1px solid #eeeaea; border-radius:5px;margin-right:25px;margin-bottom:15px;">
-                                    <img src="~/Images/FOLDERS.png" height="100" width="100" />
+                                    <img src="~/Images/FOLDERS.png" alt="image_folder" height="100" width="100" />
                                     <figcaption class="figure-caption text-center" style="padding-top:5px;">
                                         <strong><a href="@Url.Action("PictureGallery", "Media", new {  @folder = item.FolderName})"> @item.FolderName</a></strong>
                                     </figcaption>
@@ -53,7 +53,7 @@
                             @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Videos"))
                             {
                                 <figure class="figure col-xs-2 text-center" style="border:1px solid #eeeaea; border-radius:5px;margin-right:25px;margin-bottom:15px;">
-                                    <img src="~/Images/videos.png" height="100" width="100" />
+                                    <img src="~/Images/videos.png" height="100" alt="video_folder" width="100" />
                                     <figcaption class="figure-caption text-center" style="padding-top:5px;">
                                         <strong><a href="@Url.Action("VideoGallery", "Media", new {  @folder = item.FolderName})"> @item.FolderName</a></strong>
 
