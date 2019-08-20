@@ -379,7 +379,7 @@
     <div class="panel panel-primary-2">
         <div class="panel-heading panel-primary-2">Create New Image Folder</div>
         <div class="panel-body">
-            @using (Html.BeginForm("Create", "MediaFolders", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Create", "MediaFolders", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
@@ -388,7 +388,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Folder.FolderName, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Folder.FolderName, new { htmlAttributes = new { @class = "form-control", @id = "PictureFolderName" } })
+                        @Html.EditorFor(model => model.Folder.FolderName, new { htmlAttributes = new { @class = "form-control", @id = "FolderName" } })
                         @Html.ValidationMessageFor(model => model.Folder.FolderName, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -396,7 +396,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Folder.MediaType, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Folder.MediaType, new { htmlAttributes = new { @class = "form-control", @id = "FolderType" } })
+                        @Html.EditorFor(model => model.Folder.MediaType, new { htmlAttributes = new { @class = "form-control", @id = "MediaType" } })
                         @Html.ValidationMessageFor(model => model.Folder.MediaType, "", new { @class = "text-danger" })
                     </div>
                 </div>
