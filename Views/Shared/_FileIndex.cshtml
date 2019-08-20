@@ -58,9 +58,8 @@
         </div>
     </div>
     <table class="table table-bordered table-responsive table-striped">
-        <tr>
-
-            <th>
+        <tr style="background: #438a4b;color:white;">
+            <th class="text-center">
                 Document Name
             </th>
 
@@ -76,7 +75,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-xs mr-2" role="group">
+                    <div class="btn-group btn-group-xs mr-2 text-center" role="group">
                         @using (Html.BeginForm("Delete", "TenderInfo", new { @id = item.TenderId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
@@ -153,9 +152,9 @@
         </div>
     </div>
     <table class="table table-bordered table-responsive table-striped">
-        <tr>
+        <tr style="background: #438a4b;color:white">
             @*<th>  @Html.DisplayNameFor(model => model.News.NewsTitle)</th>*@
-            <th>
+            <th class="text-center">
                 Document Name
             </th>
 
@@ -171,7 +170,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-xs mr-2" role="group">
+                    <div class="btn-group btn-group-xs mr-2 text-center" role="group">
                         @using (Html.BeginForm("Delete", "News", new { @id = item.NewsId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
@@ -248,9 +247,9 @@
         </div>
     </div>
     <table class="table table-bordered table-responsive table-striped">
-        <tr>
+        <tr style="background: #438a4b;color:white">
             @*<th>  @Html.DisplayNameFor(model => model.PressInfo.InformationTitle)</th>*@
-            <th>
+            <th class="text-center">
                 Document Name
             </th>
 
@@ -267,7 +266,7 @@
                 </td>
 
                 <td>
-                    <div class="btn-group btn-group-xs mr-2" role="group">
+                    <div class="btn-group btn-group-xs mr-2 text-center" role="group">
                         @using (Html.BeginForm("Delete", "PressInformation", new { @id = item.InformationId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
                         {
                             @Html.AntiForgeryToken()
@@ -296,14 +295,14 @@
 
             <div class="row">
                 <table class="table table-bordered table-responsive table-striped">
-                    <tr class="text-center">
-                        <th>
+                    <tr style="background: #438a4b;color:white">
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Feedbacks.FeedbackTitle)
                         </th>
                         @*<th>
                                 @Html.DisplayNameFor(model => model.FeedbackDescription)
                             </th>*@
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Feedbacks.FeedbackDate)
                         </th>
                         @*<th>
@@ -315,10 +314,10 @@
                             <th>
                                 @Html.DisplayNameFor(model => model.PhoneNumber)
                             </th>*@
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Feedbacks.CreatedBy)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Feedbacks.CreatedDate)
                         </th>
 
@@ -379,52 +378,14 @@
     <div class="panel panel-primary-2">
         <div class="panel-heading panel-primary-2">Create New Image Folder</div>
         <div class="panel-body">
-            @using (Html.BeginForm("Create", "MediaFolders", FormMethod.Post))
+            @using (Html.BeginForm("CreateNew", "MediaFolders", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
 
 
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Folder.FolderName, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Folder.FolderName, new { htmlAttributes = new { @class = "form-control", @id = "FolderName" } })
-                        @Html.ValidationMessageFor(model => model.Folder.FolderName, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Folder.MediaType, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Folder.MediaType, new { htmlAttributes = new { @class = "form-control", @id = "MediaType" } })
-                        @Html.ValidationMessageFor(model => model.Folder.MediaType, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
-                </div>
-
-            }
-        </div>
-    </div>
-</div>
-
-
-<div id="videoBlock" style="display:none">
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2">Create New Video Folder</div>
-        <div class="panel-body">
-            @using (Html.BeginForm("Create", "MediaFolders", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-
-
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Folder.FolderName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Folder Name", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.Folder.FolderName, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.Folder.FolderName, "", new { @class = "text-danger" })
@@ -432,9 +393,9 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Folder.MediaType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.Label("Folder Type", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Folder.MediaType, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                        @Html.EnumDropDownListFor(model => model.MediaType, "Select Media Type", new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.Folder.MediaType, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -447,5 +408,250 @@
 
             }
         </div>
+        <div>
+            <table class="table table-bordered table-responsive table-striped">
+                <tr style="background: #438a4b;color:white">
+                    <th class="text-center">
+                        Folder Name
+                    </th>
+                    <th class="text-center">
+                        Folder Type
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Pictures"))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FolderName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaType)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs mr-2 text-center" role="group">
+                                @using (Html.BeginForm("Delete", "MediaFolders", new { @id = item.FolderId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-actions">
+                                        <button type="submit" onclick="return confirm('Are you sure you wish to delete this folder?');" value="Delete" class="btn btn-xs btn-primary-2" style="border:1px solid #808080"><span class="fa fa-remove"></span></button>
+
+                                    </div>
+                                }
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="videoBlock" style="display:none">
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2">Create New Video Folder</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("CreateNew", "MediaFolders", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.Label("Folder Name", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Folder.FolderName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Folder.FolderName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Folder Type", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EnumDropDownListFor(model => model.MediaType, "Select Media Type", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Folder.MediaType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+
+            }
+        </div>
+        <div>
+            <table class="table table-bordered table-responsive table-striped">
+                <tr style="background: #438a4b;color:white">
+                    <th class="text-center">
+                        Folder Name
+                    </th>
+                    <th class="text-center">
+                        Folder Type
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model.FolderList.Where(x => x.MediaType == "Videos"))
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FolderName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MediaType)
+                        </td>
+                        <td>
+                            <div class="btn-group btn-group-xs mr-2 text-center" role="group">
+                                @using (Html.BeginForm("Delete", "MediaFolders", new { @id = item.FolderId, onclick = "return confirm('Are you sure you wish to delete this article?');" }, FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-actions">
+                                        <button type="submit" onclick="return confirm('Are you sure you wish to delete this folder?');" value="Delete" class="btn btn-xs btn-primary-2" style="border:1px solid #808080"><span class="fa fa-remove"></span></button>
+
+                                    </div>
+                                }
+
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="imageUploadBlock" style="display:none">
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2">Create New Image Folder</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("CreateNew", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+
+                }
+
+                <div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.Label("Media Type", htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EnumDropDownListFor(model => model.MediaGallery.MediaType, "Select Media Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.MediaType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.Label("Media Folder", htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.MediaGallery.MediaFolder, (SelectList)ViewBag.ImgFolders, "--Select Existing Folder--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.MediaFolder, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Media</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
+                                <span class="file-custom"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.MediaGallery.Caption, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MediaGallery.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.Caption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 text-center">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+    </div>
+</div>
+
+<div id="videoUploadBlock" style="display:none">
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2">Create New Video Folder</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("CreateNew", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-danger">@ViewBag.Error</div>
+                }
+                <div>
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.Label("Media Type", htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EnumDropDownListFor(model => model.MediaGallery.MediaType, "Select Media Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.MediaType, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.Label("Media Folder", htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(model => model.MediaGallery.MediaFolder, (SelectList)ViewBag.VidFolders, "--Select Existing Folder--", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.MediaFolder, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="col-md-2">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2" style="font-weight:bold">Upload Media</div>
+                        <div class="col-md-6">
+                            <label class="file">
+                                @Html.TextBox("files", "", new { type = "file" }) <br />
+                                <span class="file-custom"></span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-2"></div>
+                        @Html.LabelFor(model => model.MediaGallery.Caption, htmlAttributes: new { @class = "col-md-2" })
+                        <div class="col-md-8">
+                            @Html.EditorFor(model => model.MediaGallery.Caption, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.MediaGallery.Caption, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-8 text-center">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
     </div>
 </div>

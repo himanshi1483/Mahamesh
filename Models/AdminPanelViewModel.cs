@@ -17,6 +17,9 @@ namespace Mahamesh.Models
         public List<MediaFolders> FolderList { get; set; }
         public List<FeedbackModel> FeedbackList { get; set; }
         public MediaFolders Folder { get; set; }
+        public string FolderName { get; set; }
+        public MediaType MediaType { get; set; }
+        public MediaGalleryModel MediaGallery { get; set; }
 
     }
 }

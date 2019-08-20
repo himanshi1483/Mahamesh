@@ -647,6 +647,7 @@
     <Content Include="Views\MediaFolders\Details.cshtml" />
     <Content Include="Views\MediaFolders\Edit.cshtml" />
     <Content Include="Views\MediaFolders\Index.cshtml" />
+    <Content Include="Views\Home\SheepGoatTraining.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

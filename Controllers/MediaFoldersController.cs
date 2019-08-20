@@ -46,27 +46,28 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FolderId,FolderName,MediaType")] MediaFolders mediaFolders)
+        public ActionResult Create(MediaFolders model)
         {
             if (ModelState.IsValid)
             {
-                db.MediaFolders.Add(mediaFolders);
+                db.MediaFolders.Add(model);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(mediaFolders);
+            return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateNew([Bind(Include = "FolderId,FolderName,MediaType")] AdminPanelViewModel model)
+        public ActionResult CreateNew(AdminPanelViewModel model)
         {
             if (ModelState.IsValid)
             {
+                model.Folder.MediaType = model.MediaType.ToString();
                 db.MediaFolders.Add(model.Folder);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminPanel", "Menu");
             }
 
             return View(model.Folder);
@@ -98,7 +99,7 @@ namespace Mahamesh.Controllers
             {
                 db.Entry(mediaFolders).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("AdminPanel", "Menu");
             }
             return View(mediaFolders);
         }
@@ -126,7 +127,7 @@ namespace Mahamesh.Controllers
             MediaFolders mediaFolders = db.MediaFolders.Find(id);
             db.MediaFolders.Remove(mediaFolders);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("AdminPanel", "Menu");
         }
 
         protected override void Dispose(bool disposing)

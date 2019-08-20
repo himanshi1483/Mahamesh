@@ -70,6 +70,51 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Corporation in every month..
+        /// </summary>
+        public static string SheepTraining1 {
+            get {
+                return ResourceManager.GetString("SheepTraining1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fees: Rs. 2000/- (In Rs. Two Thousand only) per trainee.
+        /// </summary>
+        public static string SheepTraining2 {
+            get {
+                return ResourceManager.GetString("SheepTraining2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Duration: 3 days.
+        /// </summary>
+        public static string SheepTraining3 {
+            get {
+                return ResourceManager.GetString("SheepTraining3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact : 020/25657112.
+        /// </summary>
+        public static string SheepTraining4 {
+            get {
+                return ResourceManager.GetString("SheepTraining4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email ID : mdsagpune@gmail.com.
+        /// </summary>
+        public static string SheepTraining5 {
+            get {
+                return ResourceManager.GetString("SheepTraining5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand informati [rest of string was truncated]&quot;;.
         /// </summary>
         public static string Vision {

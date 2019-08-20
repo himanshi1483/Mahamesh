@@ -28,14 +28,14 @@ namespace Mahamesh.Controllers
         public ActionResult VideoGallery(string folder)
         {
             var model = new MediaGalleryModel();
-            model.MediaList = db.MediaGalleryModels.Where(x=>x.MediaType == MediaType.Video && x.MediaFolder == folder).ToList();
+            model.MediaList = db.MediaGalleryModels.Where(x=>x.MediaType == MediaType.Videos && x.MediaFolder == folder).ToList();
             return View(model);
         }
 
         public ActionResult PictureGallery(string folder)
         {
             var model = new MediaGalleryModel();
-            model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Picture && x.MediaFolder == folder).ToList();
+            model.MediaList = db.MediaGalleryModels.Where(x => x.MediaType == MediaType.Pictures && x.MediaFolder == folder).ToList();
             return View(model);
         }
 
@@ -85,14 +85,14 @@ namespace Mahamesh.Controllers
                 {
                     // extract only the filename
                     var fileName = Path.GetFileName(files.FileName);
-                    if(mediaGalleryModel.MediaType == MediaType.Picture)
+                    if(mediaGalleryModel.MediaType == MediaType.Pictures)
                     {
                         var path = Path.Combine(Server.MapPath("~/Images/Gallery/Pictures"), fileName);
                         files.SaveAs(path);
                         var relativePath = "/Images/Gallery/Pictures/" + fileName;
                         mediaGalleryModel.MediaLocation = relativePath;
                     }
-                    else if(mediaGalleryModel.MediaType == MediaType.Video)
+                    else if(mediaGalleryModel.MediaType == MediaType.Videos)
                     {
                         var path = Path.Combine(Server.MapPath("~/Images/Gallery/Videos"), fileName);
                         files.SaveAs(path);
@@ -118,6 +118,60 @@ namespace Mahamesh.Controllers
             return View(mediaGalleryModel);
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNew(AdminPanelViewModel model, HttpPostedFileBase files)
+        {
+            if (ModelState.IsValid)
+            {
+                if ((!db.MediaFolders.Select(x => x.FolderName).ToList().Contains(model.MediaGallery.MediaFolderNew)))
+                {
+                    MediaFolders folders = new MediaFolders();
+                    folders.FolderName = model.MediaGallery.MediaFolderNew;
+                    folders.MediaType = model.MediaGallery.MediaType.ToString();
+                    db.MediaFolders.Add(folders);
+                    db.SaveChanges();
+
+                }
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
+                    if (model.MediaGallery.MediaType == MediaType.Pictures)
+                    {
+                        var path = Path.Combine(Server.MapPath("~/Images/Gallery/Pictures"), fileName);
+                        files.SaveAs(path);
+                        var relativePath = "/Images/Gallery/Pictures/" + fileName;
+                        model.MediaGallery.MediaLocation = relativePath;
+                    }
+                    else if (model.MediaGallery.MediaType == MediaType.Videos)
+                    {
+                        var path = Path.Combine(Server.MapPath("~/Images/Gallery/Videos"), fileName);
+                        files.SaveAs(path);
+                        var relativePath = "/Images/Gallery/Videos/" + fileName;
+                        model.MediaGallery.MediaLocation = relativePath;
+                    }
+                    // store the file inside ~/App_Data/uploads folder
+                    model.MediaGallery.CreatedBy = User.Identity.Name;
+                    model.MediaGallery.CreatedDate = DateTime.Now;
+                    db.MediaGalleryModels.Add(model.MediaGallery);
+                    db.SaveChanges();
+                    return RedirectToAction("AdminPanel", "Menu");
+
+                }
+                else
+                {
+                    ViewBag.Error = "Error uploading your picture. Please try again.";
+                    return View(model.MediaGallery);
+                }
+                // redirect back to the index action to show the form once again
+
+            }
+            return View(model.MediaGallery);
+
+        }
+
 
         // GET: Media/Edit/5
         public ActionResult Edit(int? id)

@@ -19,6 +19,10 @@ namespace Mahamesh.Controllers
         // GET: Menu
         public ActionResult AdminPanel()
         {
+            var ImgFolders = db.MediaFolders.Where(x=>x.MediaType == "Pictures").ToList();
+            ViewBag.ImgFolders = new SelectList(ImgFolders, "FolderName", "FolderName");
+            var VidFolders = db.MediaFolders.Where(x => x.MediaType == "Videos").ToList();
+            ViewBag.VidFolders = new SelectList(VidFolders, "FolderName", "FolderName");
             var model = new AdminPanelViewModel();
             model.TenderList = db.TenderModels.ToList();
             model.NewsList = db.NewsModels.ToList();

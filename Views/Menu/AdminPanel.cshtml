@@ -21,13 +21,13 @@
                                 <li><a href="#" id="tenderLink">Tenders</a></li>
                                 <li><a href="#" id="newsLink">News</a></li>
                                 <li><a href="#" id="pressLink">Press Information</a></li>
-                                <li><a href="#">Images</a></li>
-                                <li><a href="#">Videos</a></li>
+                                <li><a href="#" id="imageUploadLink">Images</a></li>
+                                <li><a href="#" id="videoUploadLink">Videos</a></li>
                             </ul>
                         </li>
                         <li><a href="#" id="feedbackLink">Check Feedbacks</a></li>
-                        @*<li><a href="#" id="imageLink">Create Image Folders</a></li>
-                        <li><a href="#" id="videoLink">Create Video Folders</a></li>*@
+                        <li><a href="#" id="imageLink">Create Image Folders</a></li>
+                        <li><a href="#" id="videoLink">Create Video Folders</a></li>
                     </ul>
                 </div>
                 <div class="col-md-9">
@@ -49,6 +49,8 @@
             $("#feedbackBlock").hide();
             $("#imageBlock").hide();
             $("#videoBlock").hide();
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
         });
         $("#newsLink").click(function () {
             $("#newsBlock").toggle();
@@ -57,6 +59,8 @@
             $("#feedbackBlock").hide();
             $("#imageBlock").hide();
             $("#videoBlock").hide();
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
         });
         $("#pressLink").click(function () {
             $("#pressBlock").toggle();
@@ -65,6 +69,8 @@
             $("#feedbackBlock").hide();
             $("#imageBlock").hide();
             $("#videoBlock").hide();
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
         });
         $("#feedbackLink").click(function () {
             $("#pressBlock").hide();
@@ -73,6 +79,8 @@
             $("#feedbackBlock").toggle();
             $("#imageBlock").hide();
             $("#videoBlock").hide();
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
         });
         $("#imageLink").click(function () {
             $("#pressBlock").hide();
@@ -80,8 +88,10 @@
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
             $("#imageBlock").toggle();
-            $("#videoBlock").hide();
-            $("#FolderType").val("Pictures");
+            $("#videoBlock").hide();    
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
+           
         });
         $("#videoLink").click(function () {
             $("#pressBlock").hide();
@@ -89,8 +99,30 @@
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
             $("#imageBlock").hide();
-            $("#videoBlock").toggle();
-            $("#Folder_MediaType").val("Videos");
+            $("#videoBlock").toggle();     
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").hide();
+        });
+        $("#imageUploadLink").click(function () {
+            $("#pressBlock").hide();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
+            $("#imageUploadBlock").toggle();
+            $("#videoUploadBlock").hide();
+
+        });
+        $("#videoUploadLink").click(function () {
+            $("#pressBlock").hide();
+            $("#newsBlock").hide();
+            $("#tenderBlock").hide();
+            $("#feedbackBlock").hide();
+            $("#imageBlock").hide();
+            $("#videoBlock").hide();
+            $("#imageUploadBlock").hide();
+            $("#videoUploadBlock").toggle();
         });
     });
 </script>

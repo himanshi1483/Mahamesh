@@ -30,7 +30,7 @@ namespace Mahamesh.Models
 
     public enum MediaType
     {
-        Picture,
-        Video
+        Pictures,
+        Videos
     }
 }
