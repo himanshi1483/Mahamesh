@@ -61,11 +61,2146 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ambajogai.
+        /// </summary>
+        public static string Ambajogai {
+            get {
+                return ResourceManager.GetString("Ambajogai", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ambejogai, Dist: Beed.
+        /// </summary>
+        public static string AmbajogaiAddress {
+            get {
+                return ResourceManager.GetString("AmbajogaiAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 18.01.
+        /// </summary>
+        public static string AmbajogaiAreaUndeGrazing {
+            get {
+                return ResourceManager.GetString("AmbajogaiAreaUndeGrazing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At this farm Azola Cultivation unit has been established for demonstration to the farmers..
+        /// </summary>
+        public static string AmbajogaiAzola {
+            get {
+                return ResourceManager.GetString("AmbajogaiAzola", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Under various Government schemes, the Sheep &amp; Goat unit is distributed to the farmers..
+        /// </summary>
+        public static string AmbajogaiDistribution {
+            get {
+                return ResourceManager.GetString("AmbajogaiDistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.ambejogai@gmail.com.
+        /// </summary>
+        public static string AmbajogaiEmail {
+            get {
+                return ResourceManager.GetString("AmbajogaiEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc..
+        /// </summary>
+        public static string AmbajogaiExtensionActivity {
+            get {
+                return ResourceManager.GetString("AmbajogaiExtensionActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Rahim Shaikh.
+        /// </summary>
+        public static string AmbajogaiFarmManagerName {
+            get {
+                return ResourceManager.GetString("AmbajogaiFarmManagerName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string AmbajogaiFarmName {
+            get {
+                return ResourceManager.GetString("AmbajogaiFarmName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 27.
+        /// </summary>
+        public static string AmbajogaiFemaleKids {
+            get {
+                return ResourceManager.GetString("AmbajogaiFemaleKids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 190.
+        /// </summary>
+        public static string AmbajogaiFemaleSheep {
+            get {
+                return ResourceManager.GetString("AmbajogaiFemaleSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.57.
+        /// </summary>
+        public static string AmbajogaiIrrigationLand {
+            get {
+                return ResourceManager.GetString("AmbajogaiIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.30.
+        /// </summary>
+        public static string AmbajogaiLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("AmbajogaiLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 19.
+        /// </summary>
+        public static string AmbajogaiMaleKids {
+            get {
+                return ResourceManager.GetString("AmbajogaiMaleKids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 55.
+        /// </summary>
+        public static string AmbajogaiMaleSheep {
+            get {
+                return ResourceManager.GetString("AmbajogaiMaleSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to +91-8975364673.
+        /// </summary>
+        public static string AmbajogaiMobileNumber {
+            get {
+                return ResourceManager.GetString("AmbajogaiMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.59.
+        /// </summary>
+        public static string AmbajogaiNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("AmbajogaiNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02446-247239.
+        /// </summary>
+        public static string AmbajogaiPhoneNumber {
+            get {
+                return ResourceManager.GetString("AmbajogaiPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm..
+        /// </summary>
+        public static string AmbajogaiProduction {
+            get {
+                return ResourceManager.GetString("AmbajogaiProduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products..
+        /// </summary>
+        public static string AmbajogaiPurchase {
+            get {
+                return ResourceManager.GetString("AmbajogaiPurchase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Osmanabadi Goat breed is reared at this farm for breeding purpose. The farm produced superior quality bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers for breeding of their ND livestock..
+        /// </summary>
+        public static string AmbajogaiSupplyDetail {
+            get {
+                return ResourceManager.GetString("AmbajogaiSupplyDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 291.
+        /// </summary>
+        public static string AmbajogaiTotal {
+            get {
+                return ResourceManager.GetString("AmbajogaiTotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 46.47.
+        /// </summary>
+        public static string AmbajogaiTotalLand {
+            get {
+                return ResourceManager.GetString("AmbajogaiTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Farm in every month.
+        ///Fees: Rs. 500/- per trainee. 
+        ///Duration: 3 days..
+        /// </summary>
+        public static string AmbajogaiTraining {
+            get {
+                return ResourceManager.GetString("AmbajogaiTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Android app on google play store .
+        /// </summary>
+        public static string Androidappongoogleplaystore {
+            get {
+                return ResourceManager.GetString("Androidappongoogleplaystore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Animal trading policy .
+        /// </summary>
+        public static string Animaltradingpolicy {
+            get {
+                return ResourceManager.GetString("Animaltradingpolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Area under Grazing Pasture (hectare).
+        /// </summary>
+        public static string AreaunderGrazing {
+            get {
+                return ResourceManager.GetString("AreaunderGrazing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Audited report .
+        /// </summary>
+        public static string Auditedreport {
+            get {
+                return ResourceManager.GetString("Auditedreport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available stocks .
+        /// </summary>
+        public static string Availablestocks {
+            get {
+                return ResourceManager.GetString("Availablestocks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneficiary list .
+        /// </summary>
+        public static string Beneficiarylist {
+            get {
+                return ResourceManager.GetString("Beneficiarylist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beneficiary list preliminary and final .
+        /// </summary>
+        public static string Beneficiarylistpreliminaryandfinal {
+            get {
+                return ResourceManager.GetString("Beneficiarylistpreliminaryandfinal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bilakhed  .
+        /// </summary>
+        public static string Bilakhed {
+            get {
+                return ResourceManager.GetString("Bilakhed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        public static string BilakhedAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("BilakhedAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        public static string BilakhedDeccaniSheep {
+            get {
+                return ResourceManager.GetString("BilakhedDeccaniSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Priyanka Tonde.
+        /// </summary>
+        public static string BilakhedEmailID {
+            get {
+                return ResourceManager.GetString("BilakhedEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string BilakhedFarmAddress {
+            get {
+                return ResourceManager.GetString("BilakhedFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02589/222457.
+        /// </summary>
+        public static string BilakhedFarmAddress1 {
+            get {
+                return ResourceManager.GetString("BilakhedFarmAddress1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To make available fodder plants for plantation which is useful in sheep and goat, fodder plant nursery is developed at farm. .
+        /// </summary>
+        public static string BilakhedFodderPlantNursery {
+            get {
+                return ResourceManager.GetString("BilakhedFodderPlantNursery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 23.45.
+        /// </summary>
+        public static string BilakhedIrrigationLand {
+            get {
+                return ResourceManager.GetString("BilakhedIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.
+        /// </summary>
+        public static string BilakhedLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("BilakhedLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to For improving the quality and quantity of wool of sheep, the machine shearing facility is providing to the sheep breeders by charging nominal cost. .
+        /// </summary>
+        public static string BilakhedMachineShearingProgram {
+            get {
+                return ResourceManager.GetString("BilakhedMachineShearingProgram", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02589/222457.
+        /// </summary>
+        public static string BilakhedMobileNumber {
+            get {
+                return ResourceManager.GetString("BilakhedMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bilakhed, Dist: Jalgaon.
+        /// </summary>
+        public static string BilakhedNameofFarm {
+            get {
+                return ResourceManager.GetString("BilakhedNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -9075803827.
+        /// </summary>
+        public static string BilakhedNameofFarmManager {
+            get {
+                return ResourceManager.GetString("BilakhedNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.48.
+        /// </summary>
+        public static string BilakhedNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("BilakhedNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.bilakhed@gmail.com .
+        /// </summary>
+        public static string BilakhedPhoneNumber {
+            get {
+                return ResourceManager.GetString("BilakhedPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 20.
+        /// </summary>
+        public static string BilakhedSheep {
+            get {
+                return ResourceManager.GetString("BilakhedSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 14.55.
+        /// </summary>
+        public static string BilakhedTotalLand {
+            get {
+                return ResourceManager.GetString("BilakhedTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Board of directors.
+        /// </summary>
+        public static string Boardofdirectors {
+            get {
+                return ResourceManager.GetString("Boardofdirectors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bondri  .
+        /// </summary>
+        public static string Bondri {
+            get {
+                return ResourceManager.GetString("Bondri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32.07.
+        /// </summary>
+        public static string BondriAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("BondriAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.
+        /// </summary>
+        public static string BondriDeccaniSheep {
+            get {
+                return ResourceManager.GetString("BondriDeccaniSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to At this farm Azola Cultivation unit has been established for demonstration to the farmers. .
+        /// </summary>
+        public static string BondriDemonstrationandproductionofAzola {
+            get {
+                return ResourceManager.GetString("BondriDemonstrationandproductionofAzola", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.bondri@gmail.com .
+        /// </summary>
+        public static string BondriEmailID {
+            get {
+                return ResourceManager.GetString("BondriEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bondri, Dist: Nagpur.
+        /// </summary>
+        public static string BondriFarmAddress {
+            get {
+                return ResourceManager.GetString("BondriFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0.2.
+        /// </summary>
+        public static string BondriIrrigationLand {
+            get {
+                return ResourceManager.GetString("BondriIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        public static string BondriLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("BondriLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -7709300030.
+        /// </summary>
+        public static string BondriMobileNumber {
+            get {
+                return ResourceManager.GetString("BondriMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string BondriNameofFarm {
+            get {
+                return ResourceManager.GetString("BondriNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Balaji kandhare.
+        /// </summary>
+        public static string BondriNameofFarmManager {
+            get {
+                return ResourceManager.GetString("BondriNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.8.
+        /// </summary>
+        public static string BondriNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("BondriNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ---.
+        /// </summary>
+        public static string BondriPhoneNumber {
+            get {
+                return ResourceManager.GetString("BondriPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woolen products..
+        /// </summary>
+        public static string BondriPurchaseofWool {
+            get {
+                return ResourceManager.GetString("BondriPurchaseofWool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 42.07.
+        /// </summary>
+        public static string BondriTotalLand {
+            get {
+                return ResourceManager.GetString("BondriTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Breed.
+        /// </summary>
+        public static string Breed {
+            get {
+                return ResourceManager.GetString("Breed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contact us/support   .
+        /// </summary>
+        public static string Contactus {
+            get {
+                return ResourceManager.GetString("Contactus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dahiwadi .
+        /// </summary>
+        public static string Dahiwadi {
+            get {
+                return ResourceManager.GetString("Dahiwadi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.4.
+        /// </summary>
+        public static string DahiwadiAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("DahiwadiAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.dahiwadi@gmail.com .
+        /// </summary>
+        public static string DahiwadiEmailID {
+            get {
+                return ResourceManager.GetString("DahiwadiEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dahiwadi, Dist: Satara.
+        /// </summary>
+        public static string DahiwadiFarmAddress {
+            get {
+                return ResourceManager.GetString("DahiwadiFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.5.
+        /// </summary>
+        public static string DahiwadiIrrigationLand {
+            get {
+                return ResourceManager.GetString("DahiwadiIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 72.17.
+        /// </summary>
+        public static string DahiwadiLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("DahiwadiLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 7.
+        /// </summary>
+        public static string DahiwadiLonandSheep {
+            get {
+                return ResourceManager.GetString("DahiwadiLonandSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 18.
+        /// </summary>
+        public static string DahiwadiMadgyalSheep {
+            get {
+                return ResourceManager.GetString("DahiwadiMadgyalSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -9404296417.
+        /// </summary>
+        public static string DahiwadiMobileNumber {
+            get {
+                return ResourceManager.GetString("DahiwadiMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string DahiwadiNameofFarm {
+            get {
+                return ResourceManager.GetString("DahiwadiNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shri. Pandurang Yedge.
+        /// </summary>
+        public static string DahiwadiNameofFarmManager {
+            get {
+                return ResourceManager.GetString("DahiwadiNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.5.
+        /// </summary>
+        public static string DahiwadiNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("DahiwadiNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 70.
+        /// </summary>
+        public static string DahiwadiOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("DahiwadiOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02165/204480.
+        /// </summary>
+        public static string DahiwadiPhoneNumber {
+            get {
+                return ResourceManager.GetString("DahiwadiPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.
+        /// </summary>
+        public static string DahiwadiSangamneriGoat {
+            get {
+                return ResourceManager.GetString("DahiwadiSangamneriGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.
+        /// </summary>
+        public static string DahiwadiSirohiGoat {
+            get {
+                return ResourceManager.GetString("DahiwadiSirohiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 89.57.
+        /// </summary>
+        public static string DahiwadiTotalLand {
+            get {
+                return ResourceManager.GetString("DahiwadiTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Demonstration and production of Azola.
+        /// </summary>
+        public static string DemonstrationProduction {
+            get {
+                return ResourceManager.GetString("DemonstrationProduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Department guidelines .
+        /// </summary>
+        public static string Departmentguidelines {
+            get {
+                return ResourceManager.GetString("Departmentguidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Details.
+        /// </summary>
+        public static string Details {
+            get {
+                return ResourceManager.GetString("Details", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Development  activity.
+        /// </summary>
+        public static string Developmentactivity {
+            get {
+                return ResourceManager.GetString("Developmentactivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Disclamer .
+        /// </summary>
+        public static string Disclamer {
+            get {
+                return ResourceManager.GetString("Disclamer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distribution of ram and buck for breeding .
+        /// </summary>
+        public static string Distributionoframandbuckforbreeding {
+            get {
+                return ResourceManager.GetString("Distributionoframandbuckforbreeding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Distribution of rams and ships.
+        /// </summary>
+        public static string Distributionoframsandships {
+            get {
+                return ResourceManager.GetString("Distributionoframsandships", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download forms .
+        /// </summary>
+        public static string Downloadforms {
+            get {
+                return ResourceManager.GetString("Downloadforms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download standard form .
+        /// </summary>
+        public static string Downloadstandardform {
+            get {
+                return ResourceManager.GetString("Downloadstandardform", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email ID.
+        /// </summary>
+        public static string EmailID {
+            get {
+                return ResourceManager.GetString("EmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Extension Activity.
+        /// </summary>
+        public static string ExtensionActivity {
+            get {
+                return ResourceManager.GetString("ExtensionActivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facilities Available.
+        /// </summary>
+        public static string FacilitiesAvailable {
+            get {
+                return ResourceManager.GetString("FacilitiesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Facility.
+        /// </summary>
+        public static string Facility {
+            get {
+                return ResourceManager.GetString("Facility", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm activities.
+        /// </summary>
+        public static string Farmactivities {
+            get {
+                return ResourceManager.GetString("Farmactivities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm Address.
+        /// </summary>
+        public static string FarmAddress {
+            get {
+                return ResourceManager.GetString("FarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm demonstration .
+        /// </summary>
+        public static string Farmdemonstration {
+            get {
+                return ResourceManager.GetString("Farmdemonstration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm distribution .
+        /// </summary>
+        public static string Farmdistribution {
+            get {
+                return ResourceManager.GetString("Farmdistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm extension activities .
+        /// </summary>
+        public static string Farmextensionactivities {
+            get {
+                return ResourceManager.GetString("Farmextensionactivities", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm facilities Available .
+        /// </summary>
+        public static string FarmfacilitiesAvailable {
+            get {
+                return ResourceManager.GetString("FarmfacilitiesAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm Information.
+        /// </summary>
+        public static string FarmInformation {
+            get {
+                return ResourceManager.GetString("FarmInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm livestock .
+        /// </summary>
+        public static string Farmlivestock {
+            get {
+                return ResourceManager.GetString("Farmlivestock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Farm location.
+        /// </summary>
+        public static string Farmlocation {
+            get {
+                return ResourceManager.GetString("Farmlocation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feed and fodder .
+        /// </summary>
+        public static string Feedandfodder {
+            get {
+                return ResourceManager.GetString("Feedandfodder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feedback  .
+        /// </summary>
+        public static string Feedback {
+            get {
+                return ResourceManager.GetString("Feedback", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female.
+        /// </summary>
+        public static string Female {
+            get {
+                return ResourceManager.GetString("Female", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Female Kids.
+        /// </summary>
+        public static string FemaleKids {
+            get {
+                return ResourceManager.GetString("FemaleKids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Government guidelines .
+        /// </summary>
+        public static string Governmentguidelines {
+            get {
+                return ResourceManager.GetString("Governmentguidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Help  .
+        /// </summary>
+        public static string Help {
+            get {
+                return ResourceManager.GetString("Help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to History.
+        /// </summary>
+        public static string History {
+            get {
+                return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Implemented  schemes.
+        /// </summary>
+        public static string Implementedschemes {
+            get {
+                return ResourceManager.GetString("Implementedschemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information of farmers .
+        /// </summary>
+        public static string Informationoffarmers {
+            get {
+                return ResourceManager.GetString("Informationoffarmers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information regarding breeding.
+        /// </summary>
+        public static string Informationregardingbreeding {
+            get {
+                return ResourceManager.GetString("Informationregardingbreeding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information regarding feeding .
+        /// </summary>
+        public static string Informationregardingfeeding {
+            get {
+                return ResourceManager.GetString("Informationregardingfeeding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information regarding insemination .
+        /// </summary>
+        public static string Informationregardinginsemination {
+            get {
+                return ResourceManager.GetString("Informationregardinginsemination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information reg.hospitals-vets-dispensary .
+        /// </summary>
+        public static string Informationreghospitals {
+            get {
+                return ResourceManager.GetString("Informationreghospitals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In progress schemes.
+        /// </summary>
+        public static string Inprogressschemes {
+            get {
+                return ResourceManager.GetString("Inprogressschemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Irrigation Land (hectare).
+        /// </summary>
+        public static string IrrigationLand {
+            get {
+                return ResourceManager.GetString("IrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Key officials.
+        /// </summary>
+        public static string Keyofficials {
+            get {
+                return ResourceManager.GetString("Keyofficials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Land Under Building, Roads, Percolation Tanks &amp; Forestation (hectare).
+        /// </summary>
+        public static string LandUnderBuilding {
+            get {
+                return ResourceManager.GetString("LandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of Available breeds .
+        /// </summary>
+        public static string ListofAvailablebreeds {
+            get {
+                return ResourceManager.GetString("ListofAvailablebreeds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of officers .
+        /// </summary>
+        public static string Listofofficers {
+            get {
+                return ResourceManager.GetString("Listofofficers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of progressive farmers .
+        /// </summary>
+        public static string Listofprogressivefarmers {
+            get {
+                return ResourceManager.GetString("Listofprogressivefarmers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to List of vaccinations /dieases/remedies .
+        /// </summary>
+        public static string Listofvaccinations {
+            get {
+                return ResourceManager.GetString("Listofvaccinations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to LiveStock Details Updated Till 31st March 2019.
+        /// </summary>
+        public static string LiveStockDetails {
+            get {
+                return ResourceManager.GetString("LiveStockDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Livestock insurance .
+        /// </summary>
+        public static string Livestockinsurance {
+            get {
+                return ResourceManager.GetString("Livestockinsurance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mahamesh yojana .
+        /// </summary>
+        public static string Mahameshyojana {
+            get {
+                return ResourceManager.GetString("Mahameshyojana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mahamesh yojna 2019-2020 highlights-.
+        /// </summary>
+        public static string Mahameshyojnahighlights {
+            get {
+                return ResourceManager.GetString("Mahameshyojnahighlights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mahud  .
+        /// </summary>
+        public static string Mahud {
+            get {
+                return ResourceManager.GetString("Mahud", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 291.24.
+        /// </summary>
+        public static string MahudAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("MahudAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.mahud@gmail.com .
+        /// </summary>
+        public static string MahudEmailID {
+            get {
+                return ResourceManager.GetString("MahudEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mahud,  Dist: Solapur.
+        /// </summary>
+        public static string MahudFarmAddress {
+            get {
+                return ResourceManager.GetString("MahudFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 37.36.
+        /// </summary>
+        public static string MahudIrrigationLand {
+            get {
+                return ResourceManager.GetString("MahudIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        public static string MahudLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("MahudLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 12.
+        /// </summary>
+        public static string MahudMadgyalSheep {
+            get {
+                return ResourceManager.GetString("MahudMadgyalSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 89.96481259.
+        /// </summary>
+        public static string MahudMobileNumber {
+            get {
+                return ResourceManager.GetString("MahudMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string MahudNameofFarm {
+            get {
+                return ResourceManager.GetString("MahudNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Popat Karande.
+        /// </summary>
+        public static string MahudNameofFarmManager {
+            get {
+                return ResourceManager.GetString("MahudNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 57.09.
+        /// </summary>
+        public static string MahudNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("MahudNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 18.
+        /// </summary>
+        public static string MahudOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("MahudOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02187/202300.
+        /// </summary>
+        public static string MahudPhoneNumber {
+            get {
+                return ResourceManager.GetString("MahudPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 390.69.
+        /// </summary>
+        public static string MahudTotalLand {
+            get {
+                return ResourceManager.GetString("MahudTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male.
+        /// </summary>
+        public static string Male {
+            get {
+                return ResourceManager.GetString("Male", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Male Kids.
+        /// </summary>
+        public static string MaleKids {
+            get {
+                return ResourceManager.GetString("MaleKids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Media  .
+        /// </summary>
+        public static string Media {
+            get {
+                return ResourceManager.GetString("Media", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ministers.
+        /// </summary>
+        public static string Ministers {
+            get {
+                return ResourceManager.GetString("Ministers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mission.
+        /// </summary>
+        public static string Mission {
+            get {
+                return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mobile Number.
+        /// </summary>
+        public static string MobileNumber {
+            get {
+                return ResourceManager.GetString("MobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Model scheme .
+        /// </summary>
+        public static string Modelscheme {
+            get {
+                return ResourceManager.GetString("Modelscheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mukhed  .
+        /// </summary>
+        public static string Mukhed {
+            get {
+                return ResourceManager.GetString("Mukhed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 58.22.
+        /// </summary>
+        public static string MukhedAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("MukhedAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        public static string MukhedDeccaniSheep {
+            get {
+                return ResourceManager.GetString("MukhedDeccaniSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to salvevikram@rediffmail.com .
+        /// </summary>
+        public static string MukhedEmailID {
+            get {
+                return ResourceManager.GetString("MukhedEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mukhed, Dist: Nanded.
+        /// </summary>
+        public static string MukhedFarmAddress {
+            get {
+                return ResourceManager.GetString("MukhedFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1.4.
+        /// </summary>
+        public static string MukhedIrrigationLand {
+            get {
+                return ResourceManager.GetString("MukhedIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 42.
+        /// </summary>
+        public static string MukhedLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("MukhedLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -9405494679.
+        /// </summary>
+        public static string MukhedMobileNumber {
+            get {
+                return ResourceManager.GetString("MukhedMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string MukhedNameofFarm {
+            get {
+                return ResourceManager.GetString("MukhedNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Vikram Salve .
+        /// </summary>
+        public static string MukhedNameofFarmManager {
+            get {
+                return ResourceManager.GetString("MukhedNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.8.
+        /// </summary>
+        public static string MukhedNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("MukhedNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02461/202022.
+        /// </summary>
+        public static string MukhedPhoneNumber {
+            get {
+                return ResourceManager.GetString("MukhedPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 105.42.
+        /// </summary>
+        public static string MukhedTotalLand {
+            get {
+                return ResourceManager.GetString("MukhedTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of Farm.
+        /// </summary>
+        public static string NameofFarm {
+            get {
+                return ResourceManager.GetString("NameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name of Farm Manager.
+        /// </summary>
+        public static string NameofFarmManager {
+            get {
+                return ResourceManager.GetString("NameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to News .
+        /// </summary>
+        public static string News {
+            get {
+                return ResourceManager.GetString("News", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Non – Irrigation Land (hectare).
+        /// </summary>
+        public static string NonIrrigationLand {
+            get {
+                return ResourceManager.GetString("NonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Object of organization.
+        /// </summary>
+        public static string Objectoforganization {
+            get {
+                return ResourceManager.GetString("Objectoforganization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office beares.
+        /// </summary>
+        public static string Officebeares {
+            get {
+                return ResourceManager.GetString("Officebeares", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office documents .
+        /// </summary>
+        public static string Officedocuments {
+            get {
+                return ResourceManager.GetString("Officedocuments", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Officer login .
+        /// </summary>
+        public static string Officerlogin {
+            get {
+                return ResourceManager.GetString("Officerlogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ongoing schemes .
+        /// </summary>
+        public static string Ongoingschemes {
+            get {
+                return ResourceManager.GetString("Ongoingschemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Organization.
+        /// </summary>
+        public static string Organization {
+            get {
+                return ResourceManager.GetString("Organization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Osmanabadi Goat.
+        /// </summary>
+        public static string OsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("OsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our farms .
+        /// </summary>
+        public static string Ourfarms {
+            get {
+                return ResourceManager.GetString("Ourfarms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Padegaon  .
+        /// </summary>
+        public static string Padegaon {
+            get {
+                return ResourceManager.GetString("Padegaon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 32.7.
+        /// </summary>
+        public static string PadegaonAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("PadegaonAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.
+        /// </summary>
+        public static string PadegaonDeccaniSheep {
+            get {
+                return ResourceManager.GetString("PadegaonDeccaniSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.padegaon@gmail.com .
+        /// </summary>
+        public static string PadegaonEmailID {
+            get {
+                return ResourceManager.GetString("PadegaonEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Padegaon, Dist: Aurangabad.
+        /// </summary>
+        public static string PadegaonFarmAddress {
+            get {
+                return ResourceManager.GetString("PadegaonFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 8.7.
+        /// </summary>
+        public static string PadegaonIrrigationLand {
+            get {
+                return ResourceManager.GetString("PadegaonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 11.95.
+        /// </summary>
+        public static string PadegaonLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("PadegaonLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -8007333136.
+        /// </summary>
+        public static string PadegaonMobileNumber {
+            get {
+                return ResourceManager.GetString("PadegaonMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string PadegaonNameofFarm {
+            get {
+                return ResourceManager.GetString("PadegaonNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Gajanan Sangole.
+        /// </summary>
+        public static string PadegaonNameofFarmManager {
+            get {
+                return ResourceManager.GetString("PadegaonNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 43.92.
+        /// </summary>
+        public static string PadegaonNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("PadegaonNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 6.
+        /// </summary>
+        public static string PadegaonOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("PadegaonOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0240/2370449.
+        /// </summary>
+        public static string PadegaonPhoneNumber {
+            get {
+                return ResourceManager.GetString("PadegaonPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 4.
+        /// </summary>
+        public static string PadegaonSangamneriGoat {
+            get {
+                return ResourceManager.GetString("PadegaonSangamneriGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 97.27.
+        /// </summary>
+        public static string PadegaonTotalLand {
+            get {
+                return ResourceManager.GetString("PadegaonTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string PhoneNumber {
+            get {
+                return ResourceManager.GetString("PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Photos .
+        /// </summary>
+        public static string Photos {
+            get {
+                return ResourceManager.GetString("Photos", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Physical and financial targets .
+        /// </summary>
+        public static string Physicalandfinancialtargets {
+            get {
+                return ResourceManager.GetString("Physicalandfinancialtargets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pohara .
+        /// </summary>
+        public static string Pohara {
+            get {
+                return ResourceManager.GetString("Pohara", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 152.05.
+        /// </summary>
+        public static string PoharaAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("PoharaAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.
+        /// </summary>
+        public static string PoharaBerariGoat {
+            get {
+                return ResourceManager.GetString("PoharaBerariGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.pohara@gmail.com .
+        /// </summary>
+        public static string PoharaEmailID {
+            get {
+                return ResourceManager.GetString("PoharaEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pohara,  Dist: Amravati.
+        /// </summary>
+        public static string PoharaFarmAddress {
+            get {
+                return ResourceManager.GetString("PoharaFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.5.
+        /// </summary>
+        public static string PoharaIrrigationLand {
+            get {
+                return ResourceManager.GetString("PoharaIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 5.8.
+        /// </summary>
+        public static string PoharaLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("PoharaLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -9766577718.
+        /// </summary>
+        public static string PoharaMobileNumber {
+            get {
+                return ResourceManager.GetString("PoharaMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string PoharaNameofFarm {
+            get {
+                return ResourceManager.GetString("PoharaNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Bhushan Sadar.
+        /// </summary>
+        public static string PoharaNameofFarmManager {
+            get {
+                return ResourceManager.GetString("PoharaNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 9.5.
+        /// </summary>
+        public static string PoharaNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("PoharaNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 15.
+        /// </summary>
+        public static string PoharaOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("PoharaOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 0721/2020523.
+        /// </summary>
+        public static string PoharaPhoneNumber {
+            get {
+                return ResourceManager.GetString("PoharaPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 176.85.
+        /// </summary>
+        public static string PoharaTotalLand {
+            get {
+                return ResourceManager.GetString("PoharaTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Precaution during natural calamity .
+        /// </summary>
+        public static string Precautionduringnaturalcalamity {
+            get {
+                return ResourceManager.GetString("Precautionduringnaturalcalamity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Press information.
+        /// </summary>
+        public static string Pressinformation {
+            get {
+                return ResourceManager.GetString("Pressinformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Production &amp; Supply of Fodder Seed and Stumps of Perennial Grasses..
+        /// </summary>
+        public static string ProductionSupply {
+            get {
+                return ResourceManager.GetString("ProductionSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products at farm .
+        /// </summary>
+        public static string Productsatfarm {
+            get {
+                return ResourceManager.GetString("Productsatfarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Products woolen .
+        /// </summary>
+        public static string Productswoolen {
+            get {
+                return ResourceManager.GetString("Productswoolen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Project status .
+        /// </summary>
+        public static string Projectstatus {
+            get {
+                return ResourceManager.GetString("Projectstatus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Purchase of Wool.
+        /// </summary>
+        public static string PurchaseofWool {
+            get {
+                return ResourceManager.GetString("PurchaseofWool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ram distribution .
+        /// </summary>
+        public static string Ramdistribution {
+            get {
+                return ResourceManager.GetString("Ramdistribution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranjani.
+        /// </summary>
+        public static string Ranjani {
+            get {
+                return ResourceManager.GetString("Ranjani", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 488.86.
+        /// </summary>
+        public static string RanjaniAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("RanjaniAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  sgf.ranjani@gmail.com .
+        /// </summary>
+        public static string RanjaniEmailID {
+            get {
+                return ResourceManager.GetString("RanjaniEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ranjani,  Dist: Sangli.
+        /// </summary>
+        public static string RanjaniFarmAddress {
+            get {
+                return ResourceManager.GetString("RanjaniFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 42.7.
+        /// </summary>
+        public static string RanjaniIrrigationLand {
+            get {
+                return ResourceManager.GetString("RanjaniIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 66.59.
+        /// </summary>
+        public static string RanjaniLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("RanjaniLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 11.
+        /// </summary>
+        public static string RanjaniMadgyalSheep {
+            get {
+                return ResourceManager.GetString("RanjaniMadgyalSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -8329398278.
+        /// </summary>
+        public static string RanjaniMobileNumber {
+            get {
+                return ResourceManager.GetString("RanjaniMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string RanjaniNameofFarm {
+            get {
+                return ResourceManager.GetString("RanjaniNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Sachin Dadas.
+        /// </summary>
+        public static string RanjaniNameofFarmManager {
+            get {
+                return ResourceManager.GetString("RanjaniNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 117.3.
+        /// </summary>
+        public static string RanjaniNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("RanjaniNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 17.
+        /// </summary>
+        public static string RanjaniOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("RanjaniOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02341/244222.
+        /// </summary>
+        public static string RanjaniPhoneNumber {
+            get {
+                return ResourceManager.GetString("RanjaniPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 715.45.
+        /// </summary>
+        public static string RanjaniTotalLand {
+            get {
+                return ResourceManager.GetString("RanjaniTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RTI माहिती  .
+        /// </summary>
+        public static string RTI {
+            get {
+                return ResourceManager.GetString("RTI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schemes.
+        /// </summary>
+        public static string Schemes {
+            get {
+                return ResourceManager.GetString("Schemes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Schemes Yearwise.
+        /// </summary>
+        public static string SchemesYearwise {
+            get {
+                return ResourceManager.GetString("SchemesYearwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheep and goat training .
+        /// </summary>
+        public static string Sheepandgoattraining {
+            get {
+                return ResourceManager.GetString("Sheepandgoattraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheep and Goat Farming Training.
+        /// </summary>
+        public static string SheepGoatFarmingTraining {
+            get {
+                return ResourceManager.GetString("SheepGoatFarmingTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sheep and Goat Unit Distribution.
+        /// </summary>
+        public static string SheepGoatUnitDistribution {
+            get {
+                return ResourceManager.GetString("SheepGoatUnitDistribution", resourceCulture);
             }
         }
         
@@ -115,11 +2250,272 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand informati [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to Success stories .
+        /// </summary>
+        public static string Successstories {
+            get {
+                return ResourceManager.GetString("Successstories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supply of Bucks for Breeding.
+        /// </summary>
+        public static string SupplyofBucks {
+            get {
+                return ResourceManager.GetString("SupplyofBucks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tenders.
+        /// </summary>
+        public static string Tenders {
+            get {
+                return ResourceManager.GetString("Tenders", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tirth  .
+        /// </summary>
+        public static string Tirth {
+            get {
+                return ResourceManager.GetString("Tirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 45.4.
+        /// </summary>
+        public static string TirthAreaunderGrazingPasture {
+            get {
+                return ResourceManager.GetString("TirthAreaunderGrazingPasture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to sgf.tirth@gmail.com .
+        /// </summary>
+        public static string TirthEmailID {
+            get {
+                return ResourceManager.GetString("TirthEmailID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tirth,  Dist: Osmanabad.
+        /// </summary>
+        public static string TirthFarmAddress {
+            get {
+                return ResourceManager.GetString("TirthFarmAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.43.
+        /// </summary>
+        public static string TirthIrrigationLand {
+            get {
+                return ResourceManager.GetString("TirthIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 16.
+        /// </summary>
+        public static string TirthLandUnderBuilding {
+            get {
+                return ResourceManager.GetString("TirthLandUnderBuilding", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to -9404872497.
+        /// </summary>
+        public static string TirthMobileNumber {
+            get {
+                return ResourceManager.GetString("TirthMobileNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm.
+        /// </summary>
+        public static string TirthNameofFarm {
+            get {
+                return ResourceManager.GetString("TirthNameofFarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Akshay Ghatare .
+        /// </summary>
+        public static string TirthNameofFarmManager {
+            get {
+                return ResourceManager.GetString("TirthNameofFarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 3.
+        /// </summary>
+        public static string TirthNonIrrigationLand {
+            get {
+                return ResourceManager.GetString("TirthNonIrrigationLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 19.
+        /// </summary>
+        public static string TirthOsmanabadiGoat {
+            get {
+                return ResourceManager.GetString("TirthOsmanabadiGoat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 02471/259066.
+        /// </summary>
+        public static string TirthPhoneNumber {
+            get {
+                return ResourceManager.GetString("TirthPhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 80.83.
+        /// </summary>
+        public static string TirthTotalLand {
+            get {
+                return ResourceManager.GetString("TirthTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        public static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total Land (hectare).
+        /// </summary>
+        public static string TotalLand {
+            get {
+                return ResourceManager.GetString("TotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Useful links .
+        /// </summary>
+        public static string Usefullinks {
+            get {
+                return ResourceManager.GetString("Usefullinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User login .
+        /// </summary>
+        public static string Userlogin {
+            get {
+                return ResourceManager.GetString("Userlogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User manual.
+        /// </summary>
+        public static string Usermanual {
+            get {
+                return ResourceManager.GetString("Usermanual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Various  committees.
+        /// </summary>
+        public static string Variouscommittees {
+            get {
+                return ResourceManager.GetString("Variouscommittees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video  .
+        /// </summary>
+        public static string Video {
+            get {
+                return ResourceManager.GetString("Video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vision.
         /// </summary>
         public static string Vision {
             get {
                 return ResourceManager.GetString("Vision", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand informati [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VisionText {
+            get {
+                return ResourceManager.GetString("VisionText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visitor analytics .
+        /// </summary>
+        public static string Visitoranalytics {
+            get {
+                return ResourceManager.GetString("Visitoranalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web information manager .
+        /// </summary>
+        public static string Webinformationmanager {
+            get {
+                return ResourceManager.GetString("Webinformationmanager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website policies .
+        /// </summary>
+        public static string Websitepolicies {
+            get {
+                return ResourceManager.GetString("Websitepolicies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woolen products .
+        /// </summary>
+        public static string Woolenproducts {
+            get {
+                return ResourceManager.GetString("Woolenproducts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Youtube video .
+        /// </summary>
+        public static string Youtubevideo {
+            get {
+                return ResourceManager.GetString("Youtubevideo", resourceCulture);
             }
         }
     }

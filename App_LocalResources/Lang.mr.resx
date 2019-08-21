@@ -117,8 +117,547 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Ambajogai" xml:space="preserve">
+    <value>अंबाजोगाई</value>
+  </data>
+  <data name="AmbajogaiAddress" xml:space="preserve">
+    <value>अंबाजोगाई, जि. बीड</value>
+  </data>
+  <data name="AmbajogaiAreaUndeGrazing" xml:space="preserve">
+    <value>१८.०१</value>
+  </data>
+  <data name="AmbajogaiAzola" xml:space="preserve">
+    <value>प्रक्षेत्रावर अझोला चे प्रात्यक्षिक  दाखविण्याकरिता अझोला उत्पादन यूनिट स्थापन करण्यात आलेले  आहे.</value>
+  </data>
+  <data name="AmbajogaiDistribution" xml:space="preserve">
+    <value>शासनामार्फत राबविण्यात येणाऱ्या योजनेंतर्गत पैदासक्षम मेंढया/शेळयांचे गट प्रक्षेत्रांवरून लाभार्थीच्या पसंतीनुसार जीवंत वजनावर पुरवठा केले जातात.</value>
+  </data>
+  <data name="AmbajogaiEmail" xml:space="preserve">
+    <value>sgf.ambejogai@gmail.com</value>
+  </data>
+  <data name="AmbajogaiExtensionActivity" xml:space="preserve">
+    <value>शेळी मेंढी पालन व्यवसाय करण्यास  इच्छुक असणार्‍या व्यक्तींना या व्यवसायाचे मार्गदर्शन करण्यात येते तसेच विविध प्रदर्शनामध्ये भाग घेऊन या व्यवसायाचा प्रचार व प्रसार केला जातो.</value>
+  </data>
+  <data name="AmbajogaiFarmManagerName" xml:space="preserve">
+    <value>डॉ. रहीम शेख</value>
+  </data>
+  <data name="AmbajogaiFarmName" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="AmbajogaiFemaleKids" xml:space="preserve">
+    <value>२७</value>
+  </data>
+  <data name="AmbajogaiFemaleSheep" xml:space="preserve">
+    <value>१९०</value>
+  </data>
+  <data name="AmbajogaiIrrigationLand" xml:space="preserve">
+    <value>४.५७</value>
+  </data>
+  <data name="AmbajogaiLandUnderBuilding" xml:space="preserve">
+    <value>१४.३०</value>
+  </data>
+  <data name="AmbajogaiMaleKids" xml:space="preserve">
+    <value>१९</value>
+  </data>
+  <data name="AmbajogaiMaleSheep" xml:space="preserve">
+    <value>५५</value>
+  </data>
+  <data name="AmbajogaiMobileNumber" xml:space="preserve">
+    <value>८९७५३६४६७३</value>
+  </data>
+  <data name="AmbajogaiNonIrrigationLand" xml:space="preserve">
+    <value>९.५९</value>
+  </data>
+  <data name="AmbajogaiPhoneNumber" xml:space="preserve">
+    <value>०२४४६-२४७२३९</value>
+  </data>
+  <data name="AmbajogaiProduction" xml:space="preserve">
+    <value>प्रक्षेत्रावर शेळ्या मेंढया करिता उपयुक्त असलेले सुधारीत जातीच्या चारा पिकांचे  बियाणे व संकरीत गवतांचे थोंबे उत्पादित करून शेळी मेंढी पालकांना रास्त दरात उपलब्ध करून दिल्या जाते.</value>
+  </data>
+  <data name="AmbajogaiPurchase" xml:space="preserve">
+    <value>स्थानिक भागातील मेंढ्यांच्या लोकरीस बाजारपेठ उपलब्ध होण्याकरिता मेंढपाळांकडील लोकर किफायतशीर भावाने खरेदी करण्यात येते.</value>
+  </data>
+  <data name="AmbajogaiSupplyDetail" xml:space="preserve">
+    <value>प्रक्षेत्रावर उस्मानाबादी जातीच्या शेळयांचे पैदाशीकरीता संगोपन करण्यात येते. या पासून उत्पादित होणारे जातिवंत बोकड पैदाशीकरिता शेतकर्‍यांना उपलब्ध करून देण्यात येत.</value>
+  </data>
+  <data name="AmbajogaiTotal" xml:space="preserve">
+    <value>२९१</value>
+  </data>
+  <data name="AmbajogaiTotalLand" xml:space="preserve">
+    <value>४६.४७</value>
+  </data>
+  <data name="AmbajogaiTraining" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र अंबाजोगाई येथे शेळी-मेंढी पालन व्यवसाय प्रशिक्षण प्रत्येक महिन्यात आयोजित केले जाते.
+प्रशिक्षण शुल्क : रु. ५००/- प्रती प्रशिक्षणार्थी 
+प्रशिक्षण कालावधी : ३ दिवस</value>
+  </data>
+  <data name="AreaunderGrazing" xml:space="preserve">
+    <value>वनीकरण क्षेत्र व चराउ कुरण (हे.)</value>
+  </data>
+  <data name="BilakhedAreaunderGrazingPasture" xml:space="preserve">
+    <value />
+  </data>
+  <data name="BilakhedDeccaniSheep" xml:space="preserve">
+    <value>२०</value>
+  </data>
+  <data name="BilakhedEmailID" xml:space="preserve">
+    <value>डॉ.प्रियंका तोंडे </value>
+  </data>
+  <data name="BilakhedFarmAddress" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="BilakhedFarmAddress1" xml:space="preserve">
+    <value>०२५८९-२२२४५७</value>
+  </data>
+  <data name="BilakhedFodderPlantNursery" xml:space="preserve">
+    <value>शेळ्या मेंढया करिता उपयुक्त असलेल्या वृक्षाची रोप वाटिका प्रक्षेत्रावर तयार करण्यात आलेली आहे. </value>
+  </data>
+  <data name="BilakhedIrrigationLand" xml:space="preserve">
+    <value>२३.४५</value>
+  </data>
+  <data name="BilakhedLandUnderBuilding" xml:space="preserve">
+    <value>०</value>
+  </data>
+  <data name="BilakhedMachineShearingProgram" xml:space="preserve">
+    <value>मेंढीपालक पारंपारिक पध्दतीने लोकर कातरणी करतात. त्यामुळे लोकरीच्या धाग्याचे बारीक तुकडे होवून प्रतवारी कमी होते. त्यासाठी प्रक्षेत्रामार्फत विजेवर चालणार्‍या यंत्राव्दारे मेंढयांची लोकर कातरणी  करून दिली जाते.  </value>
+  </data>
+  <data name="BilakhedMobileNumber" xml:space="preserve">
+    <value>६५.४८</value>
+  </data>
+  <data name="BilakhedNameofFarm" xml:space="preserve">
+    <value>बिलाखेड,ता.चाळीसगाव  जि.जळगाव </value>
+  </data>
+  <data name="BilakhedNameofFarmManager" xml:space="preserve">
+    <value>९०७५८०३९१८</value>
+  </data>
+  <data name="BilakhedNonIrrigationLand" xml:space="preserve">
+    <value>५.४८</value>
+  </data>
+  <data name="BilakhedPhoneNumber" xml:space="preserve">
+    <value>sgf.bilakhed@gmail.com </value>
+  </data>
+  <data name="BilakhedTotalLand" xml:space="preserve">
+    <value>१४.५५</value>
+  </data>
+  <data name="Boardofdirectors" xml:space="preserve">
+    <value>संचालक मंडळ</value>
+  </data>
+  <data name="BondriAreaunderGrazingPasture" xml:space="preserve">
+    <value>३२.०७</value>
+  </data>
+  <data name="BondriDeccaniSheep" xml:space="preserve">
+    <value>९</value>
+  </data>
+  <data name="BondriDemonstrationandproductionofAzola" xml:space="preserve">
+    <value>प्रक्षेत्रावर अझोला उत्पादना चे प्रात्यक्षिक  दाखविण्यात येते.</value>
+  </data>
+  <data name="BondriEmailID" xml:space="preserve">
+    <value>sgf.bondri@gmail.com</value>
+  </data>
+  <data name="BondriFarmAddress" xml:space="preserve">
+    <value>बोंद्री ,ता.रामटेक, जि. नागपुर </value>
+  </data>
+  <data name="BondriIrrigationLand" xml:space="preserve">
+    <value>०.२</value>
+  </data>
+  <data name="BondriLandUnderBuilding" xml:space="preserve">
+    <value>२.</value>
+  </data>
+  <data name="BondriMobileNumber" xml:space="preserve">
+    <value>७७०९३००१२१</value>
+  </data>
+  <data name="BondriNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="BondriNameofFarmManager" xml:space="preserve">
+    <value>डॉ. बालाजी कंधारे </value>
+  </data>
+  <data name="BondriNonIrrigationLand" xml:space="preserve">
+    <value>७.८</value>
+  </data>
+  <data name="BondriPhoneNumber" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="BondriPurchaseofWool" xml:space="preserve">
+    <value>स्थानिक भागातील मेंढ्यांच्या लोकरीस बाजारपेठ उपलब्ध होण्याकरिता मेंढपाळांकडील लोकर किफायतशीर भावाने खरेदी करण्यात येते. </value>
+  </data>
+  <data name="BondriTotalLand" xml:space="preserve">
+    <value>३२.०७</value>
+  </data>
+  <data name="Breed" xml:space="preserve">
+    <value>पशुधनाची जात</value>
+  </data>
+  <data name="DahiwadiAreaunderGrazingPasture" xml:space="preserve">
+    <value>१.४</value>
+  </data>
+  <data name="DahiwadiEmailID" xml:space="preserve">
+    <value>sgf.dahiwadi@gmail.com </value>
+  </data>
+  <data name="DahiwadiFarmAddress" xml:space="preserve">
+    <value>दहिवडी जि. सातारा</value>
+  </data>
+  <data name="DahiwadiIrrigationLand" xml:space="preserve">
+    <value>३.५</value>
+  </data>
+  <data name="DahiwadiLandUnderBuilding" xml:space="preserve">
+    <value>७२.१७</value>
+  </data>
+  <data name="DahiwadiLonandSheep" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DahiwadiMadgyalSheep" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DahiwadiMobileNumber" xml:space="preserve">
+    <value>-9404296417</value>
+  </data>
+  <data name="DahiwadiNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="DahiwadiNameofFarmManager" xml:space="preserve">
+    <value>श्री. पांडूरंग येडगे</value>
+  </data>
+  <data name="DahiwadiNonIrrigationLand" xml:space="preserve">
+    <value>१२.५</value>
+  </data>
+  <data name="DahiwadiOsmanabadiGoat" xml:space="preserve">
+    <value>७०</value>
+  </data>
+  <data name="DahiwadiPhoneNumber" xml:space="preserve">
+    <value>०२१६५/२०४४८०</value>
+  </data>
+  <data name="DahiwadiSangamneriGoat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DahiwadiSirohiGoat" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DahiwadiTotalLand" xml:space="preserve">
+    <value>८९.५७</value>
+  </data>
+  <data name="DemonstrationProduction" xml:space="preserve">
+    <value>अझोला उत्पादन</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>वर्णन</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>तपशील</value>
+  </data>
+  <data name="Developmentactivity" xml:space="preserve">
+    <value>विकासात्मक कार्यक्रम</value>
+  </data>
+  <data name="Distributionoframandbuckforbreeding" xml:space="preserve">
+    <value>पैदाशीकरिता बोकड /मेंढे नर पुरवठा </value>
+  </data>
+  <data name="Distributionoframsandships" xml:space="preserve">
+    <value>पैदाशीकरिता बोकड /मेंढे नर/शेळ्या /मेंढ्या  पुरवठा </value>
+  </data>
+  <data name="EmailID" xml:space="preserve">
+    <value>ई-मेल</value>
+  </data>
+  <data name="ExtensionActivity" xml:space="preserve">
+    <value>विस्तार व जंनसंपर्क कार्य</value>
+  </data>
+  <data name="FacilitiesAvailable" xml:space="preserve">
+    <value>उपलब्ध सुविधा</value>
+  </data>
+  <data name="Facility" xml:space="preserve">
+    <value>वर्णन</value>
+  </data>
+  <data name="Farmactivities" xml:space="preserve">
+    <value>प्रक्षेत्राचे कार्य</value>
+  </data>
+  <data name="FarmAddress" xml:space="preserve">
+    <value>प्रक्षेत्राचा पत्ता</value>
+  </data>
+  <data name="FarmInformation" xml:space="preserve">
+    <value>प्रक्षेत्राची माहिती</value>
+  </data>
+  <data name="Farmlocation" xml:space="preserve">
+    <value>प्रक्षेत्राचे ठिकाण </value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>मादी</value>
+  </data>
+  <data name="FemaleKids" xml:space="preserve">
+    <value>मादी पिल्ले</value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>इतिहास</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>मुख्य पान</value>
+  </data>
+  <data name="Implementedschemes" xml:space="preserve">
+    <value>राबविलेल्या योजना</value>
+  </data>
+  <data name="Inprogressschemes" xml:space="preserve">
+    <value>राबवित असलेल्या योजना</value>
+  </data>
+  <data name="IrrigationLand" xml:space="preserve">
+    <value>बागायती क्षेत्र (हे.)</value>
+  </data>
+  <data name="Keyofficials" xml:space="preserve">
+    <value>अधिकारी</value>
+  </data>
+  <data name="LandUnderBuilding" xml:space="preserve">
+    <value>रस्ते, इमारत, तलाव (हे.)</value>
+  </data>
+  <data name="LiveStockDetails" xml:space="preserve">
+    <value>पशुधनाची माहिती माहे ३१ मार्च २०१९ रोजीची</value>
+  </data>
+  <data name="MahudAreaunderGrazingPasture" xml:space="preserve">
+    <value>२९१.२४</value>
+  </data>
+  <data name="MahudEmailID" xml:space="preserve">
+    <value>sgf.mahud@gmail.com </value>
+  </data>
+  <data name="MahudFarmAddress" xml:space="preserve">
+    <value>महूद जि. सोलापूर</value>
+  </data>
+  <data name="MahudIrrigationLand" xml:space="preserve">
+    <value>३७.३६</value>
+  </data>
+  <data name="MahudLandUnderBuilding" xml:space="preserve">
+    <value>५.</value>
+  </data>
+  <data name="MahudMadgyalSheep" xml:space="preserve">
+    <value>१२</value>
+  </data>
+  <data name="MahudMobileNumber" xml:space="preserve">
+    <value>89.96481259</value>
+  </data>
+  <data name="MahudNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="MahudNameofFarmManager" xml:space="preserve">
+    <value>डॉ. पोपट कारंडे</value>
+  </data>
+  <data name="MahudNonIrrigationLand" xml:space="preserve">
+    <value>५७.०९</value>
+  </data>
+  <data name="MahudOsmanabadiGoat" xml:space="preserve">
+    <value>१८</value>
+  </data>
+  <data name="MahudPhoneNumber" xml:space="preserve">
+    <value>०२१८७/२०२३००</value>
+  </data>
+  <data name="MahudTotalLand" xml:space="preserve">
+    <value>३९०.६९</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>नर</value>
+  </data>
+  <data name="MaleKids" xml:space="preserve">
+    <value>नर पिल्ले</value>
+  </data>
+  <data name="Ministers" xml:space="preserve">
+    <value>मंत्री</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>मिशन</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>मोबाईल क्रमांक</value>
+  </data>
+  <data name="MukhedAreaunderGrazingPasture" xml:space="preserve">
+    <value>५८.२२</value>
+  </data>
+  <data name="MukhedDeccaniSheep" xml:space="preserve">
+    <value>१६</value>
+  </data>
+  <data name="MukhedEmailID" xml:space="preserve">
+    <value>salvevikram@rediffmail.com </value>
+  </data>
+  <data name="MukhedFarmAddress" xml:space="preserve">
+    <value>मुखेड जि. नांदेड</value>
+  </data>
+  <data name="MukhedIrrigationLand" xml:space="preserve">
+    <value>१.४</value>
+  </data>
+  <data name="MukhedLandUnderBuilding" xml:space="preserve">
+    <value>४२.</value>
+  </data>
+  <data name="MukhedMobileNumber" xml:space="preserve">
+    <value>-9405494679</value>
+  </data>
+  <data name="MukhedNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="MukhedNameofFarmManager" xml:space="preserve">
+    <value>डॉ.विक्रम साळवे </value>
+  </data>
+  <data name="MukhedNonIrrigationLand" xml:space="preserve">
+    <value>३.८</value>
+  </data>
+  <data name="MukhedPhoneNumber" xml:space="preserve">
+    <value>०२४६१/२०२०२२</value>
+  </data>
+  <data name="MukhedTotalLand" xml:space="preserve">
+    <value>१०५.४२</value>
+  </data>
+  <data name="NameofFarm" xml:space="preserve">
+    <value>प्रक्षेत्राचे नाव</value>
+  </data>
+  <data name="NameofFarmManager" xml:space="preserve">
+    <value>प्रक्षेत्र व्यवस्थापकाचे नाव</value>
+  </data>
+  <data name="NonIrrigationLand" xml:space="preserve">
+    <value>जिरायती क्षेत्र (हे.)</value>
+  </data>
+  <data name="Objectoforganization" xml:space="preserve">
+    <value>संस्थेचे उद्दीष्ट्ये</value>
+  </data>
+  <data name="Officebeares" xml:space="preserve">
+    <value>पदाधीकारी</value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>संस्था</value>
+  </data>
+  <data name="OsmanabadiGoat" xml:space="preserve">
+    <value>उस्मानाबादी शेळ्या</value>
+  </data>
+  <data name="PadegaonAreaunderGrazingPasture" xml:space="preserve">
+    <value>३२.७</value>
+  </data>
+  <data name="PadegaonDeccaniSheep" xml:space="preserve">
+    <value>८</value>
+  </data>
+  <data name="PadegaonEmailID" xml:space="preserve">
+    <value>sgf.padegaon@gmail.com </value>
+  </data>
+  <data name="PadegaonFarmAddress" xml:space="preserve">
+    <value>पडेगाव , जि. औरंगाबाद</value>
+  </data>
+  <data name="PadegaonIrrigationLand" xml:space="preserve">
+    <value>८.७</value>
+  </data>
+  <data name="PadegaonLandUnderBuilding" xml:space="preserve">
+    <value>११.९५</value>
+  </data>
+  <data name="PadegaonMobileNumber" xml:space="preserve">
+    <value>-8007333136</value>
+  </data>
+  <data name="PadegaonNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="PadegaonNameofFarmManager" xml:space="preserve">
+    <value>डॉ. गजानन सांगोले</value>
+  </data>
+  <data name="PadegaonNonIrrigationLand" xml:space="preserve">
+    <value>४३.९२</value>
+  </data>
+  <data name="PadegaonOsmanabadiGoat" xml:space="preserve">
+    <value>६</value>
+  </data>
+  <data name="PadegaonPhoneNumber" xml:space="preserve">
+    <value>०२४०/२३७०४४९</value>
+  </data>
+  <data name="PadegaonSangamneriGoat" xml:space="preserve">
+    <value>४</value>
+  </data>
+  <data name="PadegaonTotalLand" xml:space="preserve">
+    <value>९७.२७</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>दूरध्वनी क्रमांक</value>
+  </data>
+  <data name="PoharaAreaunderGrazingPasture" xml:space="preserve">
+    <value>१५२.०५</value>
+  </data>
+  <data name="PoharaBerariGoat" xml:space="preserve">
+    <value>५</value>
+  </data>
+  <data name="PoharaEmailID" xml:space="preserve">
+    <value>sgf.pohara@gmail.com </value>
+  </data>
+  <data name="PoharaFarmAddress" xml:space="preserve">
+    <value>पोहरा, जि. अमरावती</value>
+  </data>
+  <data name="PoharaIrrigationLand" xml:space="preserve">
+    <value>९.५</value>
+  </data>
+  <data name="PoharaLandUnderBuilding" xml:space="preserve">
+    <value>५.८</value>
+  </data>
+  <data name="PoharaMobileNumber" xml:space="preserve">
+    <value>-9766577718</value>
+  </data>
+  <data name="PoharaNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="PoharaNameofFarmManager" xml:space="preserve">
+    <value>डॉ. भुषण सदार</value>
+  </data>
+  <data name="PoharaNonIrrigationLand" xml:space="preserve">
+    <value>९.५</value>
+  </data>
+  <data name="PoharaOsmanabadiGoat" xml:space="preserve">
+    <value>१५</value>
+  </data>
+  <data name="PoharaPhoneNumber" xml:space="preserve">
+    <value>०७२१/२०२०५२३</value>
+  </data>
+  <data name="PoharaTotalLand" xml:space="preserve">
+    <value>१७६.८५</value>
+  </data>
+  <data name="ProductionSupply" xml:space="preserve">
+    <value>सुधारीत जातीचे चारा बियाणे व संकरीत गवतांचे थोंबे उत्पादन व पुरवठा</value>
+  </data>
+  <data name="PurchaseofWool" xml:space="preserve">
+    <value>लोकर खरेदी</value>
+  </data>
+  <data name="RanjaniAreaunderGrazingPasture" xml:space="preserve">
+    <value>४८८.८६</value>
+  </data>
+  <data name="RanjaniEmailID" xml:space="preserve">
+    <value> sgf.ranjani@gmail.com </value>
+  </data>
+  <data name="RanjaniFarmAddress" xml:space="preserve">
+    <value>रांजणी जि. सांगली</value>
+  </data>
+  <data name="RanjaniIrrigationLand" xml:space="preserve">
+    <value>४२.७</value>
+  </data>
+  <data name="RanjaniLandUnderBuilding" xml:space="preserve">
+    <value>६६.५९</value>
+  </data>
+  <data name="RanjaniMadgyalSheep" xml:space="preserve">
+    <value>११</value>
+  </data>
+  <data name="RanjaniMobileNumber" xml:space="preserve">
+    <value>-8329398278</value>
+  </data>
+  <data name="RanjaniNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="RanjaniNameofFarmManager" xml:space="preserve">
+    <value>डॉ. सचिन दडस </value>
+  </data>
+  <data name="RanjaniNonIrrigationLand" xml:space="preserve">
+    <value>११७.३</value>
+  </data>
+  <data name="RanjaniOsmanabadiGoat" xml:space="preserve">
+    <value>१७</value>
+  </data>
+  <data name="RanjaniPhoneNumber" xml:space="preserve">
+    <value>०२३४१/२४४२२२</value>
+  </data>
+  <data name="RanjaniTotalLand" xml:space="preserve">
+    <value>७१५.४५</value>
+  </data>
+  <data name="Schemes" xml:space="preserve">
+    <value>योजना</value>
+  </data>
+  <data name="SchemesYearwise" xml:space="preserve">
+    <value>वर्षनिहाय योजना</value>
+  </data>
+  <data name="SheepGoatFarmingTraining" xml:space="preserve">
+    <value>शेळी-मेंढी पालन व्यवसाय प्रशिक्षण</value>
+  </data>
+  <data name="SheepGoatUnitDistribution" xml:space="preserve">
+    <value>पैदासक्षम शेळया/मेंढयांचे गटवाटप</value>
   </data>
   <data name="SheepTraining1" xml:space="preserve">
     <value>आधुनिक शेळी व मेंढी पालन व्यवसाय प्रशिक्षण
@@ -139,7 +678,58 @@
   <data name="SheepTraining5" xml:space="preserve">
     <value>ई-मेल : mdsagpune@gmail.com</value>
   </data>
+  <data name="SupplyofBucks" xml:space="preserve">
+    <value>सुधारित जातीचे बोकड पैदाशीकरिता वाटप करणे</value>
+  </data>
+  <data name="TirthAreaunderGrazingPasture" xml:space="preserve">
+    <value>४५.४</value>
+  </data>
+  <data name="TirthEmailID" xml:space="preserve">
+    <value>sgf.tirth@gmail.com </value>
+  </data>
+  <data name="TirthFarmAddress" xml:space="preserve">
+    <value>तिर्थ जि. उस्मानाबाद</value>
+  </data>
+  <data name="TirthIrrigationLand" xml:space="preserve">
+    <value>१६.४३</value>
+  </data>
+  <data name="TirthLandUnderBuilding" xml:space="preserve">
+    <value>१६.</value>
+  </data>
+  <data name="TirthMobileNumber" xml:space="preserve">
+    <value>-9404872497</value>
+  </data>
+  <data name="TirthNameofFarm" xml:space="preserve">
+    <value>पुण्यश्लोक अहिल्यादेवी मेंढी व शेळी विकास प्रक्षेत्र</value>
+  </data>
+  <data name="TirthNameofFarmManager" xml:space="preserve">
+    <value>डॉ. अक्षय घटारे</value>
+  </data>
+  <data name="TirthNonIrrigationLand" xml:space="preserve">
+    <value>३.</value>
+  </data>
+  <data name="TirthOsmanabadiGoat" xml:space="preserve">
+    <value>१९</value>
+  </data>
+  <data name="TirthPhoneNumber" xml:space="preserve">
+    <value>०२४७१/२५९०६६</value>
+  </data>
+  <data name="TirthTotalLand" xml:space="preserve">
+    <value>८०.८३</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>एकूण</value>
+  </data>
+  <data name="TotalLand" xml:space="preserve">
+    <value>एकूण क्षेत्र (हे.)</value>
+  </data>
+  <data name="Variouscommittees" xml:space="preserve">
+    <value>विविध समित्या</value>
+  </data>
   <data name="Vision" xml:space="preserve">
+    <value>उद्दीष्टे</value>
+  </data>
+  <data name="VisionText" xml:space="preserve">
     <value>•	महाराष्ट्रात विदेशी/स्थानिक/संकरीत शेळ्या-मेंढ्यांची प्रक्षेत्रे स्थापणे व त्याचा विस्तार करणे.
 •	शेळ्या/मेंढ्यांच्या पैदाशी करिता उपयुक्त ठिकाणी अशा केंद्राची वाढ करणे.
 •	शेळ्या-मेंढया आणि त्यापासून उत्पादित होणार्‍या वस्तूंची आयात-निर्यात करणे, शेळ्या-मेंढ्यांची      
@@ -149,5 +739,215 @@
 •	शेळ्या-मेंढ्यांच्या गुणवत्तेत सुधारणा घडवून पशुपालकांना प्रती शेळ्या-मेंढी पासून मिळणार्‍या    
     उत्पादनात वाढ होऊन शेळी-मेंढी पालन व्यवसाय किफायतशीर होण्यासाठी शासनाच्या    
     मदतीने/मदतीशिवाय विस्तार केंद्रे स्थापणे.</value>
+  </data>
+  <data name="Ambajogai1" xml:space="preserve">
+    <value>अंबेजोगाई</value>
+  </data>
+  <data name="Androidappongoogleplaystore" xml:space="preserve">
+    <value>गुगल प्ले स्टोअर वरील अँड्राईड अँप</value>
+  </data>
+  <data name="Animaltradingpolicy" xml:space="preserve">
+    <value>विक्रीबाबतचे धोरण </value>
+  </data>
+  <data name="Auditedreport" xml:space="preserve">
+    <value>लेखापरीक्षन अहवाल </value>
+  </data>
+  <data name="Availablestocks" xml:space="preserve">
+    <value>उपलब्ध साठा </value>
+  </data>
+  <data name="Beneficiarylist" xml:space="preserve">
+    <value>लाभार्थ्यांची यादी </value>
+  </data>
+  <data name="Beneficiarylistpreliminaryandfinal" xml:space="preserve">
+    <value>लाभार्थ्यांची प्राथमिक आणि अंतिम यादी </value>
+  </data>
+  <data name="Bilakhed" xml:space="preserve">
+    <value>बिलाखेड</value>
+  </data>
+  <data name="Bondri" xml:space="preserve">
+    <value>बोन्द्री</value>
+  </data>
+  <data name="Contactus" xml:space="preserve">
+    <value>संपर्क</value>
+  </data>
+  <data name="Dahiwadi" xml:space="preserve">
+    <value>दहिवडी</value>
+  </data>
+  <data name="Departmentguidelines" xml:space="preserve">
+    <value>खात्याच्या मार्गदर्शक सूचना </value>
+  </data>
+  <data name="Disclamer" xml:space="preserve">
+    <value>अस्वीकृती</value>
+  </data>
+  <data name="Downloadforms" xml:space="preserve">
+    <value>अर्ज डाउनलोड  </value>
+  </data>
+  <data name="Downloadstandardform" xml:space="preserve">
+    <value>डाउनलोड स्टॅंडर्ड फॉर्म</value>
+  </data>
+  <data name="Farmdemonstration" xml:space="preserve">
+    <value>प्रक्षेत्रावर असलेले प्रात्य कक्षिके</value>
+  </data>
+  <data name="Farmdistribution" xml:space="preserve">
+    <value>प्रक्षेत्रावरील वाटप </value>
+  </data>
+  <data name="Farmextensionactivities" xml:space="preserve">
+    <value>प्रक्षेत्राचे विस्तार कार्य </value>
+  </data>
+  <data name="FarmfacilitiesAvailable" xml:space="preserve">
+    <value> प्रक्षेत्रावर उपलब्ध सोयीसुविधा</value>
+  </data>
+  <data name="Farmlivestock" xml:space="preserve">
+    <value>प्रक्षेत्रावरील पशुधन </value>
+  </data>
+  <data name="Feedandfodder" xml:space="preserve">
+    <value>वैरण व चारापिके </value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>अभिप्राय</value>
+  </data>
+  <data name="Governmentguidelines" xml:space="preserve">
+    <value>सरकारी नियम</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>मदत</value>
+  </data>
+  <data name="Informationoffarmers" xml:space="preserve">
+    <value>शेतकऱ्यांनसाठी माहिती </value>
+  </data>
+  <data name="Informationregardingbreeding" xml:space="preserve">
+    <value>पैदाशीबाबत माहिती </value>
+  </data>
+  <data name="Informationregardingfeeding" xml:space="preserve">
+    <value>खाद्याविषयी माहिती </value>
+  </data>
+  <data name="Informationregardinginsemination" xml:space="preserve">
+    <value>कृत्रिम रेतनाविषयी माहिती </value>
+  </data>
+  <data name="Informationreghospitals" xml:space="preserve">
+    <value>पशुवैद्यकीय दवाखाने </value>
+  </data>
+  <data name="ListofAvailablebreeds" xml:space="preserve">
+    <value>उपलब्ध जातींची यादी</value>
+  </data>
+  <data name="Listofofficers" xml:space="preserve">
+    <value>अधिकाऱ्यांची यादी </value>
+  </data>
+  <data name="Listofprogressivefarmers" xml:space="preserve">
+    <value>प्रगतिशील शेतकऱ्यांची नावे </value>
+  </data>
+  <data name="Listofvaccinations" xml:space="preserve">
+    <value>लसीकरण/रोग/उपाययोजना </value>
+  </data>
+  <data name="Livestockinsurance" xml:space="preserve">
+    <value>पशुधन विमा </value>
+  </data>
+  <data name="Mahameshyojana" xml:space="preserve">
+    <value>महामेष योजना</value>
+  </data>
+  <data name="Mahameshyojnahighlights" xml:space="preserve">
+    <value> महामेष  योजना २०१९-२० ठळक</value>
+  </data>
+  <data name="Mahud" xml:space="preserve">
+    <value>महूद</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>मीडिया</value>
+  </data>
+  <data name="Modelscheme" xml:space="preserve">
+    <value>मॉडेल स्कीम </value>
+  </data>
+  <data name="Mukhed" xml:space="preserve">
+    <value>मुखेड</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>बातम्या</value>
+  </data>
+  <data name="Officedocuments" xml:space="preserve">
+    <value>कार्यालयीन कागदपत्रे </value>
+  </data>
+  <data name="Officerlogin" xml:space="preserve">
+    <value>अधिकारी लॉगीन </value>
+  </data>
+  <data name="Ongoingschemes" xml:space="preserve">
+    <value>चालू योजना </value>
+  </data>
+  <data name="Ourfarms" xml:space="preserve">
+    <value>आमचे प्रक्षेत्रे </value>
+  </data>
+  <data name="Padegaon" xml:space="preserve">
+    <value>पडेगाव</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>फोटोज</value>
+  </data>
+  <data name="Physicalandfinancialtargets" xml:space="preserve">
+    <value>भौतिक आणि आर्थिक लक्ष</value>
+  </data>
+  <data name="Pohara" xml:space="preserve">
+    <value>पोहरा</value>
+  </data>
+  <data name="Precautionduringnaturalcalamity" xml:space="preserve">
+    <value> नैसर्गिक आपत्तीकाळात घ्यावयाची काळजी</value>
+  </data>
+  <data name="Pressinformation" xml:space="preserve">
+    <value> प्रेस इन्फॉरमेशन</value>
+  </data>
+  <data name="Productsatfarm" xml:space="preserve">
+    <value>प्रक्षेत्रावरील  उत्पादने </value>
+  </data>
+  <data name="Productswoolen" xml:space="preserve">
+    <value>उत्पादन -लोकर </value>
+  </data>
+  <data name="Projectstatus" xml:space="preserve">
+    <value>प्रकल्पाची सध्यस्तीती </value>
+  </data>
+  <data name="Ramdistribution" xml:space="preserve">
+    <value>बोकड वाटप </value>
+  </data>
+  <data name="Ranjani" xml:space="preserve">
+    <value> रांजणी </value>
+  </data>
+  <data name="RTIमाहिती" xml:space="preserve">
+    <value>अधिकार</value>
+  </data>
+  <data name="Sheepandgoattraining" xml:space="preserve">
+    <value>शेळी मेंढी पालन प्रशिक्षण</value>
+  </data>
+  <data name="Successstories" xml:space="preserve">
+    <value>यशोगाथा </value>
+  </data>
+  <data name="Tenders" xml:space="preserve">
+    <value> ई निविदा</value>
+  </data>
+  <data name="Tirth" xml:space="preserve">
+    <value>तीर्थ</value>
+  </data>
+  <data name="Usefullinks" xml:space="preserve">
+    <value>महत्वाच्या  लिंक </value>
+  </data>
+  <data name="Userlogin" xml:space="preserve">
+    <value>अर्जदार लॉगीन</value>
+  </data>
+  <data name="Usermanual" xml:space="preserve">
+    <value>अर्जदार मॅन्युअल</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>व्हिडीओ</value>
+  </data>
+  <data name="Visitoranalytics" xml:space="preserve">
+    <value>अभ्यागत विश्लेषण </value>
+  </data>
+  <data name="Webinformationmanager" xml:space="preserve">
+    <value>वेब माहिती व्यवस्थापक  </value>
+  </data>
+  <data name="Websitepolicies" xml:space="preserve">
+    <value>वेबसाइट बाबतचे धोरण </value>
+  </data>
+  <data name="Woolenproducts" xml:space="preserve">
+    <value>लोकर वाटप</value>
+  </data>
+  <data name="Youtubevideo" xml:space="preserve">
+    <value>युट्युब  विडिओ  </value>
   </data>
 </root>
