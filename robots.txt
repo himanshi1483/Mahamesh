@@ -1,0 +1,11 @@
+﻿# Allow all robots to index this site.
+user-agent: *
+ 
+# Tell all robots not to index any of the pages under the /error path.
+disallow: /error/
+ 
+# Tell all robots to index the under the error/foo path.
+allow: /error/foo/
+ 
+# Add a link to the site-map. Unfortunately this must be an absolute URL.
+sitemap: http://mahamesh.co.in/sitemap.xml

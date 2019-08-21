@@ -281,6 +281,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Varsity\404.html" />
     <Content Include="Content\Varsity\assets\css\bootstrap.css" />
+    <Content Include="Content\Varsity\assets\css\custom.min.css" />
     <Content Include="Content\Varsity\assets\css\font-awesome.css" />
     <Content Include="Content\Varsity\assets\css\grid.css" />
     <Content Include="Content\Varsity\assets\css\jquery.fancybox.css" />
@@ -346,6 +347,7 @@
     <Content Include="Content\Varsity\assets\img\testimonial-bg.jpg" />
     <Content Include="Content\Varsity\assets\js\bootstrap.js" />
     <Content Include="Content\Varsity\assets\js\custom.js" />
+    <Content Include="Content\Varsity\assets\js\custom.min.js" />
     <Content Include="Content\Varsity\assets\js\jquery.counterup.js" />
     <Content Include="Content\Varsity\assets\js\jquery.fancybox.pack.js" />
     <Content Include="Content\Varsity\assets\js\jquery.min.js" />
@@ -372,6 +374,7 @@
     <Content Include="Images\Chairman Photo %281%29.jpg" />
     <Content Include="Images\Chairman Photo.jpg" />
     <Content Include="Images\Chairman2.jpg" />
+    <Content Include="Images\Chairman2_opt.jpg" />
     <Content Include="Images\cmf-logo.png" />
     <Content Include="Images\default-image.png" />
     <Content Include="Images\digital-india.png" />
@@ -402,6 +405,7 @@
     <Content Include="Images\MD Photo %281%29.JPG" />
     <Content Include="Images\MD Photo.JPG" />
     <Content Include="Images\MD2.jpg" />
+    <Content Include="Images\MD2_opt.jpg" />
     <Content Include="Images\mision-png.png" />
     <Content Include="Images\mission.jpg" />
     <Content Include="Images\mission.png" />
@@ -419,6 +423,8 @@
     <Content Include="Images\Prod7.jpg" />
     <Content Include="Images\Prod8.jpg" />
     <Content Include="Images\Prod9.jpg" />
+    <Content Include="Images\rsz_chairman2_opt.jpg" />
+    <Content Include="Images\rti.PNG" />
     <Content Include="Images\slider1.jpg" />
     <Content Include="Images\slider2.jpg" />
     <Content Include="Images\slider3.jpg" />
@@ -430,6 +436,7 @@
     <Content Include="Images\vision-orginal.png" />
     <Content Include="Images\vision1.png" />
     <Content Include="Images\vision3.png" />
+    <Content Include="robots.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.eot" />
@@ -497,6 +504,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="sitemap.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
