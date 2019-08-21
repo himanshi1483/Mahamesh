@@ -669,6 +669,7 @@
     <Content Include="Views\MediaFolders\Edit.cshtml" />
     <Content Include="Views\MediaFolders\Index.cshtml" />
     <Content Include="Views\Home\SheepGoatTraining.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaHighlights.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

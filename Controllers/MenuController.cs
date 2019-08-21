@@ -38,6 +38,11 @@ namespace Mahamesh.Controllers
             return View();
         }
 
+        public ActionResult MahameshYojanaHighlights()
+        {
+            return View();
+        }
+
         // GET: Menu
         public ActionResult ProductsAtFarm()
         {
