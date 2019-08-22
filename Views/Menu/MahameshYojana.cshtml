@@ -4,6 +4,8 @@
 }
 
 <style type="text/css">
+    
+
     table, h3, h4 {
         font-family: 'Sura', serif;
     }
@@ -34,13 +36,14 @@
         margin-left: 5px;
         margin-right: 5px;
         flex: 1 1 200px;
-        color: white !important;
+        color: black !important;
         padding: 35px 10px;
         text-align: center;
     }
 
         .module a {
-            color: white !important;
+            color: black !important;
+            font-weight:600;
         }
     /* If Grid is supported, remove the margin we set for the fallback */
     @@supports (display: grid) {
@@ -75,8 +78,16 @@
         margin: 0 !important;
     }
 </style>
-
-<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 20px;">
+<div class="container body-content" id="#maincontent" style="margin-bottom: 20px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+                <img src="~/Images/Raje.jpg" class="img-responsive"  alt="Raje Yashwant Holkar" />
+            </div>
+        
+    </div>
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary-2 text-center">
             <h3 class="panel-title">Mahamesh Yojana Dashboard</h3>
@@ -92,55 +103,66 @@
                                 <div><span style="font-size:24px;" class="fa fa-th-list"></span></div>
                                 <br />
                                 <div>
+                                    <h5><a href="@Url.Action("MahameshYojanaHighlights", "Menu")">महामेष  योजना २०१९-२० ठळक</a></h5>
                                     <h5><a href="@Url.Action("MahameshYojanaHighlights", "Menu")">Mahamesh Yojana 2019-20 Highlights</a></h5>
                                 </div>
                             </div>
                             <div class="module" style="background:#50d2ef">
                                 <span style="font-size:24px" class="fa fa-list-ul"></span>
                                 <div>
-                                    <h5><a href="#">Government Guidelines</a></h5>
+                                    <h5><a href="@Url.Action("MahameshYojanaGuidelines", "Menu")">सरकारी नियम</a></h5>
+                                    <h5><a href="@Url.Action("MahameshYojanaGuidelines", "Menu")">Government Guidelines</a></h5>
                                 </div>
                             </div>
                             <div class="module" style="background:#c33737">
                                 <span style="font-size:24px" class="fa fa-line-chart"></span>
-                                <h5><a href="#">Physical and Financial Target</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaTargets", "Menu")">भौतिक आणि आर्थिक लक्ष</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaTargets", "Menu")">Physical and Financial Target</a></h5>
                             </div>
 
                             <div class="module"
                                  style="background:#eaa332">
                                 <span style="font-size:24px" class="fa fa-list"></span>
-                                <h5><a href="#">Beneficiary List Preliminary & Final</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaBeneficiary", "Menu")">लाभार्थ्यांची प्राथमिक आणि अंतिम यादी</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaBeneficiary", "Menu")">Beneficiary List Preliminary & Final</a></h5>
                             </div>
 
                             <div class="module" style="background:#e9c94f">
                                 <span style="font-size:24px" class="fa fa-sign-in"></span>
-                                <h5><a href="#">User Login</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaUserLogin", "Menu")">अर्जदार लॉगीन</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaUserLogin", "Menu")">User Login</a></h5>
                             </div>
                             <div class="module" style="background:#fe7c4c">
                                 <span style="font-size:24px" class="fa fa-user-plus"></span>
-                                <h5><a href="#">Officer Login</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaOfficerLogin", "Menu")">अधिकारी लॉगीन</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaOfficerLogin", "Menu")">Officer Login</a></h5>
                             </div>
                             <div class="module" style="background:#7a5f5f">
                                 <span style="font-size:24px" class="fa fa-phone"></span>
-                                <h5><a href="#">Contact Us / Support</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaContact", "Menu")">संपर्क</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaContact", "Menu")">Contact Us / Support</a></h5>
                             </div>
                             <div class="module" style="background:#60b765">
                                 <span style="font-size:24px" class="fa fa-list-ol"></span>
-                                <h5><a href="#">User Manual</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaUserManual", "Menu")">अर्जदार मॅन्युअल</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaUserManual", "Menu")">User Manual</a></h5>
                             </div>
                             <div class="module"
                                  style="background:#1a9b83">
                                 <span style="font-size:24px" class="fa fa-sticky-note"></span>
-                                <h5><a href="#">Download Standard Forms</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaDownloads", "Menu")">डाउनलोड स्टॅंडर्ड फॉर्म</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaDownloads", "Menu")">Download Standard Formats</a></h5>
                             </div>
                             <div class="module"
                                  style="background:#5d5be5">
                                 <span style="font-size:24px" class="fa fa-android"></span>
-                                <h5><a href="#">Android App On Google Play Store</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaApp", "Menu")">गुगल प्ले स्टोअर वरील अँड्राईड अँप</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaApp", "Menu")">Android App On Google Play Store</a></h5>
                             </div>
                             <div class="module" style="background:#f64f4f">
                                 <span style="font-size:24px" class="fa fa-youtube-play"></span>
-                                <h5><a href="#">YouTube Video</a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaVideo", "Menu")">युट्युब  विडिओ </a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaVideo", "Menu")">YouTube Video</a></h5>
                             </div>
                         </div>
                         @*<div class="row" style="padding-top:30px">
@@ -203,7 +225,7 @@
             @*</div>
                 </div>*@
             <hr />
-            
+
         </div>
     </div>
 </div>

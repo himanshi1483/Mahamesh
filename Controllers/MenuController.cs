@@ -43,6 +43,50 @@ namespace Mahamesh.Controllers
             return View();
         }
 
+
+        public ActionResult MahameshYojanaGuidelines()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaTargets()
+        {
+            return View();
+        }
+
+        public ActionResult MahameshYojanaBeneficiary()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaUserLogin()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaOfficerLogin()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaContact()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaDownloads()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaUserManual()
+        {
+            return View();
+        }
+        public ActionResult MahameshYojanaVideo()
+        {
+            return View();
+        }
+
+        public ActionResult MahameshYojanaApp()
+        {
+            return View();
+        }
+
         // GET: Menu
         public ActionResult ProductsAtFarm()
         {

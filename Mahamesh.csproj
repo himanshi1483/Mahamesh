@@ -399,6 +399,7 @@
     <Content Include="Images\iig-logo_1.png" />
     <Content Include="Images\india-gov.png" />
     <Content Include="Images\logo.jpg" />
+    <Content Include="Images\logo1.png" />
     <Content Include="Images\logo_swach.jpg" />
     <Content Include="Images\Mahamesh logo.png" />
     <Content Include="Images\makeinindia.png" />
@@ -406,6 +407,7 @@
     <Content Include="Images\MD Photo.JPG" />
     <Content Include="Images\MD2.jpg" />
     <Content Include="Images\MD2_opt.jpg" />
+    <Content Include="Images\MD3.JPG" />
     <Content Include="Images\mision-png.png" />
     <Content Include="Images\mission.jpg" />
     <Content Include="Images\mission.png" />
@@ -491,6 +493,11 @@
     <Content Include="Documents\FarmGeoData\satara-Layout1.pdf" />
     <Content Include="Documents\FarmGeoData\solapur-Layout1.pdf" />
     <Content Include="Documents\FarmGeoData\tuljapur,osmanabad-Layout1.pdf" />
+    <Content Include="Documents\MahameshYojana\Format1.pdf" />
+    <Content Include="Documents\MahameshYojana\Format2.pdf" />
+    <Content Include="Documents\MahameshYojana\Format3.pdf" />
+    <Content Include="Documents\MahameshYojana\Format4.pdf" />
+    <Content Include="Documents\MahameshYojana\Govt GR.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -670,6 +677,16 @@
     <Content Include="Views\MediaFolders\Index.cshtml" />
     <Content Include="Views\Home\SheepGoatTraining.cshtml" />
     <Content Include="Views\Menu\MahameshYojanaHighlights.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaGuidelines.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaTargets.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaBeneficiary.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaUserLogin.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaOfficerLogin.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaContact.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaDownloads.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaUserManual.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaVideo.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaApp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
