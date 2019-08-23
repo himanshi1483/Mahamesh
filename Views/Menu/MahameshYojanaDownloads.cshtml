@@ -2,8 +2,28 @@
 @{
     ViewBag.Title = "Download Formats";
 }
-<link href="/Content/Varsity/ui.css" rel="stylesheet">
-    
+<style>
+    .tableheader {
+        background: #1a9b83 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table > tbody > tr > td {
+        font-size: 16px !important;
+    }
+    .tableheader2 {
+        background: #2c80c7 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table-striped2 > tbody > tr:nth-of-type(odd) {
+        background-color: #c6e2ff;
+    }
+</style>
 <div class="container body-content" id="#maincontent" style="margin-bottom: 150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
@@ -15,96 +35,138 @@
 
     </div>
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-
+        <div class="panel-heading panel-primary-2">
+            <h5 class="text-center">Download Formats</h5>
+        </div>
         <div class="panel-body">
             <div class="row">
-                <div class="heading">
-                    <h5 class="text-center">Download Formats</h5>
-                </div>
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-danger-1">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format1.pdf">Format1.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-green">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format2.pdf">Format2.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-orange">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format3.pdf">Format3.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-blue">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format4.pdf">Format4.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-primary">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="#">Format5.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
-                <article class="box">
-                    <figure class="itemside">
-                        <div class="aside align-self-center">
-                            <span class="icon-wrap icon-md round bg-purple">
-                                <i class="fa fa-file-pdf-o white"></i>
-                            </span>
-                        </div>
-                        <figcaption class="text-wrap">
-                            <h5 class="title">
-                                <a target="_blank" accesskey=" " href="#">Format6.pdf</a>
-                            </h5>
-                        </figcaption>
-                    </figure> <!-- iconbox // -->
-                </article> <!-- panel-lg.// -->
+
+                <table class="table table-bordered table-striped2 table-responsive">
+                    <tr class="tableHeader">
+                        <td class="text-center">Format Name</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>मेंढी पालन करण्याची पद्धत किंवा स्वरूप व सध्या असलेल्या मेंढ्यांची संख्या (स्थलांतरित /फिरस्ती पद्धतीने किंवा एका ठिकाणी राहून स्थायी पद्धतीने) याबाबतचे संबंधीत पशुवैद्यकीय दवाखान्याचे पशुधन विकास अधिकारी यांचे प्रमाणपत्र </td>
+                        <td>
+                            <button class="btn btn-info"><a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/बंधपत्र नमूना क्रमांक1.pdf">Download</a></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>रहिवासी दाखला (ग्रामसेवक/ग्रामविस्तार अधिकारी) - सहपत्र क्रमांक 1 </td>
+                        <td>
+                            <button class="btn btn-info"><a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/बंधपत्र नमूना क्रमांक2.pdf">Download</a></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>अपत्य दाखला - सहपत्र क्रमांक 2 </td>
+                        <td>
+                            <button class="btn btn-info"><a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/बंधपत्र नमूना क्रमांक3.pdf">Download</a></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> प्रतिज्ञा पत्र  </td>
+                        <td>
+                            <button class="btn btn-info"><a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/बंधपत्र नमूना क्रमांक4.pdf">Download</a></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>अर्जदाराच्या नावे जमीन नसल्यास (कुटुंबियांपैकी) संमतीपत्र </td>
+                        <td>
+                            <button class="btn btn-info"> <a target="_blank" accesskey=" " href="बंधपत्र नमूना क्रमांक5.pdf"">Download</a></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>भाडेतत्वावर शेतजमीन घेतली असल्यास शेतजमीन मालकासमवेत केलेल्या भाडेकराराची सत्यप्रत (रु.१००/- स्टॅम्प पेपर वर नोटरी करून) </td>
+                        <td>
+                            <button class="btn btn-info"> <a target="_blank" accesskey=" " href="बंधपत्र नमूना क्रमांक6.pdf"">Download</a></button>
+                        </td>
+                    </tr>
+                </table>
+                @*<article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-danger-1">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format1.pdf">Format1.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->
+                    <article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-green">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format2.pdf">Format2.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->
+                    <article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-orange">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format3.pdf">Format3.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->
+                    <article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-blue">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="~/Documents/MahameshYojana/Format4.pdf">Format4.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->
+                    <article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-primary">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="#">Format5.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->
+                    <article class="box">
+                        <figure class="itemside">
+                            <div class="aside align-self-center">
+                                <span class="icon-wrap icon-md round bg-purple">
+                                    <i class="fa fa-file-pdf-o white"></i>
+                                </span>
+                            </div>
+                            <figcaption class="text-wrap">
+                                <h5 class="title">
+                                    <a target="_blank" accesskey=" " href="#">Format6.pdf</a>
+                                </h5>
+                            </figcaption>
+                        </figure> <!-- iconbox // -->
+                    </article> <!-- panel-lg.// -->*@
             </div>
         </div>
     </div>

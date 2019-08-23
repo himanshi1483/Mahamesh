@@ -897,7 +897,7 @@ Duration: 3 days.</value>
     <value>Ranjani</value>
   </data>
   <data name="RTI" xml:space="preserve">
-    <value>RTI माहिती  </value>
+    <value>RTI </value>
   </data>
   <data name="Sheepandgoattraining" xml:space="preserve">
     <value>Sheep and goat training </value>
@@ -937,5 +937,8 @@ Duration: 3 days.</value>
   </data>
   <data name="Youtubevideo" xml:space="preserve">
     <value>Youtube video </value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Training</value>
   </data>
 </root>

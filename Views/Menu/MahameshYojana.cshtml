@@ -4,7 +4,7 @@
 }
 
 <style type="text/css">
-    
+
 
     table, h3, h4 {
         font-family: 'Sura', serif;
@@ -43,7 +43,7 @@
 
         .module a {
             color: black !important;
-            font-weight:600;
+            font-weight: 600;
         }
     /* If Grid is supported, remove the margin we set for the fallback */
     @@supports (display: grid) {
@@ -83,10 +83,10 @@
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
         </div>
-            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
-                <img src="~/Images/Raje.jpg" class="img-responsive"  alt="Raje Yashwant Holkar" />
-            </div>
-        
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
     </div>
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary-2 text-center">
@@ -96,7 +96,7 @@
             <div class="row">
 
                 <section id="mu-service">
-                    <div class="mu-service-area" style="padding-left:37px">
+                    <div class="mu-service-area">
                         <div class="grid">
 
                             <div class="module" style="background:#ff7d7d;">
@@ -163,6 +163,11 @@
                                 <span style="font-size:24px" class="fa fa-youtube-play"></span>
                                 <h5><a href="@Url.Action("MahameshYojanaVideo", "Menu")">युट्युब  विडिओ </a></h5>
                                 <h5><a href="@Url.Action("MahameshYojanaVideo", "Menu")">YouTube Video</a></h5>
+                            </div>
+                            <div class="module" style="background:#e9c94f">
+                                <span style="font-size:24px" class="fa fa-calendar"></span>
+                                <h5><a href="@Url.Action("MahameshYojanaTimeTable", "Menu")">वेळापत्रक </a></h5>
+                                <h5><a href="@Url.Action("MahameshYojanaTimeTable", "Menu")">Time Table</a></h5>
                             </div>
                         </div>
                         @*<div class="row" style="padding-top:30px">
@@ -280,3 +285,4 @@
     </div>
     <!-- Start single slider item -->
 </section>
+

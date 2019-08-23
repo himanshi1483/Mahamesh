@@ -2,8 +2,25 @@
 @{
     ViewBag.Title = "Youtube";
 }
+<style>
+    .vid-wrapper {
+        display: inline-block;
+        position: relative;
+    }
 
-<div class="container body-content" id="#maincontent" style="margin-bottom: 20px;">
+    .play-btn {
+        color: rgba(0, 0, 0, 0.8);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    #vid-img:hover ~ .play-btn {
+        color: #e62117;
+    }
+</style>
+<div class="container body-content" id="#maincontent" style="margin-bottom:150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
@@ -21,13 +38,59 @@
                     <h5 class="text-center">Youtube Video</h5>
                 </div>
                 <div class="video-container text-center">
-                    <video id='video' controls="controls" preload="none" class="embed-responsive-item"
-                           poster="http://media.w3.org/2010/05/sintel/poster.png">
-                        <source id='mp4' src="#" type='video/mp4' />
-                    </video>
+                    <div class="vid-wrapper">
+                        <a id="vid-link" href="" target="_blank">
+                            <img id="vid-img" src="" />
+                            <i class="play-btn fa fa-youtube-play fa-3x" aria-hidden="true"></i>
+                        </a>
+                    </div>
+                    @*<video id='video' controls="controls" preload="none"  class="embed-responsive-item"
+               poster="http://media.w3.org/2010/05/sintel/poster.png">
+            <source id='mp4' src="#" type='video/mp4' />
+        </video>*@
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+<script type="text/javascript">
+    window.onload = function() {
+	// Paste url here
+        var url = "https://www.youtube.com/watch?v=6soo89hIuP4";
+	
+	// Function to extract video id 	
+	function extractVidId(url) {
+		var link = url;
+		var ref = link.split('/');
+		var vRef = ref[ref.length-1].split('&');
+		vRef = vRef[0].split('=');
+		if(vRef.length > 1) {
+		vRef = vRef[1];
+		} else {
+			vRef = vRef[0];
+		}
+		return vRef;
+	}
+
+	// Extracting video id fro url
+	var videoId = extractVidId(url);
+
+	// Checking if url is valid
+	if(videoId != null) {
+    // Link to youtube video
+    var vidLink = 'https://www.youtube.com/watch?v=' + videoId;
+			
+	// Link to video image
+	var vidImage = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
+	
+	// Set href to the vidLink
+	document.getElementById("vid-link").setAttribute("href", vidLink);
+	
+	// Set img src to vidImage
+	document.getElementById("vid-img").setAttribute("src", vidImage);
+	} else { 
+		console.log("The youtube url is not valid.");
+	}
+}
+</script>

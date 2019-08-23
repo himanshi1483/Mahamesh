@@ -25,7 +25,15 @@ namespace Mahamesh.Models
         {
         }
         ////public IDbSet<NewsModel> News { get; set; }
-        ////public IDbSet<TenderModel> Tender { get; set; }
+         public IDbSet<DistrictList> DistrictList { get; set; }
+
+        public IDbSet<DistMaster> DistMaster { get; set; }
+        public IDbSet<TalMaster> TalMaster { get; set; }
+        public IDbSet<VillageMaster> VillageMaster { get; set; }
+
+        public IDbSet<CasteUnderNTC> CasteUnderNTC { get; set; }
+        public IDbSet<NoOfSheepMaster> NoOfSheepMaster { get; set; }
+        public IDbSet<CrippledMaster> CrippledMaster { get; set; }
 
         ////public IDbSet<PressInformationModel> PressInformation { get; set; }
 
@@ -44,5 +52,7 @@ namespace Mahamesh.Models
         public System.Data.Entity.DbSet<Mahamesh.Models.FeedbackModel> FeedbackModels { get; set; }
 
         public System.Data.Entity.DbSet<Mahamesh.Models.MediaGalleryModel> MediaGalleryModels { get; set; }
+
+        public System.Data.Entity.DbSet<Mahamesh.Models.ApplicantRegistration> ApplicantRegistrations { get; set; }
     }
 }

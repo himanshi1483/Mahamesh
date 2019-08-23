@@ -2,7 +2,15 @@
 @{
     ViewBag.Title = "Physical and Financial Target";
 }
-<div class="container body-content" id="#maincontent" style="margin-bottom: 20px;">
+
+<style>
+    .lbl {
+        top: 8px;
+        font-size: 15px;
+        text-align: center;
+    }
+</style>
+<div class="container body-content" id="#maincontent" style="margin-bottom: 150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
@@ -13,13 +21,199 @@
 
     </div>
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-
+        <div class="panel-heading panel-primary-2">
+            <h5 class="text-center">Physical and Financial Target</h5>
+        </div>
         <div class="panel-body">
             <div class="row">
-                <div class="heading-green">
-                    <h5 class="text-center">Physical and Financial Target</h5>
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="Comp" class="col-sm-2 control-label lbl">प्रपत्र:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="select1" id="Comp">
+                                <option value="0">
+                                    ----
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                            @*<select class="form-control" name="select1" id="select1">
+                                    <option value="0">
+                                        ----
+                                    </option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>*@
+                        </div>
+                        @*<div class="col-xs-2">
+                                <label class="control-label text-right"> जिल्हा</label>
+                            </div>*@
+                    </div>
+                </div>
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="district" class="col-sm-2 control-label lbl">जिल्हा:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="district" id="select2">
+                                <option value="0">
+                                    ----
+                                </option>
+                                <option value="1">
+                                    अहमदनगर
+                                </option>
+                                <option value="1">
+                                    नाशिक
+                                </option>
+                                <option value="1">
+                                    पुणे
+                                </option>
+                                <option value="1">
+                                    सातारा
+                                </option>
+                                <option value="1">
+                                    धुळे
+                                </option>
+                                <option value="1">
+                                    सोलापूर
+                                </option>
+                                <option value="1">
+                                    सांगली
+                                </option>
+                                <option value="1">
+                                    बुलढाणा
+                                </option>
+                                <option value="1">
+                                    कोल्हापूर
+                                </option>
+                                <option value="1">
+                                    औरंगाबाद
+                                </option>
+                                <option value="1">
+                                    अमरावती
+                                </option>
+                                <option value="1">
+                                    बीड
+                                </option>
+                                <option value="1">
+                                    नांदेड
+                                </option>
+                                <option value="1">
+                                    जळगाव
+                                </option>
+                                <option value="1">
+                                    लातूर
+                                </option>
+                                <option value="1">
+                                    उस्मानाबाद
+                                </option>
+                                <option value="1">
+                                    परभणी
+                                </option>
+                                <option value="1">
+                                    जालना
+                                </option>
+                                <option value="1">
+                                    यवतमाळ
+                                </option>
+                                <option value="1">
+                                    चंद्रपुर
+                                </option>
+                                <option value="1">
+                                    नंदुरबार
+                                </option>
+                                <option value="1">
+                                    वाशिम
+                                </option>
+                                <option value="1">
+                                    नागपुर
+                                </option>
+                                <option value="1">
+                                    गडचिरोली
+                                </option>
+                                <option value="1">
+                                    हिंगोली
+                                </option>
+                                <option value="1">
+                                    अकोला
+                                </option>
+                                <option value="1">
+                                    भंडारा
+                                </option>
+                                <option value="1">
+                                    गोंदिया
+                                </option>
+                                <option value="1">
+                                    ठाणे
+                                </option>
+                                <option value="1">
+                                    वर्धा
+                                </option>
+                                <option value="1">
+                                    रायगड
+                                </option>
+                                <option value="1">
+                                    पालघर
+                                </option>
+                                <option value="1">
+                                    मुंबई
+                                </option>
+                                <option value="1">
+                                    रत्नागिरी
+                                </option>
+                                <option value="1"> सिंधुदुर्ग </option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+
+                <div class="col-xs-6">
+                    <div class="form-group">
+                        <label for="Comp" class="col-sm-2 control-label lbl">तालुका:</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="select1" id="Comp">
+                                <option value="0">
+                                    ----
+                                </option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+           </div>
+            <div class="row text-center">
+                <button class="btn btn-primary" type="submit">Show</button>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table id="dTable" class="table table-bordered table-striped table-responsive">
+
+            </table>
         </div>
     </div>
 </div>
+<script>
+                //Reference: https://jsfiddle.net/fwv18zo1/
+                //var $select1 = $('#select1'),
+                //    $select2 = $('#select2'),
+                //    $options = $select2.find('option');
+
+                //$select1.on('change', function () {
+                //    $select2.html($options.filter('[value="' + this.value + '"]'));
+                //}).trigger('change');
+</script>

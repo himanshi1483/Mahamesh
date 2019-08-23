@@ -908,8 +908,8 @@
   <data name="Ranjani" xml:space="preserve">
     <value> रांजणी </value>
   </data>
-  <data name="RTIमाहिती" xml:space="preserve">
-    <value>अधिकार</value>
+  <data name="RTI" xml:space="preserve">
+    <value>माहिती</value>
   </data>
   <data name="Sheepandgoattraining" xml:space="preserve">
     <value>शेळी मेंढी पालन प्रशिक्षण</value>
@@ -949,5 +949,8 @@
   </data>
   <data name="Youtubevideo" xml:space="preserve">
     <value>युट्युब  विडिओ  </value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>प्रशिक्षण</value>
   </data>
 </root>

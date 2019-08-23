@@ -2151,7 +2151,7 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to RTI माहिती  .
+        ///   Looks up a localized string similar to RTI .
         /// </summary>
         public static string RTI {
             get {
@@ -2408,6 +2408,15 @@ namespace Mahamesh.App_LocalResources {
         public static string TotalLand {
             get {
                 return ResourceManager.GetString("TotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Training.
+        /// </summary>
+        public static string Training {
+            get {
+                return ResourceManager.GetString("Training", resourceCulture);
             }
         }
         

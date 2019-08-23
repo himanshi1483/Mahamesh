@@ -180,6 +180,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicantRegistrationsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CitizenCharterController.cs" />
     <Compile Include="Controllers\DevelopmentActivityController.cs" />
@@ -259,9 +260,47 @@
     <Compile Include="Migrations\201908191254550_init151.Designer.cs">
       <DependentUpon>201908191254550_init151.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908230911253_init16.cs" />
+    <Compile Include="Migrations\201908230911253_init16.Designer.cs">
+      <DependentUpon>201908230911253_init16.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231211315_init17.cs" />
+    <Compile Include="Migrations\201908231211315_init17.Designer.cs">
+      <DependentUpon>201908231211315_init17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231225490_init18.cs" />
+    <Compile Include="Migrations\201908231225490_init18.Designer.cs">
+      <DependentUpon>201908231225490_init18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231240325_init19.cs" />
+    <Compile Include="Migrations\201908231240325_init19.Designer.cs">
+      <DependentUpon>201908231240325_init19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231318083_init20.cs" />
+    <Compile Include="Migrations\201908231318083_init20.Designer.cs">
+      <DependentUpon>201908231318083_init20.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231329219_init21.cs" />
+    <Compile Include="Migrations\201908231329219_init21.Designer.cs">
+      <DependentUpon>201908231329219_init21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231331140_init22.cs" />
+    <Compile Include="Migrations\201908231331140_init22.Designer.cs">
+      <DependentUpon>201908231331140_init22.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231449542_init23.cs" />
+    <Compile Include="Migrations\201908231449542_init23.Designer.cs">
+      <DependentUpon>201908231449542_init23.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908231503081_init24.cs" />
+    <Compile Include="Migrations\201908231503081_init24.Designer.cs">
+      <DependentUpon>201908231503081_init24.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
+    <Compile Include="Models\ApplicantRegistration.cs" />
+    <Compile Include="Models\DistrictList.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -362,6 +401,7 @@
     <Content Include="Content\Varsity\course.html" />
     <Content Include="Content\Varsity\gallery.html" />
     <Content Include="Content\Varsity\index.html" />
+    <Content Include="Content\Varsity\mdb.lite.min.css" />
     <Content Include="Content\Varsity\ui.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -382,7 +422,6 @@
     <Content Include="Images\e-gazette.png" />
     <Content Include="Images\emblem-of-india-logo-vector.png" />
     <Content Include="Images\favicon.ico" />
-    <Content Include="Images\favicon_image.png" />
     <Content Include="Images\Folders.png" />
     <Content Include="Images\Gallery\Pictures\15723448_10209896588188559_5396313812346479071_o.jpg" />
     <Content Include="Images\Gallery\Pictures\4.jpg" />
@@ -415,6 +454,7 @@
     <Content Include="Images\mygov.png" />
     <Content Include="Images\myvisit-logo.png" />
     <Content Include="Images\pg-portal.png" />
+    <Content Include="Images\Popup.jpg" />
     <Content Include="Images\Prod1.jpg" />
     <Content Include="Images\Prod10.jpg" />
     <Content Include="Images\Prod2.jpg" />
@@ -425,6 +465,7 @@
     <Content Include="Images\Prod7.jpg" />
     <Content Include="Images\Prod8.jpg" />
     <Content Include="Images\Prod9.jpg" />
+    <Content Include="Images\Raje.jpg" />
     <Content Include="Images\rsz_chairman2_opt.jpg" />
     <Content Include="Images\rti.PNG" />
     <Content Include="Images\slider1.jpg" />
@@ -498,6 +539,14 @@
     <Content Include="Documents\MahameshYojana\Format3.pdf" />
     <Content Include="Documents\MahameshYojana\Format4.pdf" />
     <Content Include="Documents\MahameshYojana\Govt GR.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 1 ते 6.docx" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 1 ते 6.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक1.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक2.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक3.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक4.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक5.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक6.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -687,6 +736,12 @@
     <Content Include="Views\Menu\MahameshYojanaUserManual.cshtml" />
     <Content Include="Views\Menu\MahameshYojanaVideo.cshtml" />
     <Content Include="Views\Menu\MahameshYojanaApp.cshtml" />
+    <Content Include="Views\Menu\MahameshYojanaTimeTable.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\Create.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\Delete.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\Details.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\Edit.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -758,6 +813,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908191254550_init151.resx">
       <DependentUpon>201908191254550_init151.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908230911253_init16.resx">
+      <DependentUpon>201908230911253_init16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231211315_init17.resx">
+      <DependentUpon>201908231211315_init17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231225490_init18.resx">
+      <DependentUpon>201908231225490_init18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231240325_init19.resx">
+      <DependentUpon>201908231240325_init19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231318083_init20.resx">
+      <DependentUpon>201908231318083_init20.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231329219_init21.resx">
+      <DependentUpon>201908231329219_init21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231331140_init22.resx">
+      <DependentUpon>201908231331140_init22.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231449542_init23.resx">
+      <DependentUpon>201908231449542_init23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908231503081_init24.resx">
+      <DependentUpon>201908231503081_init24.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

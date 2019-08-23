@@ -43,6 +43,10 @@ namespace Mahamesh.Controllers
             return View();
         }
 
+        public ActionResult MahameshYojanaTimeTable()
+        {
+            return View();
+        }
 
         public ActionResult MahameshYojanaGuidelines()
         {

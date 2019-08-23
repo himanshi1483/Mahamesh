@@ -1,0 +1,1115 @@
+﻿@model Mahamesh.Models.ApplicantRegistration
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@*<link href="~/Content/Varsity/mdb.lite.min.css" rel="stylesheet" />*@
+<style>
+    .border {
+        border: 2px solid #d2f1d6;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    #regForm {
+        background-color: #ffffff;
+        /*margin: 100px auto;
+        font-family: Raleway;
+        padding: 40px;
+        width: 70%;*/
+        min-width: 300px;
+    }
+
+
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+    /* Hide all steps by default: */
+    .tab {
+        display: none;
+    }
+
+
+    #prevBtn {
+        background-color: #bbbbbb;
+    }
+
+    /* Make circles that indicate the steps of the form: */
+    .step {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbbbbb;
+        border: none;
+        border-radius: 50%;
+        display: inline-block;
+        opacity: 0.5;
+    }
+
+        .step.active {
+            opacity: 1;
+        }
+
+        /* Mark the steps that are finished and valid: */
+        .step.finish {
+            background-color: #4CAF50;
+        }
+
+    .form-group {
+        padding-right: 15px;
+        margin-bottom: 5px;
+        padding-bottom: 10px;
+    }
+</style>
+<div class="container" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
+        <div class="panel-body">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div style="text-align:center;margin-top:40px;">
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                    <span class="step"></span>
+                </div>
+                <!-- One "tab" for each step in the form: -->
+                <div class="tab">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="col-lg-10"></div>
+                    <div class="form-group col-lg-8">
+                        <div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
+                                <label class="custom-file-label" for="fileInput">File Label</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 heading panel-primary-2 text-center" style="margin-bottom:10px;">
+                        <h5>पत्रव्यवहाराचा पत्ता</h5>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.ApName)
+                            <div>
+                                @Html.EditorFor(model => model.ApName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ApName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.Dist, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.Dist, ViewBag.District as List<SelectListItem>, new { @class = "form-control" })
+
+                                @Html.ValidationMessageFor(model => model.Dist, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-12">
+
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.Tahashil, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.Tahashil, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tahashil, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group  col-lg-6">
+                            @Html.LabelFor(model => model.VillageName)
+                            <div>
+                                @Html.DropDownListFor(model => model.VillageName, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.VillageName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.PinCode, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.HVillage, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.HVillage, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.HVillage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.PhNo, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.PhNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @type = "date", @format = "dd/mm/yyyy" } })
+                                @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group  col-lg-6">
+                            @Html.LabelFor(model => model.Age, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Age, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Age, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @*<div class="radio">
+                                        <label class="radio-inline" style="padding-right:14px;">
+                                            <input type="radio" name="Gender" checked>Male
+                                        </label>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="Gender">Female
+                                        </label>
+
+
+                                    </div>*@
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="पुरुष">
+                                    <label class="custom-control-label" for="customRadio">पुरुष</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="स्त्री">
+                                    <label class="custom-control-label" for="customRadio2">स्त्री</label>
+                                </div>
+
+                                @*@Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.ChildCount, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @*@Html.EditorFor(model => model.ChildCount, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <select class="form-control" id="ChildCount">
+                                    <option value="-1">Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+
+                                </select>
+                                @Html.ValidationMessageFor(model => model.ChildCount, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group  col-lg-6">
+                            @Html.LabelFor(model => model.Child2006, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @*@Html.EditorFor(model => model.Child2006, new { htmlAttributes = new { @class = "form-control" } })*@
+                                <select class="form-control" id="Child2006">
+                                    <option value="-1">Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+
+                                </select>
+                                @Html.ValidationMessageFor(model => model.Child2006, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+
+                        <ul class="list-inline pull-xs-right">
+                            <li class="list-inline-item">
+                                <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div class="col-lg-10">
+                        <div class="form-group col-lg-7">
+                            @Html.LabelFor(model => model.Caste, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.Caste, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Caste, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-3">
+                            @Html.LabelFor(model => model.SubCatse, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.SubCatse, ViewBag.Caste as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SubCatse, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.RationCardNumber, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.RationCardNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.RationCardNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.AdharCardNo, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.AdharCardNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.AdharCardNo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.ApplicantCrippled, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onclick="javascript:checkCripple();" class="custom-control-input" id="ApplicantCrippled1" name="ApplicantCrippled" value="होय">
+                                    <label class="custom-control-label" for="ApplicantCrippled1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkCripple();" id="ApplicantCrippled2" name="ApplicantCrippled" value="नाही">
+                                    <label class="custom-control-label" for="ApplicantCrippled2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ApplicantCrippled, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6" style="display:none" id="divCripple">
+                            @Html.LabelFor(model => model.CrippledPercentage, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.CrippledPercentage, ViewBag.Percentage as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CrippledPercentage, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.PresentDaySheep, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkSheep();" id="PresentDaySheep1" name="PresentDaySheep" value="होय">
+                                    <label class="custom-control-label" for="PresentDaySheep1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkSheep();" id="PresentDaySheep2" name="PresentDaySheep" value="नाही">
+                                    <label class="custom-control-label" for="PresentDaySheep2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.PresentDaySheep, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6" id="divSheep" style="display:none">
+                            @Html.LabelFor(model => model.NumberOfSheepIs, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.DropDownListFor(model => model.NumberOfSheepIs, ViewBag.Sheep as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.NumberOfSheepIs, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="ApplicantsPermanentInOnePlace" name="ApplicantsPermanentInOnePlace" value="होय">
+                                @Html.LabelFor(model => model.ApplicantsPermanentInOnePlace, htmlAttributes: new { @class = "custom-control-label", @for = "ApplicantsPermanentInOnePlace" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="ApplicantsMigratedByWayOfTransit" name="ApplicantsPermanentInOnePlace" value="नाही">
+                                @Html.LabelFor(model => model.ApplicantsMigratedByWayOfTransit, htmlAttributes: new { @class = "custom-control-label", @for = "ApplicantsMigratedByWayOfTransit" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsApplicantOwnedLand, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkLandOwned();" id="IsApplicantOwnedLand1" name="IsApplicantOwnedLand" value="होय">
+                                    <label class="custom-control-label" for="IsApplicantOwnedLand1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkLandOwned();" id="IsApplicantOwnedLand2" name="IsApplicantOwnedLand" value="नाही">
+                                    <label class="custom-control-label" for="IsApplicantOwnedLand2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsApplicantOwnedLand, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6" id="divLease" style="display:none">
+                            @Html.LabelFor(model => model.IsNotIsAvailableOnLease, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkLandLeased();" id="IsNotIsAvailableOnLease1" name="IsNotIsAvailableOnLease" value="होय">
+                                    <label class="custom-control-label" for="IsNotIsAvailableOnLease1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onclick="javascript:checkLandLeased();" class="custom-control-input" id="IsNotIsAvailableOnLease2" name="IsNotIsAvailableOnLease" value="नाही">
+                                    <label class="custom-control-label" for="IsNotIsAvailableOnLease2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsNotIsAvailableOnLease, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12" id="divLandOwned" style="display:none">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.YesApplicantOwnedLandEcre, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.YesApplicantOwnedLandEcre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.YesApplicantOwnedLandEcre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.YesApplicantOwnedLandGuntha, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.YesApplicantOwnedLandGuntha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.YesApplicantOwnedLandGuntha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12" id="divLandLeased" style="display:none">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.YesAvailableOnLeaseEcre, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.YesAvailableOnLeaseEcre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.YesAvailableOnLeaseEcre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.YesAvailableOnLeaseGuntha, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.YesAvailableOnLeaseGuntha, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.YesAvailableOnLeaseGuntha, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12 heading-green heading-line text-center" style="margin-bottom:20px">
+                        <h5>Land Detail: (number must be in English)</h5>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.GardeningEcre, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.GardeningEcre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.GardeningEcre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.CuminEcre, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.CuminEcre, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CuminEcre, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.WaterSource, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.WaterSource, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.WaterSource, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.DurationOfWater, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.DurationOfWater, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.DurationOfWater, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.LastYearFooder, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.LastYearFooder, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastYearFooder, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.LastYearTotalProductionInKG, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.LastYearTotalProductionInKG, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastYearTotalProductionInKG, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsWarehouseForSheep, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onclick="javascript:checkWarehouse();" class="custom-control-input" id="IsWarehouseForSheep1" name="IsWarehouseForSheep" value="होय">
+                                    <label class="custom-control-label" for="IsWarehouseForSheep1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" onclick="javascript:checkWarehouse();" class="custom-control-input" id="IsWarehouseForSheep2" name="IsWarehouseForSheep" value="नाही">
+                                    <label class="custom-control-label" for="IsWarehouseForSheep2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsWarehouseForSheep, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6" id="divSpace" style="display:none">
+                            @Html.LabelFor(model => model.IsNotIsAtLeastOnePinpointSpace, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="IsNotIsAtLeastOnePinpointSpace1" name="IsNotIsAtLeastOnePinpointSpace" value="होय">
+                                    <label class="custom-control-label" for="IsNotIsAtLeastOnePinpointSpace1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="IsNotIsAtLeastOnePinpointSpace2" name="IsNotIsAtLeastOnePinpointSpace" value="नाही">
+                                    <label class="custom-control-label" for="IsNotIsAtLeastOnePinpointSpace2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsNotIsAtLeastOnePinpointSpace, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="divWarehouse" style="display:none">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.YesIntekOfSheepInWarehouse, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.YesIntekOfSheepInWarehouse, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.YesIntekOfSheepInWarehouse, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.TypeExistingCastle, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.TypeExistingCastle, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.TypeExistingCastle, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div class="col-lg-10">
+                        <div class="form-group col-lg-4">
+                            @Html.LabelFor(model => model.IsSavingsGroupMember, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkSavings();" id="IsSavingsGroupMember1" name="IsSavingsGroupMember" value="होय">
+                                    <label class="custom-control-label" for="IsSavingsGroupMember1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkSavings();" id="IsSavingsGroupMember2" name="IsSavingsGroupMember" value="नाही">
+                                    <label class="custom-control-label" for="IsSavingsGroupMember2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsSavingsGroupMember, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12" id="divSavings" style="display:none">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.SavingGroupName, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.SavingGroupName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SavingGroupName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.SavingGroupRegNumber, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.SavingGroupRegNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.SavingGroupRegNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsanimalHusbandryManufacturingCompanyMember, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkCompany();" id="IsanimalHusbandryManufacturingCompanyMember1" name="IsanimalHusbandryManufacturingCompanyMember" value="होय">
+                                    <label class="custom-control-label" for="IsanimalHusbandryManufacturingCompanyMember1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" onclick="javascript:checkCompany();" id="IsanimalHusbandryManufacturingCompanyMember2" name="IsanimalHusbandryManufacturingCompanyMember" value="नाही">
+                                    <label class="custom-control-label" for="IsanimalHusbandryManufacturingCompanyMember2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsanimalHusbandryManufacturingCompanyMember, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="divCompany" style="display:none">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsanimalHusbandryManufacturingCompanyName, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.IsanimalHusbandryManufacturingCompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IsanimalHusbandryManufacturingCompanyName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                @Html.EditorFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="form-group col-lg-6">
+                            @Html.LabelFor(model => model.IsTrained, htmlAttributes: new { @class = "control-label" })
+                            <div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="IsTrained1" name="IsTrained" value="होय">
+                                    <label class="custom-control-label" for="IsTrained1">होय</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="IsTrained2" name="IsTrained" value="नाही">
+                                    <label class="custom-control-label" for="IsTrained2">
+                                        नाही
+                                    </label>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsTrained, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab">
+                    <div class="col-lg-10">
+                        <div class="form-group col-lg-6">
+                        </div>
+                        <div class="form-group col-lg-4">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 border">
+                        <div class="alert alert-success text-center">
+                            १. अर्जदाराने खालील पहिल्या दोन उपघटकामधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना इतर उपघटकांमध्ये लाभ घेता येणार नाही.
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component1" name="Component" value="1">
+                                <label class="form-check-label" for="Component1"> 1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)</label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component2" name="Component" value="2">
+                                <label class="form-check-label" for="Component2"> 2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)</label>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 border">
+                        <div class="alert alert-success text-center">
+                            २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component3" value="3" name="Component" />
+                                <label class="form-check-label" for="Component3">
+                                    3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे.
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component4" value="4" name="Component" />
+                                <label class="form-check-label" for="Component4">
+                                    4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component5" value="5" name="Component" />
+                                <label class="form-check-label" for="Component5">
+                                    5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे.
+
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component6" value="6" name="Component" />
+                                <label class="form-check-label" for="Component6">
+                                    6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component7" value="7" name="Component" />
+                                <label class="form-check-label" for="Component7">
+                                    7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 border">
+                        <div class="form-group col-lg-12">
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component9" value="9" name="Component" />
+                                <label class="form-check-label" for="Component9">
+                                    9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component10" value="10" name="Component" />
+                                <label class="form-check-label" for="Component10">
+                                    10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component11" value="11" name="Component" />
+                                <label class="form-check-label" for="Component11">
+                                    11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-12 border">
+                        <div class="form-group col-lg-12">
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component12" value="12" name="Component" />
+                                <label class="form-check-label" for="Component12">
+                                    12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component13" value="13" name="Component" />
+                                <label class="form-check-label" for="Component13">
+                                    13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )
+
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 border">
+                        <div class="alert alert-success text-center">
+                            ३. उपघटक क्र. १४ व १५ या पैकी एका उपघटकांमध्ये लाभ घेता येईल.
+                        </div>
+                        <div class="form-group col-lg-12">
+                            <div class="form-check alert alert-info">
+                                <input type="checkbox" class="form-check-input" id="Component14" value="14" name="Component" />
+                                <label class="form-check-label" for="Component14">
+                                    14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप
+                                </label>
+                            </div>
+                            <div class="form-check alert alert-warning">
+                                <input type="checkbox" class="form-check-input" id="Component15" value="15" name="Component" />
+                                <label class="form-check-label" for="Component15">
+                                    15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                @*<div class="tab">
+                        <div class="col-lg-10">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.ReshanCard, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.ReshanCard, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReshanCard, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                @Html.LabelFor(model => model.CompNumber, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.CompNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CompNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.AdharCardFU, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.AdharCardFU, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.AdharCardFU, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.LivestockDevOffCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.LivestockDevOffCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.LivestockDevOffCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.CasteCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.CasteCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CasteCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.ResidentCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.ResidentCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ResidentCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.TenancyAgreement, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.TenancyAgreement, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TenancyAgreement, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.FU712orIncomeCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.FU712orIncomeCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.FU712orIncomeCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.BankPassBook, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.BankPassBook, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BankPassBook, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.BachatMemberCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.BachatMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.BachatMemberCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.CompanyMemberCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.CompanyMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.CompanyMemberCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.DisabilityCertificate, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.DisabilityCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.DisabilityCertificate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-lg-12">
+                            <div class="form-group col-lg-6">
+                                @Html.LabelFor(model => model.HamiPtra, htmlAttributes: new { @class = "control-label" })
+                                <div>
+                                    @Html.EditorFor(model => model.HamiPtra, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HamiPtra, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <ul class="list-inline pull-xs-right">
+                                <li class="list-inline-item">
+                                    <button type="button" class="btn btn-default prev-step">Previous</button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button type="button" class="btn btn-default next-step">Skip</button>
+                                </li>
+                                <li class="list-inline-item">
+                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>*@
+                <div class="tab">
+                    <button type="submit" id="btnSubmit">Save</button>
+                </div>
+                <div style="overflow:auto;">
+                    <div style="float:right;">
+                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </div>
+                <!-- Circles which indicates the steps of the form: -->
+            }
+        </div>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+<script>
+    var currentTab = 0; // Current tab is set to be the first tab (0)
+    showTab(currentTab); // Display the current tab
+
+    function showTab(n) {
+        // This function will display the specified tab of the form...
+        var x = document.getElementsByClassName("tab");
+        x[n].style.display = "block";
+        //... and fix the Previous/Next buttons:
+        if (n == 0) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn").innerHTML = "Submit";
+        } else {
+            document.getElementById("nextBtn").innerHTML = "Next";
+        }
+        //... and run a function that will display the correct step indicator:
+        fixStepIndicator(n)
+    }
+
+    function nextPrev(n) {
+        // This function will figure out which tab to display
+        var x = document.getElementsByClassName("tab");
+        // Exit the function if any field in the current tab is invalid:
+        if (n == 1 && !validateForm()) return false;
+        // Hide the current tab:
+        x[currentTab].style.display = "none";
+        // Increase or decrease the current tab by 1:
+        currentTab = currentTab + n;
+        // if you have reached the end of the form...
+        if (currentTab >= x.length) {
+            // ... the form gets submitted:
+            document.getElementById("regForm").submit();
+            return false;
+        }
+        // Otherwise, display the correct tab:
+        showTab(currentTab);
+    }
+
+    function validateForm() {
+        var x, y, i, valid = true;
+        document.getElementsByClassName("step")[currentTab].className += " finish";
+        //// This function deals with validation of the form fields
+        //var x, y, i, valid = true;
+        //x = document.getElementsByClassName("tab");
+        //y = x[currentTab].getElementsByTagName("input");
+        //// A loop that checks every input field in the current tab:
+        //for (i = 0; i < y.length; i++) {
+        //    // If a field is empty...
+        //    if (y[i].value == "") {
+        //        // add an "invalid" class to the field:
+        //        y[i].className += " invalid";
+        //        // and set the current valid status to false
+        //        valid = false;
+        //    }
+        //}
+        //// If the valid status is true, mark the step as finished and valid:
+        //if (valid) {
+
+        //}
+        return valid; // return the valid status
+    }
+
+    function fixStepIndicator(n) {
+        // This function removes the "active" class of all steps...
+        var i, x = document.getElementsByClassName("step");
+        for (i = 0; i < x.length; i++) {
+            x[i].className = x[i].className.replace(" active", "");
+        }
+        //... and adds the "active" class on the current step:
+        x[n].className += " active";
+    }
+</script>
+
+<script type="text/javascript">
+
+
+
+    $(document).ready(function () {
+
+        $("#Dist").change(function () {
+            $("#Tahashil").empty();
+            $("#VillageName").empty();
+            $("#HVillage").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getTaluka")',
+                dataType: 'json',
+                data: { id: $("#Dist").val() },
+                success: function (city) {
+                    //alert(city);
+                    $.each(city, function (i, city) {
+                        $("#Tahashil").append('<option value="'
+                            + city.Value + '">'
+                            + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $("#Tahashil").change(function () {
+            $("#VillageName").empty();
+            $("#HVillage").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getVillage")',
+                dataType: 'json',
+                data: { id: $("#Tahashil").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#VillageName").append('<option value="'
+                                                   + city.Value + '">'
+                                             + city.Text + '</option>');
+                    });
+                    $.each(city, function (i, city) {
+                        $("#HVillage").append('<option value="'
+                            + city.Value + '">'
+                            + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+
+
+
+    });
+
+    function checkCripple() {
+        if (document.getElementById('ApplicantCrippled1').checked) {
+            document.getElementById('divCripple').style.display = 'block';
+        }
+        else document.getElementById('divCripple').style.display = 'none';
+    }
+
+    function checkSheep() {
+        if (document.getElementById('PresentDaySheep1').checked) {
+            document.getElementById('divSheep').style.display = 'block';
+        }
+        else document.getElementById('divSheep').style.display = 'none';
+    }
+
+    function checkLandOwned() {
+        if (document.getElementById('IsApplicantOwnedLand1').checked) {
+            document.getElementById('divLandOwned').style.display = 'block';
+        }
+        else {
+            document.getElementById('divLandOwned').style.display = 'none';
+            document.getElementById('divLease').style.display = 'block';
+
+        }
+    }
+
+    function checkLandLeased() {
+        if (document.getElementById('IsNotIsAvailableOnLease1').checked) {
+            document.getElementById('divLandLeased').style.display = 'block';
+        }
+        else document.getElementById('divLandLeased').style.display = 'none';
+    }
+
+    function checkWarehouse() {
+        if (document.getElementById('IsWarehouseForSheep1').checked) {
+            document.getElementById('divWarehouse').style.display = 'block';
+        }
+        else {
+            document.getElementById('divWarehouse').style.display = 'none';
+            document.getElementById('divSpace').style.display = 'block';
+        }
+        }
+
+        function checkCompany() {
+            if (document.getElementById('IsanimalHusbandryManufacturingCompanyMember1').checked) {
+                document.getElementById('divCompany').style.display = 'block';
+            }
+            else {
+                document.getElementById('divCompany').style.display = 'none';
+            }
+        }
+
+        function checkSavings() {
+            if (document.getElementById('IsSavingsGroupMember1').checked) {
+                document.getElementById('divSavings').style.display = 'block';
+            }
+            else {
+                document.getElementById('divSavings').style.display = 'none';
+            }
+        }
+</script>
