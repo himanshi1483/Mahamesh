@@ -283,7 +283,7 @@ namespace Mahamesh.Controllers
             {
                 db.Entry(applicantRegistration).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = applicantRegistration.Id });
             }
             getDistrict();
             getCaste();

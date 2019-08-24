@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
+<style>
+    .tableheader {
+        background: #1a9b83 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+</style>
 <div class="container" style="margin-bottom:150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
@@ -15,62 +22,65 @@
 
     </div>
     <div class="panel panel-primary-2">
-        <p>
-            @Html.ActionLink("Create New", "Create")
-        </p>
-        <table class="table table-bordered table-striped table-responsive">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ApName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.VillageName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Tahashil)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Dist)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.PinCode)
-                </th>
-                <th>
-                <th>
-                    @Html.DisplayNameFor(model => model.AdharCardNo)
-                </th>
-                <th></th>
-            </tr>
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ApName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.VillageName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tahashil)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Dist)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PinCode)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.AdharCardNo)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                    </td>
+        @*<p>
+                @Html.ActionLink("Create New", "Create")
+            </p>*@
+        <div class="panel-heading panel-primary-2 text-center"><h4>Applicant's List</h4></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-responsive">
+                <tr class="tableheader">
+                    <th>
+                        @Html.DisplayNameFor(model => model.ApName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.VillageName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Tahashil)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Dist)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PinCode)
+                    </th>
+                  
+                    <th>
+                        @Html.DisplayNameFor(model => model.AdharCardNo)
+                    </th>
+                    <th></th>
                 </tr>
-            }
 
-        </table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ApName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.VillageName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Tahashil)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Dist)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PinCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AdharCardNo)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+        </div>
     </div>
 </div>

@@ -1,0 +1,231 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="~/Images/favicon.ico" type="image/x-icon">
+
+    <link href="~/Content/Varsity/assets/css/custom.min.css" rel="stylesheet" />
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,400italic,300,300italic,500,700' rel='stylesheet' type='text/css'>
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .resizable {
+            font-size: 14px;
+        }
+
+        .liFooter {
+            list-style-type: none !important;
+            display: inline;
+            padding-right: 15px;
+        }
+
+        .secParagraph {
+            margin-top: 70px;
+            padding-top: 20px;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            padding-bottom: 20px;
+            margin-bottom: 150px;
+            background: #e5f2ff;
+            /*padding-left: 30px;
+        margin-right: 30px;*/
+        }
+        /*.skip {
+            position: absolute;
+            top: -1000px;
+            left: -1000px;
+            height: 1px;
+            width: 1px;
+            text-align: left;
+            overflow: hidden;
+        }*/
+
+        a.skip:active,
+        a.skip:focus,
+        a.skip:hover {
+            left: 0;
+            top: 0;
+            width: auto;
+            height: auto;
+            overflow: visible;
+        }
+
+        .control-label {
+            padding-top: 10px !important;
+        }
+    </style>
+</head>
+<body class="resizable">
+    <!--START SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <!-- END SCROLL TOP BUTTON -->
+    <!-- Start header  -->
+    <header id="mu-header">
+        <div class="container">
+
+        </div>
+    </header>
+    <div class="container body-content">
+
+    </div>
+
+    @RenderBody()
+
+    <!-- Start footer -->
+
+    @RenderSection("scripts", required: false)
+
+    <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/Content/Varsity/assets/js/bootstrap.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!-- Slick slider -->
+    @*<script type="text/javascript" src="/Content/Varsity/assets/js/slick.js"></script>*@
+    <!-- Counter -->
+    @*<script type="text/javascript" src="/Content/Varsity/assets/js/waypoints.js"></script>*@
+    @*<script type="text/javascript" src="/Content/Varsity/assets/js/jquery.counterup.js"></script>
+        <!-- Mixit slider -->
+        <script type="text/javascript" src="/Content/Varsity/assets/js/jquery.mixitup.js"></script>
+        <!-- Add fancyBox -->
+        <script type="text/javascript" src="/Content/Varsity/assets/js/jquery.fancybox.pack.js"></script>*@
+    @*<script src="~/Content/Varsity/assets/js/newsbox.js" type="text/javascript"></script>*@
+
+
+    <!-- Custom js -->
+    @*<script type="text/javascript" src="/Content/Varsity/assets/js/custom.js"></script>*@
+    <script type="text/javascript" src="~/Content/Varsity/assets/js/custom.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            var resize = new Array('.resizable');
+            resize = resize.join(',');
+
+            //resets the font size when "reset" is clicked
+            var resetFont = $(resize).css('font-size');
+            $(".reset").click(function () {
+                $(resize).css('font-size', resetFont);
+            });
+
+            //increases font size when "+" is clicked
+            $(".increase").click(function () {
+                var originalFontSize = $(resize).css('font-size');
+                var originalFontNumber = parseFloat(originalFontSize, 10);
+                var newFontSize = originalFontNumber * 1.2;
+                $(resize).css('font-size', newFontSize);
+                return false;
+            });
+
+            //decrease font size when "-" is clicked
+
+            $(".decrease").click(function () {
+                var originalFontSize = $(resize).css('font-size');
+                var originalFontNumber = parseFloat(originalFontSize, 10);
+                var newFontSize = originalFontNumber * 0.8;
+                $(resize).css('font-size', newFontSize);
+                return false;
+            });
+
+            $(".skip").click(function (event) {
+
+                // strip the leading hash and declare
+                // the content we're skipping to
+                var skipTo = "#" + this.href.split('#')[1];
+
+                // Setting 'tabindex' to -1 takes an element out of normal
+                // tab flow but allows it to be focused via javascript
+                $(skipTo).attr('tabindex', -1).on('blur focusout', function () {
+
+                    // when focus leaves this element,
+                    // remove the tabindex attribute
+                    $(this).removeAttr('tabindex');
+
+                }).focus(); // focus on the content container
+            });
+
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+
+
+            $(".news-demo-down-auto").bootstrapNews({
+                newsPerPage: 3,
+                autoplay: true,
+                pauseOnHover: true,
+                navigation: false,
+                direction: 'down',
+                newsTickerInterval: 1500,
+                onToDo: function () {
+                }
+            });
+
+            $(".tender-demo-down-auto").bootstrapNews({
+                newsPerPage: 3,
+                autoplay: true,
+                pauseOnHover: true,
+                navigation: false,
+                direction: 'down',
+                newsTickerInterval: 1500,
+                onToDo: function () {
+                }
+            });
+
+
+        });
+
+        $(".js-carousel").each(function () {
+            var $carousel = $(this),
+                $carouselContainer = $carousel.find(".js-carousel-container"),
+                $carouselList = $carousel.find(".js-carousel-list"),
+                $carouselItem = $carousel.find(".js-carousel-item"),
+                $carouselButton = $carousel.find(".js-carousel-button"),
+                setItemWidth = function () {
+                    $carouselList.removeAttr("style");
+                    var curWidth = $($carouselItem[0]).outerWidth() * $carouselItem.length;
+                    $carouselList.css("width", curWidth);
+                },
+                slide = function () {
+                    var $button = $(this),
+                        dir = $button.data("dir"),
+                        curPos = parseInt($carouselList.css("left")) || 0,
+                        moveto = 0,
+                        containerWidth = $carouselContainer.outerWidth(),
+                        listWidth = $carouselList.outerWidth(),
+                        before = (curPos + containerWidth),
+                        after = listWidth + (curPos - containerWidth);
+                    if (dir == "next") {
+                        moveto = (after < containerWidth) ? curPos - after : curPos - containerWidth;
+                    } else {
+                        moveto = (before >= 0) ? 0 : curPos + containerWidth;
+                    }
+
+
+                    $carouselList.animate({
+                        left: moveto
+                    });
+                };
+            $(window).resize(function () {
+                setItemWidth();
+            });
+            setItemWidth();
+
+            $carouselButton.on("click", slide);
+        });
+    </script>
+</body>
+</html>

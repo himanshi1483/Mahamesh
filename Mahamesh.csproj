@@ -667,6 +667,7 @@
     <Content Include="Views\ApplicantRegistrations\Edit.cshtml" />
     <Content Include="Views\ApplicantRegistrations\Index.cshtml" />
     <Content Include="Views\ApplicantRegistrations\GenerateReceipt.cshtml" />
+    <Content Include="Views\Shared\_LayoutReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

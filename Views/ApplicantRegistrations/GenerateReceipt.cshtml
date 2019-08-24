@@ -2,28 +2,28 @@
 
 @{
     ViewBag.Title = "Receipt";
-    Layout = null;
+    Layout = "~/Views/Shared/_LayoutReceipt.cshtml";
 }
 
 <div class="container" style="margin-bottom:150px;">
-    <div class="headerDashboard">
+    <div class="heading" style="margin-bottom:40px;background:#808080;height:130px;">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
-            <img src="~/Images/logo1.png" class="img-responsive" alt="पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे" />
+            <img src="~/Images/logo.jpg"  height="120" width="125" alt="पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे" />
         </div>
 
         <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 headerText">
-            <h2>
+            <h2 class="text-center" style="color:white;padding-top:10px">
                 पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे
             </h2>
-            <h4>राजे यशवंतराव होळकर महामेष योजना</h4>
+            <h3 class="text-center" style="color:white">राजे यशवंतराव होळकर महामेष योजना</h3>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
-            <img src="~/Images/Raje.jpg" class="img-responsive" alt="राजे यशवंतराव होळकर" />
+            <img src="~/Images/Raje.jpg"  height="120" width="90" alt="राजे यशवंतराव होळकर" />
         </div>
     </div>
-    <div class="panel panel-primary-2" id="printDiv">
-        <div class="panel-heading panel-primary-2 text-center"><h5>पावती</h5></div>
-        <div class="panel-body" style="border:2px solid #a4c1ff">
+    <div class="panel panel-primary" id="printDiv">
+        <div class="panel-heading panel-primary text-center"><h3 class="text-center" style="color:white">पावती</h3></div>
+        <div class="panel-body" >
             <table class="table table-bordered table-striped table-responsive">
                 <tr>
                     <td>@Html.DisplayNameFor(x => x.ApplicationNumber)</td>
@@ -32,7 +32,7 @@
                 <tr>
                     <td>पशुवैद्यकीय दवाखाना :</td>
                     <td>
-                        <table>
+                        <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
                             <tr>
                                 <td>गावाचे नाव :</td>
                                 <td>@Model.VillageName</td>
@@ -55,7 +55,7 @@
                 <tr>
                     <td>अर्जदारचा पत्ता:</td>
                     <td>
-                        <table>
+                        <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
                             <tr>
                                 <td>राहणार:</td>
                                 <td>@Model.HVillage</td>
@@ -95,11 +95,11 @@
 
         </p>
     </div>
-    <div class="panel-footer">  <button class="btn btn-default" onclick="printDiv('print-content')">Print</button></div>
+    <div class="panel-footer text-center">  <button class="btn btn-default" onclick="printDiv('print-content')">Print</button></div>
 </div>
 <script>
     function printDiv(divName) {
-        var printContents = document.getElementById(printDiv).innerHTML;
+        var printContents = document.getElementById("printDiv").innerHTML;
         w = window.open();
         w.document.write(printContents);
         w.print();
