@@ -235,20 +235,35 @@ namespace Mahamesh.Controllers
         // GET: ApplicantRegistrations/Edit/5
         public ActionResult Edit(int? id)
         {
-            getDistrict();
-            getCaste();
-            getCripplePercent();
-            getNoOfSheep();
-            getAcre();
-            getWaterSource();
-            getTypeCastle();
-            getDuration();
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+           
+            var ddlDist = db.DistMaster.ToList();
+            var ddlTal = db.TalMaster.ToList();
+            var ddlCaste = db.CasteUnderNTC.ToList();
+            var ddlSheep = db.NoOfSheepMaster.ToList();
+            var ddAcre = db.AcreMaster.ToList();
+            var ddWater = db.WaterSource.ToList();
+            var typecastle = db.TypeExistingCastle.ToList();
+            var duration = db.DurationWaterAvailableForIrrigation.ToList();
+            var cripple = db.CrippledMaster.ToList();
+            var ddlVil = db.VillageMaster.ToList();
+          
+
             ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
-            
+            ViewBag.Dist = new SelectList(ddlDist,  "Dist_Code", "DistName", applicantRegistration.Dist);
+            ViewBag.Caste = new SelectList(ddlCaste, "ID", "Caste", applicantRegistration.SubCatse);
+            ViewBag.Taluka = new SelectList(ddlTal,  "Tal_Code", "Talname", applicantRegistration.Tahashil);
+            ViewBag.Village = new SelectList(ddlVil, "Village_Code", "VillageName", applicantRegistration.VillageName);
+            ViewBag.HVilage = new SelectList(ddlVil, "Village_Code", "VillageName", applicantRegistration.HVillage);
+            ViewBag.WaterSource = new SelectList(ddWater, "ID", "SourceName", applicantRegistration.WaterSource);
+            ViewBag.Sheep = new SelectList(ddlSheep, "id", "NoOfSheep", applicantRegistration.NumberOfSheepIs);
+            ViewBag.TypeCastle = new SelectList(typecastle, "ID", "TypeName",  applicantRegistration.TypeExistingCastle);
+            ViewBag.Duration = new SelectList(duration, "ID", "DurationName", applicantRegistration.DurationOfWater);
+            ViewBag.Percentage = new SelectList(cripple, "ID", "Percentage", applicantRegistration.CrippledPercentage);
+            ViewBag.AcreOwned = new SelectList(ddAcre, "id", "Acre", applicantRegistration.YesApplicantOwnedLandEcre);
+            ViewBag.AcreLeased = new SelectList(ddAcre, "id", "Acre",  applicantRegistration.YesAvailableOnLeaseEcre);
+            ViewBag.GardenAcre = new SelectList(ddAcre, "id", "Acre",  applicantRegistration.GardeningEcre);
+            ViewBag.CuminAcre = new SelectList(ddAcre, "id", "Acre",  applicantRegistration.CuminEcre);
+
             if (applicantRegistration == null)
             {
                 return HttpNotFound();

@@ -74,12 +74,16 @@ namespace Mahamesh.Controllers
                 var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
                 if(applicantData.FormSubmitted == true)
                 {
-                    return RedirectToAction("Details", "ApplicantRegistration", new { id = applicantData.Id });
+                    return RedirectToAction("Details", "ApplicantRegistrations", new { id = applicantData.Id });
                 }
                 else
                 {
-                    return RedirectToAction("Edit", "ApplicantRegistration", new { id = applicantData.Id });
+                    return RedirectToAction("Edit", "ApplicantRegistrations", new { id = applicantData.Id });
                 }
+            }
+            else
+            {
+                return RedirectToAction("Create", "ApplicantRegistrations");
             }
             return View();
         }
