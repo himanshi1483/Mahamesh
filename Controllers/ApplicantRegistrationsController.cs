@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Web;
 using System.Web.Mvc;
 
 namespace Mahamesh.Controllers
@@ -43,6 +45,58 @@ namespace Mahamesh.Controllers
             {
                 li.Add(new SelectListItem { Text = m.DistName, Value = m.Dist_Code.ToString() });
                 ViewBag.District = li;
+            }
+        }
+
+        public void getWaterSource()
+        {
+            var ddlDist = db.WaterSource.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select Source--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.SourceName, Value = m.ID.ToString() });
+                ViewBag.WaterSource = li;
+            }
+        }
+
+        public void getDuration()
+        {
+            var ddlDist = db.DurationWaterAvailableForIrrigation.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select Duration--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.DurationName, Value = m.ID.ToString() });
+                ViewBag.Duration = li;
+            }
+        }
+
+        public void getAcre()
+        {
+            var ddlDist = db.AcreMaster.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.Acre.ToString(), Value = m.id.ToString() });
+                ViewBag.Acre = li;
+            }
+        }
+
+        public void getTypeCastle()
+        {
+            var ddlDist = db.TypeExistingCastle.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.TypeName.ToString(), Value = m.ID.ToString() });
+                ViewBag.TypeCastle = li;
             }
         }
 
@@ -126,6 +180,10 @@ namespace Mahamesh.Controllers
             getCaste();
             getCripplePercent();
             getNoOfSheep();
+            getAcre();
+            getWaterSource();
+            getTypeCastle();
+            getDuration();
             return View();
         }
 
@@ -134,21 +192,47 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ApplicantRegistration applicantRegistration)
+        public ActionResult Create(ApplicantRegistration applicantRegistration, HttpPostedFileBase files)
         {
+           
             if (ModelState.IsValid)
             {
+                if (files != null && files.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(files.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), fileName);
+                    files.SaveAs(path);
+                    var relativePath = "/Images/ApplicantPhoto/" + fileName;
+                    applicantRegistration.Photo = relativePath;
+                }
+
                 db.ApplicantRegistrations.Add(applicantRegistration);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", new { id = applicantRegistration.Id });
             }
-
+            getDistrict();
+            getCaste();
+            getCripplePercent();
+            getNoOfSheep();
+            getAcre();
+            getWaterSource();
+            getTypeCastle();
+            getDuration();
             return View(applicantRegistration);
         }
 
         // GET: ApplicantRegistrations/Edit/5
         public ActionResult Edit(int? id)
         {
+            getDistrict();
+            getCaste();
+            getCripplePercent();
+            getNoOfSheep();
+            getAcre();
+            getWaterSource();
+            getTypeCastle();
+            getDuration();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -166,14 +250,23 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit( ApplicantRegistration applicantRegistration)
+        public ActionResult Edit(ApplicantRegistration applicantRegistration)
         {
+           
             if (ModelState.IsValid)
             {
                 db.Entry(applicantRegistration).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            getDistrict();
+            getCaste();
+            getCripplePercent();
+            getNoOfSheep();
+            getAcre();
+            getWaterSource();
+            getTypeCastle();
+            getDuration();
             return View(applicantRegistration);
         }
 

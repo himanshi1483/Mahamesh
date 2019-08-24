@@ -34,6 +34,10 @@ namespace Mahamesh.Models
         public IDbSet<CasteUnderNTC> CasteUnderNTC { get; set; }
         public IDbSet<NoOfSheepMaster> NoOfSheepMaster { get; set; }
         public IDbSet<CrippledMaster> CrippledMaster { get; set; }
+        public IDbSet<WaterSource> WaterSource { get; set; }
+        public IDbSet<DurationWaterAvailableForIrrigation> DurationWaterAvailableForIrrigation { get; set; }
+        public IDbSet<AcreMaster> AcreMaster { get; set; }
+        public IDbSet<TypeExistingCastle> TypeExistingCastle { get; set; }
 
         ////public IDbSet<PressInformationModel> PressInformation { get; set; }
 

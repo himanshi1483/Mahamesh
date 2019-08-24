@@ -65,6 +65,16 @@ namespace Mahamesh.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult MahameshYojanaUserLogin(long AadharCardNum)
+        {
+            var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AadharCardNum);
+            if(applicantExist == true)
+            {
+               // var applicantData = db.ApplicantRegistrations.Where(x=>x.AdharCardNo == AadharCardNum).Select(x=>x.)
+            }
+            return View();
+        }
         public ActionResult MahameshYojanaOfficerLogin()
         {
             return View();

@@ -4,511 +4,438 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>ApplicantRegistration</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Photo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicationID)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicationID)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.VillageName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.VillageName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Tahashil)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Tahashil)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Dist)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Dist)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PinCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PinCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HVillage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HVillage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhNo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhNo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DOB)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DOB)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ChildCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ChildCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Child2006)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Child2006)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Caste)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Caste)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubCatse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubCatse)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AdharCardNo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdharCardNo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicantCrippled)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicantCrippled)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CrippledPercentage)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CrippledPercentage)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PresentDaySheep)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PresentDaySheep)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NumberOfSheepIs)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NumberOfSheepIs)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicantsPermanentInOnePlace)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicantsPermanentInOnePlace)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ApplicantsMigratedByWayOfTransit)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ApplicantsMigratedByWayOfTransit)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsApplicantOwnedLand)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsApplicantOwnedLand)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YesApplicantOwnedLandEcre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YesApplicantOwnedLandEcre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YesApplicantOwnedLandGuntha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YesApplicantOwnedLandGuntha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsNotIsAtLeastOnePinpointSpace)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsNotIsAtLeastOnePinpointSpace)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsNotIsAvailableOnLease)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsNotIsAvailableOnLease)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YesAvailableOnLeaseEcre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YesAvailableOnLeaseEcre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YesAvailableOnLeaseGuntha)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YesAvailableOnLeaseGuntha)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.GardeningEcre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.GardeningEcre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CuminEcre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CuminEcre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.WaterSource)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.WaterSource)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DurationOfWater)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DurationOfWater)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastYearFooder)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastYearFooder)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastYearTotalProductionInKG)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastYearTotalProductionInKG)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsWarehouseForSheep)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsWarehouseForSheep)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.YesIntekOfSheepInWarehouse)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.YesIntekOfSheepInWarehouse)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TypeExistingCastle)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TypeExistingCastle)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsSavingsGroupMember)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsSavingsGroupMember)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SavingGroupName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SavingGroupName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SavingGroupRegNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SavingGroupRegNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyMember)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyMember)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.RationCardNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.RationCardNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsTrained)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsTrained)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CompNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.AdharCardFU)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.AdharCardFU)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LivestockDevOffCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LivestockDevOffCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CasteCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CasteCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ResidentCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ResidentCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Childcertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Childcertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FU712Certificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FU712Certificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TenancyAgreement)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TenancyAgreement)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FU712orIncomeCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FU712orIncomeCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BankPassBook)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BankPassBook)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.BachatMemberCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.BachatMemberCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyMemberCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CompanyMemberCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DisabilityCertificate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DisabilityCertificate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ReshanCard)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ReshanCard)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.HamiPtra)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.HamiPtra)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<div class="container" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-responsive">
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Photo)</td>
+                    <td><img src="@Html.DisplayFor(model => model.Photo)" alt="Applicant Photo" /></td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.ApName)</td>
+                    <td> @Html.DisplayFor(model => model.ApName)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.VillageName)</td>
+                    <td> @Html.DisplayFor(model => model.VillageName)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Tahashil)</td>
+                    <td> @Html.DisplayFor(model => model.Tahashil)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Dist)</td>
+                    <td> @Html.DisplayFor(model => model.Dist)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.PinCode)</td>
+                    <td> @Html.DisplayFor(model => model.PinCode)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.HVillage)</td>
+                    <td> @Html.DisplayFor(model => model.HVillage)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.PhNo)</td>
+                    <td> @Html.DisplayFor(model => model.PhNo)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.DOB)</td>
+                    <td> @Html.DisplayFor(model => model.DOB)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Age)</td>
+                    <td> @Html.DisplayFor(model => model.Age)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Gender)</td>
+                    <td> @Html.DisplayFor(model => model.Gender)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.ChildCount)</td>
+                    <td> @Html.DisplayFor(model => model.ChildCount)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Child2006)</td>
+                    <td> @Html.DisplayFor(model => model.Child2006)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.Caste)</td>
+                    <td> @Html.DisplayFor(model => model.Caste)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.SubCatse)</td>
+                    <td> @Html.DisplayFor(model => model.SubCatse)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.AdharCardNo)</td>
+                    <td> @Html.DisplayFor(model => model.AdharCardNo)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.RationCardNumber)</td>
+                    <td> @Html.DisplayFor(model => model.RationCardNumber)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.ApplicantCrippled)</td>
+                    <td> @Html.DisplayFor(model => model.ApplicantCrippled)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.CrippledPercentage)</td>
+                    <td> @Html.DisplayFor(model => model.CrippledPercentage)</td>
+                </tr>
+
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.PresentDaySheep)</td>
+                    <td> @Html.DisplayFor(model => model.PresentDaySheep)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.NumberOfSheepIs)</td>
+                    <td> @Html.DisplayFor(model => model.NumberOfSheepIs)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.ApplicantsPermanentInOnePlace)</td>
+                    <td> @Html.DisplayFor(model => model.ApplicantsPermanentInOnePlace)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.ApplicantsMigratedByWayOfTransit)</td>
+                    <td> @Html.DisplayFor(model => model.ApplicantsMigratedByWayOfTransit)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.IsApplicantOwnedLand)</td>
+                    <td> @Html.DisplayFor(model => model.IsApplicantOwnedLand)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.YesApplicantOwnedLandEcre)</td>
+                    <td> @Html.DisplayFor(model => model.YesApplicantOwnedLandEcre)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.YesApplicantOwnedLandGuntha)</td>
+                    <td> @Html.DisplayFor(model => model.YesApplicantOwnedLandGuntha)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.IsNotIsAtLeastOnePinpointSpace)</td>
+                    <td> @Html.DisplayFor(model => model.IsNotIsAtLeastOnePinpointSpace)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.IsNotIsAvailableOnLease)</td>
+                    <td> @Html.DisplayFor(model => model.IsNotIsAvailableOnLease)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.YesAvailableOnLeaseEcre)</td>
+                    <td> @Html.DisplayFor(model => model.YesAvailableOnLeaseEcre)</td>
+                </tr>
+                <tr>
+                    <td> @Html.DisplayNameFor(model => model.YesAvailableOnLeaseGuntha)</td>
+                    <td> @Html.DisplayFor(model => model.YesAvailableOnLeaseGuntha)</td>
+                </tr>
+
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.GardeningEcre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.GardeningEcre)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CuminEcre)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CuminEcre)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.WaterSource)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.WaterSource)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.DurationOfWater)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.DurationOfWater)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.LastYearFooder)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.LastYearFooder)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.LastYearTotalProductionInKG)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.LastYearTotalProductionInKG)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsWarehouseForSheep)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsWarehouseForSheep)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.YesIntekOfSheepInWarehouse)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.YesIntekOfSheepInWarehouse)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.TypeExistingCastle)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.TypeExistingCastle)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsSavingsGroupMember)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsSavingsGroupMember)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SavingGroupName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.SavingGroupName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.SavingGroupRegNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.SavingGroupRegNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyMember)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyMember)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyName)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.RationCardNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.RationCardNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.IsTrained)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.IsTrained)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CompNumber)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CompNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.AdharCardFU)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.AdharCardFU)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.LivestockDevOffCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.LivestockDevOffCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CasteCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CasteCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ResidentCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ResidentCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.Childcertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.Childcertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.FU712Certificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.FU712Certificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.TenancyAgreement)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.TenancyAgreement)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.FU712orIncomeCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.FU712orIncomeCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.BankPassBook)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.BankPassBook)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.BachatMemberCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.BachatMemberCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.CompanyMemberCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.CompanyMemberCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.DisabilityCertificate)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.DisabilityCertificate)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.ReshanCard)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.ReshanCard)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayNameFor(model => model.HamiPtra)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(model => model.HamiPtra)
+                    </td>
+                </tr>
+                
+            </table>
+            </div>
+        <p class="text-center">
+            <button class="btn btn-danger"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Go Back</a></button>
+            <button class="btn btn-warning"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Save and Exit</a></button>
+            <button class="btn btn-primary"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Submit</a></button>
+        
+        </p>
+        </div>
+    </div>

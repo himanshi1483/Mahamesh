@@ -66,4 +66,36 @@ namespace Mahamesh.Models
         public int Percentage { get; set; }
 
     }
+
+    public class AcreMaster
+    {
+        [Key]
+        public int id { get; set; }
+        public int? Acre { get; set; }
+
+    }
+
+    public class WaterSource
+    {
+        [Key]
+        public int ID { get; set; }
+        public string SourceName { get; set; }
+
+    }
+
+    public class TypeExistingCastle 
+    {
+        [Key]
+        public int ID { get; set; }
+        public string TypeName { get; set; }
+
+    }
+
+    public class DurationWaterAvailableForIrrigation
+    {
+        [Key]
+        public int ID { get; set; }
+        public string DurationName { get; set; }
+
+    }
 }

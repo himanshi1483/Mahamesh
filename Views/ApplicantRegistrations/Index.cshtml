@@ -4,396 +4,73 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<div class="container" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicationID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.VillageName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Tahashil)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Dist)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PinCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HVillage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DOB)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ChildCount)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Child2006)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Caste)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SubCatse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdharCardNo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicantCrippled)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CrippledPercentage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PresentDaySheep)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumberOfSheepIs)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicantsPermanentInOnePlace)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ApplicantsMigratedByWayOfTransit)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsApplicantOwnedLand)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YesApplicantOwnedLandEcre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YesApplicantOwnedLandGuntha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsNotIsAtLeastOnePinpointSpace)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsNotIsAvailableOnLease)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YesAvailableOnLeaseEcre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YesAvailableOnLeaseGuntha)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GardeningEcre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CuminEcre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.WaterSource)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DurationOfWater)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastYearFooder)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastYearTotalProductionInKG)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsWarehouseForSheep)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.YesIntekOfSheepInWarehouse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TypeExistingCastle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsSavingsGroupMember)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SavingGroupName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SavingGroupRegNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyMember)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsanimalHusbandryManufacturingCompanyRegNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RationCardNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsTrained)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AdharCardFU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LivestockDevOffCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CasteCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ResidentCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Childcertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FU712Certificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TenancyAgreement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FU712orIncomeCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BankPassBook)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BachatMemberCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CompanyMemberCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DisabilityCertificate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReshanCard)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HamiPtra)
-        </th>
-        <th></th>
-    </tr>
+    </div>
+    <div class="panel panel-primary-2">
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table table-bordered table-striped table-responsive">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ApName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VillageName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tahashil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Dist)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PinCode)
+                </th>
+                <th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AdharCardNo)
+                </th>
+                <th></th>
+            </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicationID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.VillageName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tahashil)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Dist)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PinCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HVillage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ChildCount)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Child2006)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Caste)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SubCatse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdharCardNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicantCrippled)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CrippledPercentage)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PresentDaySheep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumberOfSheepIs)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicantsPermanentInOnePlace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ApplicantsMigratedByWayOfTransit)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsApplicantOwnedLand)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YesApplicantOwnedLandEcre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YesApplicantOwnedLandGuntha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsNotIsAtLeastOnePinpointSpace)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsNotIsAvailableOnLease)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YesAvailableOnLeaseEcre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YesAvailableOnLeaseGuntha)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GardeningEcre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CuminEcre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.WaterSource)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DurationOfWater)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastYearFooder)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastYearTotalProductionInKG)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsWarehouseForSheep)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.YesIntekOfSheepInWarehouse)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TypeExistingCastle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsSavingsGroupMember)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SavingGroupName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SavingGroupRegNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsanimalHusbandryManufacturingCompanyMember)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsanimalHusbandryManufacturingCompanyName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsanimalHusbandryManufacturingCompanyRegNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RationCardNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsTrained)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AdharCardFU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LivestockDevOffCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CasteCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ResidentCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Childcertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FU712Certificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenancyAgreement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FU712orIncomeCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BankPassBook)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BachatMemberCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CompanyMemberCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DisabilityCertificate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReshanCard)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HamiPtra)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ApName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VillageName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tahashil)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Dist)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PinCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AdharCardNo)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-</table>
+        </table>
+    </div>
+</div>

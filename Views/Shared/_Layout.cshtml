@@ -24,6 +24,7 @@
         <!-- Main style sheet -->
         <link href="/Content/Varsity/assets/css/style.css" rel="stylesheet">*@
     <link href="~/Content/Varsity/assets/css/custom.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 
 
     <!-- Google Fonts -->
@@ -50,6 +51,7 @@
             display: inline;
             padding-right: 15px;
         }
+
         .headerDashboard {
             height: 93px;
             background-color: #1ac183;
@@ -321,9 +323,9 @@
                                 @*<span class="fa fa-angle-down"></span>*@
                             </a>
                             @*<ul class="dropdown-menu" role="menu">
-                                <li><a href="course.html">Course Archive</a></li>
-                                <li><a href="course-detail.html">Course Detail</a></li>
-                            </ul>*@
+                                    <li><a href="course.html">Course Archive</a></li>
+                                    <li><a href="course-detail.html">Course Detail</a></li>
+                                </ul>*@
                         </li>
                         @*<li><a href="gallery.html">Tender</a></li>*@
                         <li class="dropdown" id="tender">
@@ -350,10 +352,10 @@
                             </ul>
                         </li>
                         @*<li class="dropdown">
-                            <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
-                                Useful Links
-                            </a>
-                        </li>*@
+                                <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
+                                    Useful Links
+                                </a>
+                            </li>*@
                         <li class="liMenu" id="contact"><a href="@Url.Action("Contact", "Home")">@Mahamesh.App_LocalResources.Lang.Contactus</a></li>
                         @if (User.Identity.IsAuthenticated)
                         {
@@ -369,8 +371,8 @@
                                     <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
                                     <li>@*<a href="@Url.Action("Index", "News")">Media</a>*@</li>
                                     @*<li><a href="@Url.Action("Index", "Account")">Users</a></li>
-                                    <li><a href="@Url.Action("Index", "Account")">Roles</a></li>
-                                    <li><a href="@Url.Action("Index", "Account")">Groups</a></li>*@
+                                        <li><a href="@Url.Action("Index", "Account")">Roles</a></li>
+                                        <li><a href="@Url.Action("Index", "Account")">Groups</a></li>*@
                                 </ul>
                             </li>
                         }
@@ -438,6 +440,7 @@
     <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/Content/Varsity/assets/js/bootstrap.js" type="text/javascript"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!-- Slick slider -->
     @*<script type="text/javascript" src="/Content/Varsity/assets/js/slick.js"></script>*@
     <!-- Counter -->
@@ -453,6 +456,9 @@
     <!-- Custom js -->
     @*<script type="text/javascript" src="/Content/Varsity/assets/js/custom.js"></script>*@
     <script type="text/javascript" src="~/Content/Varsity/assets/js/custom.min.js"></script>
+    @*<script>
+        $("#datepicker").datepicker();
+    </script>*@
     <script type="text/javascript">
         $(document).ready(function () {
             var resize = new Array('.resizable');
@@ -551,18 +557,20 @@
                 //$superparent1.addClass('active');
                 //  e.preventDefault();
             });
+
+
         });
 
-                        //// Add active class to the current button (highlight it)
-                        //var header = document.getElementById("navbar");
-                        //var btns = header.getElementsByClassName("liMenu a");
-                        //for (var i = 0; i < btns.length; i++) {
-                        //    btns[i].addEventListener("click", function () {
-                        //        var current = document.getElementsByClassName("active");
-                        //        current[0].className = current[0].className.replace(" active", "");
-                        //        this.className += " active";
-                        //    });
-                        //}
+                                        //// Add active class to the current button (highlight it)
+                                        //var header = document.getElementById("navbar");
+                                        //var btns = header.getElementsByClassName("liMenu a");
+                                        //for (var i = 0; i < btns.length; i++) {
+                                        //    btns[i].addEventListener("click", function () {
+                                        //        var current = document.getElementsByClassName("active");
+                                        //        current[0].className = current[0].className.replace(" active", "");
+                                        //        this.className += " active";
+                                        //    });
+                                        //}
     </script>
 </body>
 </html>

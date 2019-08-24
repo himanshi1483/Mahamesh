@@ -20,37 +20,37 @@ namespace Mahamesh.Models
         public string ApName { get; set; }
 
         [Display(Name = "गावाचे नाव (मु. पो.) ")]
-        public int VillageName { get; set; }
+        public int? VillageName { get; set; }
 
         [Display(Name = "तालुका")]
-        public int Tahashil { get; set; }
+        public int? Tahashil { get; set; }
 
         [Display(Name = "जिल्हा")]
-        public int Dist { get; set; }
+        public int? Dist { get; set; }
 
         [Display(Name = "पिन कोड")]
-        public int PinCode { get; set; }
+        public int? PinCode { get; set; }
 
         [Display(Name = "आपल्या गावाचा समावेश ज्या पशुवैद्यकीय दवाखान्याच्या कार्यक्षेत्रामध्ये आहे त्या गावाचे नाव")]
-        public int HVillage { get; set; }
+        public int? HVillage { get; set; }
 
         [Display(Name = "भ्रमणध्वनी क्रमांक")]
-        public long PhNo { get; set; }
+        public long? PhNo { get; set; }
 
         [Display(Name = "अर्जदाराची जन्म तारीख (DD/MM/YYYY)")]
         public string DOB { get; set; }
 
         [Display(Name = "वय")]
-        public int Age { get; set; }
+        public int? Age { get; set; }
 
         [Display(Name = "लिंग ")]
         public string Gender { get; set; }
 
         [Display(Name = "एकूण अपत्यांची संख्या ")]
-        public int ChildCount { get; set; }
+        public int? ChildCount { get; set; }
 
         [Display(Name = "दिनांक १ मे २००१ व त्यानंतर माझ्या एकूण जन्माला आलेल्या मुलांची संख्या ")]
-        public int Child2006 { get; set; }
+        public int? Child2006 { get; set; }
 
         [Display(Name = "अर्जदाराच्या जातीचा प्रवर्ग")]
         public string Caste { get; set; }
@@ -58,6 +58,7 @@ namespace Mahamesh.Models
         [Display(Name = "अर्जदाराची जात")]
         public string SubCatse { get; set; }
 
+        [Required]
         [Display(Name = "आधार कार्ड क्रमांक")]
         public long AdharCardNo { get; set; }
 
@@ -65,13 +66,13 @@ namespace Mahamesh.Models
         public string ApplicantCrippled { get; set; }
 
         [Display(Name = "असल्यास %")]
-        public double CrippledPercentage { get; set; }
+        public double? CrippledPercentage { get; set; }
 
         [Display(Name = "अर्जदाराकडे सद्यस्थितीत मेंढया आहेत काय ?")]
         public string PresentDaySheep { get; set; }
 
         [Display(Name = "असल्यास मेंढ्यांची संख्या")]
-        public int NumberOfSheepIs { get; set; }
+        public int? NumberOfSheepIs { get; set; }
 
         [Display(Name = "अर्जदार कायमस्वरूपी एका ठिकाणी राहून मेंढी पालन करणारे (स्थायी) आहेत काय? ")]
         public string ApplicantsPermanentInOnePlace { get; set; }
@@ -83,26 +84,26 @@ namespace Mahamesh.Models
         public string IsApplicantOwnedLand { get; set; }
 
         [Display(Name = "हेक्टर")]
-        public int YesApplicantOwnedLandEcre { get; set; }
+        public int? YesApplicantOwnedLandEcre { get; set; }
 
         [Display(Name = "आर")]
-        public int YesApplicantOwnedLandGuntha { get; set; }
+        public int? YesApplicantOwnedLandGuntha { get; set; }
 
       
         [Display(Name = "नसल्यास,भाडेकरारावर शेत जमीन उपलब्ध केली आहे काय ? ")]
         public string IsNotIsAvailableOnLease { get; set; }
 
         [Display(Name = "हेक्टर ")]
-        public int YesAvailableOnLeaseEcre { get; set; }
+        public int? YesAvailableOnLeaseEcre { get; set; }
 
         [Display(Name = "आर ")]
-        public int YesAvailableOnLeaseGuntha { get; set; }
+        public int? YesAvailableOnLeaseGuntha { get; set; }
 
         [Display(Name = "बागायत हेक्टर")]
-        public double GardeningEcre { get; set; }
+        public double? GardeningEcre { get; set; }
 
         [Display(Name = "जिरायत हेक्टर ")]
-        public double CuminEcre { get; set; }
+        public double? CuminEcre { get; set; }
 
         [Display(Name = "बारमाही/हंगामी सिंचनाकरिता पाण्याचा स्रोत")]
         public string WaterSource { get; set; }
@@ -114,13 +115,13 @@ namespace Mahamesh.Models
         public string LastYearFooder { get; set; }
 
         [Display(Name = "मागील वर्षी झालेल्या एकूण चार्‍याचे उत्पादन (किलो) :(नंबर इंग्लिश मध्ये असणे आवश्यक आहे) ")]
-        public double LastYearTotalProductionInKG { get; set; }
+        public double? LastYearTotalProductionInKG { get; set; }
 
         [Display(Name = "अर्जदाराकडे मेंढ्यांसाठी वाडा उपलब्ध आहे काय ?")]
         public string IsWarehouseForSheep { get; set; }
 
         [Display(Name = "असल्यास,किती मेंढ्यांसाठी")]
-        public int YesIntekOfSheepInWarehouse { get; set; }
+        public int? YesIntekOfSheepInWarehouse { get; set; }
 
         [Display(Name = "अस्तित्वातील वाड्याचा प्रकार")]
         public string TypeExistingCastle { get; set; }
@@ -153,37 +154,37 @@ namespace Mahamesh.Models
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //For Components///
-        [Display(Name = "लिंग ")]
+        [Display(Name = "Component ")]
         public string CompNumber { get; set; }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //For Documenent////
-        [Display(Name = "लिंग ")]
+        [Display(Name = "AdharCardFU ")]
         public string AdharCardFU { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "LivestockDevOffCertificate ")]
         public string LivestockDevOffCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "CasteCertificate ")]
         public string CasteCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "ResidentCertificate ")]
         public string ResidentCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "Childcertificate ")]
         public string Childcertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "FU712Certificate ")]
         public string FU712Certificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "TenancyAgreement ")]
         public string TenancyAgreement { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "FU712orIncomeCertificate ")]
         public string FU712orIncomeCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "BankPassBook ")]
         public string BankPassBook { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "BachatMemberCertificate ")]
         public string BachatMemberCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "CompanyMemberCertificate ")]
         public string CompanyMemberCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "DisabilityCertificate ")]
         public string DisabilityCertificate { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "ReshanCard ")]
         public string ReshanCard { get; set; }
-        [Display(Name = "लिंग ")]
+        [Display(Name = "HamiPtra ")]
         public string HamiPtra { get; set; }
         /////////////////////////////////////////////////////////////////////
     }
