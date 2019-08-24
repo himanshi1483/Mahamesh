@@ -14,7 +14,7 @@
         </div>
 
     </div>
-    <div class="panel panel-primary-2">
+    <div class="panel panel-primary-2" id="printDiv">
         <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
         <div class="panel-body">
             <table class="table table-bordered table-striped table-responsive">
@@ -428,14 +428,27 @@
                         @Html.DisplayFor(model => model.HamiPtra)
                     </td>
                 </tr>
-                
+
             </table>
-            </div>
-        <p class="text-center">
-            <button class="btn btn-danger"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Go Back</a></button>
-            <button class="btn btn-warning"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Save and Exit</a></button>
-            <button class="btn btn-primary"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Submit</a></button>
-        
-        </p>
         </div>
+        @if (Model.FormSubmitted == false)
+        {<p class="text-center">
+
+                <button class="btn btn-danger"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Go Back</a></button>
+                <button class="btn btn-warning"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Save and Exit</a></button>
+                <button class="btn btn-default" onclick="printDiv('print-content')">Print</button>
+                <button class="btn btn-primary"><a style="color:white !important" href="@Url.Action("GenerateReceipt", "ApplicantRegistrations", new { id = Model.Id })">Submit</a></button>
+
+            </p>
+        }
     </div>
+</div>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(printDiv).innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
+</script>

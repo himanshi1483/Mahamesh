@@ -1,0 +1,108 @@
+﻿@model Mahamesh.Models.ApplicantRegistration
+
+@{
+    ViewBag.Title = "Receipt";
+    Layout = null;
+}
+
+<div class="container" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/logo1.png" class="img-responsive" alt="पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे" />
+        </div>
+
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 headerText">
+            <h2>
+                पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे
+            </h2>
+            <h4>राजे यशवंतराव होळकर महामेष योजना</h4>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="राजे यशवंतराव होळकर" />
+        </div>
+    </div>
+    <div class="panel panel-primary-2" id="printDiv">
+        <div class="panel-heading panel-primary-2 text-center"><h5>पावती</h5></div>
+        <div class="panel-body" style="border:2px solid #a4c1ff">
+            <table class="table table-bordered table-striped table-responsive">
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.ApplicationNumber)</td>
+                    <td>@Model.ApplicationNumber</td>
+                </tr>
+                <tr>
+                    <td>पशुवैद्यकीय दवाखाना :</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>गावाचे नाव :</td>
+                                <td>@Model.VillageName</td>
+                            </tr>
+                            <tr>
+                                <td>तालुका:</td>
+                                <td>@Model.Tahashil</td>
+                            </tr>
+                            <tr>
+                                <td>जिल्हा:</td>
+                                <td>@Model.Dist</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>अर्जदाराचे नाव :</td>
+                    <td>@Model.ApName</td>
+                </tr>
+                <tr>
+                    <td>अर्जदारचा पत्ता:</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>राहणार:</td>
+                                <td>@Model.HVillage</td>
+                            </tr>
+                            <tr>
+                                <td>तालुका:</td>
+                                <td>@Model.Tahashil</td>
+                            </tr>
+                            <tr>
+                                <td>जिल्हा:</td>
+                                <td>@Model.Dist</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>अर्जदाराने अर्ज केलेल्या उपघटकाचे नाव:	</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>दिनांक:</td>
+                    <td>@Model.SubmitDatetime.Value.Date.ToShortDateString()</td>
+                </tr>
+                <tr>
+                    <td>वेळ:</td>
+                    <td>@Model.SubmitDatetime.Value.Date.ToShortTimeString()</td>
+                </tr>
+                <tr>
+                    <td>Submited Machine IP Address:</td>
+                    <td>@Model.UserIP</td>
+                </tr>
+            </table>
+        </div>
+        <p style="text-align:right">
+            * Reciept is Computer generated, signature is not required.
+
+        </p>
+    </div>
+    <div class="panel-footer">  <button class="btn btn-default" onclick="printDiv('print-content')">Print</button></div>
+</div>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById(printDiv).innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
+</script>

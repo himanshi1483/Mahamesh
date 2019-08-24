@@ -204,105 +204,21 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\CultureHelper.cs" />
-    <Compile Include="Migrations\201908071048580_init.cs" />
-    <Compile Include="Migrations\201908071048580_init.Designer.cs">
-      <DependentUpon>201908071048580_init.cs</DependentUpon>
+    <Compile Include="Migrations\201908241029052_init28.cs" />
+    <Compile Include="Migrations\201908241029052_init28.Designer.cs">
+      <DependentUpon>201908241029052_init28.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908071153082_init2.cs" />
-    <Compile Include="Migrations\201908071153082_init2.Designer.cs">
-      <DependentUpon>201908071153082_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201908241038402_init29.cs" />
+    <Compile Include="Migrations\201908241038402_init29.Designer.cs">
+      <DependentUpon>201908241038402_init29.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908081148134_init3.cs" />
-    <Compile Include="Migrations\201908081148134_init3.Designer.cs">
-      <DependentUpon>201908081148134_init3.cs</DependentUpon>
+    <Compile Include="Migrations\201908241040466_init30.cs" />
+    <Compile Include="Migrations\201908241040466_init30.Designer.cs">
+      <DependentUpon>201908241040466_init30.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201908081213068_init4.cs" />
-    <Compile Include="Migrations\201908081213068_init4.Designer.cs">
-      <DependentUpon>201908081213068_init4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908081448212_init6.cs" />
-    <Compile Include="Migrations\201908081448212_init6.Designer.cs">
-      <DependentUpon>201908081448212_init6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908090630565_init7.cs" />
-    <Compile Include="Migrations\201908090630565_init7.Designer.cs">
-      <DependentUpon>201908090630565_init7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908090632308_init8.cs" />
-    <Compile Include="Migrations\201908090632308_init8.Designer.cs">
-      <DependentUpon>201908090632308_init8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908090708462_init9.cs" />
-    <Compile Include="Migrations\201908090708462_init9.Designer.cs">
-      <DependentUpon>201908090708462_init9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908181229391_init12.cs" />
-    <Compile Include="Migrations\201908181229391_init12.Designer.cs">
-      <DependentUpon>201908181229391_init12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908181236473_init13.cs" />
-    <Compile Include="Migrations\201908181236473_init13.Designer.cs">
-      <DependentUpon>201908181236473_init13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908181237299_init14.cs" />
-    <Compile Include="Migrations\201908181237299_init14.Designer.cs">
-      <DependentUpon>201908181237299_init14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908181338156_init15.cs" />
-    <Compile Include="Migrations\201908181338156_init15.Designer.cs">
-      <DependentUpon>201908181338156_init15.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908191203547_init141.cs" />
-    <Compile Include="Migrations\201908191203547_init141.Designer.cs">
-      <DependentUpon>201908191203547_init141.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908191254550_init151.cs" />
-    <Compile Include="Migrations\201908191254550_init151.Designer.cs">
-      <DependentUpon>201908191254550_init151.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908230911253_init16.cs" />
-    <Compile Include="Migrations\201908230911253_init16.Designer.cs">
-      <DependentUpon>201908230911253_init16.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231211315_init17.cs" />
-    <Compile Include="Migrations\201908231211315_init17.Designer.cs">
-      <DependentUpon>201908231211315_init17.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231225490_init18.cs" />
-    <Compile Include="Migrations\201908231225490_init18.Designer.cs">
-      <DependentUpon>201908231225490_init18.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231240325_init19.cs" />
-    <Compile Include="Migrations\201908231240325_init19.Designer.cs">
-      <DependentUpon>201908231240325_init19.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231318083_init20.cs" />
-    <Compile Include="Migrations\201908231318083_init20.Designer.cs">
-      <DependentUpon>201908231318083_init20.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231329219_init21.cs" />
-    <Compile Include="Migrations\201908231329219_init21.Designer.cs">
-      <DependentUpon>201908231329219_init21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231331140_init22.cs" />
-    <Compile Include="Migrations\201908231331140_init22.Designer.cs">
-      <DependentUpon>201908231331140_init22.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231449542_init23.cs" />
-    <Compile Include="Migrations\201908231449542_init23.Designer.cs">
-      <DependentUpon>201908231449542_init23.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908231503081_init24.cs" />
-    <Compile Include="Migrations\201908231503081_init24.Designer.cs">
-      <DependentUpon>201908231503081_init24.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908240806386_init26.cs" />
-    <Compile Include="Migrations\201908240806386_init26.Designer.cs">
-      <DependentUpon>201908240806386_init26.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201908240934100_init27.cs" />
-    <Compile Include="Migrations\201908240934100_init27.Designer.cs">
-      <DependentUpon>201908240934100_init27.cs</DependentUpon>
+    <Compile Include="Migrations\201908241053170_init31.cs" />
+    <Compile Include="Migrations\201908241053170_init31.Designer.cs">
+      <DependentUpon>201908241053170_init31.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -750,12 +666,14 @@
     <Content Include="Views\ApplicantRegistrations\Details.cshtml" />
     <Content Include="Views\ApplicantRegistrations\Edit.cshtml" />
     <Content Include="Views\ApplicantRegistrations\Index.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\GenerateReceipt.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Documents\News\" />
     <Folder Include="Documents\Press\" />
     <Folder Include="Documents\Tenders\" />
+    <Folder Include="Images\ApplicantPhoto\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
@@ -780,80 +698,17 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Lang.mr.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908071048580_init.resx">
-      <DependentUpon>201908071048580_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908241029052_init28.resx">
+      <DependentUpon>201908241029052_init28.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908071153082_init2.resx">
-      <DependentUpon>201908071153082_init2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908241038402_init29.resx">
+      <DependentUpon>201908241038402_init29.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908081148134_init3.resx">
-      <DependentUpon>201908081148134_init3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908241040466_init30.resx">
+      <DependentUpon>201908241040466_init30.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908081213068_init4.resx">
-      <DependentUpon>201908081213068_init4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908081448212_init6.resx">
-      <DependentUpon>201908081448212_init6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908090630565_init7.resx">
-      <DependentUpon>201908090630565_init7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908090632308_init8.resx">
-      <DependentUpon>201908090632308_init8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908090708462_init9.resx">
-      <DependentUpon>201908090708462_init9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908181229391_init12.resx">
-      <DependentUpon>201908181229391_init12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908181236473_init13.resx">
-      <DependentUpon>201908181236473_init13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908181237299_init14.resx">
-      <DependentUpon>201908181237299_init14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908181338156_init15.resx">
-      <DependentUpon>201908181338156_init15.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908191203547_init141.resx">
-      <DependentUpon>201908191203547_init141.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908191254550_init151.resx">
-      <DependentUpon>201908191254550_init151.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908230911253_init16.resx">
-      <DependentUpon>201908230911253_init16.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231211315_init17.resx">
-      <DependentUpon>201908231211315_init17.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231225490_init18.resx">
-      <DependentUpon>201908231225490_init18.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231240325_init19.resx">
-      <DependentUpon>201908231240325_init19.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231318083_init20.resx">
-      <DependentUpon>201908231318083_init20.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231329219_init21.resx">
-      <DependentUpon>201908231329219_init21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231331140_init22.resx">
-      <DependentUpon>201908231331140_init22.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231449542_init23.resx">
-      <DependentUpon>201908231449542_init23.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908231503081_init24.resx">
-      <DependentUpon>201908231503081_init24.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908240806386_init26.resx">
-      <DependentUpon>201908240806386_init26.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201908240934100_init27.resx">
-      <DependentUpon>201908240934100_init27.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201908241053170_init31.resx">
+      <DependentUpon>201908241053170_init31.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

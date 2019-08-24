@@ -66,12 +66,20 @@ namespace Mahamesh.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult MahameshYojanaUserLogin(long AadharCardNum)
+        public ActionResult MahameshYojanaUserLogin(long AdharCardNo)
         {
-            var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AadharCardNum);
+            var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AdharCardNo);
             if(applicantExist == true)
             {
-               // var applicantData = db.ApplicantRegistrations.Where(x=>x.AdharCardNo == AadharCardNum).Select(x=>x.)
+                var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
+                if(applicantData.FormSubmitted == true)
+                {
+                    return RedirectToAction("Details", "ApplicantRegistration", new { id = applicantData.Id });
+                }
+                else
+                {
+                    return RedirectToAction("Edit", "ApplicantRegistration", new { id = applicantData.Id });
+                }
             }
             return View();
         }

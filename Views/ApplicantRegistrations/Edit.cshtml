@@ -11,7 +11,30 @@
         border-radius: 5px;
         margin-bottom: 10px;
     }
+    .btn-file {
+        position: relative;
+        overflow: hidden;
+    }
 
+        .btn-file input[type=file] {
+            position: absolute;
+            top: 0;
+            right: 0;
+            min-width: 100%;
+            min-height: 100%;
+            font-size: 100px;
+            text-align: right;
+            filter: alpha(opacity=0);
+            opacity: 0;
+            outline: none;
+            background: white;
+            cursor: inherit;
+            display: block;
+        }
+
+    #img-upload {
+        width: 100%;
+    }
     #regForm {
         background-color: #ffffff;
         /*margin: 100px auto;
@@ -77,29 +100,43 @@
     <div class="panel panel-primary-2">
         <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
         <div class="panel-body">
-            @using (Html.BeginForm("Edit", "ApplicantRegistrations", FormMethod.Post, new { @id = Model.Id ,enctype = "multipart/form-data" }))
+            @using (Html.BeginForm("Edit", "ApplicantRegistrations", FormMethod.Post, new { @id = Model.Id, enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
-                <div style="text-align:center;margin-top:40px;">
-                    <span class="step"></span>
-                    <span class="step"></span>
-                    <span class="step"></span>
-                    <span class="step"></span>
+                <div class="col-lg-8">
+                    <div class="col-lg-6 text-right" id="tabBtn">
+                        <div style="text-align:right;display:none">
+                            <span class="step"></span>
+                            <span class="step"></span>
+                            <span class="step"></span>
+
+                        </div>
+                    </div>
                 </div>
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="col-lg-10"></div>
+              
                     <div class="form-group col-lg-8">
-                        <div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
-                                <label class="custom-file-label" for="fileInput">File Label</label>
-                            </div>
+                        <label>Upload Image</label>
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <span class="btn btn-default btn-file">
+                                    Browse… <input type="file" id="imgInp">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
                         </div>
+                        <img id='img-upload' src="@Model.Photo"/>
+                        @*<div class="input-group mb-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
+                            <label class="custom-file-label" for="fileInput">File Label</label>
+                        </div>
+                    </div>*@
                     </div>
                     <div class="col-lg-4">
                         <img src="@Model.Photo" alt="Applicant Image" class="img-responsive" />
@@ -177,8 +214,8 @@
                             <div>
                                 @*<input type="date" data-date="20/08/2019" class="form-control" data-date-format="DD/MM/YYYY">*@
                                 @*<div>
-                                        Date: <input type="text" id="DOB" />
-                                    </div>*@
+                                Date: <input type="text" id="DOB" />
+                            </div>*@
                                 @*<div id="datepicker"></div>*@
 
                                 @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
@@ -262,12 +299,12 @@
                     </div>
                     @*<div class="col-lg-12">
 
-                            <ul class="list-inline pull-xs-right">
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                </li>
-                            </ul>
-                        </div>*@
+                    <ul class="list-inline pull-xs-right">
+                        <li class="list-inline-item">
+                            <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                        </li>
+                    </ul>
+                </div>*@
                     <div class="col-lg-12">
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Caste, htmlAttributes: new { @class = "control-label" })
@@ -769,133 +806,134 @@
 
                 </div>
                 @*<div class="tab">
-                        <div class="col-lg-10">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.ReshanCard, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.ReshanCard, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ReshanCard, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(model => model.CompNumber, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CompNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CompNumber, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                <div class="col-lg-10">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.ReshanCard, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.ReshanCard, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ReshanCard, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.AdharCardFU, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.AdharCardFU, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.AdharCardFU, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.LivestockDevOffCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.LivestockDevOffCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.LivestockDevOffCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                    </div>
+                    <div class="form-group col-lg-4">
+                        @Html.LabelFor(model => model.CompNumber, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.CompNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CompNumber, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.CasteCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CasteCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CasteCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.ResidentCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.ResidentCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ResidentCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.TenancyAgreement, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.TenancyAgreement, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TenancyAgreement, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.FU712orIncomeCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.FU712orIncomeCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.FU712orIncomeCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.BankPassBook, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.BankPassBook, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BankPassBook, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.BachatMemberCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.BachatMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BachatMemberCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.CompanyMemberCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CompanyMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CompanyMemberCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.DisabilityCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.DisabilityCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DisabilityCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.HamiPtra, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.HamiPtra, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.HamiPtra, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <ul class="list-inline pull-xs-right">
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                </li>
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-default next-step">Skip</button>
-                                </li>
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
-                <div class="tab">
-                    <button type="submit" id="btnSubmit">Save</button>
+                    </div>
                 </div>
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.AdharCardFU, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.AdharCardFU, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.AdharCardFU, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.LivestockDevOffCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.LivestockDevOffCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LivestockDevOffCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.CasteCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.CasteCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CasteCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.ResidentCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.ResidentCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ResidentCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.TenancyAgreement, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.TenancyAgreement, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TenancyAgreement, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.FU712orIncomeCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.FU712orIncomeCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.FU712orIncomeCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.BankPassBook, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.BankPassBook, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BankPassBook, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.BachatMemberCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.BachatMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BachatMemberCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.CompanyMemberCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.CompanyMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CompanyMemberCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.DisabilityCertificate, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.DisabilityCertificate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DisabilityCertificate, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div class="form-group col-lg-6">
+                        @Html.LabelFor(model => model.HamiPtra, htmlAttributes: new { @class = "control-label" })
+                        <div>
+                            @Html.EditorFor(model => model.HamiPtra, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.HamiPtra, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <ul class="list-inline pull-xs-right">
+                        <li class="list-inline-item">
+                            <button type="button" class="btn btn-default prev-step">Previous</button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button type="button" class="btn btn-default next-step">Skip</button>
+                        </li>
+                        <li class="list-inline-item">
+                            <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>*@
+                @*<div class="tab">
+                <button type="submit" id="btnSubmit">Save</button>
+            </div>*@
                 <div style="overflow:auto;">
                     <div style="float:right;">
                         <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="submit" id="saveBtn" onclick="nextPrev(1)">Save</button>
                         <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div>
@@ -917,17 +955,27 @@
     function showTab(n) {
         // This function will display the specified tab of the form...
         var x = document.getElementsByClassName("tab");
+
         x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
+            document.getElementById("saveBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
+            document.getElementById("prevBtn").className = "btn btn-danger";
+            document.getElementById("saveBtn").style.display = "inline";
+            document.getElementById("saveBtn").className = "btn btn-success";
         }
         if (n == (x.length - 1)) {
             document.getElementById("nextBtn").innerHTML = "Submit";
+            document.getElementById("nextBtn").className = "btn btn-success";
+            document.getElementById("saveBtn").style.display = "none";
         } else {
             document.getElementById("nextBtn").innerHTML = "Next";
+            document.getElementById("nextBtn").className = "btn btn-warning";
+            document.getElementById("saveBtn").style.display = "inline";
+            document.getElementById("saveBtn").className = "btn btn-success";
         }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
@@ -985,5 +1033,656 @@
         //... and adds the "active" class on the current step:
         x[n].className += " active";
     }
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#Dist").val(@Model.Dist);
+        $("#VillageName").val(@Model.VillageName);
+        $("#HVillage").val(@Model.HVillage);
+        //  $("#Watersour").val(@Model.Dist);
+        $("#Dist").change(function () {
+            $("#Tahashil").empty();
+            $("#VillageName").empty();
+            $("#HVillage").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getTaluka")',
+                dataType: 'json',
+                data: { id: $("#Dist").val() },
+                success: function (city) {
+                    //alert(city);
+                    $.each(city, function (i, city) {
+                        $("#Tahashil").append('<option value="'
+                            + city.Value + '">'
+                            + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        });
+
+        $('input[id$=DOB]').datepicker({
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#Tahashil").change(function () {
+            $("#VillageName").empty();
+            $("#HVillage").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getVillage")',
+                dataType: 'json',
+                data: { id: $("#Tahashil").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#VillageName").append('<option value="'
+                                                   + city.Value + '">'
+                                             + city.Text + '</option>');
+                    });
+                    $.each(city, function (i, city) {
+                        $("#HVillage").append('<option value="'
+                            + city.Value + '">'
+                            + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+
+        $('#Component1').change(function () {
+            if ($('#Component1').is(':checked') == true) {
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', true);
+                $('#Component10').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', true);
+                $('#Component13').prop('disabled', true);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked1');
+            }
+            else {
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component2').change(function () {
+            if ($('#Component2').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', true);
+                $('#Component10').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', true);
+                $('#Component13').prop('disabled', true);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component3').change(function () {
+            if ($('#Component3').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component4').change(function () {
+            if ($('#Component4').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component5').change(function () {
+            if ($('#Component5').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component6').change(function () {
+            if ($('#Component6').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component7').change(function () {
+            if ($('#Component7').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component9').change(function () {
+            if ($('#Component9').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component10').change(function () {
+            if ($('#Component10').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component9').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component11').change(function () {
+            if ($('#Component11').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', true);
+                $('#Component9').prop('disabled', true);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component12').change(function () {
+            if ($('#Component12').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component13').prop('disabled', true);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component13').change(function () {
+            if ($('#Component13').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component12').prop('disabled', true);
+                $('#Component14').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component7').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component9').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component14').change(function () {
+            if ($('#Component14').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', true);
+                $('#Component10').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', true);
+                $('#Component13').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                $('#Component15').prop('disabled', true);
+                console.log('checked14');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+                $('#Component15').prop('disabled', false);
+            }
+        });
+        $('#Component15').change(function () {
+            if ($('#Component15').is(':checked') == true) {
+                $('#Component1').prop('disabled', true);
+                $('#Component3').prop('disabled', true);
+                $('#Component4').prop('disabled', true);
+                $('#Component5').prop('disabled', true);
+                $('#Component6').prop('disabled', true);
+                $('#Component7').prop('disabled', true);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', true);
+                $('#Component10').prop('disabled', true);
+                $('#Component11').prop('disabled', true);
+                $('#Component12').prop('disabled', true);
+                $('#Component13').prop('disabled', true);
+                $('#Component14').prop('disabled', true);
+                $('#Component2').prop('disabled', true);
+                console.log('checked15');
+            }
+            else {
+                $('#Component1').prop('disabled', false);
+                $('#Component3').prop('disabled', false);
+                $('#Component4').prop('disabled', false);
+                $('#Component5').prop('disabled', false);
+                $('#Component6').prop('disabled', false);
+                $('#Component7').prop('disabled', false);
+                //$('#Component8').prop('disabled', true);
+                $('#Component9').prop('disabled', false);
+                $('#Component10').prop('disabled', false);
+                $('#Component11').prop('disabled', false);
+                $('#Component12').prop('disabled', false);
+                $('#Component13').prop('disabled', false);
+                $('#Component14').prop('disabled', false);
+                $('#Component2').prop('disabled', false);
+            }
+        });
+
+        $(document).on('change', '.btn-file :file', function () {
+            var input = $(this),
+                label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.trigger('fileselect', [label]);
+        });
+
+        $('.btn-file :file').on('fileselect', function (event, label) {
+
+            var input = $(this).parents('.input-group').find(':text'),
+                log = label;
+
+            if (input.length) {
+                input.val(log);
+            } else {
+                if (log) alert(log);
+            }
+
+        });
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#img-upload').attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $("#imgInp").change(function () {
+            readURL(this);
+        }); 	
+        });
+
+
+    function checkCripple() {
+        if (document.getElementById('ApplicantCrippled1').checked) {
+            document.getElementById('divCripple').style.display = 'block';
+        }
+        else document.getElementById('divCripple').style.display = 'none';
+    }
+
+    function checkSheep() {
+        if (document.getElementById('PresentDaySheep1').checked) {
+            document.getElementById('divSheep').style.display = 'block';
+        }
+        else document.getElementById('divSheep').style.display = 'none';
+    }
+
+    function checkLandOwned() {
+        if (document.getElementById('IsApplicantOwnedLand1').checked) {
+            document.getElementById('divLandOwned').style.display = 'block';
+        }
+        else {
+            document.getElementById('divLandOwned').style.display = 'none';
+            document.getElementById('divLease').style.display = 'block';
+
+        }
+    }
+
+    function checkLandLeased() {
+        if (document.getElementById('IsNotIsAvailableOnLease1').checked) {
+            document.getElementById('divLandLeased').style.display = 'block';
+        }
+        else document.getElementById('divLandLeased').style.display = 'none';
+    }
+
+    function checkWarehouse() {
+        if (document.getElementById('IsWarehouseForSheep1').checked) {
+            document.getElementById('divWarehouse').style.display = 'block';
+        }
+        else {
+            document.getElementById('divWarehouse').style.display = 'none';
+            document.getElementById('divSpace').style.display = 'block';
+        }
+        }
+
+        function checkCompany() {
+            if (document.getElementById('IsanimalHusbandryManufacturingCompanyMember1').checked) {
+                document.getElementById('divCompany').style.display = 'block';
+            }
+            else {
+                document.getElementById('divCompany').style.display = 'none';
+            }
+        }
+
+        function checkSavings() {
+            if (document.getElementById('IsSavingsGroupMember1').checked) {
+                document.getElementById('divSavings').style.display = 'block';
+            }
+            else {
+                document.getElementById('divSavings').style.display = 'none';
+            }
+        }
 </script>
 

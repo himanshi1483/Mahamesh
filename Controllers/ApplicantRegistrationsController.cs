@@ -1,4 +1,5 @@
 ﻿using Mahamesh.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -47,6 +48,7 @@ namespace Mahamesh.Controllers
                 ViewBag.District = li;
             }
         }
+
 
         public void getWaterSource()
         {
@@ -194,7 +196,12 @@ namespace Mahamesh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ApplicantRegistration applicantRegistration, HttpPostedFileBase files)
         {
-           
+            var userList = db.ApplicantRegistrations.Select(x => x.AdharCardNo).ToList();
+            if(userList.Any(x=>x == applicantRegistration.AdharCardNo))
+            {
+                ViewBag.Error = "User with this Aadhar Number already exist.";
+                return View();
+            }
             if (ModelState.IsValid)
             {
                 if (files != null && files.ContentLength > 0)
@@ -207,10 +214,13 @@ namespace Mahamesh.Controllers
                     applicantRegistration.Photo = relativePath;
                 }
 
+
                 db.ApplicantRegistrations.Add(applicantRegistration);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = applicantRegistration.Id });
             }
+
+
             getDistrict();
             getCaste();
             getCripplePercent();
@@ -238,6 +248,7 @@ namespace Mahamesh.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
+            
             if (applicantRegistration == null)
             {
                 return HttpNotFound();
@@ -268,6 +279,35 @@ namespace Mahamesh.Controllers
             getTypeCastle();
             getDuration();
             return View(applicantRegistration);
+        }
+
+        public string GetIPAddress()
+        {
+            string IPAddress = "";
+            IPHostEntry Host = default(IPHostEntry);
+            string Hostname = null;
+            Hostname = System.Environment.MachineName;
+            Host = Dns.GetHostEntry(Hostname);
+            foreach (IPAddress IP in Host.AddressList)
+            {
+                if (IP.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    IPAddress = Convert.ToString(IP);
+                }
+            }
+            return IPAddress;
+        }
+
+        public ActionResult GenerateReceipt(int id)
+        {
+            var application = db.ApplicantRegistrations.Find(id);
+            application.FormSubmitted = true;
+            application.SubmitDatetime = DateTime.Now;
+            application.UserIP = GetIPAddress();
+            db.Entry(application).State = EntityState.Modified;
+            db.SaveChanges();
+
+            return View(application);
         }
 
         // GET: ApplicantRegistrations/Delete/5

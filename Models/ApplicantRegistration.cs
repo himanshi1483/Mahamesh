@@ -14,7 +14,15 @@ namespace Mahamesh.Models
         [Display(Name = "अर्जदाराचा फोटो")]
         public string Photo { get; set; }
 
-        public int ApplicationID { get; set; }
+        [Display(Name = "अर्ज क्रमांक")]
+        public string ApplicationNumber { get; set; }
+
+        public bool FormSubmitted { get; set; }
+
+        [Display(Name ="Submitted Machine IP Address")]
+        public string UserIP { get; set; }
+
+        public DateTime? SubmitDatetime { get; set; }
 
         [Display(Name = "अर्जदाराचे नाव")]
         public string ApName { get; set; }
