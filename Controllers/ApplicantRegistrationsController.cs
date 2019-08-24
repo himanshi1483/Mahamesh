@@ -29,6 +29,17 @@ namespace Mahamesh.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
+            //   var _caste = db.CasteUnderNTC.Where(x=>x.Caste = applicantRegistration.SubCatse);
+            var _dist = db.DistMaster.Where(x => x.Dist_Code == applicantRegistration.Dist).Select(x => x.DistName).FirstOrDefault();
+            var _tal = db.TalMaster.Where(x => x.Dist_Code == applicantRegistration.Tahashil).Select(x=>x.TalName).FirstOrDefault();
+            var _vil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            var _hvil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.HVillage).Select(x => x.VillageName).FirstOrDefault();
+
+            // applicantRegistration.SubCasteName = _caste;
+            applicantRegistration.DistrictName = _dist;
+            applicantRegistration.TalukaName = _tal;
+            applicantRegistration.VilName = _vil;
+            applicantRegistration.HvilName = _hvil;
             if (applicantRegistration == null)
             {
                 return HttpNotFound();
@@ -110,7 +121,7 @@ namespace Mahamesh.Controllers
 
             foreach (var m in ddlCaste)
             {
-                li.Add(new SelectListItem { Text = m.Caste, Value = m.ID.ToString() });
+                li.Add(new SelectListItem { Text = m.Caste, Value = m.Caste.ToString() });
                 ViewBag.Caste = li;
             }
         }
@@ -176,7 +187,7 @@ namespace Mahamesh.Controllers
 
 
         // GET: ApplicantRegistrations/Create
-        public ActionResult Create()
+        public ActionResult Create(long aadhar)
         {
             getDistrict();
             getCaste();
@@ -186,7 +197,10 @@ namespace Mahamesh.Controllers
             getWaterSource();
             getTypeCastle();
             getDuration();
-            return View();
+            var model = new ApplicantRegistration();
+            model.AdharCardNo = aadhar;
+            model.Caste = "भटक्या जमातीचा - क";
+            return View(model);
         }
 
         // POST: ApplicantRegistrations/Create
@@ -194,27 +208,37 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ApplicantRegistration applicantRegistration, HttpPostedFileBase files)
+        public ActionResult Create(ApplicantRegistration applicantRegistration, HttpPostedFileBase file)
         {
             var userList = db.ApplicantRegistrations.Select(x => x.AdharCardNo).ToList();
             if(userList.Any(x=>x == applicantRegistration.AdharCardNo))
             {
                 ViewBag.Error = "User with this Aadhar Number already exist.";
-                return View();
+                getDistrict();
+                getCaste();
+                getCripplePercent();
+                getNoOfSheep();
+                getAcre();
+                getWaterSource();
+                getTypeCastle();
+                getDuration();
+                return View(applicantRegistration);
             }
             if (ModelState.IsValid)
             {
-                if (files != null && files.ContentLength > 0)
+                if (file != null && file.ContentLength > 0)
                 {
                     // extract only the filename
-                    var fileName = Path.GetFileName(files.FileName);
+                    var fileName = Path.GetFileName(file.FileName);
                     var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), fileName);
-                    files.SaveAs(path);
+                    file.SaveAs(path);
                     var relativePath = "/Images/ApplicantPhoto/" + fileName;
                     applicantRegistration.Photo = relativePath;
                 }
 
-
+                applicantRegistration.SubmitDatetime = DateTime.Now;
+                var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x=>x.Id).FirstOrDefault();
+                applicantRegistration.ApplicationNumber = "530 / 4286 / 567358 /" + (id + 1);
                 db.ApplicantRegistrations.Add(applicantRegistration);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = applicantRegistration.Id });
@@ -276,11 +300,21 @@ namespace Mahamesh.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ApplicantRegistration applicantRegistration)
+        public ActionResult Edit(ApplicantRegistration applicantRegistration, HttpPostedFileBase file)
         {
            
             if (ModelState.IsValid)
             {
+                if (file != null && file.ContentLength > 0)
+                {
+                    // extract only the filename
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), fileName);
+                    file.SaveAs(path);
+                    var relativePath = "/Images/ApplicantPhoto/" + fileName;
+                    applicantRegistration.Photo = relativePath;
+                }
+                applicantRegistration.SubmitDatetime = DateTime.Now;
                 db.Entry(applicantRegistration).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = applicantRegistration.Id });

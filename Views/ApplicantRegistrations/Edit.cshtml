@@ -125,7 +125,7 @@
                         <div class="input-group">
                             <span class="input-group-btn">
                                 <span class="btn btn-default btn-file">
-                                    Browse… <input type="file" id="imgInp">
+                                    Browse… <input type="file" id="imgInp" name="file">
                                 </span>
                             </span>
                             <input type="text" class="form-control" readonly>
@@ -248,7 +248,10 @@
                                     <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="स्त्री">
                                     <label class="custom-control-label" for="customRadio2">स्त्री</label>
                                 </div>
-
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" class="custom-control-input" id="customRadio3" name="gender" value="trans">
+                                    <label class="custom-control-label" for="customRadio3">trans</label>
+                                </div>
                                 @*@Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })*@
                                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                             </div>
@@ -313,7 +316,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Caste, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.Caste, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Caste, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
                                 @Html.ValidationMessageFor(model => model.Caste, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -919,8 +922,8 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-      
-
+       $("#Caste").val("भटक्या जमातीचा - क");
+        $("input[type=radio][name='gender']:checked").val("@Model.Gender");
         $("#Dist").change(function () {
             $("#Tahashil").empty();
             $("#VillageName").empty();
@@ -946,7 +949,14 @@
         });
 
         $('input[id$=DOB]').datepicker({
-            dateFormat: 'dd/mm/yy'
+            dateFormat: 'dd/mm/yy',
+            onSelect: function (value, ui) {
+                var today = new Date();
+                age = today.getFullYear() - ui.selectedYear;
+                $('#Age').val(age);
+            },
+            changeMonth: true,
+            changeYear: true
         });
 
         $("#Tahashil").change(function () {

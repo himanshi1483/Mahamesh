@@ -17,26 +17,32 @@
     <div class="panel panel-primary-2" id="printDiv">
         <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
         <div class="panel-body">
+            <div>
+                <div style="float:left">
+                    <p style="font-weight:700; color:blue;text-align:left"> @Html.DisplayNameFor(model => model.ApplicationNumber) : @Model.ApplicationNumber</p>
+                    <p style="font-weight:700; color:blue;text-align:left"> दिनांक :  @Model.SubmitDatetime.Value.ToLongDateString() वेळ :   @Model.SubmitDatetime.Value.ToShortTimeString()  </p>
+                </div>
+                <div style="float:right"><img src="@Html.DisplayFor(model => model.Photo)" alt="Applicant Photo" height="70" /></div>
+            </div>
+           
+        
             <table class="table table-bordered table-striped table-responsive">
-                <tr>
-                    <td> @Html.DisplayNameFor(model => model.Photo)</td>
-                    <td><img src="@Html.DisplayFor(model => model.Photo)" alt="Applicant Photo" /></td>
-                </tr>
+                
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.ApName)</td>
                     <td> @Html.DisplayFor(model => model.ApName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.VillageName)</td>
-                    <td> @Html.DisplayFor(model => model.VillageName)</td>
+                    <td> @Html.DisplayFor(model => model.VilName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.Tahashil)</td>
-                    <td> @Html.DisplayFor(model => model.Tahashil)</td>
+                    <td> @Html.DisplayFor(model => model.TalukaName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.Dist)</td>
-                    <td> @Html.DisplayFor(model => model.Dist)</td>
+                    <td> @Html.DisplayFor(model => model.DistrictName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.PinCode)</td>
@@ -44,7 +50,7 @@
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.HVillage)</td>
-                    <td> @Html.DisplayFor(model => model.HVillage)</td>
+                    <td> @Html.DisplayFor(model => model.HvilName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.PhNo)</td>
@@ -302,132 +308,132 @@
                         @Html.DisplayFor(model => model.CompNumber)
                     </td>
                 </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.AdharCardFU)
-                    </td>
+                @*<tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.AdharCardFU)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.AdharCardFU)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.LivestockDevOffCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.AdharCardFU)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.LivestockDevOffCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.LivestockDevOffCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.CasteCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.LivestockDevOffCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.CasteCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.CasteCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.ResidentCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.CasteCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ResidentCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.ResidentCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.Childcertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.ResidentCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.Childcertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.Childcertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.FU712Certificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Childcertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.FU712Certificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.FU712Certificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.TenancyAgreement)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.FU712Certificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.TenancyAgreement)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.TenancyAgreement)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.FU712orIncomeCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.TenancyAgreement)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.FU712orIncomeCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.FU712orIncomeCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.BankPassBook)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.FU712orIncomeCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.BankPassBook)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.BankPassBook)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.BachatMemberCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.BankPassBook)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.BachatMemberCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.BachatMemberCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.CompanyMemberCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.BachatMemberCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.CompanyMemberCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.CompanyMemberCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.DisabilityCertificate)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.CompanyMemberCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.DisabilityCertificate)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.DisabilityCertificate)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.ReshanCard)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.DisabilityCertificate)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.ReshanCard)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.ReshanCard)
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        @Html.DisplayNameFor(model => model.HamiPtra)
-                    </td>
+                        <td>
+                            @Html.DisplayFor(model => model.ReshanCard)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayNameFor(model => model.HamiPtra)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(model => model.HamiPtra)
-                    </td>
-                </tr>
+                        <td>
+                            @Html.DisplayFor(model => model.HamiPtra)
+                        </td>
+                    </tr>*@
 
             </table>
         </div>

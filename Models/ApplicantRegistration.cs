@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -29,6 +30,22 @@ namespace Mahamesh.Models
 
         [Display(Name = "गावाचे नाव (मु. पो.) ")]
         public int? VillageName { get; set; }
+
+        [NotMapped]
+        public string DistrictName { get; set; }
+
+        [NotMapped]
+        public string TalukaName { get; set; }
+
+        [NotMapped]
+        public string VilName { get; set; }
+
+        [NotMapped]
+        public string HvilName { get; set; }
+
+        [NotMapped]
+        public string SubCasteName { get; set; }
+
 
         [Display(Name = "तालुका")]
         public int? Tahashil { get; set; }

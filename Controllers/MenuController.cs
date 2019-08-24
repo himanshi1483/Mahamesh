@@ -83,7 +83,7 @@ namespace Mahamesh.Controllers
             }
             else
             {
-                return RedirectToAction("Create", "ApplicantRegistrations");
+                return RedirectToAction("Create", "ApplicantRegistrations", new { @aadhar = AdharCardNo });
             }
             return View();
         }

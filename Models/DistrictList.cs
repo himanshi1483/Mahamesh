@@ -71,7 +71,7 @@ namespace Mahamesh.Models
     {
         [Key]
         public int id { get; set; }
-        public int? Acre { get; set; }
+        public decimal? Acre { get; set; }
 
     }
 
