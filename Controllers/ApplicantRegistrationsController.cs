@@ -21,6 +21,12 @@ namespace Mahamesh.Controllers
             return View(db.ApplicantRegistrations.ToList());
         }
 
+        public ActionResult UserIndex(int id)
+        {
+            var model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
+            return View(model);
+        }
+
         // GET: ApplicantRegistrations/Details/5
         public ActionResult Details(int? id)
         {
@@ -31,7 +37,7 @@ namespace Mahamesh.Controllers
             ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
             //   var _caste = db.CasteUnderNTC.Where(x=>x.Caste = applicantRegistration.SubCatse);
             var _dist = db.DistMaster.Where(x => x.Dist_Code == applicantRegistration.Dist).Select(x => x.DistName).FirstOrDefault();
-            var _tal = db.TalMaster.Where(x => x.Dist_Code == applicantRegistration.Tahashil).Select(x=>x.TalName).FirstOrDefault();
+            var _tal = db.TalMaster.Where(x => x.Tal_Code == applicantRegistration.Tahashil).Select(x=>x.TalName).FirstOrDefault();
             var _vil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.VillageName).Select(x => x.VillageName).FirstOrDefault();
             var _hvil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.HVillage).Select(x => x.VillageName).FirstOrDefault();
 
@@ -40,6 +46,11 @@ namespace Mahamesh.Controllers
             applicantRegistration.TalukaName = _tal;
             applicantRegistration.VilName = _vil;
             applicantRegistration.HvilName = _hvil;
+            applicantRegistration.YesAvailableOnLeaseEcre = Math.Round(Convert.ToDecimal(applicantRegistration.YesAvailableOnLeaseEcre),2);
+            applicantRegistration.YesApplicantOwnedLandEcre = Math.Round(Convert.ToDecimal(applicantRegistration.YesApplicantOwnedLandEcre), 2);
+            applicantRegistration.GardeningEcre = Math.Round(Convert.ToDecimal(applicantRegistration.GardeningEcre), 2);
+            applicantRegistration.CuminEcre = Math.Round(Convert.ToDecimal(applicantRegistration.CuminEcre), 2);
+
             if (applicantRegistration == null)
             {
                 return HttpNotFound();
@@ -230,15 +241,16 @@ namespace Mahamesh.Controllers
                 {
                     // extract only the filename
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), fileName);
+                    var exten = Path.GetExtension(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), applicantRegistration.AdharCardNo+"_"+applicantRegistration.ApName+"."+ exten);
                     file.SaveAs(path);
-                    var relativePath = "/Images/ApplicantPhoto/" + fileName;
+                    var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten;
                     applicantRegistration.Photo = relativePath;
                 }
 
                 applicantRegistration.SubmitDatetime = DateTime.Now;
                 var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x=>x.Id).FirstOrDefault();
-                applicantRegistration.ApplicationNumber = "530 / 4286 / 567358 /" + (id + 1);
+                applicantRegistration.ApplicationNumber = applicantRegistration.Dist+"/"+applicantRegistration.Tahashil+"/"+applicantRegistration.VillageName+ (id + 1);
                 db.ApplicantRegistrations.Add(applicantRegistration);
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = applicantRegistration.Id });
@@ -257,7 +269,7 @@ namespace Mahamesh.Controllers
         }
 
         // GET: ApplicantRegistrations/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, string exit)
         {
            
             var ddlDist = db.DistMaster.ToList();
@@ -292,7 +304,15 @@ namespace Mahamesh.Controllers
             {
                 return HttpNotFound();
             }
-            return View(applicantRegistration);
+            if (exit == "home")
+            {
+                return RedirectToAction("MahameshYojana", "Menu");
+            }
+            else
+            {
+                return View(applicantRegistration); ;
+            }
+            //return View(applicantRegistration);
         }
 
         // POST: ApplicantRegistrations/Edit/5
@@ -309,12 +329,12 @@ namespace Mahamesh.Controllers
                 {
                     // extract only the filename
                     var fileName = Path.GetFileName(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), fileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName);
                     file.SaveAs(path);
-                    var relativePath = "/Images/ApplicantPhoto/" + fileName;
+                    var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName;
                     applicantRegistration.Photo = relativePath;
                 }
-                applicantRegistration.SubmitDatetime = DateTime.Now;
+                applicantRegistration.SubmitDatetime = DateTime.Now.ToLocalTime();
                 db.Entry(applicantRegistration).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Details", new { id = applicantRegistration.Id });
@@ -351,7 +371,7 @@ namespace Mahamesh.Controllers
         {
             var application = db.ApplicantRegistrations.Find(id);
             application.FormSubmitted = true;
-            application.SubmitDatetime = DateTime.Now;
+            application.SubmitDatetime = DateTime.Now.ToLocalTime();
             application.UserIP = GetIPAddress();
             db.Entry(application).State = EntityState.Modified;
             db.SaveChanges();

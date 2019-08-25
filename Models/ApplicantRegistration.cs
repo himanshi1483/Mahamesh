@@ -91,7 +91,7 @@ namespace Mahamesh.Models
         public string ApplicantCrippled { get; set; }
 
         [Display(Name = "असल्यास %")]
-        public double? CrippledPercentage { get; set; }
+        public decimal? CrippledPercentage { get; set; }
 
         [Display(Name = "अर्जदाराकडे सद्यस्थितीत मेंढया आहेत काय ?")]
         public string PresentDaySheep { get; set; }
@@ -109,26 +109,26 @@ namespace Mahamesh.Models
         public string IsApplicantOwnedLand { get; set; }
 
         [Display(Name = "हेक्टर")]
-        public int? YesApplicantOwnedLandEcre { get; set; }
+        public decimal? YesApplicantOwnedLandEcre { get; set; }
 
         [Display(Name = "आर")]
-        public int? YesApplicantOwnedLandGuntha { get; set; }
+        public decimal? YesApplicantOwnedLandGuntha { get; set; }
 
       
         [Display(Name = "नसल्यास,भाडेकरारावर शेत जमीन उपलब्ध केली आहे काय ? ")]
         public string IsNotIsAvailableOnLease { get; set; }
 
         [Display(Name = "हेक्टर ")]
-        public int? YesAvailableOnLeaseEcre { get; set; }
+        public decimal? YesAvailableOnLeaseEcre { get; set; }
 
         [Display(Name = "आर ")]
-        public int? YesAvailableOnLeaseGuntha { get; set; }
+        public decimal? YesAvailableOnLeaseGuntha { get; set; }
 
         [Display(Name = "बागायत हेक्टर")]
-        public double? GardeningEcre { get; set; }
+        public decimal? GardeningEcre { get; set; }
 
         [Display(Name = "जिरायत हेक्टर ")]
-        public double? CuminEcre { get; set; }
+        public decimal? CuminEcre { get; set; }
 
         [Display(Name = "बारमाही/हंगामी सिंचनाकरिता पाण्याचा स्रोत")]
         public string WaterSource { get; set; }
@@ -140,7 +140,7 @@ namespace Mahamesh.Models
         public string LastYearFooder { get; set; }
 
         [Display(Name = "मागील वर्षी झालेल्या एकूण चार्‍याचे उत्पादन (किलो) :(नंबर इंग्लिश मध्ये असणे आवश्यक आहे) ")]
-        public double? LastYearTotalProductionInKG { get; set; }
+        public decimal? LastYearTotalProductionInKG { get; set; }
 
         [Display(Name = "अर्जदाराकडे मेंढ्यांसाठी वाडा उपलब्ध आहे काय ?")]
         public string IsWarehouseForSheep { get; set; }
@@ -181,6 +181,9 @@ namespace Mahamesh.Models
         //For Components///
         [Display(Name = "Component ")]
         public string CompNumber { get; set; }
+
+        [NotMapped]
+        public List<string> CompNumberList { get; set; }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //For Documenent////
         [Display(Name = "AdharCardFU ")]

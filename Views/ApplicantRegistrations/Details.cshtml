@@ -440,8 +440,8 @@
         @if (Model.FormSubmitted == false)
         {<p class="text-center">
 
-                <button class="btn btn-danger"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Go Back</a></button>
-                <button class="btn btn-warning"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id })">Save and Exit</a></button>
+                <button class="btn btn-danger"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id , exit = "step"})">Go Back</a></button>
+                <button class="btn btn-warning"><a style="color:white !important" href="@Url.Action("Edit", "ApplicantRegistrations", new { id = Model.Id, exit = "home" })">Save and Exit</a></button>
                 <button class="btn btn-default" onclick="printDiv('print-content')">Print</button>
                 <button class="btn btn-primary"><a style="color:white !important" href="@Url.Action("GenerateReceipt", "ApplicantRegistrations", new { id = Model.Id })">Submit</a></button>
 

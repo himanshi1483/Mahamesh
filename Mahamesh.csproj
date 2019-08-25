@@ -224,6 +224,22 @@
     <Compile Include="Migrations\201908242132262_init311.Designer.cs">
       <DependentUpon>201908242132262_init311.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908251004148_init32.cs" />
+    <Compile Include="Migrations\201908251004148_init32.Designer.cs">
+      <DependentUpon>201908251004148_init32.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251358407_init33.cs" />
+    <Compile Include="Migrations\201908251358407_init33.Designer.cs">
+      <DependentUpon>201908251358407_init33.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251744041_init35.cs" />
+    <Compile Include="Migrations\201908251744041_init35.Designer.cs">
+      <DependentUpon>201908251744041_init35.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908251750492_init36.cs" />
+    <Compile Include="Migrations\201908251750492_init36.Designer.cs">
+      <DependentUpon>201908251750492_init36.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -467,14 +483,28 @@
     <Content Include="Documents\MahameshYojana\Format3.pdf" />
     <Content Include="Documents\MahameshYojana\Format4.pdf" />
     <Content Include="Documents\MahameshYojana\Govt GR.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 1 ते 6.docx" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 1 ते 6.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक1.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक2.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक3.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक4.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक5.pdf" />
-    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना क्रमांक6.pdf" />
+    <Content Include="Documents\MahameshYojana\MAHAMESH GUIDELINE 2019-20.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 1.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 2.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 3.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 4.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 5.pdf" />
+    <Content Include="Documents\MahameshYojana\बंधपत्र नमूना 6.pdf" />
+    <Content Include="Content\Varsity\assets\fonts\chandas1-2.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\gargi.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\kalimati.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\Lohit-Devanagari.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\Lohit-Marathi.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\lohit_kok.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\lohit_ks.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\lohit_mai.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\lohit_ne.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\lohit_sd.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\nakula.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\sahadeva.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\samanata.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\Samyak-Devanagari.ttf" />
+    <Content Include="Content\Varsity\assets\fonts\Sarai_07.ttf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -672,6 +702,7 @@
     <Content Include="Views\ApplicantRegistrations\Index.cshtml" />
     <Content Include="Views\ApplicantRegistrations\GenerateReceipt.cshtml" />
     <Content Include="Views\Shared\_LayoutReceipt.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\UserIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -717,6 +748,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908242132262_init311.resx">
       <DependentUpon>201908242132262_init311.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251004148_init32.resx">
+      <DependentUpon>201908251004148_init32.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251358407_init33.resx">
+      <DependentUpon>201908251358407_init33.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251744041_init35.resx">
+      <DependentUpon>201908251744041_init35.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908251750492_init36.resx">
+      <DependentUpon>201908251750492_init36.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

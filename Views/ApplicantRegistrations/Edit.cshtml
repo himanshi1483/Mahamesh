@@ -116,35 +116,44 @@
                         </div>
                     </div>
                 </div>
+                <div style="overflow:auto;">
+                    <div style="float:right;">
+                        <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+                        <button type="submit" class="btn btn-default" id="saveBtn" onclick="nextPrev(1)">Save</button>
+                        <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Next</button>
+                    </div>
+                </div>
                 <!-- One "tab" for each step in the form: -->
                 <div class="tab">
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-lg-6">
-                    <div class="form-group">
-                        <label>Upload Image</label>
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <span class="btn btn-default btn-file">
-                                    Browse… <input type="file" id="imgInp" name="file">
-                                </span>
-                            </span>
-                            <input type="text" class="form-control" readonly>
-                        </div>
-                        <img id='img-upload' src="@Model.Photo"/>
-                        @*<div class="input-group mb-4">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
-                        </div>
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
-                            <label class="custom-file-label" for="fileInput">File Label</label>
-                        </div>
-                    </div>*@
+                        <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
                     </div>
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <label>Upload Image</label>
+                            <div class="input-group">
+                                <span class="input-group-btn">
+                                    <span class="btn btn-default btn-file">
+                                        Browse… <input type="file" id="imgInp" name="file">
+                                    </span>
+                                </span>
+                                <input type="text" class="form-control" readonly>
+                            </div>
+                            <img id='img-upload' src="@Model.Photo" />
+                            @*<div class="input-group mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
+                                <label class="custom-file-label" for="fileInput">File Label</label>
+                            </div>
+                        </div>*@
+                        </div>
                     </div>
                     @*<div class="col-lg-4">
-                        <img src="@Model.Photo" alt="Applicant Image" class="img-responsive" />
-                    </div>*@
+                    <img src="@Model.Photo" alt="Applicant Image" class="img-responsive" />
+                </div>*@
                     <div class="col-lg-12 heading panel-primary-2 text-center" style="margin-bottom:10px;">
                         <h5>पत्रव्यवहाराचा पत्ता</h5>
                     </div>
@@ -208,7 +217,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.PhNo, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control", @type = "tel", @minlength = "10", @maxlength = "10" } })
                                 @Html.ValidationMessageFor(model => model.PhNo, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -218,8 +227,8 @@
                             <div>
                                 @*<input type="date" data-date="20/08/2019" class="form-control" data-date-format="DD/MM/YYYY">*@
                                 @*<div>
-                                        Date: <input type="text" id="DOB" />
-                                    </div>*@
+                                Date: <input type="text" id="DOB" />
+                            </div>*@
                                 @*<div id="datepicker"></div>*@
 
                                 @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
@@ -240,18 +249,24 @@
                             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label" })
                             <div>
 
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="पुरुष">
-                                    <label class="custom-control-label" for="customRadio">पुरुष</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="स्त्री">
-                                    <label class="custom-control-label" for="customRadio2">स्त्री</label>
-                                </div>
-                                <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" class="custom-control-input" id="customRadio3" name="gender" value="trans">
-                                    <label class="custom-control-label" for="customRadio3">trans</label>
-                                </div>
+                                <label class="radio-inline"><input type="radio" style="position:relative !important" name="gender" value="पुरुष">पुरुष</label>
+
+                                <label class="radio-inline"><input type="radio" style="position:relative !important" name="gender"  value="स्त्री">स्त्री</label>
+
+                                <label class="radio-inline"><input type="radio" style="position:relative !important" name="gender" value="इतर">इतर</label>
+
+                                @*<div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio" name="gender" value="पुरुष">
+                                <label class="custom-control-label" for="customRadio">पुरुष</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio2" name="gender" value="स्त्री">
+                                <label class="custom-control-label" for="customRadio2">स्त्री</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="customRadio3" name="gender" value="trans">
+                                <label class="custom-control-label" for="customRadio3">trans</label>
+                            </div>*@
                                 @*@Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })*@
                                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
                             </div>
@@ -306,17 +321,17 @@
                     </div>
                     @*<div class="col-lg-12">
 
-                            <ul class="list-inline pull-xs-right">
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-primary next-step">Save and continue</button>
-                                </li>
-                            </ul>
-                        </div>*@
+                    <ul class="list-inline pull-xs-right">
+                        <li class="list-inline-item">
+                            <button type="button" class="btn btn-primary next-step">Save and continue</button>
+                        </li>
+                    </ul>
+                </div>*@
                     <div class="col-lg-12">
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Caste, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.Caste, new { htmlAttributes = new { @class = "form-control", @disabled="disabled" } })
+                                @Html.EditorFor(model => model.Caste, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
                                 @Html.ValidationMessageFor(model => model.Caste, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -350,6 +365,11 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.ApplicantCrippled, htmlAttributes: new { @class = "control-label" })
                             <div>
+
+                                @*<label class="radio-inline"><input type="radio" style="position:relative !important" name="gender" value="होय">पुरुष</label>
+
+                                <label class="radio-inline"><input type="radio" style="position:relative !important" name="gender" value="नाही">स्त्री</label>*@
+
                                 <div class="custom-control custom-radio custom-control-inline">
                                     <input type="radio" onclick="javascript:checkCripple();" class="custom-control-input" id="ApplicantCrippled1" name="ApplicantCrippled" value="होय">
                                     <label class="custom-control-label" for="ApplicantCrippled1">होय</label>
@@ -486,7 +506,7 @@
                     </div>
                 </div>
                 <div class="tab">
-                    <div class="col-lg-6">
+                    <div class="col-lg-12">
                         <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
                     </div>
                     <div class="col-lg-12 heading-green heading-line text-center" style="margin-bottom:20px">
@@ -702,12 +722,12 @@
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component1" name="Component" value="1">
-                                <label class="form-check-label" for="Component1"> 1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)</label>
+                                <input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumber" value="कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)">
+                                <label class="form-check-label" for="CompNumber1"> 1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)</label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component2" name="Component" value="2">
-                                <label class="form-check-label" for="Component2"> 2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)</label>
+                                <input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumber" value="स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)">
+                                <label class="form-check-label" for="CompNumber2"> 2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)</label>
                             </div>
 
                         </div>
@@ -719,57 +739,62 @@
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component3" value="3" name="Component" />
-                                <label class="form-check-label" for="Component3">
+                                <input type="checkbox" class="form-check-input" id="CompNumber3" value="ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे." name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber3">
                                     3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे.
                                 </label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component4" value="4" name="Component" />
-                                <label class="form-check-label" for="Component4">
+                                <input type="checkbox" class="form-check-input" id="CompNumber4" value="ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber4">
                                     4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे.
                                 </label>
                             </div>
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component5" value="5" name="Component" />
-                                <label class="form-check-label" for="Component5">
+                                <input type="checkbox" class="form-check-input" id="CompNumber5" value="ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber5">
                                     5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे.
 
                                 </label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component6" value="6" name="Component" />
-                                <label class="form-check-label" for="Component6">
+                                <input type="checkbox" class="form-check-input" id="CompNumber6" value="ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber6">
                                     6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे.
                                 </label>
                             </div>
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component7" value="7" name="Component" />
-                                <label class="form-check-label" for="Component7">
+                                <input type="checkbox" class="form-check-input" id="CompNumber7" value="ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber7">
                                     7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे.
                                 </label>
                             </div>
+
                         </div>
                     </div>
                     <div class="col-lg-12 border">
+                        <div class="form-check alert alert-warning">
+                            <input type="checkbox" class="form-check-input" id="CompNumber8" value=" ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumber" />
+                            <label class="form-check-label" for="CompNumber8">8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) </label>
+                        </div>
                         <div class="form-group col-lg-12">
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component9" value="9" name="Component" />
-                                <label class="form-check-label" for="Component9">
+                                <input type="checkbox" class="form-check-input" id="CompNumber9" value="ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber9">
                                     9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
 
                                 </label>
                             </div>
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component10" value="10" name="Component" />
-                                <label class="form-check-label" for="Component10">
+                                <input type="checkbox" class="form-check-input" id="CompNumber10" value="ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber10">
                                     10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
 
                                 </label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component11" value="11" name="Component" />
-                                <label class="form-check-label" for="Component11">
+                                <input type="checkbox" class="form-check-input" id="CompNumber11" value=" ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber11">
                                     11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
 
                                 </label>
@@ -780,14 +805,14 @@
                     <div class="col-lg-12 border">
                         <div class="form-group col-lg-12">
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component12" value="12" name="Component" />
-                                <label class="form-check-label" for="Component12">
+                                <input type="checkbox" class="form-check-input" id="CompNumber12" value="एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber12">
                                     12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )
                                 </label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component13" value="13" name="Component" />
-                                <label class="form-check-label" for="Component13">
+                                <input type="checkbox" class="form-check-input" id="CompNumber13" value="भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber13">
                                     13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )
 
                                 </label>
@@ -801,14 +826,14 @@
                         </div>
                         <div class="form-group col-lg-12">
                             <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="Component14" value="14" name="Component" />
-                                <label class="form-check-label" for="Component14">
+                                <input type="checkbox" class="form-check-input" id="CompNumber14" value="कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber14">
                                     14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप
                                 </label>
                             </div>
                             <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="Component15" value="15" name="Component" />
-                                <label class="form-check-label" for="Component15">
+                                <input type="checkbox" class="form-check-input" id="CompNumber15" value="पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप" name="CompNumber" />
+                                <label class="form-check-label" for="CompNumber15">
                                     15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप
                                 </label>
                             </div>
@@ -816,21 +841,21 @@
                     </div>
 
 
-                </div>
-            
-                <div style="overflow:auto;">
-                    <div style="float:right;">
-                        <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button type="submit" id="saveBtn" onclick="nextPrev(1)">Save</button>
-                        <button type="button" id="nextBtn" onclick="nextPrev(1)">Nexts</button>
-                    </div>
-                </div>
-                <!-- Circles which indicates the steps of the form: -->
-            }
+                </div>}
+        </div>        <div class="col-lg-8">
+
+
         </div>
+        <div style="overflow:auto;">
+            <div style="float:right;">
+                <button type="button" class="btn btn-danger" id="prevBtn1" onclick="nextPrev(-1)">Previous</button>
+                <button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>
+                <button type="button" class="btn btn-success" id="nextBtn1" onclick="nextPrev(1)">Next</button>
+            </div>
+        </div>
+
     </div>
 </div>
-
 <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
 <script>
     var currentTab = 0; // Current tab is set to be the first tab (0)
@@ -861,6 +886,26 @@
             document.getElementById("saveBtn").style.display = "inline";
             document.getElementById("saveBtn").className = "btn btn-success";
         }
+
+        if (n == 0) {
+            document.getElementById("prevBtn1").style.display = "none";
+            document.getElementById("saveBtn1").style.display = "none";
+        } else {
+            document.getElementById("prevBtn1").style.display = "inline";
+            document.getElementById("prevBtn1").className = "btn btn-danger";
+            document.getElementById("saveBtn1").style.display = "inline";
+            document.getElementById("saveBtn1").className = "btn btn-success";
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn1").innerHTML = "Submit";
+            document.getElementById("nextBtn1").className = "btn btn-success";
+            document.getElementById("saveBtn1").style.display = "none";
+        } else {
+            document.getElementById("nextBtn1").innerHTML = "Next";
+            document.getElementById("nextBtn1").className = "btn btn-warning";
+            document.getElementById("saveBtn1").style.display = "inline";
+            document.getElementById("saveBtn1").className = "btn btn-success";
+        }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
     }
@@ -877,7 +922,8 @@
         // if you have reached the end of the form...
         if (currentTab >= x.length) {
             // ... the form gets submitted:
-            document.getElementById("editForm").submit();
+            confirm("Editing Components is not allowed once the form is submitted.");
+            document.getElementById("regForm").submit();
             return false;
         }
         // Otherwise, display the correct tab:
@@ -922,8 +968,37 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-       $("#Caste").val("भटक्या जमातीचा - क");
-        $("input[type=radio][name='gender']:checked").val("@Model.Gender");
+        $("#Caste").val("भटक्या जमातीचा - क");
+        $("#Photo").val("@Model.Photo");
+        $("#ChildCount").val("@Model.ChildCount");
+        $("#Child2006").val("@Model.Child2006");
+        $("input:radio[value=@Model.Gender]").prop('checked', true);
+       // $('input[name=ApplicantCrippled]:checked', '#ApplicantCrippled').val("@Model.ApplicantCrippled")
+        $("input:radio[name='ApplicantCrippled'][value=@Model.ApplicantCrippled]").prop('checked', true);
+        $("input:radio[name='PresentDaySheep'][value=@Model.PresentDaySheep]").prop('checked', true);
+        $("input:radio[name='ApplicantsPermanentInOnePlace'][value=@Model.ApplicantsPermanentInOnePlace]").prop('checked', true);
+        $("input:radio[name='ApplicantsMigratedByWayOfTransit'][value=@Model.ApplicantsMigratedByWayOfTransit]").prop('checked', true);
+        $("input:radio[name='IsApplicantOwnedLand'][value=@Model.IsApplicantOwnedLand]").prop('checked', true);
+        $("input:radio[name='IsNotIsAvailableOnLease'][value=@Model.IsNotIsAvailableOnLease]").prop('checked', true);
+        $("input:radio[name='IsWarehouseForSheep'][value=@Model.IsWarehouseForSheep]").prop('checked', true);
+
+        $("input:radio[name='IsNotIsAtLeastOnePinpointSpace'][value=@Model.IsNotIsAtLeastOnePinpointSpace]").prop('checked', true);
+
+        $("input:radio[name='IsSavingsGroupMember'][value=@Model.IsSavingsGroupMember]").prop('checked', true);
+
+        $("input:radio[name='IsanimalHusbandryManufacturingCompanyMember'][value=@Model.IsanimalHusbandryManufacturingCompanyMember]").prop('checked', true);
+        $("input:radio[name='CompNumber'][value=@Model.CompNumber]").prop('checked', true);
+
+        $("input:radio[name='IsTrained'][value=@Model.IsTrained]").prop('checked', true);
+
+
+  
+        $("#Child2006").change(function () {
+            var selected = $(this).children("option:selected").val();
+            if (selected > 2) {
+                alert("You are not eligible.");
+            }
+        });
         $("#Dist").change(function () {
             $("#Tahashil").empty();
             $("#VillageName").empty();
@@ -956,6 +1031,7 @@
                 $('#Age').val(age);
             },
             changeMonth: true,
+            yearRange: '1900:2001',
             changeYear: true
         });
 
@@ -987,497 +1063,605 @@
             return false;
         })
 
-        $('#Component1').change(function () {
-            if ($('#Component1').is(':checked') == true) {
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', true);
-                $('#Component10').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', true);
-                $('#Component13').prop('disabled', true);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+
+        $('#CompNumber1').change(function () {
+            if ($('#CompNumber1').is(':checked') == true) {
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', true);
+                $('#CompNumber13').prop('disabled', true);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked1');
             }
             else {
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component2').change(function () {
-            if ($('#Component2').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', true);
-                $('#Component10').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', true);
-                $('#Component13').prop('disabled', true);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber2').change(function () {
+            if ($('#CompNumber2').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', true);
+                $('#CompNumber13').prop('disabled', true);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component3').change(function () {
-            if ($('#Component3').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber3').change(function () {
+            if ($('#CompNumber3').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component4').change(function () {
-            if ($('#Component4').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber4').change(function () {
+            if ($('#CompNumber4').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component5').change(function () {
-            if ($('#Component5').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber5').change(function () {
+            if ($('#CompNumber5').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component6').change(function () {
-            if ($('#Component6').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber6').change(function () {
+            if ($('#CompNumber6').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component7').change(function () {
-            if ($('#Component7').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber7').change(function () {
+            if ($('#CompNumber7').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component9').change(function () {
-            if ($('#Component9').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber8').change(function () {
+            if ($('#CompNumber8').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component10').change(function () {
-            if ($('#Component10').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component9').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber9').change(function () {
+            if ($('#CompNumber9').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
+                }
+                else {
+                    if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
+                        $('#CompNumber1').prop('disabled', false);
+                        $('#CompNumber2').prop('disabled', false);
+                        $('#CompNumber3').prop('disabled', true);
+                        $('#CompNumber5').prop('disabled', true);
+                        $('#CompNumber6').prop('disabled', true);
+                        $('#CompNumber4').prop('disabled', true);
+                        $('#CompNumber9').prop('disabled', false);
+                        $('#CompNumber7').prop('disabled', true);
+                        $('#CompNumber10').prop('disabled', false);
+                        $('#CompNumber11').prop('disabled', false);
+                        $('#CompNumber12').prop('disabled', false);
+                        $('#CompNumber13').prop('disabled', false);
+                        $('#CompNumber14').prop('disabled', false);
+                        $('#CompNumber15').prop('disabled', false);
+                    }
+                    else {
+                        $('#CompNumber1').prop('disabled', false);
+                        $('#CompNumber2').prop('disabled', false);
+                        $('#CompNumber3').prop('disabled', false);
+                        $('#CompNumber5').prop('disabled', false);
+                        $('#CompNumber6').prop('disabled', false);
+                        $('#CompNumber4').prop('disabled', false);
+                        $('#CompNumber9').prop('disabled', false);
+                        $('#CompNumber7').prop('disabled', false);
+                        $('#CompNumber10').prop('disabled', false);
+                        $('#CompNumber11').prop('disabled', false);
+                        $('#CompNumber12').prop('disabled', false);
+                        $('#CompNumber13').prop('disabled', false);
+                        $('#CompNumber14').prop('disabled', false);
+                        $('#CompNumber15').prop('disabled', false);
+                    }
+                }
             }
         });
-        $('#Component11').change(function () {
-            if ($('#Component11').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', true);
-                $('#Component9').prop('disabled', true);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber10').change(function () {
+            if ($('#CompNumber10').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
+                }
+                else {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
+                }
+
             }
         });
-        $('#Component12').change(function () {
-            if ($('#Component12').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component13').prop('disabled', true);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber11').change(function () {
+            if ($('#CompNumber11').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
+                }
+                else {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
+                }
             }
         });
-        $('#Component13').change(function () {
-            if ($('#Component13').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component12').prop('disabled', true);
-                $('#Component14').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber12').change(function () {
+            if ($('#CompNumber12').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', true);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked2');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component7').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component9').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component14').change(function () {
-            if ($('#Component14').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', true);
-                $('#Component10').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', true);
-                $('#Component13').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
-                $('#Component15').prop('disabled', true);
+        $('#CompNumber13').change(function () {
+            if ($('#CompNumber13').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', true);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
+                console.log('checked2');
+            }
+            else {
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
+            }
+        });
+        $('#CompNumber14').change(function () {
+            if ($('#CompNumber14').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', true);
+                $('#CompNumber13').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
+                $('#CompNumber15').prop('disabled', true);
                 console.log('checked14');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
-                $('#Component15').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
+                $('#CompNumber15').prop('disabled', false);
             }
         });
-        $('#Component15').change(function () {
-            if ($('#Component15').is(':checked') == true) {
-                $('#Component1').prop('disabled', true);
-                $('#Component3').prop('disabled', true);
-                $('#Component4').prop('disabled', true);
-                $('#Component5').prop('disabled', true);
-                $('#Component6').prop('disabled', true);
-                $('#Component7').prop('disabled', true);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', true);
-                $('#Component10').prop('disabled', true);
-                $('#Component11').prop('disabled', true);
-                $('#Component12').prop('disabled', true);
-                $('#Component13').prop('disabled', true);
-                $('#Component14').prop('disabled', true);
-                $('#Component2').prop('disabled', true);
+        $('#CompNumber15').change(function () {
+            if ($('#CompNumber15').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', true);
+                $('#CompNumber3').prop('disabled', true);
+                $('#CompNumber4').prop('disabled', true);
+                $('#CompNumber5').prop('disabled', true);
+                $('#CompNumber6').prop('disabled', true);
+                $('#CompNumber7').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber9').prop('disabled', true);
+                $('#CompNumber10').prop('disabled', true);
+                $('#CompNumber11').prop('disabled', true);
+                $('#CompNumber12').prop('disabled', true);
+                $('#CompNumber13').prop('disabled', true);
+                $('#CompNumber14').prop('disabled', true);
+                $('#CompNumber2').prop('disabled', true);
                 console.log('checked15');
             }
             else {
-                $('#Component1').prop('disabled', false);
-                $('#Component3').prop('disabled', false);
-                $('#Component4').prop('disabled', false);
-                $('#Component5').prop('disabled', false);
-                $('#Component6').prop('disabled', false);
-                $('#Component7').prop('disabled', false);
-                //$('#Component8').prop('disabled', true);
-                $('#Component9').prop('disabled', false);
-                $('#Component10').prop('disabled', false);
-                $('#Component11').prop('disabled', false);
-                $('#Component12').prop('disabled', false);
-                $('#Component13').prop('disabled', false);
-                $('#Component14').prop('disabled', false);
-                $('#Component2').prop('disabled', false);
+                $('#CompNumber1').prop('disabled', false);
+                $('#CompNumber3').prop('disabled', false);
+                $('#CompNumber4').prop('disabled', false);
+                $('#CompNumber5').prop('disabled', false);
+                $('#CompNumber6').prop('disabled', false);
+                $('#CompNumber7').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', false);
+                $('#CompNumber9').prop('disabled', false);
+                $('#CompNumber10').prop('disabled', false);
+                $('#CompNumber11').prop('disabled', false);
+                $('#CompNumber12').prop('disabled', false);
+                $('#CompNumber13').prop('disabled', false);
+                $('#CompNumber14').prop('disabled', false);
+                $('#CompNumber2').prop('disabled', false);
             }
         });
-
         $(document).on('change', '.btn-file :file', function () {
             var input = $(this),
                 label = input.val().replace(/\\/g, '/').replace(/.*\//, '');

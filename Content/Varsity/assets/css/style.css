@@ -227,7 +227,7 @@ vertical-nav ul li ul li a {
 /* BASE - Base tyles, Variables, Mixins, etc. */
 body {
     background-color: #ffffff;
-    font-family: "Roboto", sans-serif;
+    font-family: "Arial Unicode MS", sans-serif !important;
     color: #333333;
     font-size: 16px;
     overflow-x: hidden;

@@ -126,22 +126,30 @@
                     <!-- Start single service -->
                     <div class="mu-service-single " style="background:#d35555">
                         <span class="fa fa-list-alt"></span>
+                        <h5 class="blink"><a href="#" style="color:white !important" onclick="showPopup();">महामेष  योजना</a></h5>
                         <h4 class="blink"><a href="#" onclick="showPopup();">Mahamesh Yojana</a></h4>
                     </div>
                     <div class="mu-service-single" style="background:#6eb00f">
                         <span class="fa fa-list-alt"></span>
+                        <h5><a href="#" style="color:white !important">बकरी - ईद</a></h5>
                         <h4>Bakari  -  Id</h4>
                     </div>
                     <!-- Start single service -->
                     <!-- Start single service -->
                     <div class="mu-service-single" style="background:#4d56fa">
                         <span class="fa fa-list-alt"></span>
+                        <h5><a href="#" style="color:white !important">वितरण</a></h5>
                         <h4>Ram Distribution</h4>
                     </div>
                     <!-- Start single service -->
                     <!-- Start single service -->
                     <div class="mu-service-single" style="background:#d35555">
                         <span class="fa fa-list-alt"></span>
+                        <h5>
+                            <a href="#" style="color:white !important">
+                                ऊनी उत्पादने
+                            </a>
+                        </h5>
                         <h4><a href="@Url.Action("ProductsWool", "Menu")">Woolen Products</a></h4>
                     </div>
                     <!-- Start single service -->
@@ -571,7 +579,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <a  id="btnClose" onclick="javascript:window.location='@Url.Action("MahameshYojana", "Menu")'" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
+                <a id="btnClose" onclick="javascript:window.location='@Url.Action("MahameshYojana", "Menu")'" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
 
             </div>
             <div class="modal-body">
@@ -596,6 +604,6 @@
 <script type="text/javascript">
     function showPopup() {
         $("#myModal").modal('show');
-        
+
     }
 </script>
