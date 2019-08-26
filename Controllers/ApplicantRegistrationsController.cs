@@ -50,7 +50,7 @@ namespace Mahamesh.Controllers
             applicantRegistration.YesApplicantOwnedLandEcre = Math.Round(Convert.ToDecimal(applicantRegistration.YesApplicantOwnedLandEcre), 2);
             applicantRegistration.GardeningEcre = Math.Round(Convert.ToDecimal(applicantRegistration.GardeningEcre), 2);
             applicantRegistration.CuminEcre = Math.Round(Convert.ToDecimal(applicantRegistration.CuminEcre), 2);
-
+            applicantRegistration.CompNumberList = applicantRegistration.CompNumber.Split(',').ToList();
             if (applicantRegistration == null)
             {
                 return HttpNotFound();
@@ -221,41 +221,70 @@ namespace Mahamesh.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(ApplicantRegistration applicantRegistration, HttpPostedFileBase file)
         {
-            var userList = db.ApplicantRegistrations.Select(x => x.AdharCardNo).ToList();
-            if(userList.Any(x=>x == applicantRegistration.AdharCardNo))
-            {
-                ViewBag.Error = "User with this Aadhar Number already exist.";
-                getDistrict();
-                getCaste();
-                getCripplePercent();
-                getNoOfSheep();
-                getAcre();
-                getWaterSource();
-                getTypeCastle();
-                getDuration();
-                return View(applicantRegistration);
-            }
-            if (ModelState.IsValid)
-            {
-                if (file != null && file.ContentLength > 0)
+        //    if(applicantRegistration.FormSubmitted == false)
+        //    {
+        //        if (file != null && file.ContentLength > 0)
+        //        {
+        //            // extract only the filename
+        //            var fileName = Path.GetFileName(file.FileName);
+        //            var exten = Path.GetExtension(file.FileName);
+        //            var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten);
+        //            file.SaveAs(path);
+        //            var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten;
+        //            applicantRegistration.Photo = relativePath;
+        //        }
+
+        //        if(applicantRegistration.CompNumberList != null)
+        //            applicantRegistration.CompNumber = String.Join(", ", applicantRegistration.CompNumberList.ToArray());
+        //        applicantRegistration.SubmitDatetime = DateTime.UtcNow;
+        //        //var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
+        //        //applicantRegistration.ApplicationNumber = applicantRegistration.Dist + "/" + applicantRegistration.Tahashil + "/" + applicantRegistration.VillageName + "/" + (id + 1);
+        //        applicantRegistration.FormSubmitted = false;
+        //        applicantRegistration.UserIP = GetIPAddress();
+        //        db.ApplicantRegistrations.Add(applicantRegistration);
+
+        //        db.SaveChanges();
+        //        getDistrict();
+        //        getCaste();
+        //        getCripplePercent();
+        //        getNoOfSheep();
+        //        getAcre();
+        //        getWaterSource();
+        //        getTypeCastle();
+        //        getDuration();
+        //        return View(applicantRegistration);
+        //    }
+        //    else
+        //    {
+               // var applicant = db.ApplicantRegistrations.Where(x => x.AdharCardNo == applicantRegistration.AdharCardNo).SingleOrDefault();
+                if (ModelState.IsValid)
                 {
-                    // extract only the filename
-                    var fileName = Path.GetFileName(file.FileName);
-                    var exten = Path.GetExtension(file.FileName);
-                    var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), applicantRegistration.AdharCardNo+"_"+applicantRegistration.ApName+"."+ exten);
-                    file.SaveAs(path);
-                    var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten;
-                    applicantRegistration.Photo = relativePath;
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        // extract only the filename
+                        var fileName = Path.GetFileName(file.FileName);
+                        var exten = Path.GetExtension(file.FileName);
+                        var path = Path.Combine(Server.MapPath("~/Images/ApplicantPhoto"), applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten);
+                        file.SaveAs(path);
+                        var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName + "." + exten;
+                        applicantRegistration.Photo = relativePath;
+                    }
+
+                    if (applicantRegistration.CompNumberList != null)
+                        applicantRegistration.CompNumber = String.Join(", ", applicantRegistration.CompNumberList.ToArray());
+                    applicantRegistration.SubmitDatetime = DateTime.UtcNow;
+                    var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
+                    applicantRegistration.ApplicationNumber = applicantRegistration.Dist + "/" + applicantRegistration.Tahashil + "/" + applicantRegistration.VillageName + "/" + (id + 1);
+                    applicantRegistration.FormSubmitted = true;
+                    applicantRegistration.UserIP = GetIPAddress();
+                   // applicantRegistration.Id = applicant.Id;
+                    db.Entry(applicantRegistration).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("MahameshYojanaUserLogin", "Menu", new { msg = "formSubmit" });
                 }
 
-                applicantRegistration.SubmitDatetime = DateTime.Now;
-                var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x=>x.Id).FirstOrDefault();
-                applicantRegistration.ApplicationNumber = applicantRegistration.Dist+"/"+applicantRegistration.Tahashil+"/"+applicantRegistration.VillageName+ (id + 1);
-                db.ApplicantRegistrations.Add(applicantRegistration);
-                db.SaveChanges();
-                return RedirectToAction("Details", new { id = applicantRegistration.Id });
-            }
 
+            
 
             getDistrict();
             getCaste();
@@ -267,6 +296,8 @@ namespace Mahamesh.Controllers
             getDuration();
             return View(applicantRegistration);
         }
+
+
 
         // GET: ApplicantRegistrations/Edit/5
         public ActionResult Edit(int? id, string exit)
@@ -334,10 +365,14 @@ namespace Mahamesh.Controllers
                     var relativePath = "/Images/ApplicantPhoto/" + applicantRegistration.AdharCardNo + "_" + applicantRegistration.ApName;
                     applicantRegistration.Photo = relativePath;
                 }
-                applicantRegistration.SubmitDatetime = DateTime.Now.ToLocalTime();
+                if (applicantRegistration.CompNumberList != null)
+                    applicantRegistration.CompNumber = String.Join(", ", applicantRegistration.CompNumberList.ToArray());
+                applicantRegistration.SubmitDatetime = DateTime.UtcNow;
+                applicantRegistration.FormSubmitted = true;
+                applicantRegistration.UserIP = GetIPAddress();
                 db.Entry(applicantRegistration).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Details", new { id = applicantRegistration.Id });
+                return RedirectToAction("MahameshYojanaUserLogin", "Menu", new { msg = "formSubmit" });
             }
             getDistrict();
             getCaste();
@@ -370,12 +405,7 @@ namespace Mahamesh.Controllers
         public ActionResult GenerateReceipt(int id)
         {
             var application = db.ApplicantRegistrations.Find(id);
-            application.FormSubmitted = true;
-            application.SubmitDatetime = DateTime.Now.ToLocalTime();
-            application.UserIP = GetIPAddress();
-            db.Entry(application).State = EntityState.Modified;
-            db.SaveChanges();
-
+           
             return View(application);
         }
 

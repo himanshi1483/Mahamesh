@@ -46,6 +46,8 @@ namespace Mahamesh.Models
         [NotMapped]
         public string SubCasteName { get; set; }
 
+        [NotMapped]
+        public ApplicationDuration appDuration { get; set; }
 
         [Display(Name = "तालुका")]
         public int? Tahashil { get; set; }

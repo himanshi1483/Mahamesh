@@ -61,9 +61,15 @@ namespace Mahamesh.Controllers
         {
             return View();
         }
-        public ActionResult MahameshYojanaUserLogin()
+        public ActionResult MahameshYojanaUserLogin(string msg)
         {
-            return View();
+            if(msg != null)
+                ViewBag.Msg = "Your appliation has been submitted successfully. To view the appliation, please login again.";
+
+            var applicationTime = new ApplicantRegistration();
+            applicationTime.appDuration = db.ApplicationDuration.FirstOrDefault();
+
+            return View(applicationTime);
         }
         [HttpPost]
         public ActionResult MahameshYojanaUserLogin(long AdharCardNo)

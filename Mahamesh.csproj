@@ -240,10 +240,19 @@
     <Compile Include="Migrations\201908251750492_init36.Designer.cs">
       <DependentUpon>201908251750492_init36.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908260914342_init361.cs" />
+    <Compile Include="Migrations\201908260914342_init361.Designer.cs">
+      <DependentUpon>201908260914342_init361.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908260915185_init38.cs" />
+    <Compile Include="Migrations\201908260915185_init38.Designer.cs">
+      <DependentUpon>201908260915185_init38.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
     <Compile Include="Models\ApplicantRegistration.cs" />
+    <Compile Include="Models\ApplicationDuration.cs" />
     <Compile Include="Models\DistrictList.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
@@ -391,6 +400,7 @@
     <Content Include="Images\MD2.jpg" />
     <Content Include="Images\MD2_opt.jpg" />
     <Content Include="Images\MD3.JPG" />
+    <Content Include="Images\MD3.png" />
     <Content Include="Images\mision-png.png" />
     <Content Include="Images\mission.jpg" />
     <Content Include="Images\mission.png" />
@@ -760,6 +770,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908251750492_init36.resx">
       <DependentUpon>201908251750492_init36.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908260914342_init361.resx">
+      <DependentUpon>201908260914342_init361.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908260915185_init38.resx">
+      <DependentUpon>201908260915185_init38.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

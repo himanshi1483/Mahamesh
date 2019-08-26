@@ -24,7 +24,7 @@ namespace Mahamesh.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-        ////public IDbSet<NewsModel> News { get; set; }
+         public IDbSet<ApplicationDuration> ApplicationDuration { get; set; }
          public IDbSet<DistrictList> DistrictList { get; set; }
 
         public IDbSet<DistMaster> DistMaster { get; set; }

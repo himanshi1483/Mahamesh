@@ -119,7 +119,7 @@
                 <div style="overflow:auto;">
                     <div style="float:right;">
                         <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        <button type="submit" class="btn btn-default" id="saveBtn" onclick="nextPrev(1)">Save</button>
+                        @*<button type="submit" class="btn btn-default" id="saveBtn" onclick="nextPrev(1)">Save</button>*@
                         <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Next</button>
                     </div>
                 </div>
@@ -134,21 +134,23 @@
                             <div class="input-group">
                                 <span class="input-group-btn">
                                     <span class="btn btn-default btn-file">
-                                        Browse… <input type="file" id="imgInp" name="file">
+                                        Browse… <input type="file" id="imgInp" name="file" accept='image/x-png,image/jpg,image/jpeg'>
                                     </span>
                                 </span>
                                 <input type="text" class="form-control" readonly>
+
                             </div>
+                            <p style="color:forestgreen;margin-top:10px">Only JPEG, JPG and PNG file are allowed.</p>
                             <img id='img-upload' src="@Model.Photo" />
                             @*<div class="input-group mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
-                            </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
-                                <label class="custom-file-label" for="fileInput">File Label</label>
-                            </div>
-                        </div>*@
+            <div class="input-group-prepend">
+                <span class="input-group-text">@Html.LabelFor(model => model.Photo)</span>
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="fileInput" aria-describedby="fileInput">
+                <label class="custom-file-label" for="fileInput">File Label</label>
+            </div>
+        </div>*@
                         </div>
                     </div>
                     @*<div class="col-lg-4">
@@ -200,7 +202,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.PinCode, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.PinCode, new { htmlAttributes = new { @class = "form-control", @type = "number", onfocusout = "checkPin()" } })
                                 @Html.ValidationMessageFor(model => model.PinCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -217,7 +219,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.PhNo, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control", @type = "tel", @minlength = "10", @maxlength = "10" } })
+                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control", @type = "number", @onfocusout="check()" } })
                                 @Html.ValidationMessageFor(model => model.PhNo, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -849,7 +851,7 @@
         <div style="overflow:auto;">
             <div style="float:right;">
                 <button type="button" class="btn btn-danger" id="prevBtn1" onclick="nextPrev(-1)">Previous</button>
-                <button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>
+                @*<button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>*@
                 <button type="button" class="btn btn-success" id="nextBtn1" onclick="nextPrev(1)">Next</button>
             </div>
         </div>
@@ -869,42 +871,42 @@
         //... and fix the Previous/Next buttons:
         if (n == 0) {
             document.getElementById("prevBtn").style.display = "none";
-            document.getElementById("saveBtn").style.display = "none";
+          //  document.getElementById("saveBtn").style.display = "none";
         } else {
             document.getElementById("prevBtn").style.display = "inline";
             document.getElementById("prevBtn").className = "btn btn-danger";
-            document.getElementById("saveBtn").style.display = "inline";
-            document.getElementById("saveBtn").className = "btn btn-success";
+          //  document.getElementById("saveBtn").style.display = "inline";
+          //  document.getElementById("saveBtn").className = "btn btn-success";
         }
         if (n == (x.length - 1)) {
             document.getElementById("nextBtn").innerHTML = "Submit";
             document.getElementById("nextBtn").className = "btn btn-success";
-            document.getElementById("saveBtn").style.display = "none";
+        //    document.getElementById("saveBtn").style.display = "none";
         } else {
             document.getElementById("nextBtn").innerHTML = "Next";
             document.getElementById("nextBtn").className = "btn btn-warning";
-            document.getElementById("saveBtn").style.display = "inline";
-            document.getElementById("saveBtn").className = "btn btn-success";
+          //  document.getElementById("saveBtn").style.display = "inline";
+          //  document.getElementById("saveBtn").className = "btn btn-success";
         }
 
         if (n == 0) {
             document.getElementById("prevBtn1").style.display = "none";
-            document.getElementById("saveBtn1").style.display = "none";
+          //  document.getElementById("saveBtn1").style.display = "none";
         } else {
             document.getElementById("prevBtn1").style.display = "inline";
             document.getElementById("prevBtn1").className = "btn btn-danger";
-            document.getElementById("saveBtn1").style.display = "inline";
-            document.getElementById("saveBtn1").className = "btn btn-success";
+            //document.getElementById("saveBtn1").style.display = "inline";
+            //document.getElementById("saveBtn1").className = "btn btn-success";
         }
         if (n == (x.length - 1)) {
             document.getElementById("nextBtn1").innerHTML = "Submit";
-            document.getElementById("nextBtn1").className = "btn btn-success";
-            document.getElementById("saveBtn1").style.display = "none";
+            //document.getElementById("nextBtn1").className = "btn btn-success";
+            //document.getElementById("saveBtn1").style.display = "none";
         } else {
             document.getElementById("nextBtn1").innerHTML = "Next";
             document.getElementById("nextBtn1").className = "btn btn-warning";
-            document.getElementById("saveBtn1").style.display = "inline";
-            document.getElementById("saveBtn1").className = "btn btn-success";
+            //document.getElementById("saveBtn1").style.display = "inline";
+            //document.getElementById("saveBtn1").className = "btn btn-success";
         }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
@@ -966,6 +968,27 @@
 </script>
 
 <script type="text/javascript">
+    function check() {
+        // $("input[name=PhNo]").on("focusout", function (e) {
+        var myval = $("#PhNo").val();
+
+        if (myval.length < 10 || myval.length > 10) {
+            alert("Value must contain 10 characters.");
+            $(this).focus();
+        }
+        //});
+    }
+
+    function checkPin() {
+        // $("input[name=PhNo]").on("focusout", function (e) {
+        var myval = $("#PinCode").val();
+
+        if (myval.length < 6 || myval.length > 6) {
+            alert("Value must contain 6 characters.");
+            $(this).focus();
+        }
+        //});
+    }
 
     $(document).ready(function () {
         $("#Caste").val("भटक्या जमातीचा - क");
@@ -1696,6 +1719,49 @@
         $("#imgInp").change(function () {
             readURL(this);
         });
+
+        (function ($) {
+            $.fn.checkFileType = function (options) {
+                var defaults = {
+                    allowedExtensions: [],
+                    success: function () { },
+                    error: function () { }
+                };
+                options = $.extend(defaults, options);
+
+                return this.each(function () {
+
+                    $(this).on('change', function () {
+                        var value = $(this).val(),
+                            file = value.toLowerCase(),
+                            extension = file.substring(file.lastIndexOf('.') + 1);
+
+                        if ($.inArray(extension, options.allowedExtensions) == -1) {
+                            options.error();
+                            $(this).focus();
+                        } else {
+                            options.success();
+
+                        }
+
+                    });
+
+                });
+            };
+
+        })(jQuery);
+
+
+        $('#imgInp').checkFileType({
+            allowedExtensions: ['jpg', 'jpeg', 'png'],
+            success: function () {
+                //alert('Success');
+            },
+            error: function () {
+                alert('Please upload valid image format only.');
+            }
+        });
+
         });
 
 
