@@ -212,7 +212,7 @@
                                     </div>*@
                                 @*<div id="datepicker"></div>*@
 
-                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -1106,8 +1106,13 @@
         //    changeMonth: true,
         //    changeYear: true
         //})
+        //$('#DOB').click(function () {
+        //    $('#DOB').val("2001-12-22");
+        //});
         $('input[id$=DOB]').datepicker({
             dateFormat: 'dd/mm/yy',
+            //setDate: new Date(2001, 10 - 1, 25),
+            maxDate: '-18Y',
             onSelect: function (value, ui) {
                 var today = new Date();
                 age = today.getFullYear() - ui.selectedYear;
@@ -1442,7 +1447,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber4').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
                 $('#CompNumber7').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', true);
                 $('#CompNumber11').prop('disabled', true);
@@ -1470,43 +1475,26 @@
                     $('#CompNumber14').prop('disabled', false);
                     $('#CompNumber15').prop('disabled', false);
                 }
-                else
-                {
-                    if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
-                        $('#CompNumber1').prop('disabled', false);
-                        $('#CompNumber2').prop('disabled', false);
-                        $('#CompNumber3').prop('disabled', true);
-                        $('#CompNumber5').prop('disabled', true);
-                        $('#CompNumber6').prop('disabled', true);
-                        $('#CompNumber4').prop('disabled', true);
-                        $('#CompNumber9').prop('disabled', false);
-                        $('#CompNumber7').prop('disabled', true);
-                        $('#CompNumber10').prop('disabled', false);
-                        $('#CompNumber11').prop('disabled', false);
-                        $('#CompNumber12').prop('disabled', false);
-                        $('#CompNumber13').prop('disabled', false);
-                        $('#CompNumber14').prop('disabled', false);
-                        $('#CompNumber15').prop('disabled', false);
-                    }
-                    else {
-                        $('#CompNumber1').prop('disabled', false);
-                        $('#CompNumber2').prop('disabled', false);
-                        $('#CompNumber3').prop('disabled', false);
-                        $('#CompNumber5').prop('disabled', false);
-                        $('#CompNumber6').prop('disabled', false);
-                        $('#CompNumber4').prop('disabled', false);
-                        $('#CompNumber9').prop('disabled', false);
-                        $('#CompNumber7').prop('disabled', false);
-                        $('#CompNumber10').prop('disabled', false);
-                        $('#CompNumber11').prop('disabled', false);
-                        $('#CompNumber12').prop('disabled', false);
-                        $('#CompNumber13').prop('disabled', false);
-                        $('#CompNumber14').prop('disabled', false);
-                        $('#CompNumber15').prop('disabled', false);
-                    }
+
+                else {
+                    $('#CompNumber1').prop('disabled', false);
+                    $('#CompNumber2').prop('disabled', false);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', false);
+                    $('#CompNumber15').prop('disabled', false);
                 }
             }
         });
+
         $('#CompNumber10').change(function () {
             if ($('#CompNumber10').is(':checked') == true) {
                 $('#CompNumber1').prop('disabled', true);
@@ -1528,6 +1516,7 @@
             else {
                 console.log('unchecked10');
                 if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
+                    console.log('checked3-7');
                     $('#CompNumber1').prop('disabled', false);
                     $('#CompNumber2').prop('disabled', false);
                     $('#CompNumber3').prop('disabled', true);
@@ -1544,6 +1533,7 @@
                     $('#CompNumber15').prop('disabled', false);
                 }
                 else {
+                    console.log('unchecked3-7');
                     $('#CompNumber1').prop('disabled', false);
                     $('#CompNumber2').prop('disabled', false);
                     $('#CompNumber3').prop('disabled', false);

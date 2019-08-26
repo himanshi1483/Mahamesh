@@ -231,7 +231,7 @@
                             </div>*@
                                 @*<div id="datepicker"></div>*@
 
-                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -1025,6 +1025,7 @@
 
         $('input[id$=DOB]').datepicker({
             dateFormat: 'dd/mm/yy',
+            maxDate: '-18Y',
             onSelect: function (value, ui) {
                 var today = new Date();
                 age = today.getFullYear() - ui.selectedYear;
