@@ -182,7 +182,21 @@
             <h5 class="text-center">User Login</h5>
         </div>
         <div class="panel-body text-center">
-            <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-left:28%">
+            <div class="col-sm-6 col-md-6 col-lg-6 mx-auto">
+                <div class="panel-body">
+                    <h4 class="text-center text-info">अर्जदारांनी अर्ज करण्याबाबतची कार्यवाही</h4>
+                    <ol class="text-left" style="font-weight:700">
+                        <li style="padding:5px;">अर्जामध्ये दर्शविण्यात आलेल्या मुद्द्यांबाबतची माहिती अर्जदारांनी काळजीपूर्वक भरावी.</li>
+                        <li style="padding:5px;">प्रत्येक मुद्द्याची माहिती भरून झाल्यावर SAVE चे बटण दाबावे म्हणजे भरलेली माहिती SAVE होईल.</li>
+                        <li style="padding:5px;">त्यानंतर त्याच अर्जामध्ये योजने मधील कोणत्या उपघटकामध्ये लाभ घ्यावयाचा आहे त्याची निवड करण्यात यावी.</li>
+                        <li style="padding:5px;">अर्ज सबमीट झाल्यानंतर “Application Form is submitted successfully” असा मेसेज आल्यानंतरच अर्जदाराचा अर्ज निवडीकरिता सादर झाल्याचे समजावे.</li>
+                        <li style="padding:5px;">त्यानंतर “View receipt” या बटनावर क्लिक केल्यास अर्जाची पावती अर्जदारास दिसेल, त्याची प्रिंट काढून घ्यावी.</li>
+                        <li style="padding:5px;">अर्ज भरण्यापूर्वी व्हिडिओ बघा</li>
+                    </ol>
+                    <input type="checkbox" name="IsAgreed" id="IsAgreed" /><label for="IsAgreed"> मला वरील अटी/शर्ती मान्य आहेत</label>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6 col-lg-6 mx-auto">
                 <div class="card card-signin my-5">
                     <div class="card-body">
                         <div style="margin-left:29%;padding-top:20px;padding-bottom:40px"><img src="~/Images/logo1.png" class="img-responsive" alt="Logo" width="180" height="180" /></div>
@@ -195,17 +209,7 @@
                                 @Html.TextBoxFor(x => x.AdharCardNo, new { @class = "form-control", @placeholder = "आधारकार्ड क्रमांक लिहा", @required = "required", @minlength = 12, @maxlength = 12 })
 
                             </div>
-                            <div class="panel-body">
-                                <h4 class="text-center text-info">अर्जदारांनी अर्ज करण्याबाबतची कार्यवाही</h4>
-                                <ol class="text-left" style="font-weight:700">
-                                    <li style="padding:5px;">अर्जामध्ये दर्शविण्यात आलेल्या मुद्द्यांबाबतची माहिती अर्जदारांनी काळजीपूर्वक भरावी.</li>
-                                    <li style="padding:5px;">प्रत्येक मुद्द्याची माहिती भरून झाल्यावर SAVE चे बटण दाबावे म्हणजे भरलेली माहिती SAVE होईल.</li>
-                                    <li style="padding:5px;">त्यानंतर त्याच अर्जामध्ये योजने मधील कोणत्या उपघटकामध्ये लाभ घ्यावयाचा आहे त्याची निवड करण्यात यावी.</li>
-                                    <li style="padding:5px;">अर्ज सबमीट झाल्यानंतर “Application Form is submitted successfully” असा मेसेज आल्यानंतरच अर्जदाराचा अर्ज निवडीकरिता सादर झाल्याचे समजावे.</li>
-                                    <li style="padding:5px;">त्यानंतर “View receipt” या बटनावर क्लिक केल्यास अर्जाची पावती अर्जदारास दिसेल, त्याची प्रिंट काढून घ्यावी.</li>
-                                </ol>
-                                <input type="checkbox" name="IsAgreed" id="IsAgreed" /><label for="IsAgreed">मी वरील शर्ती मान्य करतो /करते.</label>
-                            </div>
+            
                             <div>
                                 <!-- START CAPTCHA -->
                                 <br>
@@ -246,8 +250,14 @@
             alert(msg);
         }
 
-      
-       // alert(currentDate);
+        var appStart = new Date();
+        appStart = new Date("@Model.appDuration.StartDatetime");
+        console.log(appStart);
+        var appEnd = new Date();
+        appEnd = new Date("@Model.appDuration.EndDatetime");
+        console.log(appEnd);
+        var currentDate = new Date($.now());
+        console.log(currentDate);
     });
 
     $('#IsAgreed').change(function () {
@@ -260,14 +270,21 @@
     });
 
   
-
-    @*$('#btnLogin').click(function () {
-         var appStart = new Date();
-        appStart = "@Model.appDuration.EndDatetime";
+    $('#btnLogin').click(function () {
+        var appStart = new Date();
+        appStart = new Date("@Model.appDuration.StartDatetime");
+        console.log(appStart);
         var appEnd = new Date();
-        appEnd = "@Model.appDuration.EndDatetime";
+        appEnd = new Date("@Model.appDuration.EndDatetime");
+        console.log(appEnd);
         var currentDate = new Date($.now());
-        if ((currentDate < appStartd.toUTCString()) || (currentDate > appEndd.toUTCString() ))
+        console.log(currentDate);
+        if ((new Date($.now()) < new Date("@Model.appDuration.StartDatetime")) )
+        {
+            alert("Not Accepting Applications. Please check Time Table.")
+            $("#btnLogin").prop("disabled", true);
+        }
+        else if ((new Date($.now()) > new Date("@Model.appDuration.EndDatetime")) )
         {
             alert("Not Accepting Applications. Please check Time Table.")
             $("#btnLogin").prop("disabled", true);
@@ -275,7 +292,7 @@
         else {
             $("#btnLogin").prop("disabled", false);
         }
-    });*@
+    });
     
 </script>
 <script type="text/javascript">

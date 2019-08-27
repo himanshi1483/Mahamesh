@@ -1,9 +1,8 @@
 ﻿@model Mahamesh.Models.ApplicantRegistration
-
+@using Mahamesh.Models
 @{
     ViewBag.Title = "Create";
 }
-
 @*<link href="~/Content/Varsity/mdb.lite.min.css" rel="stylesheet" />*@
 <style>
     .border {
@@ -102,29 +101,31 @@
     <div class="panel panel-primary-2">
         <div class="panel-heading panel-primary-2 text-center"><h5>अर्जदारांनी करावयाच्या अर्ज</h5></div>
         <div class="panel-body">
-            @using (Html.BeginForm("Create", "ApplicantRegistrations", FormMethod.Post, new { enctype = "multipart/form-data", @id = "regForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <div class="col-lg-8">
-                    <div class="col-lg-6 text-right" id="tabBtn">
-                        <div style="text-align:right;display:none">
-                            <span class="step"></span>
-                            <span class="step"></span>
-                            <span class="step"></span>
 
-                        </div>
+            <div class="col-lg-8">
+                <div class="col-lg-6 text-right" id="tabBtn">
+                    <div style="text-align:right;display:none">
+                        <span class="step"></span>
+                        <span class="step"></span>
+                        <span class="step"></span>
+
                     </div>
                 </div>
-                <div style="overflow:auto;">
+            </div>
+            @*@Html.HiddenFor(x => x.tabId)*@
+
+            @*<div style="overflow:auto;">
                     <div style="float:right;">
                         <button type="button" class="btn btn-danger" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-                        @*<button type="submit" class="btn btn-default" id="saveBtn" onclick="nextPrev(1)">Save</button>*@
+
                         <button type="button" class="btn btn-success" id="nextBtn" onclick="nextPrev(1)">Save & Next</button>
                     </div>
-                </div>
-                <!-- One "tab" for each step in the form: -->
-                <div class="tab">
-
+                </div>*@
+            <!-- One "tab" for each step in the form: -->
+            <div class="tab" id="tab1">
+                @using (Html.BeginForm("CreatePartial", "ApplicantRegistrations", FormMethod.Post, new { enctype = "multipart/form-data", @id = "regForm1" }))
+                {
+                    @Html.AntiForgeryToken()
                     <div class="col-lg-6">
                         <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
                     </div>
@@ -156,7 +157,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Dist, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Dist, ViewBag.District as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Dist, (SelectList)ViewBag.Dist, "Select", new { @class = "form-control" })
 
                                 @Html.ValidationMessageFor(model => model.Dist, "", new { @class = "text-danger" })
                             </div>
@@ -167,14 +168,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Tahashil, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Tahashil, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.Tahashil, (SelectList)ViewBag.Taluka, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.Tahashil, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group  col-lg-6">
                             @Html.LabelFor(model => model.VillageName)
                             <div>
-                                @Html.DropDownListFor(model => model.VillageName, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.VillageName, (SelectList)ViewBag.Village, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.VillageName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -200,7 +201,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.PhNo, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control", @type = "number",onfocusout = "check()" } })
+                                @Html.EditorFor(model => model.PhNo, new { htmlAttributes = new { @class = "form-control", @type = "number", onfocusout = "check()" } })
                                 <span id="message"></span>
                                 @Html.ValidationMessageFor(model => model.PhNo, "", new { @class = "text-danger" })
                             </div>
@@ -215,7 +216,7 @@
                                     </div>*@
                                 @*<div id="datepicker"></div>*@
 
-                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control" , @readonly = "readonly"} })
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -308,7 +309,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.SubCatse, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.SubCatse, ViewBag.Caste as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.SubCatse, (SelectList)ViewBag.Caste, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.SubCatse, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -352,7 +353,7 @@
                         <div class="form-group col-lg-6" style="display:none" id="divCripple">
                             @Html.LabelFor(model => model.CrippledPercentage, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.CrippledPercentage, ViewBag.Percentage as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.CrippledPercentage, (SelectList)ViewBag.Percentage, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.CrippledPercentage, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -378,7 +379,7 @@
                         <div class="form-group col-lg-6" id="divSheep" style="display:none">
                             @Html.LabelFor(model => model.NumberOfSheepIs, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.NumberOfSheepIs, ViewBag.Sheep as List<SelectListItem>, new { @class = "form-control", @Value = "0" })
+                                @Html.DropDownListFor(model => model.NumberOfSheepIs, (SelectList)ViewBag.Sheep, "Select", new { @class = "form-control", @Value = "0" })
                                 @Html.ValidationMessageFor(model => model.NumberOfSheepIs, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -437,14 +438,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.YesApplicantOwnedLandEcre, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.YesApplicantOwnedLandEcre, (IEnumerable<SelectListItem>)ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.YesApplicantOwnedLandEcre, (SelectList)ViewBag.AcreOwned, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.YesApplicantOwnedLandEcre, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.YesApplicantOwnedLandGuntha, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.YesApplicantOwnedLandGuntha, (IEnumerable<SelectListItem>)ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.YesApplicantOwnedLandGuntha, (SelectList)ViewBag.GunthaOwned, "Select", new { @class = "form-control" })
 
                                 @Html.ValidationMessageFor(model => model.YesApplicantOwnedLandGuntha, "", new { @class = "text-danger" })
                             </div>
@@ -454,14 +455,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.YesAvailableOnLeaseEcre, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.YesAvailableOnLeaseEcre, ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.YesAvailableOnLeaseEcre, (SelectList)ViewBag.AcreLeased, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.YesAvailableOnLeaseEcre, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.YesAvailableOnLeaseGuntha, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.YesAvailableOnLeaseGuntha, (IEnumerable<SelectListItem>)ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.YesAvailableOnLeaseGuntha, (SelectList)ViewBag.GunthaLeased, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.YesAvailableOnLeaseGuntha, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -469,8 +470,20 @@
 
                     </div>
                     <div class="col-lg-12 text-center alert alert-warning">Page 1 of 3</div>
-                </div>
-                <div class="tab">
+                    <div>
+                        <div style="float:right;">
+                            <button type="button" class="btn btn-danger" id="prevBtn1" onclick="nextPrev(-1)">Previous</button>
+                            <button type="submit" class="btn btn-success" id="nextBtn1" onclick="nextPrev(1)">Save & Next</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="tab" id="tab2">
+                @using (Html.BeginForm("CreatePartial2", "ApplicantRegistrations", FormMethod.Post, new { enctype = "multipart/form-data", @id = "regForm2" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.AdharCardNo)
+
                     <div class="col-lg-6">
                         <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
                     </div>
@@ -481,7 +494,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.GardeningEcre, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.GardeningEcre, (IEnumerable<SelectListItem>)ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.GardeningEcre, (SelectList)ViewBag.GardenAcre, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.GardeningEcre, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -489,7 +502,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.CuminEcre, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.CuminEcre, (IEnumerable<SelectListItem>)ViewBag.Acre as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.CuminEcre, (SelectList)ViewBag.CuminAcre, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.CuminEcre, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -500,14 +513,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.WaterSource, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.WaterSource, (IEnumerable<SelectListItem>)ViewBag.WaterSource as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.WaterSource, (SelectList)ViewBag.WaterSource, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.WaterSource, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.DurationOfWater, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.DurationOfWater, (IEnumerable<SelectListItem>)ViewBag.Duration as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.DurationOfWater, (SelectList)ViewBag.Duration, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.DurationOfWater, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -570,14 +583,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.YesIntekOfSheepInWarehouse, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.YesIntekOfSheepInWarehouse, (IEnumerable<SelectListItem>)ViewBag.Sheep as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.YesIntekOfSheepInWarehouse, (SelectList)ViewBag.Sheep, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.YesIntekOfSheepInWarehouse, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.TypeExistingCastle, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.TypeExistingCastle, ViewBag.TypeCastle as List<SelectListItem>, new { @class = "form-control" })
+                                @Html.DropDownListFor(model => model.TypeExistingCastle, (SelectList)ViewBag.TypeCastle, "Select", new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.TypeExistingCastle, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -672,8 +685,20 @@
                         </div>
                     </div>
                     <div class="col-lg-12 text-center alert alert-warning">Page 2 of 3</div>
-                </div>
-                <div class="tab">
+                    <div>
+                        <div style="float:right;">
+                            <button type="button" class="btn btn-danger" id="prevBtn2" onclick="nextPrev(-1)">Previous</button>
+                            @*<button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>*@
+                            <button type="submit" class="btn btn-success" id="nextBtn2" onclick="nextPrev(1)">Save & Next</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="tab" id="tab3">
+                @using (Html.BeginForm("Create", "ApplicantRegistrations", FormMethod.Post, new { enctype = "multipart/form-data", @id = "regForm3" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.AdharCardNo)
                     <div class="col-lg-6">
                         <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
                     </div>
@@ -681,274 +706,272 @@
                         <h3>अर्जदारास योजनेमधील कोणत्या घटकाखाली लाभ घ्यावयाचा आहे</h3>
                         <h5>महत्वाची सूचना – या योजनेअंतर्गत खालील १५ उपघटकामध्ये लाभ घेता येईल. तथापि</h5>
                     </div>
-                    <div class="col-lg-12 border">
-                        <div class="alert alert-success text-center">
-                            १. अर्जदाराने खालील पहिल्या दोन उपघटकामधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना इतर उपघटकांमध्ये लाभ घेता येणार नाही.
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumberList" value="1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)">
-                                <label class="form-check-label" for="CompNumber1"> 1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)</label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumberList" value="2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)">
-                                <label class="form-check-label" for="CompNumber2"> 2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)</label>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="col-lg-12 border">
-                        <div class="alert alert-success text-center">
-                            २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber3" value="3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber3">
-                                    3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे.
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber4" value="4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber4">
-                                    4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे.
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber5" value="5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber5">
-                                    5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे.
-
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber6" value="6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber6">
-                                    6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे.
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber7" value="7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber7">
-                                    7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे.
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-12 border">
-                        <div class="form-check alert alert-warning">
-                            <input type="checkbox" class="form-check-input" id="CompNumber8" value="8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumberList" />
-                            <label class="form-check-label" for="CompNumber8">8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) </label>
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber9" value="9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber9">
-                                    9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
-
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber10" value="10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber10">
-                                    10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
-
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber11" value="11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber11">
-                                    11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
-
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-lg-12 border">
-                        <div class="form-group col-lg-12">
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber12" value="12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber12">
-                                    12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber13" value="13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber13">
-                                    13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )
-
-                                </label>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-12 border">
-                        <div class="alert alert-success text-center">
-                            ३. उपघटक क्र. १४ व १५ या पैकी एका उपघटकांमध्ये लाभ घेता येईल.
-                        </div>
-                        <div class="form-group col-lg-12">
-                            <div class="form-check alert alert-info">
-                                <input type="checkbox" class="form-check-input" id="CompNumber14" value="14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber14">
-                                    14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप
-                                </label>
-                            </div>
-                            <div class="form-check alert alert-warning">
-                                <input type="checkbox" class="form-check-input" id="CompNumber15" value="15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप" name="CompNumberList" />
-                                <label class="form-check-label" for="CompNumber15">
-                                    15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-
+                    <table class="table table-responsive table-condensed table-bordered">
+                        <tr style="background:#2a88cf;height:40px;color:white;font-weight:700;font-size:15px;text-align:center"><td colspan="3">  १. अर्जदाराने खालील पहिल्या दोन उपघटकामधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना इतर उपघटकांमध्ये लाभ घेता येणार नाही.</td></tr>
+                        <tr style="border-top:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
+                            <td width="2%"><input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumberList1" value="1">
+                            @*<input type="hidden" id="CompNumber1" name="CompNumberList" value="1" />*@
+</td>
+                            <td width="2%">1</td>
+                            <td width="96%">@Components.Comp1.GetDescription()</td>
+                        </tr>
+                        <tr style="border-bottom:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumberList1" value="2">
+                            @*<input type="hidden" id="CompNumber2" name="CompNumberList" value="2" />*@
+                            </td>
+                            <td>2</td>
+                            <td>@Components.Comp2.GetDescription()</td>
+                        </tr>
+                        <tr style="background:#2a88cf;height:35px;color:white;font-weight:700;font-size:15px;text-align:center">
+                        <td colspan="3">   २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.</td></tr>
+                        <tr style="border-top:2px dotted blue;border-left:2px dotted blue;border-right:2px dotted blue;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber3" name="CompNumberList2" value="3"> 
+                            @*<input type="hidden" id="CompNumber3" name="CompNumberList" value="3" />*@
+                            </td>
+                            <td>3</td>
+                            <td>@Components.Comp3.GetDescription()</td>
+                        </tr>
+                        <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber4" name="CompNumberList2" value="4"> 
+                            @*<input type="hidden" id="CompNumber4" name="CompNumberList" value="4" />*@
+                            </td>
+                            <td>4</td>
+                            <td>@Components.Comp4.GetDescription()</td>
+                        </tr>
+                        <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber5" name="CompNumberList2" value="5">
+                            @*<input type="hidden" id="CompNumber5" name="CompNumberList" value="5" />*@
+                            </td>
+                            <td>5</td>
+                            <td>@Components.Comp5.GetDescription()</td>
+                        </tr>
+                        <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber6" name="CompNumberList2" value="6"> 
+                            @*<input type="hidden" id="CompNumber6" name="CompNumberList" value="6" />*@
+                            </td>
+                            <td>6</td>
+                            <td>@Components.Comp6.GetDescription()</td>
+                        </tr>
+                        <tr style="border-bottom:2px dotted blue;border-left:2px dotted blue;border-right:2px dotted blue;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber7" name="CompNumberList2" value="7"> 
+                            @*<input type="hidden" id="CompNumber7" name="CompNumberList" value="7" />*@
+                            </td>
+                            <td>7</td>
+                            <td>@Components.Comp7.GetDescription()</td>
+                        </tr>
+                        <tr style="background:#2a88cf;color:white;font-weight:700;font-size:15px;text-align:center"><td colspan="3"> </td></tr>
+                        <tr style="border-top:2px dotted green;border-left:2px dotted green;border-right:2px dotted green;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber8" name="CompNumberList3" value="8"></td>
+                            <td>8</td>
+                            <td>@Components.Comp8.GetDescription()</td>
+                        </tr>
+                        <tr style="border-left:2px dotted green;border-right:2px dotted green;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber9" name="CompNumberList3" value="9"></td>
+                            <td>9</td>
+                            <td>@Components.Comp9.GetDescription()</td>
+                        </tr>
+                        <tr style="border-left:2px dotted green;border-right:2px dotted green;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber10" name="CompNumberList3" value="10"></td>
+                            <td>10</td>
+                            <td>@Components.Comp10.GetDescription()</td>
+                        </tr>
+                        <tr style="border-bottom:2px dotted green;border-left:2px dotted green;border-right:2px dotted green;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber11" name="CompNumberList3" value="11"></td>
+                            <td>11</td>
+                            <td>@Components.Comp11.GetDescription()</td>
+                        </tr>
+                        <tr style="background:#2a88cf;color:white;font-weight:700;font-size:15px;text-align:center"><td colspan="3"> </td></tr>
+                        <tr style="border-top:2px dotted red;border-left:2px dotted red;border-right:2px dotted red;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber12" name="CompNumberList4" value="12"></td>
+                            <td>12</td>
+                            <td>@Components.Comp12.GetDescription()</td>
+                        </tr>
+                        <tr style="border-bottom:2px dotted red;border-left:2px dotted red;border-right:2px dotted red;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber13" name="CompNumberList4" value="13"></td>
+                            <td>13</td>
+                            <td>@Components.Comp13.GetDescription()</td>
+                        </tr>
+                        <tr style="background:#2a88cf;height:35px;color:white;font-weight:700;font-size:15px;text-align:center"><td colspan="3">  ३. उपघटक क्र. १४ व १५ या पैकी एका उपघटकांमध्ये लाभ घेता येईल. </td></tr>
+                        <tr style="border-top:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber14" name="CompNumberList5" value="14"></td>
+                            <td>14</td>
+                            <td>@Components.Comp14.GetDescription()</td>
+                        </tr>
+                        <tr style="border-bottom:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
+                            <td><input type="checkbox" class="form-check-input" id="CompNumber15" name="CompNumberList5" value="15"></td>
+                            <td>15</td>
+                            <td>@Components.Comp15.GetDescription()</td>
+                        </tr>
+                    </table>
                     <div class="col-lg-12 text-center alert alert-warning">Page 3 of 3</div>
-                </div>
-                @*<div class="tab">
-                        <div class="col-lg-10">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.ReshanCard, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.ReshanCard, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ReshanCard, "", new { @class = "text-danger" })
-                                </div>
+                    <div>
+                        <div style="float:right;">
+                            <button type="button" class="btn btn-danger" id="prevBtn3" onclick="nextPrev(-1)">Previous</button>
+                            @*<button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>*@
+                            <button type="submit" class="btn btn-success" id="nextBtn3" onclick="nextPrev(1)">Save & Next</button>
+                        </div>
+                    </div>
+                }
+            </div>
+            @*<div class="tab" id="tab3">
+                    @using (Html.BeginForm("Create", "ApplicantRegistrations", FormMethod.Post, new { enctype = "multipart/form-data", @id = "regForm3" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.HiddenFor(x => x.AdharCardNo)
+                        <div class="col-lg-6">
+                            <div class="alert">@Html.ValidationSummary(true, "", new { @class = "text-danger" })</div>
+                        </div>
+                        <div class="col-lg-12 text-center">
+                            <h3>अर्जदारास योजनेमधील कोणत्या घटकाखाली लाभ घ्यावयाचा आहे</h3>
+                            <h5>महत्वाची सूचना – या योजनेअंतर्गत खालील १५ उपघटकामध्ये लाभ घेता येईल. तथापि</h5>
+                        </div>
+                        <div class="col-lg-12 border">
+                            <div class="alert alert-info text-center">
+                                १. अर्जदाराने खालील पहिल्या दोन उपघटकामधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना इतर उपघटकांमध्ये लाभ घेता येणार नाही.
                             </div>
-                            <div class="form-group col-lg-4">
-                                @Html.LabelFor(model => model.CompNumber, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CompNumber, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CompNumber, "", new { @class = "text-danger" })
+                            <div class="form-group col-lg-12">
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumberList" value="1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)">
+                                    <label class="form-check-label" for="CompNumber1"> 1 कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)</label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumberList" value="2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)">
+                                    <label class="form-check-label" for="CompNumber2"> 2 स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)</label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 border">
+                            <div class="alert alert-info text-center">
+                                २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber3" value="3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber3">
+                                        3 ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे.
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber4" value="4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber4">
+                                        4 ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber5" value="5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber5">
+                                        5 ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे.
+
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber6" value="6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber6">
+                                        6 ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber7" value="7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे." name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber7">
+                                        7 ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे.
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12 border">
+                            <div class="form-check alert" style="border:1px solid #ccc">
+                                <input type="checkbox" class="form-check-input" id="CompNumber8" value="8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumberList" />
+                                <label class="form-check-label" for="CompNumber8">8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) </label>
+                            </div>
+                            <div class="form-group col-lg-12">
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber9" value="9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber9">
+                                        9 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber10" value="10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber10">
+                                        10 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber11" value="11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber11">
+                                        11 ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-12 border">
+                            <div class="form-group col-lg-12">
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber12" value="12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber12">
+                                        12 एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )
+                                    </label>
+                                </div>
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber13" value="13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber13">
+                                        13 भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )
+
+                                    </label>
+
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.AdharCardFU, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.AdharCardFU, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.AdharCardFU, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="col-lg-12 border">
+                            <div class="alert alert-info text-center">
+                                ३. उपघटक क्र. १४ व १५ या पैकी एका उपघटकांमध्ये लाभ घेता येईल.
                             </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.LivestockDevOffCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.LivestockDevOffCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.LivestockDevOffCertificate, "", new { @class = "text-danger" })
+                            <div class="form-group col-lg-12">
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber14" value="14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber14">
+                                        14 कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप
+                                    </label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.CasteCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CasteCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CasteCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.ResidentCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.ResidentCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ResidentCertificate, "", new { @class = "text-danger" })
+                                <div class="form-check alert" style="border:1px solid #ccc">
+                                    <input type="checkbox" class="form-check-input" id="CompNumber15" value="15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप" name="CompNumberList" />
+                                    <label class="form-check-label" for="CompNumber15">
+                                        15 पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप
+                                    </label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.TenancyAgreement, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.TenancyAgreement, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.TenancyAgreement, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.FU712orIncomeCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.FU712orIncomeCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.FU712orIncomeCertificate, "", new { @class = "text-danger" })
-                                </div>
+                        <div class="col-lg-12 text-center alert alert-warning">Page 3 of 3</div>
+                        <div style="overflow:auto;">
+                            <div style="float:right;">
+                                <button type="button" class="btn btn-danger" id="prevBtn3" onclick="nextPrev(-1)">Previous</button>
+
+                                <button type="submit" class="btn btn-success" id="nextBtn3" onclick="nextPrev(1)">Save & Next</button>
                             </div>
                         </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.BankPassBook, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.BankPassBook, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BankPassBook, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.BachatMemberCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.BachatMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.BachatMemberCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.CompanyMemberCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.CompanyMemberCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.CompanyMemberCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.DisabilityCertificate, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.DisabilityCertificate, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.DisabilityCertificate, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                        </div>
+                    }
+                </div>*@
 
 
-                        <div class="col-lg-12">
-                            <div class="form-group col-lg-6">
-                                @Html.LabelFor(model => model.HamiPtra, htmlAttributes: new { @class = "control-label" })
-                                <div>
-                                    @Html.EditorFor(model => model.HamiPtra, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.HamiPtra, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
-                            <ul class="list-inline pull-xs-right">
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-default prev-step">Previous</button>
-                                </li>
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-default next-step">Skip</button>
-                                </li>
-                                <li class="list-inline-item">
-                                    <button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>*@
-
-
-            }
         </div>
         <div class="col-lg-8">
 
 
         </div>
-        <div style="overflow:auto;">
-            <div style="float:right;">
-                <button type="button" class="btn btn-danger" id="prevBtn1" onclick="nextPrev(-1)">Previous</button>
-                @*<button type="submit" class="btn btn-default" id="saveBtn1" onclick="nextPrev(1)">Save</button>*@
-                <button type="button" class="btn btn-success" id="nextBtn1" onclick="nextPrev(1)">Save & Next</button>
-            </div>
-        </div>
+
     </div>
 </div>
 <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
 <script>
-    var currentTab = 0; // Current tab is set to be the first tab (0)
+    var currentTab = @Model.tabId; // Current tab is set to be the first tab (0)
     showTab(currentTab); // Display the current tab
 
     function showTab(n) {
@@ -957,37 +980,71 @@
 
         x[n].style.display = "block";
         //... and fix the Previous/Next buttons:
-        if (n == 0) {
-            document.getElementById("prevBtn").style.display = "none";
-        } else {
-            document.getElementById("prevBtn").style.display = "inline";
-            document.getElementById("prevBtn").className = "btn btn-danger";
-        }
-        if (n == (x.length - 1)) {
-            document.getElementById("nextBtn").innerHTML = "Submit";
-            document.getElementById("nextBtn").className = "btn btn-success";
-            $("FormSubmitted").val(true);
-        } else {
-            document.getElementById("nextBtn").innerHTML = "Next";
-            document.getElementById("nextBtn").className = "btn btn-warning";
-            $("FormSubmitted").val(false);
-        }
+        //if (n == 0) {
+        //    document.getElementById("prevBtn").style.display = "none";
+        //} else {
+        //    document.getElementById("prevBtn").style.display = "inline";
+        //    document.getElementById("prevBtn").className = "btn btn-danger";
+        //}
+        //if (n == (x.length - 1)) {
+        //    document.getElementById("nextBtn").innerHTML = "Submit";
+        //    document.getElementById("nextBtn").className = "btn btn-success";
+        // //   $("FormSubmitted").val(true);
+        //} else {
+        //    document.getElementById("nextBtn").innerHTML = "Next";
+        //    document.getElementById("nextBtn").className = "btn btn-warning";
+        // //   $("FormSubmitted").val(false);
+        //}
 
         if (n == 0) {
             document.getElementById("prevBtn1").style.display = "none";
         } else {
             document.getElementById("prevBtn1").style.display = "inline";
             document.getElementById("prevBtn1").className = "btn btn-danger";
-            $("FormSubmitted").val(false);
+         //   $("FormSubmitted").val(false);
         }
         if (n == (x.length - 1)) {
             document.getElementById("nextBtn1").innerHTML = "Submit";
             document.getElementById("nextBtn1").className = "btn btn-success";
-            $("FormSubmitted").val(true);
+          //  $("FormSubmitted").val(true);
         } else {
             document.getElementById("nextBtn1").innerHTML = "Next";
             document.getElementById("nextBtn1").className = "btn btn-warning";
-            $("FormSubmitted").val(false);
+          //  $("FormSubmitted").val(false);
+        }
+
+
+        if (n == 0) {
+            document.getElementById("prevBtn2").style.display = "none";
+        } else {
+            document.getElementById("prevBtn2").style.display = "inline";
+            document.getElementById("prevBtn2").className = "btn btn-danger";
+        //    $("FormSubmitted").val(false);
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn2").innerHTML = "Submit";
+            document.getElementById("nextBtn2").className = "btn btn-success";
+          //  $("FormSubmitted").val(true);
+        } else {
+            document.getElementById("nextBtn2").innerHTML = "Next";
+            document.getElementById("nextBtn2").className = "btn btn-warning";
+          //  $("FormSubmitted").val(false);
+        }
+        if (n == 0) {
+            document.getElementById("prevBtn3").style.display = "none";
+        } else {
+            document.getElementById("prevBtn3").style.display = "inline";
+            document.getElementById("prevBtn3").className = "btn btn-danger";
+          //  $("FormSubmitted").val(false);
+        }
+        if (n == (x.length - 1)) {
+            document.getElementById("nextBtn3").innerHTML = "Submit";
+            document.getElementById("nextBtn3").className = "btn btn-success";
+          //  $("FormSubmitted").val(true);
+        } else {
+            document.getElementById("nextBtn3").innerHTML = "Next";
+            document.getElementById("nextBtn3").className = "btn btn-warning";
+          //  $("FormSubmitted").val(false);
         }
         //... and run a function that will display the correct step indicator:
         fixStepIndicator(n)
@@ -1003,12 +1060,14 @@
         // Increase or decrease the current tab by 1:
         currentTab = currentTab + n;
         // if you have reached the end of the form...
-        if (currentTab >= x.length) {
-            // ... the form gets submitted:
-            confirm("Editing Components is not allowed once the form is submitted.");
-            document.getElementById("regForm").submit();
-            return false;
-        }
+        //if (currentTab >= x.length) {
+        //if (currentTab == 3) {
+        //    // ... the form gets submitted:
+        //    confirm("Editing Components is not allowed once the form is submitted.");
+        //  //  $("#tabId").val("2");
+        //  //  document.getElementById("regForm3").submit();
+        //    return false;
+        //}
         // Otherwise, display the correct tab:
         showTab(currentTab);
     }
@@ -1074,9 +1133,100 @@
     $(document).ready(function () {
         $("#Caste").val("भटक्या जमातीचा - क");
 
-     
+        var gender = "@Model.Gender";
+        if (gender != "") {
+         $("input:radio[name='gender'][value='@Model.Gender']").prop('checked', true);
+        }
+
+        var ApplicantCrippled = "@Model.ApplicantCrippled";
+        if (ApplicantCrippled != "") {
+            $("input:radio[name='ApplicantCrippled'][value='@Model.ApplicantCrippled']").prop('checked', true);
+        }
+
+        var PresentDaySheep = "@Model.PresentDaySheep";
+        if (PresentDaySheep != "") {
+            $("input:radio[name='PresentDaySheep'][value='@Model.PresentDaySheep']").prop('checked', true);
+        }
+
+        var ApplicantsPermanentInOnePlace = "@Model.ApplicantsPermanentInOnePlace";
+        if (ApplicantsPermanentInOnePlace != "") {
+            $("input:radio[name='ApplicantsPermanentInOnePlace'][value='@Model.ApplicantsPermanentInOnePlace']").prop('checked', true);
+        }
+
+        var ApplicantsMigratedByWayOfTransit = "@Model.ApplicantsMigratedByWayOfTransit";
+        if (ApplicantsMigratedByWayOfTransit != "") {
+            $("input:radio[name='ApplicantsMigratedByWayOfTransit'][value='@Model.ApplicantsMigratedByWayOfTransit']").prop('checked', true);
+        }
+
+        var IsApplicantOwnedLand = "@Model.IsApplicantOwnedLand";
+        if (IsApplicantOwnedLand != "") {
+            $("input:radio[name='IsApplicantOwnedLand'][value='@Model.IsApplicantOwnedLand']").prop('checked', true);
+
+        }
+        var IsNotIsAvailableOnLease = "@Model.IsNotIsAvailableOnLease";
+       if (IsNotIsAvailableOnLease != "") {
+                $("input:radio[name='IsNotIsAvailableOnLease'][value='@Model.IsNotIsAvailableOnLease']").prop('checked', true);
+            }
+
+        var IsWarehouseForSheep = "@Model.IsWarehouseForSheep";
+        if (IsWarehouseForSheep != "") {
+            $("input:radio[name='IsWarehouseForSheep'][value='@Model.IsWarehouseForSheep']").prop('checked', true);
+        }
+
+        var IsNotIsAtLeastOnePinpointSpace = "@Model.IsNotIsAtLeastOnePinpointSpace";
+        if (IsNotIsAtLeastOnePinpointSpace != "") {
+            $("input:radio[name='IsNotIsAtLeastOnePinpointSpace'][value='@Model.IsNotIsAtLeastOnePinpointSpace']").prop('checked', true);
+        }
+
+        var IsSavingsGroupMember = "@Model.IsSavingsGroupMember";
+        if (IsSavingsGroupMember != "") {
+            $("input:radio[name='IsSavingsGroupMember'][value='@Model.IsSavingsGroupMember']").prop('checked', true);
+        }
+
+        var IsanimalHusbandryManufacturingCompanyMember = "@Model.IsanimalHusbandryManufacturingCompanyMember";
+        if (IsanimalHusbandryManufacturingCompanyMember != "") {
+            $("input:radio[name='IsanimalHusbandryManufacturingCompanyMember'][value='@Model.IsanimalHusbandryManufacturingCompanyMember']").prop('checked', true);
+        }
+
+        var IsTrained = "@Model.IsTrained";
+        if (IsTrained != "") {
+            $("input:radio[name='IsTrained'][value='@Model.IsTrained']").prop('checked', true);
+        }
+
+         var gardenacre = "@Model.GardeningEcre";
+        if (GardeningEcre != "") {
+            $('#GardeningEcre option').map(function () {
+                if ($(this).text() == gardenacre) return this;
+            }).attr('selected', 'selected');
+        }
+
+        var CuminEcre = "@Model.CuminEcre";
+        if (CuminEcre != "") {
+            $('#CuminEcre option').map(function () {
+                if ($(this).text() == CuminEcre) return this;
+            }).attr('selected', 'selected');
+        }
+
+        var WaterSource = "@Model.WaterSource";
+        if (WaterSource != "") {
+            $('#WaterSource option').map(function () {
+                if ($(this).val() == WaterSource) return this;
+            }).attr('selected', 'selected');
+        }
+
+        var TypeExistingCastle = "@Model.TypeExistingCastle";
+        if (TypeExistingCastle != "") {
+            $('#TypeExistingCastle option').map(function () {
+                if ($(this).val() == TypeExistingCastle) return this;
+            }).attr('selected', 'selected');        }
+
         $("#Child2006").change(function () {
             var selected = $(this).children("option:selected").val();
+            var selected2 = $("#ChildCount").children("option:selected").val();
+            if (selected > selected2) {
+                alert("No. of Children can not be less than children born after 2001.");
+                $(this).val("0");
+            }
             if (selected > 2) {
                 alert("You are not eligible.");
                 $("#nextBtn").prop("disabled", true);
@@ -1087,23 +1237,81 @@
                 $("#nextBtn1").prop("disabled", false);
             }
         });
-        $("#nextBtn1").click(function () {
-            var val = [];
-            $(':checkbox[name=CompNumberList]:checked').each(function (i) {
-                val[i] = $(this).val();
+        $("#nextBtn3").click(function () {
+            var val1 = [];
+            $("input[name=CompNumberList1]").removeAttr("disabled");
+            $(':checkbox[name=CompNumberList1]:checked').each(function (i) {
+                val1[i] = $(this).val();
             });
-            //alert(val);
+           // alert(val1);
+
+            var val2 = [];
+            $("input[name=CompNumberList2]").removeAttr("disabled");
+            $(':checkbox[name=CompNumberList2]:checked').each(function (i) {
+                val2[i] = $(this).val();
+            });
+           // alert(val2);
+
+            var val3 = [];
+            $("input[name=CompNumberList3]").removeAttr("disabled");
+            $(':checkbox[name=CompNumberList3]:checked').each(function (i) {
+                val3[i] = $(this).val();
+            });
+           // alert(val3);
+
+            var val4 = [];
+            $("input[name=CompNumberList4]").removeAttr("disabled");
+            $(':checkbox[name=CompNumberList4]:checked').each(function (i) {
+                val4[i] = $(this).val();
+            });
+           // alert(val4);
+
+            var val5 = [];
+            $("input[name=CompNumberList5]").removeAttr("disabled");
+            $(':checkbox[name=CompNumberList5]:checked').each(function (i) {
+                val5[i] = $(this).val();
+            });
+          //  alert(val5);
             confirm("Editing Components is not allowed once the form is submitted.");
-            $("#nextBtn").submit();
+            //$("#nextBtn3").submit();
         });
-        $("#prevBtn1").click(function () {
-            var val = [];
-            $(':checkbox[name=CompNumberList]:checked').each(function (i) {
-                val[i] = $(this).val();
-            });
-           // alert(val);
-            confirm("Editing Components is not allowed once the form is submitted.");
-            $("#prevBtn").submit();
+        $("#prevBtn3").click(function () {
+          //  var val1 = [];
+          //  $("input[name=CompNumberList1]").removeAttr("disabled");
+          //  $(':checkbox[name=CompNumberList1]:checked').each(function (i) {
+          //      val1[i] = $(this).val();
+          //  });
+          ////  alert(val1);
+
+          //  var val2 = [];
+          //  $("input[name=CompNumberList2]").removeAttr("disabled");
+          //  $(':checkbox[name=CompNumberList2]:checked').each(function (i) {
+          //      val2[i] = $(this).val();
+          //  });
+          //  //alert(val2);
+
+          //  var val3 = [];
+          //  $("input[name=CompNumberList3]").removeAttr("disabled");
+          //  $(':checkbox[name=CompNumberList3]:checked').each(function (i) {
+          //      val3[i] = $(this).val();
+          //  });
+          ////  alert(val3);
+
+          //  var val4 = [];
+          //  $("input[name=CompNumberList4]").removeAttr("disabled");
+          //  $(':checkbox[name=CompNumberList4]:checked').each(function (i) {
+          //      val4[i] = $(this).val();
+          //  });
+          ////  alert(val4);
+
+          //  var val5 = [];
+          //  $("input[name=CompNumberList5]").removeAttr("disabled");
+          //  $(':checkbox[name=CompNumberList5]:checked').each(function (i) {
+          //      val5[i] = $(this).val();
+          //  });
+          //  alert(val5);
+            //confirm("Editing Components is not allowed once the form is submitted.");
+            // $("#prevBtn3").submit();
         });
 
 
@@ -1131,18 +1339,7 @@
             return false;
         });
         var age = "";
-      // $('#dob').datepicker({
-        //    onSelect: function (value, ui) {
-        //        var today = new Date();
-        //        age = today.getFullYear() - ui.selectedYear;
-        //        $('#age').val(age);
-        //    },
-        //    changeMonth: true,
-        //    changeYear: true
-        //})
-        //$('#DOB').click(function () {
-        //    $('#DOB').val("2001-12-22");
-        //});
+
         $('input[id$=DOB]').datepicker({
             dateFormat: 'dd/mm/yy',
             //setDate: new Date(2001, 10 - 1, 25),
@@ -1153,7 +1350,7 @@
                 $('#Age').val(age);
             },
             changeMonth: true,
-            yearRange: '1900:2001',
+            yearRange: '1959:2001',
             changeYear: true
         });
 
@@ -1169,8 +1366,8 @@
 
                     $.each(city, function (i, city) {
                         $("#VillageName").append('<option value="'
-                                                   + city.Value + '">'
-                                             + city.Text + '</option>');
+                            + city.Value + '">'
+                            + city.Text + '</option>');
                     });
                     $.each(city, function (i, city) {
                         $("#HVillage").append('<option value="'
@@ -1187,6 +1384,7 @@
 
         $('#CompNumber1').change(function () {
             if ($('#CompNumber1').is(':checked') == true) {
+                $('#CompNumber1').prop('disabled', false);
                 $('#CompNumber2').prop('disabled', true);
                 $('#CompNumber3').prop('disabled', true);
                 $('#CompNumber4').prop('disabled', true);
@@ -1211,7 +1409,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1220,6 +1418,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber2').change(function () {
             if ($('#CompNumber2').is(':checked') == true) {
@@ -1229,7 +1432,7 @@
                 $('#CompNumber5').prop('disabled', true);
                 $('#CompNumber6').prop('disabled', true);
                 $('#CompNumber7').prop('disabled', true);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', true);
                 $('#CompNumber9').prop('disabled', true);
                 $('#CompNumber10').prop('disabled', true);
                 $('#CompNumber11').prop('disabled', true);
@@ -1247,7 +1450,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1256,6 +1459,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber3').change(function () {
             if ($('#CompNumber3').is(':checked') == true) {
@@ -1283,7 +1491,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', false);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1292,6 +1500,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber4').change(function () {
             if ($('#CompNumber4').is(':checked') == true) {
@@ -1301,7 +1514,7 @@
                 $('#CompNumber5').prop('disabled', true);
                 $('#CompNumber6').prop('disabled', true);
                 $('#CompNumber7').prop('disabled', true);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1319,7 +1532,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1328,6 +1541,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber5').change(function () {
             if ($('#CompNumber5').is(':checked') == true) {
@@ -1337,7 +1555,7 @@
                 $('#CompNumber4').prop('disabled', true);
                 $('#CompNumber6').prop('disabled', true);
                 $('#CompNumber7').prop('disabled', true);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1355,7 +1573,7 @@
                 $('#CompNumber4').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1364,6 +1582,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber6').change(function () {
             if ($('#CompNumber6').is(':checked') == true) {
@@ -1373,7 +1596,7 @@
                 $('#CompNumber4').prop('disabled', true);
                 $('#CompNumber5').prop('disabled', true);
                 $('#CompNumber7').prop('disabled', true);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1391,7 +1614,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber4').prop('disabled', false);
                 $('#CompNumber7').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1400,6 +1623,11 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber7').change(function () {
             if ($('#CompNumber7').is(':checked') == true) {
@@ -1409,7 +1637,7 @@
                 $('#CompNumber5').prop('disabled', true);
                 $('#CompNumber6').prop('disabled', true);
                 $('#CompNumber4').prop('disabled', true);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1427,7 +1655,7 @@
                 $('#CompNumber5').prop('disabled', false);
                 $('#CompNumber6').prop('disabled', false);
                 $('#CompNumber4').prop('disabled', false);
-               $('#CompNumber8').prop('disabled', true);
+                $('#CompNumber8').prop('disabled', false);
                 $('#CompNumber9').prop('disabled', false);
                 $('#CompNumber10').prop('disabled', false);
                 $('#CompNumber11').prop('disabled', false);
@@ -1436,10 +1664,14 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
-    });
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
+        });
         $('#CompNumber8').change(function () {
             if ($('#CompNumber8').is(':checked') == true) {
-                if ($('#CompNumber8').is(':checked') == true) {
                     if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
                         $('#CompNumber1').prop('disabled', true);
                         $('#CompNumber2').prop('disabled', true);
@@ -1474,44 +1706,50 @@
                         $('#CompNumber15').prop('disabled', true);
                         console.log('checked8');
                     }
-                }
-                else {
-                    console.log('unchecked8');
-                    if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
-                        $('#CompNumber1').prop('disabled', false);
-                        $('#CompNumber2').prop('disabled', false);
-                        $('#CompNumber3').prop('disabled', true);
-                        $('#CompNumber5').prop('disabled', true);
-                        $('#CompNumber6').prop('disabled', true);
-                        $('#CompNumber4').prop('disabled', true);
-                        $('#CompNumber11').prop('disabled', false);
-                        $('#CompNumber7').prop('disabled', true);
-                        $('#CompNumber10').prop('disabled', false);
-                        $('#CompNumber9').prop('disabled', false);
-                        $('#CompNumber12').prop('disabled', false);
-                        $('#CompNumber13').prop('disabled', false);
-                        $('#CompNumber14').prop('disabled', false);
-                        $('#CompNumber15').prop('disabled', false);
-                    }
-                    else {
-                        $('#CompNumber1').prop('disabled', false);
-                        $('#CompNumber2').prop('disabled', false);
-                        $('#CompNumber3').prop('disabled', false);
-                        $('#CompNumber5').prop('disabled', false);
-                        $('#CompNumber6').prop('disabled', false);
-                        $('#CompNumber4').prop('disabled', false);
-                        $('#CompNumber11').prop('disabled', false);
-                        $('#CompNumber7').prop('disabled', false);
-                        $('#CompNumber10').prop('disabled', false);
-                        $('#CompNumber9').prop('disabled', false);
-                        $('#CompNumber12').prop('disabled', false);
-                        $('#CompNumber13').prop('disabled', false);
-                        $('#CompNumber14').prop('disabled', false);
-                        $('#CompNumber15').prop('disabled', false);
-                    }
-                }
             }
-        });
+                else
+                {
+                    console.log('unchecked8');
+                    if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true))
+                    {
+                        $('#CompNumber1').prop('disabled', false);
+                        $('#CompNumber2').prop('disabled', false);
+                        $('#CompNumber3').prop('disabled', true);
+                        $('#CompNumber5').prop('disabled', true);
+                        $('#CompNumber6').prop('disabled', true);
+                        $('#CompNumber4').prop('disabled', true);
+                        $('#CompNumber11').prop('disabled', false);
+                        $('#CompNumber7').prop('disabled', true);
+                        $('#CompNumber10').prop('disabled', false);
+                        $('#CompNumber9').prop('disabled', false);
+                        $('#CompNumber12').prop('disabled', false);
+                        $('#CompNumber13').prop('disabled', false);
+                        $('#CompNumber14').prop('disabled', false);
+                        $('#CompNumber15').prop('disabled', false);
+                    }
+                    else {
+                        $('#CompNumber1').prop('disabled', false);
+                        $('#CompNumber2').prop('disabled', false);
+                        $('#CompNumber3').prop('disabled', false);
+                        $('#CompNumber5').prop('disabled', false);
+                        $('#CompNumber6').prop('disabled', false);
+                        $('#CompNumber4').prop('disabled', false);
+                        $('#CompNumber11').prop('disabled', false);
+                        $('#CompNumber7').prop('disabled', false);
+                        $('#CompNumber10').prop('disabled', false);
+                        $('#CompNumber9').prop('disabled', false);
+                        $('#CompNumber12').prop('disabled', false);
+                        $('#CompNumber13').prop('disabled', false);
+                        $('#CompNumber14').prop('disabled', false);
+                        $('#CompNumber15').prop('disabled', false);
+                    }
+            }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
+            });
         $('#CompNumber9').change(function () {
             if ($('#CompNumber9').is(':checked') == true) {
                 if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
@@ -1586,8 +1824,12 @@
                     $('#CompNumber15').prop('disabled', false);
                 }
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
-
         $('#CompNumber10').change(function () {
             if ($('#CompNumber10').is(':checked') == true) {
                 if (($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) {
@@ -1661,8 +1903,13 @@
                     $('#CompNumber14').prop('disabled', false);
                     $('#CompNumber15').prop('disabled', false);
                 }
-             
+
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber11').change(function () {
             if ($('#CompNumber11').is(':checked') == true) {
@@ -1736,78 +1983,305 @@
                     $('#CompNumber15').prop('disabled', false);
                 }
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber12').change(function () {
             if ($('#CompNumber12').is(':checked') == true) {
-                $('#CompNumber1').prop('disabled', true);
-                $('#CompNumber2').prop('disabled', true);
-                $('#CompNumber3').prop('disabled', false);
-                $('#CompNumber5').prop('disabled', false);
-                $('#CompNumber6').prop('disabled', false);
-                $('#CompNumber4').prop('disabled', false);
-                $('#CompNumber8').prop('disabled', true);
-                $('#CompNumber7').prop('disabled', false);
-                $('#CompNumber10').prop('disabled', false);
-                $('#CompNumber11').prop('disabled', false);
-                $('#CompNumber9').prop('disabled', false);
-                $('#CompNumber13').prop('disabled', true);
-                $('#CompNumber14').prop('disabled', true);
-                $('#CompNumber15').prop('disabled', true);
-                console.log('checked12');
+                if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber13').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked8');
+                }
+                else if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked8');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && ((($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber13').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked12');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked12');
+                }
             }
             else {
-                console.log('unchecked12');
-                $('#CompNumber1').prop('disabled', false);
-                $('#CompNumber2').prop('disabled', false);
-                $('#CompNumber3').prop('disabled', false);
-                $('#CompNumber5').prop('disabled', false);
-                $('#CompNumber6').prop('disabled', false);
-                $('#CompNumber4').prop('disabled', false);
-                $('#CompNumber8').prop('disabled', true);
-                $('#CompNumber7').prop('disabled', false);
-                $('#CompNumber10').prop('disabled', false);
-                $('#CompNumber11').prop('disabled', false);
-                $('#CompNumber9').prop('disabled', false);
-                $('#CompNumber13').prop('disabled', false);
-                $('#CompNumber14').prop('disabled', false);
-                $('#CompNumber15').prop('disabled', false);
+                if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked12');
+                }
+                else if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked8');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && ((($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked12');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber13').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked12');
+                }
             }
-        });
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
+              });
         $('#CompNumber13').change(function () {
             if ($('#CompNumber13').is(':checked') == true) {
-                $('#CompNumber1').prop('disabled', true);
-                $('#CompNumber2').prop('disabled', true);
-                $('#CompNumber3').prop('disabled', false);
-                $('#CompNumber5').prop('disabled', false);
-                $('#CompNumber6').prop('disabled', false);
-                $('#CompNumber4').prop('disabled', false);
-                $('#CompNumber8').prop('disabled', true);
-                $('#CompNumber7').prop('disabled', false);
-                $('#CompNumber10').prop('disabled', false);
-                $('#CompNumber11').prop('disabled', false);
-                $('#CompNumber9').prop('disabled', false);
-                $('#CompNumber12').prop('disabled', true);
-                $('#CompNumber14').prop('disabled', true);
-                $('#CompNumber15').prop('disabled', true);
-                console.log('checked13');
+                if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber12').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked8');
+                }
+                else if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked8');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && ((($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber12').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', true);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
             }
             else {
-                console.log('unchecked13');
-                $('#CompNumber1').prop('disabled', false);
-                $('#CompNumber2').prop('disabled', false);
-                $('#CompNumber3').prop('disabled', false);
-                $('#CompNumber5').prop('disabled', false);
-                $('#CompNumber6').prop('disabled', false);
-                $('#CompNumber4').prop('disabled', false);
-                $('#CompNumber8').prop('disabled', true);
-                $('#CompNumber7').prop('disabled', false);
-                $('#CompNumber10').prop('disabled', false);
-                $('#CompNumber11').prop('disabled', false);
-                $('#CompNumber9').prop('disabled', false);
-                $('#CompNumber12').prop('disabled', false);
-                $('#CompNumber14').prop('disabled', false);
-                $('#CompNumber15').prop('disabled', false);
+                if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', true);
+                    $('#CompNumber5').prop('disabled', true);
+                    $('#CompNumber6').prop('disabled', true);
+                    $('#CompNumber4').prop('disabled', true);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', true);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
+                else if ((($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && ((($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', true);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', true);
+                    $('#CompNumber9').prop('disabled', true);
+                    $('#CompNumber8').prop('disabled', true);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
+                else if (!(($('#CompNumber3').is(':checked') == true) || ($('#CompNumber4').is(':checked') == true) || ($('#CompNumber5').is(':checked') == true) || ($('#CompNumber6').is(':checked') == true) || ($('#CompNumber7').is(':checked') == true)) && (!(($('#CompNumber8').is(':checked') == true) || ($('#CompNumber9').is(':checked') == true) || ($('#CompNumber10').is(':checked') == true) || ($('#CompNumber11').is(':checked') == true)))) {
+                    $('#CompNumber1').prop('disabled', true);
+                    $('#CompNumber2').prop('disabled', true);
+                    $('#CompNumber3').prop('disabled', false);
+                    $('#CompNumber5').prop('disabled', false);
+                    $('#CompNumber6').prop('disabled', false);
+                    $('#CompNumber4').prop('disabled', false);
+                    $('#CompNumber11').prop('disabled', false);
+                    $('#CompNumber7').prop('disabled', false);
+                    $('#CompNumber10').prop('disabled', false);
+                    $('#CompNumber9').prop('disabled', false);
+                    $('#CompNumber8').prop('disabled', false);
+                    $('#CompNumber12').prop('disabled', false);
+                    $('#CompNumber14').prop('disabled', true);
+                    $('#CompNumber15').prop('disabled', true);
+                    console.log('checked13');
+                }
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber14').change(function () {
             if ($('#CompNumber14').is(':checked') == true) {
@@ -1844,6 +2318,11 @@
                 $('#CompNumber2').prop('disabled', false);
                 $('#CompNumber15').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
         $('#CompNumber15').change(function () {
             if ($('#CompNumber15').is(':checked') == true) {
@@ -1880,7 +2359,14 @@
                 $('#CompNumber14').prop('disabled', false);
                 $('#CompNumber2').prop('disabled', false);
             }
+            $("input[name^='CompNumberList']").each(function () {
+                if ($(this).is(':checked') == true) {
+                    $(this).prop('disabled', false);
+                }
+            });
         });
+
+       
 
         $(document).on('change', '.btn-file :file', function ()
         {

@@ -13,7 +13,54 @@ namespace Mahamesh.Controllers
         // GET: Menu
         public ActionResult Index()
         {
+          
             return View();
+        }
+
+        public void getDistrict()
+        {
+            var ddlDist = db.DistMaster.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.DistName, Value = m.Dist_Code.ToString() });
+                ViewBag.District = li;
+            }
+        }
+
+
+        public JsonResult getTaluka(int id)
+        {
+            var ddlTal = db.TalMaster.Where(x => x.Dist_Code == id).ToList();
+            List<SelectListItem> liTaluka = new List<SelectListItem>();
+
+            liTaluka.Add(new SelectListItem { Text = "--Select Taluka--", Value = "0" });
+            if (ddlTal != null)
+            {
+                foreach (var x in ddlTal)
+                {
+                    liTaluka.Add(new SelectListItem { Text = x.TalName, Value = x.Tal_Code.ToString() });
+                }
+            }
+            return Json(new SelectList(liTaluka, "Value", "Text", JsonRequestBehavior.AllowGet));
+        }
+
+        public JsonResult getVillage(int id)
+        {
+            var ddlVil = db.VillageMaster.Where(x => x.Tal_Code == id).ToList();
+            List<SelectListItem> liVil = new List<SelectListItem>();
+
+            liVil.Add(new SelectListItem { Text = "--Select Village--", Value = "0" });
+            if (ddlVil != null)
+            {
+                foreach (var x in ddlVil)
+                {
+                    liVil.Add(new SelectListItem { Text = x.VillageName, Value = x.Village_Code.ToString() });
+                }
+            }
+            return Json(new SelectList(liVil, "Value", "Text", JsonRequestBehavior.AllowGet));
         }
 
         // GET: Menu
@@ -54,6 +101,8 @@ namespace Mahamesh.Controllers
         }
         public ActionResult MahameshYojanaTargets()
         {
+            var ddlDist = db.DistMaster.ToList();
+            ViewBag.Dist = new SelectList(ddlDist, "Dist_Code", "DistName");
             return View();
         }
 

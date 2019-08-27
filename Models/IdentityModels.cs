@@ -30,7 +30,14 @@ namespace Mahamesh.Models
         public IDbSet<DistMaster> DistMaster { get; set; }
         public IDbSet<TalMaster> TalMaster { get; set; }
         public IDbSet<VillageMaster> VillageMaster { get; set; }
-
+        public IDbSet<Comp1PhysicalTarget> Comp1PhysicalTarget { get; set; }
+        public IDbSet<Comp2PhysicalTarget> Comp2PhysicalTarget { get; set; }
+        public IDbSet<Comp3PhysicalTarget> Comp3PhysicalTarget { get; set; }
+        public IDbSet<Comp4PhysicalTarget> Comp4PhysicalTarget { get; set; }
+        public IDbSet<Comp1PhysicalTargetTaluka> Comp1PhysicalTargetTaluka { get; set; }
+        public IDbSet<Comp2PhysicalTargetTaluka> Comp2PhysicalTargetTaluka { get; set; }
+        public IDbSet<Comp3PhysicalTargetTaluka> Comp3PhysicalTargetTaluka { get; set; }
+        public IDbSet<Comp4PhysicalTargetTaluka> Comp4PhysicalTargetTaluka { get; set; }
         public IDbSet<CasteUnderNTC> CasteUnderNTC { get; set; }
         public IDbSet<NoOfSheepMaster> NoOfSheepMaster { get; set; }
         public IDbSet<CrippledMaster> CrippledMaster { get; set; }

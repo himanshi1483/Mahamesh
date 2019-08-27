@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
 
 namespace Mahamesh.Models
 {
@@ -20,7 +19,7 @@ namespace Mahamesh.Models
 
         public bool FormSubmitted { get; set; }
 
-        [Display(Name ="Submitted Machine IP Address")]
+        [Display(Name = "Submitted Machine IP Address")]
         public string UserIP { get; set; }
 
         public DateTime? SubmitDatetime { get; set; }
@@ -30,6 +29,9 @@ namespace Mahamesh.Models
 
         [Display(Name = "गावाचे नाव (मु. पो.) ")]
         public int? VillageName { get; set; }
+
+        //    [NotMapped]
+        public int tabId { get; set; }
 
         [NotMapped]
         public string DistrictName { get; set; }
@@ -116,7 +118,7 @@ namespace Mahamesh.Models
         [Display(Name = "आर")]
         public decimal? YesApplicantOwnedLandGuntha { get; set; }
 
-      
+
         [Display(Name = "नसल्यास,भाडेकरारावर शेत जमीन उपलब्ध केली आहे काय ? ")]
         public string IsNotIsAvailableOnLease { get; set; }
 
@@ -185,7 +187,18 @@ namespace Mahamesh.Models
         public string CompNumber { get; set; }
 
         [NotMapped]
-        public List<string> CompNumberList { get; set; }
+        public List<string> CompNumberList1 { get; set; }
+        [NotMapped]
+        public List<string> CompNumberList2 { get; set; }
+        [NotMapped]
+        public List<string> CompNumberList3 { get; set; }
+        [NotMapped]
+        public List<string> CompNumberList4 { get; set; }
+        [NotMapped]
+        public List<string> CompNumberList5 { get; set; }
+
+        [NotMapped]
+        public List<Tuple<int,string>> CompList { get; set; }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         //For Documenent////
         [Display(Name = "AdharCardFU ")]
@@ -218,4 +231,56 @@ namespace Mahamesh.Models
         public string HamiPtra { get; set; }
         /////////////////////////////////////////////////////////////////////
     }
+
+    public enum Components
+    {
+
+        [Description("कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)")]
+        Comp1 = 1,
+
+        [Description("स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)")]
+        Comp2 = 2,
+
+        [Description(" ज्यांच्याकडे स्वतचे २० किंवा त्यापेक्षा अधिक परंतु ४० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा १ नरमेंढा ७५% अनुदानावर वाटप करणे.")]
+        Comp3 = 3,
+
+        [Description("ज्यांच्याकडे स्वतचे ४० किंवा त्यापेक्षा अधिक परंतु ६० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा २ नरमेंढे ७५% अनुदानावर वाटप करणे.")]
+        Comp4 = 4,
+
+        [Description("ज्यांच्याकडे स्वतचे ६० किंवा त्यापेक्षा अधिक परंतु ८० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ३ नरमेंढे ७५% अनुदानावर वाटप करणे.")]
+        Comp5 = 5,
+
+        [Description("ज्यांच्याकडे स्वतचे ८० किंवा त्यापेक्षा अधिक परंतु १०० पेक्षा कमी मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ४ नरमेंढे ७५% अनुदानावर वाटप करणे.")]
+        Comp6 = 6,
+
+        [Description("ज्यांच्याकडे स्वतचे १०० किंवा त्यापेक्षा अधिक मेंढया आहेत अशा लाभार्थ्यांना सुधारित प्रजातीचा ५ नरमेंढे ७५% अनुदानावर वाटप करणे.")]
+        Comp7 = 7,
+
+        [Description("8 ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)")]
+        Comp8 = 8,
+
+        [Description("ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)")]
+        Comp9 = 9,
+
+        [Description("ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)")]
+        Comp10 = 10,
+
+        [Description("ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत))")]
+        Comp11 = 11,
+
+        [Description("एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या कालावधी करिता )")]
+        Comp12 = 12,
+
+        [Description("भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)(१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या कालावधी करिता )")]
+        Comp13 = 13,
+
+        [Description("कुट्टी केलेल्या हिरव्या चार्‍याचा मुरघस करण्याकरिता घासड्या बांधण्याचे यंत्र (Mini Sailage Baler cum Wrapper) खरेदी करण्यासाठी ५०% अनुदान वाटप")]
+        Comp14 = 14,
+
+        [Description("पशुखाद्या कारखाने उभारणीसाठी ५०% अनुदान वाटप")]
+        Comp15 = 15
+    }
+
+
+
 }

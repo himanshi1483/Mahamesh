@@ -248,19 +248,42 @@
     <Compile Include="Migrations\201908260915185_init38.Designer.cs">
       <DependentUpon>201908260915185_init38.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201908261147487_init40.cs" />
+    <Compile Include="Migrations\201908261147487_init40.Designer.cs">
+      <DependentUpon>201908261147487_init40.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908261447577_init42.cs" />
+    <Compile Include="Migrations\201908261447577_init42.Designer.cs">
+      <DependentUpon>201908261447577_init42.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908261507345_init43.cs" />
+    <Compile Include="Migrations\201908261507345_init43.Designer.cs">
+      <DependentUpon>201908261507345_init43.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908261509104_init44.cs" />
+    <Compile Include="Migrations\201908261509104_init44.Designer.cs">
+      <DependentUpon>201908261509104_init44.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201908261748275_init46.cs" />
+    <Compile Include="Migrations\201908261748275_init46.Designer.cs">
+      <DependentUpon>201908261748275_init46.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
     <Compile Include="Models\ApplicantRegistration.cs" />
     <Compile Include="Models\ApplicationDuration.cs" />
     <Compile Include="Models\DistrictList.cs" />
+    <Compile Include="Models\EnumExtension.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
+    <Compile Include="Models\FreiendlyEnum.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MediaFolders.cs" />
     <Compile Include="Models\MediaGalleryModel.cs" />
     <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Models\PhysicalTarget.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
     <Compile Include="Models\TenderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -393,7 +416,9 @@
     <Content Include="Images\logo.jpg" />
     <Content Include="Images\logo1.png" />
     <Content Include="Images\logo_swach.jpg" />
+    <Content Include="Images\Mahamesh HomePage.jpg" />
     <Content Include="Images\Mahamesh logo.png" />
+    <Content Include="Images\Mahamesh Yojana Video.wmv" />
     <Content Include="Images\makeinindia.png" />
     <Content Include="Images\MD Photo %281%29.JPG" />
     <Content Include="Images\MD Photo.JPG" />
@@ -776,6 +801,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908260915185_init38.resx">
       <DependentUpon>201908260915185_init38.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261147487_init40.resx">
+      <DependentUpon>201908261147487_init40.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261447577_init42.resx">
+      <DependentUpon>201908261447577_init42.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261507345_init43.resx">
+      <DependentUpon>201908261507345_init43.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261509104_init44.resx">
+      <DependentUpon>201908261509104_init44.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201908261748275_init46.resx">
+      <DependentUpon>201908261748275_init46.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

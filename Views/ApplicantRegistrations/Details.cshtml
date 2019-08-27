@@ -20,14 +20,14 @@
             <div>
                 <div style="float:left">
                     <p style="font-weight:700; color:blue;text-align:left"> @Html.DisplayNameFor(model => model.ApplicationNumber) : @Model.ApplicationNumber</p>
-                    <p style="font-weight:700; color:blue;text-align:left"> दिनांक :  @Model.SubmitDatetime.Value.ToLongDateString() वेळ :   @Model.SubmitDatetime.Value.ToShortTimeString()  </p>
+                    <p style="font-weight:700; color:blue;text-align:left"> दिनांक :  @Model.SubmitDatetime.Value.ToLongDateString() वेळ :   @Model.SubmitDatetime.Value.ToLocalTime()  </p>
                 </div>
                 <div style="float:right"><img src="@Html.DisplayFor(model => model.Photo)" alt="Applicant Photo" height="70" /></div>
             </div>
-           
-        
+
+
             <table class="table table-bordered table-striped table-responsive">
-                
+
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.ApName)</td>
                     <td> @Html.DisplayFor(model => model.ApName)</td>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.SubCatse)</td>
-                    <td> @Html.DisplayFor(model => model.SubCatse)</td>
+                    <td> @Html.DisplayFor(model => model.SubCasteName)</td>
                 </tr>
                 <tr>
                     <td> @Html.DisplayNameFor(model => model.AdharCardNo)</td>
@@ -305,7 +305,13 @@
                     </td>
 
                     <td>
-                        @Html.DisplayFor(model => model.CompNumberList)
+                        <table class="table table-bordered">
+                            @foreach (var item in Model.CompList)
+                            {
+                                <tr><td>@item.Item1</td><td>@item.Item2</td></tr>
+                            }
+                        </table>
+                        @*@Html.DisplayFor(model => model.CompNumberList)*@
                     </td>
                 </tr>
                 @*<tr>

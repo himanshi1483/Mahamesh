@@ -27,7 +27,7 @@
             <table class="table table-bordered table-striped table-responsive">
                 <tr>
                     <td>@Html.DisplayNameFor(x => x.ApplicationNumber)</td>
-                    <td>@Model.ApplicationNumber</td>
+                    <td style="font-weight:800">@Model.ApplicationNumber</td>
                 </tr>
                 <tr>
                     <td>पशुवैद्यकीय दवाखाना :</td>
@@ -35,15 +35,15 @@
                         <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
                             <tr>
                                 <td>गावाचे नाव :</td>
-                                <td>@Model.VillageName</td>
+                                <td>@Model.VilName</td>
                             </tr>
                             <tr>
                                 <td>तालुका:</td>
-                                <td>@Model.Tahashil</td>
+                                <td>@Model.TalukaName</td>
                             </tr>
                             <tr>
                                 <td>जिल्हा:</td>
-                                <td>@Model.Dist</td>
+                                <td>@Model.DistrictName</td>
                             </tr>
                         </table>
                     </td>
@@ -58,15 +58,15 @@
                         <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
                             <tr>
                                 <td>राहणार:</td>
-                                <td>@Model.HVillage</td>
+                                <td>@Model.HvilName</td>
                             </tr>
                             <tr>
                                 <td>तालुका:</td>
-                                <td>@Model.Tahashil</td>
+                                <td>@Model.TalukaName</td>
                             </tr>
                             <tr>
                                 <td>जिल्हा:</td>
-                                <td>@Model.Dist</td>
+                                <td>@Model.DistrictName</td>
                             </tr>
                         </table>
                     </td>
@@ -74,15 +74,15 @@
 
                 <tr>
                     <td>अर्जदाराने अर्ज केलेल्या उपघटकाचे नाव:	</td>
-                    <td></td>
+                    <td>@Model.CompNumber</td>
                 </tr>
                 <tr>
-                    <td>दिनांक:</td>
+                    <td>दिनांक (Server Date):</td>
                     <td>@Model.SubmitDatetime.Value.Date.ToShortDateString()</td>
                 </tr>
                 <tr>
-                    <td>वेळ:</td>
-                    <td>@Model.SubmitDatetime.Value.ToShortTimeString()</td>
+                    <td>वेळ (Server Time):</td>
+                    <td>@Model.SubmitDatetime.Value.ToLocalTime()</td>
                 </tr>
                 <tr>
                     <td>Submited Machine IP Address:</td>
