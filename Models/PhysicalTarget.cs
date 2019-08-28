@@ -17,34 +17,34 @@ namespace Mahamesh.Models
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
         public int PermOrigin { get; set; }
-       // public int TempOrigin { get; set; }
-        public double PermGrant { get; set; }
-        //public double TempGrant { get; set; }
-
-    }
-
-    public class Comp1PhysicalTargetTaluka
-    {
-        [Key]
-        public int Id { get; set; }
-        public int SrNo { get; set; }
-
-        public int ComponentNumber { get; set; }
-        public string DistrictName { get; set; }
-        public string TalukaName { get; set; }
-        public long NoOfSheep { get; set; }
-        public decimal PercentageOfSheep { get; set; }
-        public int PermOrigin { get; set; }
-        public int TempOrigin { get; set; }
+       public int TempOrigin { get; set; }
         public double PermGrant { get; set; }
         public double TempGrant { get; set; }
 
     }
 
-    public class Comp2PhysicalTarget
+    public class Comp1TalukaTarget
     {
         [Key]
-        public int Id { get; set; }
+       // public int Id { get; set; }
+        public int SrNo { get; set; }
+
+        public int ComponentNumber { get; set; }
+        public string DistrictName { get; set; }
+        public string TalukaName { get; set; }
+        public long NoOfSheep { get; set; }
+        public decimal PercentageOfSheep { get; set; }
+        public Int64 PermOrigin { get; set; }
+        public long TempOrigin { get; set; }
+        public long PermGrant { get; set; }
+        public long TempGrant { get; set; }
+
+    }
+
+    public class CompTarget2
+    {
+       [Key]
+      ///  public int Id { get; set; }
         public int SrNo { get; set; }
 
         public int ComponentNumber { get; set; }
@@ -53,24 +53,24 @@ namespace Mahamesh.Models
         public decimal PercentageOfSheep { get; set; }
         public int PermOrigin { get; set; }
         //public int TempOrigin { get; set; }
-        public double PermGrant { get; set; }
+        public long PermGrant { get; set; }
         //public double TempGrant { get; set; }
 
     }
 
-    public class Comp2PhysicalTargetTaluka
+    public class Comp2TargetTaluka
     {
         [Key]
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public int SrNo { get; set; }
         public int ComponentNumber { get; set; }
         public string DistrictName { get; set; }
         public string TalukaName { get; set; }
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
-        public int PermOrigin { get; set; }
+        public long PermOrigin { get; set; }
         //public int TempOrigin { get; set; }
-        public double PermGrant { get; set; }
+        public long PermGrant { get; set; }
         //public double TempGrant { get; set; }
 
     }
@@ -85,21 +85,21 @@ namespace Mahamesh.Models
         public string DistrictName { get; set; }
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
-        public int PermBeneficiary1Origin { get; set; }
-        public int PermBeneficiary2Origin { get; set; }
-        public int TempBeneficiary1Origin { get; set; }
-        public int TempBeneficiary2Origin { get; set; }
-        public double PermGrantBeneficiary1 { get; set; }
-        public double PermGrantBeneficiary2 { get; set; }
-        public double TempGrantBeneficiary1 { get; set; }
-        public double TempGrantBeneficiary2 { get; set; }
+        public long PermBeneficiary1Origin { get; set; }
+        public long PermBeneficiary2Origin { get; set; }
+        public long TempBeneficiary1Origin { get; set; }
+        public long TempBeneficiary2Origin { get; set; }
+        public long PermGrantBeneficiary1 { get; set; }
+        public long PermGrantBeneficiary2 { get; set; }
+        public long TempGrantBeneficiary1 { get; set; }
+        public long TempGrantBeneficiary2 { get; set; }
 
     }
 
-    public class Comp3PhysicalTargetTaluka
+    public class Comp3TargetTaluka
     {
         [Key]
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public int SrNo { get; set; }
 
         public int ComponentNumber { get; set; }
@@ -107,14 +107,14 @@ namespace Mahamesh.Models
         public string TalukaName { get; set; }
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
-        public int PermBeneficiary1Origin { get; set; }
-        public int PermBeneficiary2Origin { get; set; }
-        public int TempBeneficiary1Origin { get; set; }
-        public int TempBeneficiary2Origin { get; set; }
-        public double PermGrantBeneficiary1 { get; set; }
-        public double PermGrantBeneficiary2 { get; set; }
-        public double TempGrantBeneficiary1 { get; set; }
-        public double TempGrantBeneficiary2 { get; set; }
+        public long PermBeneficiary1Origin { get; set; }
+        public long PermBeneficiary2Origin { get; set; }
+        public long TempBeneficiary1Origin { get; set; }
+        public long TempBeneficiary2Origin { get; set; }
+        public long PermGrantBeneficiary1 { get; set; }
+        public long PermGrantBeneficiary2 { get; set; }
+        public long TempGrantBeneficiary1 { get; set; }
+        public long TempGrantBeneficiary2 { get; set; }
 
     }
 
@@ -128,17 +128,17 @@ namespace Mahamesh.Models
         public string DistrictName { get; set; }
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
-        public int PermOrigin { get; set; }
-        public int TempOrigin { get; set; }
-        public double PermGrant { get; set; }
-        public double TempGrant { get; set; }
+        public long PermOrigin { get; set; }
+        public long TempOrigin { get; set; }
+        public long PermGrant { get; set; }
+        public long TempGrant { get; set; }
 
     }
 
-    public class Comp4PhysicalTargetTaluka
+    public class Comp4TargetTaluka
     {
         [Key]
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public int SrNo { get; set; }
 
         public int ComponentNumber { get; set; }

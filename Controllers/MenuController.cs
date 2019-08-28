@@ -19,21 +19,22 @@ namespace Mahamesh.Controllers
 
         public void getDistrict()
         {
-            var ddlDist = db.DistMaster.ToList();
+            var ddlDist = db.Comp1Target.Select(x=>x.DistrictName).Distinct().ToList();
             List<SelectListItem> li = new List<SelectListItem>();
             li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
 
             foreach (var m in ddlDist)
             {
-                li.Add(new SelectListItem { Text = m.DistName, Value = m.Dist_Code.ToString() });
+                li.Add(new SelectListItem { Text = m, Value = m.ToString() });
                 ViewBag.District = li;
             }
         }
 
 
-        public JsonResult getTaluka(int id)
+        public JsonResult getTaluka(string dist)
         {
-            var ddlTal = db.TalMaster.Where(x => x.Dist_Code == id).ToList();
+            var d = db.Comp1PhysicalTargetTaluka.ToList();
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == dist).Select(x=>x.TalukaName).ToList();
             List<SelectListItem> liTaluka = new List<SelectListItem>();
 
             liTaluka.Add(new SelectListItem { Text = "--Select Taluka--", Value = "0" });
@@ -41,7 +42,7 @@ namespace Mahamesh.Controllers
             {
                 foreach (var x in ddlTal)
                 {
-                    liTaluka.Add(new SelectListItem { Text = x.TalName, Value = x.Tal_Code.ToString() });
+                    liTaluka.Add(new SelectListItem { Text = x, Value = x.ToString() });
                 }
             }
             return Json(new SelectList(liTaluka, "Value", "Text", JsonRequestBehavior.AllowGet));
@@ -101,10 +102,117 @@ namespace Mahamesh.Controllers
         }
         public ActionResult MahameshYojanaTargets()
         {
-            var ddlDist = db.DistMaster.ToList();
-            ViewBag.Dist = new SelectList(ddlDist, "Dist_Code", "DistName");
-            return View();
+            getDistrict();
+            //var ddlDist = db.Comp1Target.Select(x =>  x.DistrictName).Distinct().ToList();
+            //ViewBag.Dist = new SelectList(ddlDist, "Id", "DistrictName");
+            var model = new PhysicalTargetViewModel();
+            //var comp1 = db.Comp1Target.ToList();
+            //var comp1Taluka = db.Comp1PhysicalTargetTaluka.ToList();
+            //model.Comp1TargetList = comp1;
+            //model.Comp1TalukaList = comp1Taluka;
+            //var comp2 = db.Comp2PhysicalTarget.ToList();
+            //var comp2Taluka = db.Comp2PhysicalTargetTaluka.ToList();
+            //model.Comp2TargetList = comp2;
+            //model.Comp2TalukaList = comp2Taluka;
+            //var comp3 = db.Comp3PhysicalTarget.ToList();
+            //var comp3Taluka = db.Comp3PhysicalTargetTaluka.ToList();
+            //model.Comp3TargetList = comp3;
+            //model.Comp3TalukaList = comp3Taluka;
+            //var comp4 = db.Comp4PhysicalTarget.ToList();
+            //var comp4Taluka = db.Comp4PhysicalTargetTaluka.ToList();
+            //model.Comp4TargetList = comp4;
+            //model.Comp4TalukaList = comp4Taluka;
+
+            model.Comp1TargetList = new List<Comp1Target>();
+            model.Comp2TargetList = new List<CompTarget2>();
+            model.Comp3TargetList = new List<Comp3PhysicalTarget>();
+            model.Comp4TargetList = new List<Comp4PhysicalTarget>();
+            model.Comp1TalukaList = new List<Comp1TalukaTarget>();
+            model.Comp2TalukaList = new List<Comp2TargetTaluka>();
+            model.Comp3TalukaList = new List<Comp3TargetTaluka>();
+            model.Comp4TalukaList = new List<Comp4TargetTaluka>();
+            return View(model);
         }
+
+        [HttpPost]
+        public ActionResult MahameshYojanaTargets(PhysicalTargetViewModel model1)
+        {
+            getDistrict();
+            //var ddlDist = db.Comp1Target.Select(x=>x.DistrictName).Distinct().ToList();
+            //ViewBag.Dist = new SelectList(ddlDist, "DistrictName", "DistrictName");
+            var model = new PhysicalTargetViewModel();
+            var list = new List<PhysicalTargetViewModel>();
+            model.Comp1TargetList = new List<Comp1Target>();
+            model.Comp2TargetList = new List<CompTarget2>();
+            model.Comp3TargetList = new List<Comp3PhysicalTarget>();
+            model.Comp4TargetList = new List<Comp4PhysicalTarget>();
+            model.Comp1TalukaList = new List<Comp1TalukaTarget>();
+            model.Comp2TalukaList = new List<Comp2TargetTaluka>();
+            model.Comp3TalukaList = new List<Comp3TargetTaluka>();
+            model.Comp4TalukaList = new List<Comp4TargetTaluka>();
+            if ((model1.Component == "1") && (model1.TalukaName == null) && (model1.DistrictName != null))
+            {
+                //var comp1 = db.Comp1Target.ToList();
+                model.Comp1TargetList = db.Comp1Target.Where(x => x.DistrictName == model1.DistrictName.Trim()).ToList();
+                //var data = db.Comp1Target.Where(x => x.DistrictName == district).ToList();
+                
+            }
+            else if ((model1.Component == "2") && (model1.TalukaName == null) && (model1.DistrictName != null))
+            {
+                //var comp2 = db.Comp2PhysicalTarget.ToList();
+                model.Comp2TargetList = db.Comp2PhysicalTarget.Where(x => x.DistrictName == model1.DistrictName.Trim()).ToList();
+            }
+            else if ((model1.Component == "3") && (model1.TalukaName == null) && (model1.DistrictName != null))
+            {
+                //var comp3 = db.Comp1Target.ToList();
+                model.Comp3TargetList = db.Comp3PhysicalTarget.Where(x => x.DistrictName == model1.DistrictName.Trim()).ToList();
+            }
+            else if ((model1.Component == "4") && (model1.TalukaName == null) && (model1.DistrictName != null))
+            {
+                //var comp4 = db.Comp1Target.ToList();
+                model.Comp4TargetList = db.Comp4PhysicalTarget.Where(x => x.DistrictName == model1.DistrictName.Trim()).ToList();
+            }
+            else if ((model1.Component == "1") && (model1.TalukaName != null) && (model1.DistrictName != null))
+            {
+                //var comp1 = db.Comp1Target.ToList();
+                model.Comp1TalukaList = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName.Trim()).ToList();
+                //var data = db.Comp1Target.Where(x => x.DistrictName == district).ToList();
+
+            }
+            else if ((model1.Component == "2") && (model1.TalukaName != null) && (model1.DistrictName != null))
+            {
+                //var comp2 = db.Comp2PhysicalTarget.ToList();
+                model.Comp2TalukaList = db.Comp2PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName.Trim()).ToList();
+            }
+            else if ((model1.Component == "3") && (model1.TalukaName != null) && (model1.DistrictName != null))
+            {
+                //var comp3 = db.Comp1Target.ToList();
+                model.Comp3TalukaList = db.Comp3PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName).ToList();
+            }
+            else if ((model1.Component == "4") && (model1.TalukaName != null) && (model1.DistrictName != null))
+            {
+                //var comp4 = db.Comp1Target.ToList();
+                model.Comp4TalukaList = db.Comp4PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName).ToList();
+            }
+
+            //model.Comp1TargetList = comp1;
+            //model.Comp1TalukaList = comp1Taluka;
+            //var comp2 = db.Comp2PhysicalTarget.ToList();
+            //var comp2Taluka = db.Comp2PhysicalTargetTaluka.ToList();
+            //model.Comp2TargetList = comp2;
+            //model.Comp2TalukaList = comp2Taluka;
+            //var comp3 = db.Comp3PhysicalTarget.ToList();
+            //var comp3Taluka = db.Comp3PhysicalTargetTaluka.ToList();
+            //model.Comp3TargetList = comp3;
+            //model.Comp3TalukaList = comp3Taluka;
+            //var comp4 = db.Comp4PhysicalTarget.ToList();
+            //var comp4Taluka = db.Comp4PhysicalTargetTaluka.ToList();
+            //model.Comp4TargetList = comp4;
+            //model.Comp4TalukaList = comp4Taluka;
+            return View(model);
+            //return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult MahameshYojanaBeneficiary()
         {

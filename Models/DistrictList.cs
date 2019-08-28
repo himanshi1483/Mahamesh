@@ -12,7 +12,8 @@ namespace Mahamesh.Models
         public int SrNo { get; set; }
         public string DistName { get; set; }
         public double Dist_Code { get; set; }
-       
+        public string District_Mr { get; set; }
+
     }
 
     public class DistMaster
@@ -21,7 +22,7 @@ namespace Mahamesh.Models
         public int SrNo { get; set; }
         public string DistName { get; set; }
         public int Dist_Code { get; set; }
-
+        public string District_Mr { get; set; }
     }
 
     public class VillageMaster
