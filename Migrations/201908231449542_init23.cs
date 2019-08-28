@@ -7,40 +7,40 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            //CreateTable(
-            //    "dbo.CasteUnderNTCs",
-            //    c => new
-            //        {
-            //            ID = c.Int(nullable: false, identity: true),
-            //            Caste = c.String(),
-            //        })
-            //    .PrimaryKey(t => t.ID);
-            
-            //CreateTable(
-            //    "dbo.CrippledMasters",
-            //    c => new
-            //        {
-            //            ID = c.Int(nullable: false, identity: true),
-            //            Percentage = c.String(),
-            //        })
-            //    .PrimaryKey(t => t.ID);
-            
-            //CreateTable(
-            //    "dbo.NoOfSheepMasters",
-            //    c => new
-            //        {
-            //            id = c.Int(nullable: false, identity: true),
-            //            NoOfSheep = c.String(),
-            //        })
-            //    .PrimaryKey(t => t.id);
-            
+            CreateTable(
+                "dbo.CasteUnderNTCs",
+                c => new
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Caste = c.String(),
+                })
+                .PrimaryKey(t => t.ID);
+
+            CreateTable(
+                "dbo.CrippledMasters",
+                c => new
+                {
+                    ID = c.Int(nullable: false, identity: true),
+                    Percentage = c.String(),
+                })
+                .PrimaryKey(t => t.ID);
+
+            CreateTable(
+                "dbo.NoOfSheepMasters",
+                c => new
+                {
+                    id = c.Int(nullable: false, identity: true),
+                    NoOfSheep = c.String(),
+                })
+                .PrimaryKey(t => t.id);
+
         }
         
         public override void Down()
         {
-            //DropTable("dbo.NoOfSheepMasters");
-            //DropTable("dbo.CrippledMasters");
-            //DropTable("dbo.CasteUnderNTCs");
+            DropTable("dbo.NoOfSheepMasters");
+            DropTable("dbo.CrippledMasters");
+            DropTable("dbo.CasteUnderNTCs");
         }
     }
 }

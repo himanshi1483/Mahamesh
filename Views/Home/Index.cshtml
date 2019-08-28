@@ -101,19 +101,19 @@
             <div class="col-lg-6 col-md-6 text-center">
                 <div class="video-container">
                     @*<video id='video' controls="controls" preload="metadata" src="https://youtu.be/UI4jmZUI3yY" class="embed-responsive-item">
-                        <source id='mp4' src="~/Images/Mahamesh Yojana Video.wmv" type='video/x-ms-wmv' />
-                    </video>*@
+                            <source id='mp4' src="~/Images/Mahamesh Yojana Video.wmv" type='video/x-ms-wmv' />
+                        </video>*@
                     <iframe width="560" height="315" src="https://www.youtube.com/embed/UI4jmZUI3yY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
                 @*<div class="video-container text-center">
-                    <div class="vid-wrapper">
-                        <a id="vid-link" href="">
-                            <img id="vid-img" src="" />
-                            <i class="play-btn fa fa-youtube-play fa-3x" aria-hidden="true"></i>
-                        </a>
-                    </div>
+                        <div class="vid-wrapper">
+                            <a id="vid-link" href="">
+                                <img id="vid-img" src="" />
+                                <i class="play-btn fa fa-youtube-play fa-3x" aria-hidden="true"></i>
+                            </a>
+                        </div>
 
-                </div>*@
+                    </div>*@
             </div>
             <div class="col-lg-3 col-md-3">
                 <figure class="figure">
@@ -127,7 +127,7 @@
             </div>
         </div>
     </section>
-    <section id="mu-service">
+    <section id="mu-service" style="z-index:1;position:relative">
         <div class="row">
             <div class="col-lg-12 col-md-12">
                 <div class="mu-service-area">
@@ -136,6 +136,7 @@
                         <span class="fa fa-list-alt"></span>
                         <h5 class="blink"><a href="#" style="color:white !important" onclick="showPopup();">महामेष  योजना</a></h5>
                         <h4 class="blink"><a href="#" onclick="showPopup();">Mahamesh Yojana</a></h4>
+                        
                     </div>
                     <div class="mu-service-single" style="background:#6eb00f">
                         <span class="fa fa-list-alt"></span>
@@ -619,42 +620,42 @@
 </script>
 
 @*<script type="text/javascript">
-    window.onload = function () {
-        // Paste url here
-        var url = "https://youtu.be/UI4jmZUI3yY";
+        window.onload = function () {
+            // Paste url here
+            var url = "https://youtu.be/UI4jmZUI3yY";
 
-        // Function to extract video id
-        function extractVidId(url) {
-            var link = url;
-            var ref = link.split('/');
-            var vRef = ref[ref.length - 1].split('&');
-            vRef = vRef[0].split('=');
-            if (vRef.length > 1) {
-                vRef = vRef[1];
-            } else {
-                vRef = vRef[0];
+            // Function to extract video id
+            function extractVidId(url) {
+                var link = url;
+                var ref = link.split('/');
+                var vRef = ref[ref.length - 1].split('&');
+                vRef = vRef[0].split('=');
+                if (vRef.length > 1) {
+                    vRef = vRef[1];
+                } else {
+                    vRef = vRef[0];
+                }
+                return vRef;
             }
-            return vRef;
+
+            // Extracting video id fro url
+            var videoId = extractVidId(url);
+
+            // Checking if url is valid
+            if (videoId != null) {
+                // Link to youtube video
+                var vidLink = 'https://www.youtube.com/watch?v=' + videoId;
+
+                // Link to video image
+                var vidImage = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
+
+                // Set href to the vidLink
+                document.getElementById("vid-link").setAttribute("href", vidLink);
+
+                // Set img src to vidImage
+                document.getElementById("vid-img").setAttribute("src", vidImage);
+            } else {
+                console.log("The youtube url is not valid.");
+            }
         }
-
-        // Extracting video id fro url
-        var videoId = extractVidId(url);
-
-        // Checking if url is valid
-        if (videoId != null) {
-            // Link to youtube video
-            var vidLink = 'https://www.youtube.com/watch?v=' + videoId;
-
-            // Link to video image
-            var vidImage = 'https://img.youtube.com/vi/' + videoId + '/0.jpg';
-
-            // Set href to the vidLink
-            document.getElementById("vid-link").setAttribute("href", vidLink);
-
-            // Set img src to vidImage
-            document.getElementById("vid-img").setAttribute("src", vidImage);
-        } else {
-            console.log("The youtube url is not valid.");
-        }
-    }
-</script>*@
+    </script>*@

@@ -7,12 +7,12 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            //AddColumn("dbo.ApplicantRegistrations", "CompNumber", c => c.String());
+            AddColumn("dbo.ApplicantRegistrations", "CompNumber", c => c.String());
         }
         
         public override void Down()
         {
-           // DropColumn("dbo.ApplicantRegistrations", "CompNumber");
+            DropColumn("dbo.ApplicantRegistrations", "CompNumber");
         }
     }
 }

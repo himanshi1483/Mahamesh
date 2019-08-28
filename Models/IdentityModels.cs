@@ -30,7 +30,7 @@ namespace Mahamesh.Models
         public IDbSet<DistMaster> DistMaster { get; set; }
         public IDbSet<TalMaster> TalMaster { get; set; }
         public IDbSet<VillageMaster> VillageMaster { get; set; }
-        public IDbSet<Comp1PhysicalTarget> Comp1PhysicalTarget { get; set; }
+        public IDbSet<Comp1Target> Comp1Target { get; set; }
         public IDbSet<Comp2PhysicalTarget> Comp2PhysicalTarget { get; set; }
         public IDbSet<Comp3PhysicalTarget> Comp3PhysicalTarget { get; set; }
         public IDbSet<Comp4PhysicalTarget> Comp4PhysicalTarget { get; set; }
@@ -43,7 +43,6 @@ namespace Mahamesh.Models
         public IDbSet<CrippledMaster> CrippledMaster { get; set; }
         public IDbSet<WaterSource> WaterSource { get; set; }
         public IDbSet<DurationWaterAvailableForIrrigation> DurationWaterAvailableForIrrigation { get; set; }
-        public IDbSet<AcreMaster> AcreMaster { get; set; }
         public IDbSet<TypeExistingCastle> TypeExistingCastle { get; set; }
 
         ////public IDbSet<PressInformationModel> PressInformation { get; set; }
@@ -65,5 +64,7 @@ namespace Mahamesh.Models
         public System.Data.Entity.DbSet<Mahamesh.Models.MediaGalleryModel> MediaGalleryModels { get; set; }
 
         public System.Data.Entity.DbSet<Mahamesh.Models.ApplicantRegistration> ApplicantRegistrations { get; set; }
+        public DbSet<AcreMaster> AcreMaster { get; set; }
+
     }
 }

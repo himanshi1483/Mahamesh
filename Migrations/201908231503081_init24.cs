@@ -7,12 +7,12 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            //AlterColumn("dbo.CrippledMasters", "Percentage", c => c.Int(nullable: false));
+            AlterColumn("dbo.CrippledMasters", "Percentage", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            //AlterColumn("dbo.CrippledMasters", "Percentage", c => c.String());
+            AlterColumn("dbo.CrippledMasters", "Percentage", c => c.String());
         }
     }
 }

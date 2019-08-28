@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Mahamesh.Models
 {
-    public class Comp1PhysicalTarget
+    public class Comp1Target
     {
         [Key]
         public int Id { get; set; }
@@ -17,9 +17,9 @@ namespace Mahamesh.Models
         public long NoOfSheep { get; set; }
         public decimal PercentageOfSheep { get; set; }
         public int PermOrigin { get; set; }
-        public int TempOrigin { get; set; }
+       // public int TempOrigin { get; set; }
         public double PermGrant { get; set; }
-        public double TempGrant { get; set; }
+        //public double TempGrant { get; set; }
 
     }
 

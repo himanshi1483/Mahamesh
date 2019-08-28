@@ -311,8 +311,8 @@ namespace Mahamesh.Controllers
                 _comp = _comp.TrimEnd();
                 applicant.CompNumber = _comp.TrimEnd(',');
                 applicant.SubmitDatetime = DateTime.UtcNow;
-                var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
-                applicant.ApplicationNumber = applicant.Dist + "/" + applicant.Tahashil + "/" + applicant.VillageName + "/" + (id + 1);
+              //  var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
+                applicant.ApplicationNumber = applicant.Dist + "/" + applicant.Tahashil + "/" + applicant.VillageName + "/" + applicant.Id;
                 applicant.FormSubmitted = true;
                 applicant.UserIP = GetIPAddress();
                 applicantRegistration.Id = applicant.Id;
