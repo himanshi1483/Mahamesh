@@ -652,6 +652,7 @@
     <Content Include="Content\Varsity\assets\fonts\samanata.ttf" />
     <Content Include="Content\Varsity\assets\fonts\Samyak-Devanagari.ttf" />
     <Content Include="Content\Varsity\assets\fonts\Sarai_07.ttf" />
+    <Content Include="Documents\Mahamesh_273_release.apk" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
