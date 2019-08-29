@@ -31,9 +31,23 @@ namespace Mahamesh.Controllers
         }
 
 
+        public JsonResult getDist(string dist)
+        {
+            var ddlDist = db.Comp1Target.Select(x => x.DistrictName).Distinct().ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m, Value = m.ToString() });
+                ViewBag.District = li;
+            }
+            return Json(new SelectList(li, "Value", "Text", JsonRequestBehavior.AllowGet));
+        }
+
         public JsonResult getTaluka(string dist)
         {
-            var d = db.Comp1PhysicalTargetTaluka.ToList();
+          //  var d = db.Comp1PhysicalTargetTaluka.ToList();
             var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == dist).Select(x=>x.TalukaName).ToList();
             List<SelectListItem> liTaluka = new List<SelectListItem>();
 
@@ -129,7 +143,7 @@ namespace Mahamesh.Controllers
             model.DistrictName = model1.DistrictName;
           
             model.TalukaName = model1.TalukaName;
-            var ddlTal = db.Comp1PhysicalTargetTaluka.Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
             ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model.TalukaName);
 
             var list = new List<PhysicalTargetViewModel>();

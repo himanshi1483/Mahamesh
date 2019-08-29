@@ -65,6 +65,11 @@ namespace Mahamesh.Models
     public class RegisterViewModel
     {
         [Required]
+        //[EmailAddress]
+        [Display(Name = "Username")]
+        public string Username { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

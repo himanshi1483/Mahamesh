@@ -15,11 +15,279 @@ namespace Mahamesh.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: ApplicantRegistrations
+       [Authorize]
         public ActionResult Index()
         {
             return View(db.ApplicantRegistrations.ToList());
         }
+
+        [Authorize]
+        public ActionResult ApplicationIndexByDistrict()
+        {            
+            var model = new ApplicationListsViewModel();
+            
+            model.ApplicantsListByDist = new List<ApplicationListsViewModel>();
+            model.ApplicantsListByTal = new List<ApplicationListsViewModel>();
+            model.ApplicantsListByComp = new List<ApplicationListsViewModel>();
+
+            var list = db.ApplicantRegistrations.ToList();
+            var districts = db.DistMaster.ToList();
+            var talukaList = db.TalMaster.ToList();
+            var listModelDist = new List<ApplicationListsViewModel>();
+            var listModelTal = new List<ApplicationListsViewModel>();
+            var listModelComp = new List<ApplicationListsViewModel>();
+            //District-wise
+            foreach (var item in districts)
+            {
+                var _data1 = new ApplicationListsViewModel();
+                var data = list.Where(x => x.Dist == item.Dist_Code).Count();
+                _data1.CountByDistrict = data;
+                _data1.DistrictCode = item.Dist_Code;
+                _data1.DistrictName = item.DistName;
+                listModelDist.Add(_data1);
+
+                //Taluka-wise
+                foreach (var taluka in talukaList.Where(x => x.Dist_Code == item.Dist_Code))
+                {
+                    var model2 = new ApplicationListsViewModel();
+                    model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model2.CountByDistrict = data;
+                    model2.DistrictCode = taluka.Dist_Code;
+                    model2.DistrictName = item.DistName;
+                    model2.TalukaName = taluka.TalName;
+                    model2.TalukaCode = taluka.Tal_Code;
+                    listModelTal.Add(model2);
+
+                    //Component-wise
+                    foreach (var _item in list.Where(x => x.Tahashil == taluka.Tal_Code && x.CompNumber != null))
+                    {
+                        var model3 = new ApplicationListsViewModel();
+                        model3.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                        model3.CountByDistrict = data;
+                        model3.DistrictCode = taluka.Dist_Code;
+                        model3.DistrictName = item.DistName;
+                        model3.TalukaName = taluka.TalName;
+                        model3.TalukaCode = taluka.Tal_Code;
+                        var d = _item.CompNumber;
+                        var _comps = d.Split(',').ToList();
+                        var _Components = new List<Tuple<int, string>>();
+
+                        if (_comps.Any(x => x == "1"))
+                        {
+                            model3.CountByComponent1 += 1;
+                        }
+                        else if (_comps.Any(x => x == "2"))
+                        {
+                            model3.CountByComponent2 += 1;
+                        }
+                        else if (_comps.Any(x => x == "3"))
+                        {
+                            model3.CountByComponent3 += 1;
+                        }
+                        else if (_comps.Any(x => x == "4"))
+                        {
+                            model3.CountByComponent4 += 1;
+                        }
+                        else if (_comps.Any(x => x == "5"))
+                        {
+                            model3.CountByComponent5 += 1;
+                        }
+                        else if (_comps.Any(x => x == "6"))
+                        {
+                            model3.CountByComponent6 += 1;
+                        }
+                        else if (_comps.Any(x => x == "7"))
+                        {
+                            model3.CountByComponent7 += 1;
+                        }
+                        else if (_comps.Any(x => x == "8"))
+                        {
+                            model3.CountByComponent8 += 1;
+                        }
+                        else if (_comps.Any(x => x == "9"))
+                        {
+                            model3.CountByComponent9 += 1;
+                        }
+                        else if (_comps.Any(x => x == "10"))
+                        {
+                            model3.CountByComponent10 += 1;
+                        }
+                        else if (_comps.Any(x => x == "11"))
+                        {
+                            model3.CountByComponent11 += 1;
+                        }
+                        else if (_comps.Any(x => x == "12"))
+                        {
+                            model3.CountByComponent12 += 1;
+                        }
+                        else if (_comps.Any(x => x == "13"))
+                        {
+                            model3.CountByComponent13 += 1;
+                        }
+                        else if (_comps.Any(x => x == "14"))
+                        {
+                            model3.CountByComponent14 += 1;
+                        }
+                        else if (_comps.Any(x => x == "15"))
+                        {
+                            model3.CountByComponent15 += 1;
+                        }
+                        listModelComp.Add(model3);
+                    }
+
+                    
+                }
+            }
+            model.ApplicantsListByComp = listModelComp;
+            model.ApplicantsListByDist = listModelDist;
+            model.ApplicantsListByTal = listModelTal;
+
+            return View(model);
+        }
+
+        public JsonResult ApplicationByDistrict()
+        {
+            var list = db.ApplicantRegistrations.ToList();
+            var districts = db.DistMaster.ToList();
+            var talukaList = db.TalMaster.ToList();
+            var model = new ApplicationListsViewModel();
+            var listModel = new List<ApplicationListsViewModel>();
+            foreach (var item in districts)
+            {
+                var d = new ApplicationListsViewModel();
+                var data = list.Where(x => x.Dist == item.Dist_Code).Count();
+                d.CountByDistrict = data;
+                d.DistrictCode = item.Dist_Code;
+                d.DistrictName = item.DistName;
+                listModel.Add(d);
+
+            }
+            model.ApplicantsListByDist = listModel;
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ApplicationIndexByTaluka()
+        {
+            var list = db.ApplicantRegistrations.ToList();
+            var districts = db.DistMaster.ToList();
+            var talukaList = db.TalMaster.ToList();
+            var listModel = new List<ApplicationListsViewModel>();
+            var model = new ApplicationListsViewModel();
+            foreach (var item in districts)
+            {
+                foreach (var taluka in talukaList.Where(x => x.Dist_Code == item.Dist_Code))
+                {
+                    var model2 = new ApplicationListsViewModel();
+                    model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model2.DistrictCode = taluka.Dist_Code;
+                    model2.DistrictName = item.DistName;
+                    model2.TalukaName = taluka.TalName;
+                    model2.TalukaCode = taluka.Tal_Code;
+                    listModel.Add(model2);
+                }
+            }
+            model.ApplicantsListByTal = listModel;
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult ApplicationIndexByComponents()
+        {
+            var list = db.ApplicantRegistrations.ToList();
+            var districts = db.DistMaster.ToList();
+            var talukaList = db.TalMaster.ToList();
+           
+            var model = new ApplicationListsViewModel();
+            var listModel = new List<ApplicationListsViewModel>();
+            foreach (var item in districts)
+            {
+                var data = list.Where(x => x.Dist == item.Dist_Code).Count();
+              
+                foreach (var taluka in talukaList.Where(x => x.Dist_Code == item.Dist_Code))
+                {
+                    var model2 = new ApplicationListsViewModel();
+                    model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model2.CountByDistrict = data;
+                    model2.DistrictCode = taluka.Dist_Code;
+                    model2.DistrictName = item.DistName;
+                    model2.TalukaName = taluka.TalName;
+                    model2.TalukaCode = taluka.Tal_Code;
+
+                    foreach (var _item in list.Where(x=>x.Tahashil == taluka.Tal_Code && x.CompNumber != null))
+                    {
+                        var d = _item.CompNumber;
+                        var _comps = d.Split(',').ToList();
+                        var _Components = new List<Tuple<int, string>>();
+
+                        if(_comps.Any(x=>x == "1"))
+                        {
+                            model2.CountByComponent1 += 1;
+                        }
+                        else if (_comps.Any(x => x == "2"))
+                        {
+                            model2.CountByComponent2 += 1;
+                        }
+                        else if (_comps.Any(x => x == "3"))
+                        {
+                            model2.CountByComponent3 += 1;
+                        }
+                        else if (_comps.Any(x => x == "4"))
+                        {
+                            model2.CountByComponent4 += 1;
+                        }
+                        else if (_comps.Any(x => x == "5"))
+                        {
+                            model2.CountByComponent5 += 1;
+                        }
+                        else if (_comps.Any(x => x == "6"))
+                        {
+                            model2.CountByComponent6 += 1;
+                        }
+                        else if (_comps.Any(x => x == "7"))
+                        {
+                            model2.CountByComponent7 += 1;
+                        }
+                        else if (_comps.Any(x => x == "8"))
+                        {
+                            model2.CountByComponent8 += 1;
+                        }
+                        else if (_comps.Any(x => x == "9"))
+                        {
+                            model2.CountByComponent9 += 1;
+                        }
+                        else if (_comps.Any(x => x == "10"))
+                        {
+                            model2.CountByComponent10 += 1;
+                        }
+                        else if (_comps.Any(x => x == "11"))
+                        {
+                            model2.CountByComponent11 += 1;
+                        }
+                        else if (_comps.Any(x => x == "12"))
+                        {
+                            model2.CountByComponent12 += 1;
+                        }
+                        else if (_comps.Any(x => x == "13"))
+                        {
+                            model2.CountByComponent13 += 1;
+                        }
+                        else if (_comps.Any(x => x == "14"))
+                        {
+                            model2.CountByComponent14 += 1;
+                        }
+                        else if (_comps.Any(x => x == "15"))
+                        {
+                            model2.CountByComponent15 += 1;
+                        }
+                    }
+
+                    listModel.Add(model2);
+                }
+            }
+            model.ApplicantsListByComp = listModel;
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         public ActionResult UserIndex(int id)
         {

@@ -11,6 +11,12 @@
         font-size: 15px;
         text-align: center;
     }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th
+    {
+        font-size:15px;
+        padding: 4.5px;
+    }
 </style>
 <div class="container body-content" id="#maincontent" style="margin-bottom: 150px;">
     <div class="headerDashboard">
@@ -47,7 +53,7 @@
                     <div class=" form-group col-lg-6">
                         <label for="district" class="col-sm-2 control-label lbl">जिल्हा:</label>
                         <div class="col-sm-10">
-                            @Html.DropDownListFor(x => x.DistrictName, (IEnumerable<SelectListItem>)ViewBag.District, new { @class = "form-control" })
+                            @Html.DropDownListFor(x => x.DistrictName, (IEnumerable<SelectListItem>)ViewBag.District, "Select", new { @class = "form-control" })
 
                         </div>
                     </div>
@@ -71,15 +77,15 @@
         <div class="panel-body">
             @if (Model.Comp1TargetList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र १
                 </h3>
-                <h5 class="text-center">
+                <h5 class="text-center text-success">
                     पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट वाटप करणे
                 </h5>
-                <table id="comp1" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
-                        <tr>
+                <table id="comp1" class="table table-bordered table-striped table-responsive" style="font-size:16px">
+                    <thead>
+                        <tr class="text-center">
                             <th>
                                 जिल्ह्याचे नाव
 
@@ -125,7 +131,7 @@
             }
             @if (Model.Comp3TargetList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र ३
 
                 </h3>
@@ -134,7 +140,7 @@
 
                 </h5>
                 <table id="comp3" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -209,7 +215,7 @@
 
             @if (Model.Comp4TargetList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र ४
 
 
@@ -219,7 +225,7 @@
 
                 </h5>
                 <table id="comp4" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -268,7 +274,7 @@
             }
             @if (Model.Comp2TargetList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र २
 
                 </h3>
@@ -277,7 +283,7 @@
 
                 </h5>
                 <table id="comp2" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -320,14 +326,14 @@
             }
             @if (Model.Comp1TalukaList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र १ (तालुका निहाय)
                 </h3>
                 <h5 class="text-center">
                     घटक क्रमांक १- पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट वाटप करणे
                 </h5>
                 <table id="comptaluka1" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -383,7 +389,7 @@
             }
             @if (Model.Comp3TalukaList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र ३ (तालुका निहाय)
 
                 </h3>
@@ -392,7 +398,7 @@
 
                 </h5>
                 <table id="comptaluka3" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -475,16 +481,17 @@
             }
 
             @if (Model.Comp4TalukaList.Count > 0)
-            {<h3 class="text-center">
-    प्रपत्र ४ (तालुका निहाय)
+            {
+                <h3 class="text-center text-success" style="font-weight:700">
+                    प्रपत्र ४ (तालुका निहाय)
 
-</h3>
-             <h5 class="text-center">
-                 घटक क्रमांक ४ - मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी अनुदान वाटप
+                </h3>
+                <h5 class="text-center">
+                    घटक क्रमांक ४ - मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी अनुदान वाटप
 
-             </h5>
+                </h5>
                 <table id="comptaluka4" class="table table-bordered table-striped table-responsive">
-                     <thead class="text-center">
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -531,11 +538,11 @@
                         }
                     </tbody>
                 </table>
-                
+
             }
             @if (Model.Comp2TalukaList.Count > 0)
             {
-                <h3 class="text-center">
+                <h3 class="text-center text-success" style="font-weight:700">
                     प्रपत्र २ (तालुका निहाय)
 
                 </h3>
@@ -616,7 +623,30 @@
     });
 </script>
 <script>
- 
+
+      $("#Component").change(function () {
+          $("#DistrictName").empty();
+          $("#TalukaName").empty();
+                $.ajax({
+                  type: 'POST',
+                    url: '@Url.Action("getDist")',
+                    dataType: 'json',
+                    //data: { dist: $("#DistrictName").val() },
+                    success: function(city) {
+                        //alert(city);
+                        $.each(city, function(i, city) {
+                            $("#DistrictName").append('<option value="'
+                                + city.Value + '">'
+                                + city.Text + '</option>');
+                });
+            },
+                    error: function(ex) {
+                alert('Failed.' + ex);
+            }
+        });
+        return false;
+      });
+
            $("#DistrictName").change(function () {
                 $("#TalukaName").empty();
                 $.ajax({

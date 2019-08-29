@@ -1,0 +1,237 @@
+﻿@model Mahamesh.Models.ApplicationListsViewModel
+@{
+    ViewBag.Title = "Applications List";
+}
+
+<style>
+    .tableheader {
+        background: #1a9b83 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+</style>
+  
+<div class="container-fluid" style="margin-bottom:150px;">
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center"><h4>Applicant's List</h4></div>
+        <div class="panel-body">
+            <div class="row" style="padding-bottom:20px">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-2">
+                    <select class="form-control" id="reportType">
+                        <option value="District">District-Wise</option>
+                        <option value="Taluka">Taluka-Wise</option>
+                        <option value="Component">Component-Wise</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 text-center">
+                    <button class="btn btn-info" type="submit" id="btnView">View</button>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+            <div class="row">
+                <table class="table table-bordered table-striped table-responsive" id="tblDistrict" style="display:none">
+                    <thead>
+                        <tr class="tableheader">
+                            <th>Sr.No.</th>
+                            <th>District Name</th>
+                            <th>District Code</th>
+                            <th>Total Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ApplicantsListByDist != null)
+                        {
+                            for (int i = 0; i < Model.ApplicantsListByDist.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.ApplicantsListByDist[i].DistrictName</td>
+                                    <td>@Model.ApplicantsListByDist[i].DistrictCode</td>
+                                    <td>@Model.ApplicantsListByDist[i].CountByDistrict</td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped table-responsive" id="tblTaluka" style="display:none">
+                    <thead>
+                        <tr class="tableheader">
+                            <th>Sr.No.</th>
+                            <th>District Name</th>
+                            <th>District Code</th>
+                            <th>Taluka Name</th>
+                            <th>Taluka Code</th>
+                            <th>Total Submitted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ApplicantsListByTal != null)
+                        {
+                            for (int i = 0; i < Model.ApplicantsListByTal.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.ApplicantsListByTal[i].DistrictName</td>
+                                    <td>@Model.ApplicantsListByTal[i].DistrictCode</td>
+                                    <td>@Model.ApplicantsListByTal[i].TalukaName</td>
+                                    <td>@Model.ApplicantsListByTal[i].TalukaCode</td>
+                                    <td>@Model.ApplicantsListByTal[i].CountByTaluka</td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+                <table class="table table-bordered table-striped table-responsive" id="tblComponent" style="display:none">
+                    <thead>
+                        <tr class="tableheader">
+                            <th>Sr.No.</th>
+                            <th>District Name</th>
+                            <th>District Code</th>
+                            <th>Taluka Name</th>
+                            <th>Taluka Code</th>
+                            <th>Total Submitted</th>
+                            <th>Component 1</th>
+                            <th>Component 2</th>
+                            <th>Component 3</th>
+                            <th>Component 4</th>
+                            <th>Component 5</th>
+                            <th>Component 6</th>
+                            <th>Component 7</th>
+                            <th>Component 8</th>
+                            <th>Component 9</th>
+                            <th>Component 10</th>
+                            <th>Component 11</th>
+                            <th>Component 12</th>
+                            <th>Component 13</th>
+                            <th>Component 14</th>
+                            <th>Component 15</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model.ApplicantsListByComp != null)
+                        {
+                            for (int i = 0; i < Model.ApplicantsListByComp.Count; i++)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.ApplicantsListByComp[i].DistrictName</td>
+                                    <td>@Model.ApplicantsListByComp[i].DistrictCode</td>
+                                    <td>@Model.ApplicantsListByComp[i].TalukaName</td>
+                                    <td>@Model.ApplicantsListByComp[i].TalukaCode</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByTaluka</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent1</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent2</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent3</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent4</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent5</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent6</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent7</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent8</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent9</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent10</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent11</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent12</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent13</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent14</td>
+                                    <td>@Model.ApplicantsListByComp[i].CountByComponent15</td>
+                                </tr>
+
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+@*<script src="~/Scripts/paginator.js"></script>
+<script src="~/Scripts/table.js"></script>
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+
+        var box = paginator({
+            get_rows: function () {
+                return document.getElementById("tblDistrict").getElementsByTagName("table");
+
+            }
+        });
+            box.className = "box";
+        document.getElementById("tblDistrict").appendChild(box);
+        }, false);
+
+</script>*@
+<script>
+
+    $("#btnView").click(function () {
+        var report = $("#reportType").val();
+        if (report == "District") {
+            $("#tblDistrict").show();
+            $("#tblTaluka").hide();
+            $("#tblComponent").hide();
+             @*$.ajax({
+                  type: 'POST',
+                    url: '@Url.Action("ApplicationByDistrict")',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert(data);
+                        $("#tblDistrict").show();
+                        $("#tblTaluka").hide();
+                        $("#tblComponent").hide();
+                    },
+                    error: function(ex) {
+                alert('Failed.' + ex);
+            }
+        });*@
+        }
+        else if (report == "Taluka") {
+            $("#tblDistrict").hide();
+            $("#tblTaluka").show();
+            $("#tblComponent").hide();
+             @*$.ajax({
+                  type: 'POST',
+                    url: '@Url.Action("ApplicationIndexByTaluka")',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert(data);
+                        $("#tblDistrict").hide();
+                        $("#tblTaluka").show();
+                        $("#tblComponent").hide();
+                    },
+                    error: function(ex) {
+                alert('Failed.' + ex);
+            }
+        });*@
+        }
+        else if (report == "Component") {
+            $("#tblDistrict").hide();
+            $("#tblTaluka").hide();
+            $("#tblComponent").show();
+             @*$.ajax({
+                  type: 'POST',
+                    url: '@Url.Action("ApplicationIndexByComponents")',
+                    dataType: 'json',
+                    success: function(data) {
+                        alert(data);
+                        $("#tblDistrict").hide();
+                        $("#tblTaluka").hide();
+                        $("#tblComponent").show();
+                    },
+                    error: function(ex) {
+                alert('Failed.' + ex);
+            }
+        });*@
+        }
+        else {
+            return false;
+        }
+      });
+
+
+
+</script>
