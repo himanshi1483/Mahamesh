@@ -103,25 +103,11 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaTargets()
         {
             getDistrict();
-            //var ddlDist = db.Comp1Target.Select(x =>  x.DistrictName).Distinct().ToList();
-            //ViewBag.Dist = new SelectList(ddlDist, "Id", "DistrictName");
+           
             var model = new PhysicalTargetViewModel();
-            //var comp1 = db.Comp1Target.ToList();
-            //var comp1Taluka = db.Comp1PhysicalTargetTaluka.ToList();
-            //model.Comp1TargetList = comp1;
-            //model.Comp1TalukaList = comp1Taluka;
-            //var comp2 = db.Comp2PhysicalTarget.ToList();
-            //var comp2Taluka = db.Comp2PhysicalTargetTaluka.ToList();
-            //model.Comp2TargetList = comp2;
-            //model.Comp2TalukaList = comp2Taluka;
-            //var comp3 = db.Comp3PhysicalTarget.ToList();
-            //var comp3Taluka = db.Comp3PhysicalTargetTaluka.ToList();
-            //model.Comp3TargetList = comp3;
-            //model.Comp3TalukaList = comp3Taluka;
-            //var comp4 = db.Comp4PhysicalTarget.ToList();
-            //var comp4Taluka = db.Comp4PhysicalTargetTaluka.ToList();
-            //model.Comp4TargetList = comp4;
-            //model.Comp4TalukaList = comp4Taluka;
+
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
+            ViewBag.Taluka = new SelectList(ddlTal, "DistrictName", "TalukaName");
 
             model.Comp1TargetList = new List<Comp1Target>();
             model.Comp2TargetList = new List<CompTarget2>();
@@ -138,9 +124,14 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaTargets(PhysicalTargetViewModel model1)
         {
             getDistrict();
-            //var ddlDist = db.Comp1Target.Select(x=>x.DistrictName).Distinct().ToList();
-            //ViewBag.Dist = new SelectList(ddlDist, "DistrictName", "DistrictName");
             var model = new PhysicalTargetViewModel();
+            model.Component = model1.Component;
+            model.DistrictName = model1.DistrictName;
+          
+            model.TalukaName = model1.TalukaName;
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
+            ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model.TalukaName);
+
             var list = new List<PhysicalTargetViewModel>();
             model.Comp1TargetList = new List<Comp1Target>();
             model.Comp2TargetList = new List<CompTarget2>();
@@ -195,20 +186,7 @@ namespace Mahamesh.Controllers
                 model.Comp4TalukaList = db.Comp4PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName).ToList();
             }
 
-            //model.Comp1TargetList = comp1;
-            //model.Comp1TalukaList = comp1Taluka;
-            //var comp2 = db.Comp2PhysicalTarget.ToList();
-            //var comp2Taluka = db.Comp2PhysicalTargetTaluka.ToList();
-            //model.Comp2TargetList = comp2;
-            //model.Comp2TalukaList = comp2Taluka;
-            //var comp3 = db.Comp3PhysicalTarget.ToList();
-            //var comp3Taluka = db.Comp3PhysicalTargetTaluka.ToList();
-            //model.Comp3TargetList = comp3;
-            //model.Comp3TalukaList = comp3Taluka;
-            //var comp4 = db.Comp4PhysicalTarget.ToList();
-            //var comp4Taluka = db.Comp4PhysicalTargetTaluka.ToList();
-            //model.Comp4TargetList = comp4;
-            //model.Comp4TalukaList = comp4Taluka;
+           
             return View(model);
             //return Json(model, JsonRequestBehavior.AllowGet);
         }

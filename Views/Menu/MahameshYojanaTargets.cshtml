@@ -1,6 +1,8 @@
 ﻿@model Mahamesh.Models.PhysicalTargetViewModel
 @{
-    ViewBag.Title = "Physical and Financial Target";
+                /**/
+
+                ViewBag.Title = "Physical and Financial Target";
 }
 
 <style>
@@ -38,15 +40,14 @@
                             <option value="2">2</option>
                             <option value="3">3</option>
                             <option value="4">4</option>
-                            @*<option value="5">5</option>
-                        <option value="6">6</option>*@
+                       
                         </select>
 
                     </div>
                     <div class=" form-group col-lg-6">
                         <label for="district" class="col-sm-2 control-label lbl">जिल्हा:</label>
                         <div class="col-sm-10">
-                            @Html.DropDownListFor(x=>x.DistrictName, (IEnumerable<SelectListItem>)ViewBag.District, new { @class = "form-control" })
+                            @Html.DropDownListFor(x => x.DistrictName, (IEnumerable<SelectListItem>)ViewBag.District, new { @class = "form-control" })
 
                         </div>
                     </div>
@@ -56,7 +57,7 @@
                     <div class="form-group col-xs-6">
                         <label for="Comp" class="col-sm-2 control-label lbl">तालुका:</label>
                         <div class="col-sm-10" style="width:75%">
-                            @Html.DropDownListFor(x=>x.TalukaName, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control" })
+                            @Html.DropDownListFor(x => x.TalukaName, (SelectList)ViewBag.Taluka,"Select", new { @class = "form-control" })
 
                         </div>
                     </div>
@@ -66,12 +67,18 @@
                 </div>
             }
         </div>
-            
+
         <div class="panel-body">
             @if (Model.Comp1TargetList.Count > 0)
             {
+                <h3 class="text-center">
+                    प्रपत्र १
+                </h3>
+                <h5 class="text-center">
+                    पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट वाटप करणे
+                </h5>
                 <table id="comp1" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -104,11 +111,13 @@
                             <tr>
                                 <td>@item.DistrictName</td>
                                 <td>@item.NoOfSheep</td>
-                                <td>@item.PercentageOfSheep %</td>
-                                <td>@item.PermOrigin</td>
-                                <td>@item.TempOrigin</td>
-                                <td>@item.PermGrant</td>
-                                <td>@item.TempGrant</td>
+                                <td style="text-align:right">
+                                    @Math.Round(@item.PercentageOfSheep, 2) %
+                                </td>
+                                <td style="text-align:right">@item.PermOrigin</td>
+                                <td style="text-align:right">@item.TempOrigin</td>
+                                <td style="text-align:right">@item.PermGrant</td>
+                                <td style="text-align:right">@item.TempGrant</td>
                             </tr>
                         }
                     </tbody>
@@ -116,9 +125,16 @@
             }
             @if (Model.Comp3TargetList.Count > 0)
             {
-                <hr />
+                <h3 class="text-center">
+                    प्रपत्र ३
+
+                </h3>
+                <h5 class="text-center">
+                    मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी अनुदान
+
+                </h5>
                 <table id="comp3" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -174,25 +190,36 @@
                             <tr>
                                 <td>@item.DistrictName</td>
                                 <td>@item.NoOfSheep</td>
-                                <td>@item.PercentageOfSheep %</td>
-                                <td>@item.PermBeneficiary1Origin</td>
-                                <td>@item.PermBeneficiary2Origin</td>
-                                <td>@item.TempBeneficiary1Origin</td>
-                                <td>@item.TempBeneficiary2Origin</td>
-                                <td>@item.PermGrantBeneficiary1</td>
-                                <td>@item.PermGrantBeneficiary2</td>
-                                <td>@item.TempGrantBeneficiary1</td>
-                                <td>@item.TempGrantBeneficiary2</td>
+                                <td style="text-align:right">
+                                    @Math.Round(@item.PercentageOfSheep, 2) %
+                                </td>
+                                <td style="text-align:right">@item.PermBeneficiary1Origin</td>
+                                <td style="text-align:right">@item.PermBeneficiary2Origin</td>
+                                <td style="text-align:right">@item.TempBeneficiary1Origin</td>
+                                <td style="text-align:right">@item.TempBeneficiary2Origin</td>
+                                <td style="text-align:right">@item.PermGrantBeneficiary1</td>
+                                <td style="text-align:right">@item.PermGrantBeneficiary2</td>
+                                <td style="text-align:right">@item.TempGrantBeneficiary1</td>
+                                <td style="text-align:right">@item.TempGrantBeneficiary2</td>
                             </tr>
                         }
                     </tbody>
                 </table>
             }
-            <hr />
+
             @if (Model.Comp4TargetList.Count > 0)
             {
+                <h3 class="text-center">
+                    प्रपत्र ४
+
+
+                </h3>
+                <h5 class="text-center">
+                    मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी अनुदान वाटप
+
+                </h5>
                 <table id="comp4" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -225,22 +252,32 @@
                             <tr>
                                 <td>@item.DistrictName</td>
                                 <td>@item.NoOfSheep</td>
-                                <td>@item.PercentageOfSheep %</td>
-                                <td>@item.PermOrigin</td>
-                                <td>@item.TempOrigin</td>
-                                <td>@item.PermGrant</td>
-                                <td>@item.TempGrant</td>
+                                <td style="text-align:right">
+                                    @Math.Round(@item.PercentageOfSheep, 2) %
+                                </td>
+                                <td style="text-align:right">@item.PermOrigin</td>
+                                <td style="text-align:right">@item.TempOrigin</td>
+                                <td style="text-align:right">@item.PermGrant</td>
+                                <td style="text-align:right">@item.TempGrant</td>
                             </tr>
                         }
                     </tbody>
                 </table>
 
-                <hr />
+
             }
             @if (Model.Comp2TargetList.Count > 0)
             {
+                <h3 class="text-center">
+                    प्रपत्र २
+
+                </h3>
+                <h5 class="text-center">
+                    सुधारित प्रजातींच्या नर मेंढ्यांचे वाटप भौतिक उद्धिष्ट
+
+                </h5>
                 <table id="comp2" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -255,29 +292,27 @@
 
                             </th>
                             <th>
-                                भौतिक उद्धिष्ट (संख्या)-"स्थायी"
+                                भौतिक उद्धिष्ट (संख्या)
 
                             </th>
-                            @*<th>
-                            भौतिक उद्धिष्ट (संख्या)-"स्थलांतरीत"
-                        </th>*@
-                            <th>
-                                शासन अनुदान (रु.)-"स्थायी"
-                            </th>
-                            @*<th>  शासन अनुदान (रु.)-"स्थलांतरीत"</th>*@
+
+                            <th>  शासन अनुदान (रु.)</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Comp2TargetList)
                         {
                             <tr>
-                                <td>@item.DistrictName</td>
-                                <td>@item.NoOfSheep</td>
-                                <td>@item.PercentageOfSheep %</td>
-                                <td>@item.PermOrigin</td>
+                                <td> @item.DistrictName </td>
+                                <td> @item.NoOfSheep </td>
+                                <td style="text-align:right">
+                                    @Math.Round(@item.PercentageOfSheep, 2) %
+                                </td>
+                                <td style="text-align:right"> @item.PermOrigin </td>
 
-                                <td>@item.PermGrant</td>
-                                @*<td>@item.TempGrant</td>*@
+                                <td style="text-align:right"> @item.PermGrant </td>
+
+
                             </tr>
                         }
                     </tbody>
@@ -285,8 +320,14 @@
             }
             @if (Model.Comp1TalukaList.Count > 0)
             {
+                <h3 class="text-center">
+                    प्रपत्र १ (तालुका निहाय)
+                </h3>
+                <h5 class="text-center">
+                    घटक क्रमांक १- पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट वाटप करणे
+                </h5>
                 <table id="comptaluka1" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -321,25 +362,37 @@
                     <tbody>
                         @foreach (var item in Model.Comp1TalukaList)
                         {
-                        <tr>
-                            <td>@item.DistrictName</td>
-                            <td>@item.TalukaName</td>
-                            <td>@item.NoOfSheep</td>
-                            <td>@item.PercentageOfSheep %</td>
-                            <td>@item.PermOrigin</td>
-                            <td>@item.TempOrigin</td>
-                            <td>@item.PermGrant</td>
-                            <td>@item.TempGrant</td>
-                        </tr>
+                            <tr>
+                                <td> @item.DistrictName </td>
+                                <td> @item.TalukaName </td>
+                                <td> @item.NoOfSheep </td>
+                                <td style="text-align:right"> @Math.Round(item.PercentageOfSheep, 2) %</td>
+
+                                <td style="text-align:right"> @item.PermOrigin </td>
+
+                                <td style="text-align:right"> @item.PermGrant </td>
+
+                                <td style="text-align:right"> @item.TempOrigin </td>
+
+                                <td style="text-align:right"> @item.TempGrant </td>
+
+                            </tr>
                         }
                     </tbody>
                 </table>
             }
             @if (Model.Comp3TalukaList.Count > 0)
             {
-                <hr />
+                <h3 class="text-center">
+                    प्रपत्र ३ (तालुका निहाय)
+
+                </h3>
+                <h5 class="text-center">
+                    घटक क्रमांक ३-मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी अनुदान
+
+                </h5>
                 <table id="comptaluka3" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -363,32 +416,38 @@
                                 )
                             </th>
                             <th>
-                                भौतिक उद्धिष्ट (संख्या)-"स्थायी"(४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
+                                भौतिक उद्धिष्ट (संख्या) - "स्थायी"
+                                (४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
                                 )
                             </th>
                             <th>
                                 भौतिक उद्धिष्ट (संख्या)-"स्थलांतरीत"(४० मेंढया व २ मेंढेनर पेक्षा कमी पशुधन संख्या असलेले लाभधारक
                                 )
-
                             </th>
                             <th>
-                                भौतिक उद्धिष्ट (संख्या)-"स्थलांतरीत" (४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
+                                भौतिक उद्धिष्ट (संख्या)-"स्थलांतरीत"(४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
                                 )
                             </th>
                             <th>
-                                शासन अनुदान (रु.)-"स्थायी"
+                                शासन अनुदान (रु.)
+                                -"स्थायी"
                                 (४० मेंढया व २ मेंढेनर पेक्षा कमी पशुधन संख्या असलेले लाभधारक
                                 )
                             </th>
                             <th>
-                                शासन अनुदान (रु.)-"स्थलांतरीत"(४० मेंढया व २ मेंढेनर पेक्षा कमी पशुधन संख्या असलेले लाभधारक
+                                शासन अनुदान (रु.)
+                                - "स्थायी"
+                                (४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
                                 )
                             </th>
                             <th>
-                                शासन अनुदान (रु.)-"स्थायी"
+                                शासन अनुदान (रु.)
+                                -"स्थलांतरीत"(४० मेंढया व २ मेंढेनर पेक्षा कमी पशुधन संख्या असलेले लाभधारक
+                                )
                             </th>
                             <th>
-                                शासन अनुदान (रु.)-"स्थलांतरीत" (४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
+                                शासन अनुदान (रु.)
+                                -"स्थलांतरीत"(४० मेंढया व २ मेंढेनर पेक्षा जास्त पशुधन संख्या असलेले लाभधारक
                                 )
                             </th>
                         </tr>
@@ -396,29 +455,36 @@
                     <tbody>
                         @foreach (var item in Model.Comp3TalukaList)
                         {
-                        <tr>
-                            <td>@item.DistrictName</td>
-                            <td>@item.TalukaName</td>
-                            <td>@item.NoOfSheep</td>
-                            <td>@item.PercentageOfSheep %</td>
-                            <td>@item.PermBeneficiary1Origin</td>
-                            <td>@item.PermBeneficiary2Origin</td>
-                            <td>@item.TempBeneficiary1Origin</td>
-                            <td>@item.TempBeneficiary2Origin</td>
-                            <td>@item.PermGrantBeneficiary1</td>
-                            <td>@item.PermGrantBeneficiary2</td>
-                            <td>@item.TempGrantBeneficiary1</td>
-                            <td>@item.TempGrantBeneficiary2</td>
-                        </tr>
+                            <tr>
+                                <td> @item.DistrictName </td>
+                                <td> @item.TalukaName </td>
+                                <td> @item.NoOfSheep </td>
+                                <td style="text-align:right"> @Math.Round(item.PercentageOfSheep, 2) %</td>
+                                <td style="text-align:right"> @item.PermBeneficiary1Origin </td>
+                                <td style="text-align:right"> @item.PermBeneficiary2Origin </td>
+                                <td style="text-align:right"> @item.TempBeneficiary1Origin </td>
+                                <td style="text-align:right"> @item.TempBeneficiary2Origin </td>
+                                <td style="text-align:right"> @item.PermGrantBeneficiary1 </td>
+                                <td style="text-align:right"> @item.PermGrantBeneficiary2 </td>
+                                <td style="text-align:right"> @item.TempGrantBeneficiary1 </td>
+                                <td style="text-align:right"> @item.TempGrantBeneficiary2 </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             }
-            <hr />
+
             @if (Model.Comp4TalukaList.Count > 0)
-            {
+            {<h3 class="text-center">
+    प्रपत्र ४ (तालुका निहाय)
+
+</h3>
+             <h5 class="text-center">
+                 घटक क्रमांक ४ - मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी अनुदान वाटप
+
+             </h5>
                 <table id="comptaluka4" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                     <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -452,26 +518,33 @@
                     <tbody>
                         @foreach (var item in Model.Comp4TalukaList)
                         {
-                        <tr>
-                            <td>@item.DistrictName</td>
-                            <td>@item.TalukaName</td>
-                            <td>@item.NoOfSheep</td>
-                            <td>@item.PercentageOfSheep %</td>
-                            <td>@item.PermOrigin</td>
-                            <td>@item.TempOrigin</td>
-                            <td>@item.PermGrant</td>
-                            <td>@item.TempGrant</td>
-                        </tr>
+                            <tr>
+                                <td> @item.DistrictName </td>
+                                <td> @item.TalukaName </td>
+                                <td> @item.NoOfSheep </td>
+                                <td style="text-align:right"> @Math.Round(item.PercentageOfSheep, 2) %</td>
+                                <td style="text-align:right"> @item.PermOrigin </td>
+                                <td style="text-align:right"> @item.TempOrigin </td>
+                                <td style="text-align:right"> @item.PermGrant </td>
+                                <td style="text-align:right"> @item.TempGrant </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
-
-                <hr />
+                
             }
             @if (Model.Comp2TalukaList.Count > 0)
             {
+                <h3 class="text-center">
+                    प्रपत्र २ (तालुका निहाय)
+
+                </h3>
+                <h5 class="text-center">
+                    घटक क्रमांक २- सुधारित प्रजातींच्या नर मेंढ्यांचे वाटप
+
+                </h5>
                 <table id="comptaluka2" class="table table-bordered table-striped table-responsive">
-                    <thead>
+                    <thead class="text-center">
                         <tr>
                             <th>
                                 जिल्ह्याचे नाव
@@ -493,28 +566,25 @@
                                 भौतिक उद्धिष्ट (संख्या)-"स्थायी"
 
                             </th>
-                            @*<th>
-            भौतिक उद्धिष्ट (संख्या)-"स्थलांतरीत"
-        </th>*@
                             <th>
-                                शासन अनुदान (रु.)-"स्थायी"
+                                शासन अनुदान (रु)
+
                             </th>
-                            @*<th>  शासन अनुदान (रु.)-"स्थलांतरीत"</th>*@
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach (var item in Model.Comp2TalukaList)
                         {
-                        <tr>
-                            <td>@item.DistrictName</td>
-                            <td>@item.TalukaName</td>
-                            <td>@item.NoOfSheep</td>
-                            <td>@item.PercentageOfSheep %</td>
-                            <td>@item.PermOrigin</td>
+                            <tr>
+                                <td> @item.DistrictName </td>
+                                <td> @item.TalukaName </td>
+                                <td> @item.NoOfSheep </td>
+                                <td style="text-align:right"> @Math.Round(item.PercentageOfSheep, 2) %</td>
+                                <td style="text-align:right"> @item.PermOrigin </td>
 
-                            <td>@item.PermGrant</td>
-                            @*<td>@item.TempGrant</td>*@
-                        </tr>
+                                <td style="text-align:right"> @item.PermGrant </td>
+                            </tr>
                         }
                     </tbody>
                 </table>
@@ -523,62 +593,51 @@
     </div>
 </div>
 <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
-
 <script>
-    //$("#Component").change(function ()
-    //{
-    //        //alert($("#Component").val());
-    //});
+    $(document).ready(function () {
 
-    @*$("#btnShow").click(function () {
-        var comp = $("#Component").val();
-        var $compTable = "#comp" + comp;
-        var district = $("#DistrictName option:selected").text();
-        var taluka = $("#TalukaName option:selected").text();
-        alert(comp);
-        alert(district);
-        alert(taluka);
+        var Component = "@Model.Component";
+       
+        if (Component != "") {
+            $("#Component").val(Component);
+        }
 
-        //if ((comp == 1)&&(district != null) && (taluka == "--Select Taluka--")) {
-        //    $("#comp1").show();
-        //}
-        $.ajax({
-            type: 'POST',
-            url: '@Url.Action("MahameshYojanaTargets","Menu")',
-            dataType: 'json',
-            data: { district: district, comp: comp},
-            success: function () {
-               // alert();
-                $($compTable).show();
+          var District = "@Model.DistrictName";
+        if (District != "") {
+            $("#DistrictName").val(District);
+        }
+
+        var Taluka = "@Model.TalukaName";
+       // alert(Taluka);
+        if (Taluka != "") {
+            $("#TalukaName").val(Taluka);
+        }
+       
+    });
+</script>
+<script>
+ 
+           $("#DistrictName").change(function () {
+                $("#TalukaName").empty();
+                $.ajax({
+                  type: 'POST',
+                    url: '@Url.Action("getTaluka")',
+                    dataType: 'json',
+                    data: { dist: $("#DistrictName").val() },
+                    success: function(city) {
+                        //alert(city);
+                        $.each(city, function(i, city) {
+                            $("#TalukaName").append('<option value="'
+                                + city.Value + '">'
+                                + city.Text + '</option>');
+                });
             },
-            error: function (ex) {
+                    error: function(ex) {
                 alert('Failed.' + ex);
             }
         });
-    });*@
-
-
-       $("#DistrictName").change(function () {
-            $("#TalukaName").empty();
-            $.ajax({
-                type: 'POST',
-                url: '@Url.Action("getTaluka")',
-                dataType: 'json',
-                data: { dist: $("#DistrictName").val() },
-                success: function (city) {
-                    //alert(city);
-                    $.each(city, function (i, city) {
-                        $("#TalukaName").append('<option value="'
-                            + city.Value + '">'
-                            + city.Text + '</option>');
-                    });
-                },
-                error: function (ex) {
-                    alert('Failed.' + ex);
-                }
-            });
-            return false;
-    });
+        return false;
+});
 
 
 </script>
