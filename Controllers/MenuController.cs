@@ -79,6 +79,7 @@ namespace Mahamesh.Controllers
         }
 
         // GET: Menu
+        [Authorize]
         public ActionResult AdminPanel()
         {
             var ImgFolders = db.MediaFolders.Where(x=>x.MediaType == "Pictures").ToList();
