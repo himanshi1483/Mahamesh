@@ -123,8 +123,7 @@
     </a>
     <!-- END SCROLL TOP BUTTON -->
     <!-- Start header  -->
-    @if (!User.Identity.IsAuthenticated)
-    {
+   
         <header id="mu-header">
             <div class="container">
                 <div class="row">
@@ -144,31 +143,32 @@
                                     <div class="mu-header-top-right">
                                         <nav>
                                             <ul class="mu-top-social-nav">
-                                                <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-                                                <li><a href="#"><span class="fa fa-twitter"></span></a></li>
-                                                <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
-                                                <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
-                                                <li><a href="#"><span class="fa fa-youtube"></span></a></li>
-                                                <li>
-                                                    @Url.LangSwitcher("English", ViewContext.RouteData, "en")
-                                                </li>
-                                                <li>
-                                                    @Url.LangSwitcher("Marathi", ViewContext.RouteData, "mr")
-                                                </li>
-                                                <li><a class="increase"><i class="glyphicon glyphicon-plus"></i></a></li>
-                                                <li><a class="decrease"><i class="glyphicon glyphicon-minus"></i></a></li>
-                                                <li><a class="reset"><i class="glyphicon glyphicon-retweet"></i></a></li>
                                                 @if (!User.Identity.IsAuthenticated)
                                                 {
-                                                    <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "loginanchor" })</li>
+                                                    <li><a href="#"><span class="fa fa-facebook"></span></a></li>
+                                                    <li><a href="#"><span class="fa fa-twitter"></span></a></li>
+                                                    <li><a href="#"><span class="fa fa-google-plus"></span></a></li>
+                                                    <li><a href="#"><span class="fa fa-linkedin"></span></a></li>
+                                                    <li><a href="#"><span class="fa fa-youtube"></span></a></li>
+                                                    <li>
+                                                        @Url.LangSwitcher("English", ViewContext.RouteData, "en")
+                                                    </li>
+                                                    <li>
+                                                        @Url.LangSwitcher("Marathi", ViewContext.RouteData, "mr")
+                                                    </li>
+                                                    <li><a class="increase"><i class="glyphicon glyphicon-plus"></i></a></li>
+                                                    <li><a class="decrease"><i class="glyphicon glyphicon-minus"></i></a></li>
+                                                    <li><a class="reset"><i class="glyphicon glyphicon-retweet"></i></a></li>
+                                                    
+                                                        <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "loginanchor" })</li>
 
-                                                }
-                                                else
-                                                {
-                                                    @Html.Partial("_LoginPartial")
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.Partial("_LoginPartial")
 
-                                                }
-                                            </ul>
+                                                    }
+                                                </ul>
 
 
                                         </nav>
@@ -182,7 +182,7 @@
             </div>
         </header>
 
-    }
+    
     <div>
         <div class="container resizable">
             <div class="row">
