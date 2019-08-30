@@ -1,8 +1,8 @@
 ﻿@model  Mahamesh.Models.AdminPanelViewModel
 
 <div id="tenderBlock" style="display:none">
-    <div class="panel panel-default">
-        <div class="panel-heading">Add New Tender</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Add New Tender</div>
         <div class="panel-body">
             @using (Html.BeginForm("Create", "TenderInfo", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -95,8 +95,8 @@
 </div>
 
 <div id="newsBlock" style="display:none">
-    <div class="panel panel-default">
-        <div class="panel-heading">Add New News</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Add New News</div>
         <div class="panel-body">
             @using (Html.BeginForm("Create", "News", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -190,8 +190,8 @@
 </div>
 
 <div id="pressBlock" style="display:none">
-    <div class="panel panel-default">
-        <div class="panel-heading">Add New Press Information</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Add New Press Information</div>
         <div class="panel-body">
             @using (Html.BeginForm("Create", "PressInformation", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -286,8 +286,8 @@
 </div>
 
 <div id="feedbackBlock">
-    <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-        <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
+    <div class="panel panel-success" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-success" style="background:#438a4b;color:white;text-align:center;font-weight:800">
             <h3 class="panel-title">Feedbacks</h3>
         </div>
 
@@ -375,8 +375,8 @@
 </div>
 
 <div id="imageBlock" style="display:none">
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2">Create New Image Folder</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Create New Image Folder</div>
         <div class="panel-body">
             @using (Html.BeginForm("CreateNew", "MediaFolders", FormMethod.Post))
             {
@@ -450,8 +450,8 @@
 </div>
 
 <div id="videoBlock" style="display:none">
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2">Create New Video Folder</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Create New Video Folder</div>
         <div class="panel-body">
             @using (Html.BeginForm("CreateNew", "MediaFolders", FormMethod.Post))
             {
@@ -525,8 +525,8 @@
 </div>
 
 <div id="imageUploadBlock" style="display:none">
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2">Create New Image Folder</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Create New Image Folder</div>
         <div class="panel-body">
             @using (Html.BeginForm("CreateNew", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
@@ -592,8 +592,8 @@
 </div>
 
 <div id="videoUploadBlock" style="display:none">
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2">Create New Video Folder</div>
+    <div class="panel panel-success">
+        <div class="panel-heading panel-success">Create New Video Folder</div>
         <div class="panel-body">
             @using (Html.BeginForm("CreateNew", "Media", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {

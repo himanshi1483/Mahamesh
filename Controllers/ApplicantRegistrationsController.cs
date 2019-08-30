@@ -70,65 +70,69 @@ namespace Mahamesh.Controllers
                         model3.TalukaCode = taluka.Tal_Code;
                         var d = _item.CompNumber;
                         var _comps = d.Split(',').ToList();
+                        for (int j = 0; j < _comps.Count; j++)
+                        {
+                            _comps[j] = _comps[j].Trim();
+                        }
                         var _Components = new List<Tuple<int, string>>();
 
                         if (_comps.Any(x => x == "1"))
                         {
                             model3.CountByComponent1 += 1;
                         }
-                        else if (_comps.Any(x => x == "2"))
+                        if (_comps.Any(x => x == "2"))
                         {
                             model3.CountByComponent2 += 1;
                         }
-                        else if (_comps.Any(x => x == "3"))
+                        if (_comps.Any(x => x == "3"))
                         {
                             model3.CountByComponent3 += 1;
                         }
-                        else if (_comps.Any(x => x == "4"))
+                        if (_comps.Any(x => x == "4"))
                         {
                             model3.CountByComponent4 += 1;
                         }
-                        else if (_comps.Any(x => x == "5"))
+                        if (_comps.Any(x => x == "5"))
                         {
                             model3.CountByComponent5 += 1;
                         }
-                        else if (_comps.Any(x => x == "6"))
+                        if (_comps.Any(x => x == "6"))
                         {
                             model3.CountByComponent6 += 1;
                         }
-                        else if (_comps.Any(x => x == "7"))
+                        if (_comps.Any(x => x == "7"))
                         {
                             model3.CountByComponent7 += 1;
                         }
-                        else if (_comps.Any(x => x == "8"))
+                        if (_comps.Any(x => x == "8"))
                         {
                             model3.CountByComponent8 += 1;
                         }
-                        else if (_comps.Any(x => x == "9"))
+                        if (_comps.Any(x => x == "9"))
                         {
                             model3.CountByComponent9 += 1;
                         }
-                        else if (_comps.Any(x => x == "10"))
+                        if (_comps.Any(x => x == "10"))
                         {
                             model3.CountByComponent10 += 1;
                         }
-                        else if (_comps.Any(x => x == "11"))
+                        if (_comps.Any(x => x == "11"))
                         {
                             model3.CountByComponent11 += 1;
                         }
-                        else if (_comps.Any(x => x == "12"))
+                        if (_comps.Any(x => x == "12"))
                         {
                             model3.CountByComponent12 += 1;
                         }
-                        else if (_comps.Any(x => x == "13"))
+                        if (_comps.Any(x => x == "13"))
                         {
                             model3.CountByComponent13 += 1;
                         }
-                        else if (_comps.Any(x => x == "14"))
+                        if (_comps.Any(x => x == "14"))
                         {
                             model3.CountByComponent14 += 1;
                         }
-                        else if (_comps.Any(x => x == "15"))
+                        if (_comps.Any(x => x == "15"))
                         {
                             model3.CountByComponent15 += 1;
                         }
@@ -139,7 +143,7 @@ namespace Mahamesh.Controllers
                 }
             }
             model.ApplicantsListByComp = listModelComp;
-            model.ApplicantsListByDist = listModelDist;
+            model.ApplicantsListByDist = listModelDist.OrderBy(x=>x.DistrictName).ToList();
             model.ApplicantsListByTal = listModelTal;
 
             return View(model);

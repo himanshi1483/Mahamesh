@@ -1,11 +1,167 @@
 ﻿@model Mahamesh.Models.AdminPanelViewModel
 @{
-    ViewBag.Title = "AdminPanel";
+    ViewBag.Title = "Admin Panel";
+}
+<style>
+    .vertical-nav {
+    height: auto;
+    list-style: none;
+    width: 100%; /******* MODIFIED ********/
+    /*margin: 20px 0 0 0;*/
 }
 
-<div class="container body-content" id="#maincontent" style="margin-top:100px; margin-bottom: 150px;">
-    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-        <div class="panel-heading panel-primary-2 text-center">
+        .vertical-nav li {
+            height: 42px; /*//old 30px//*/
+            background-color: #46cb92;
+            border: 1px solid #fff;
+            text-align: left;
+            display: inline-block;
+            float: left;
+            padding-left: 7px;
+            padding-top: 10px; /*old 5px*/
+            clear: both;
+            /*min-width: 282px;*/
+            width: 100%;
+            /******* MODIFIED ********/
+        }
+
+        .vertical-nav li:hover {
+            background-color:#fe5719;
+            color: #FFFFFF;
+        }
+
+        .vertical-nav li a {
+            /*font-size: 14px;*/
+            color: #ffffff;
+        }
+
+        .vertical-nav li.current {
+            background-color: #97d2fe;
+        }
+
+            .vertical-nav li.current a {
+                color: #FFFFFF;
+            }
+
+vertical-nav ul li ul {
+    display: none;
+    list-style-type: none;
+    /*min-width: 250px;*/
+    padding: 0px;
+    margin-top: 3px;
+    margin-left: 0px;
+}
+
+vertical-nav ul li:hover ul {
+    display: block;
+}
+
+    vertical-nav ul li:hover ul li {
+        background-color: #74a9ea;
+        /*min-width: 250px;
+
+        min-height: 30px;*/
+        display: inline-block;
+    }
+
+vertical-nav ul li ul li:hover {
+    background-color: #333333;
+}
+
+vertical-nav ul li ul li a {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+    vertical-nav ul li ul li a:hover {
+        text-decoration: none;
+    }
+
+.vertical-nav li ul {
+    display: none;
+    margin-top: -23px;
+    padding: 0;
+}
+
+.vertical-nav li:hover ul {
+    display: block;
+}
+
+.vertical-nav li:hover .sub-menu {
+    position: relative;
+    margin-top: -27.5px;
+}
+
+    .sub-menu li {
+        position: relative;
+        display: block;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        background-color: #ebb046;
+        /*min-width: 180px;
+        white-space: nowrap;*/
+        z-index: 1;
+    }
+
+    .sub-menu li a {
+        display: inline-block;
+        padding: 0 10px;
+    }
+
+    .sub-menu li:hover {
+          background-color: #fe5719;
+        border: 1px solid #fff;
+    }
+
+    .sub-menu1 li {
+    position: relative;
+    display: block;
+    top: 0;
+    right: 103%;
+    width: 100%;
+    background-color:#78c3fb;
+    /*min-width: 180px;
+        white-space: nowrap;*/
+    z-index: 1;
+}
+
+    .sub-menu1 li a {
+        display: inline-block;
+        padding: 0 10px;
+    }
+
+    .sub-menu1 li:hover {
+          background-color: #fe5719;
+        border: 1px solid #fff;
+    }
+
+@@media screen and (max-width: 700px) {
+    .vertical-nav {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+        .vertical-nav li {
+            width: 100%;
+            height: auto;
+            position: relative;
+        }
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@@media screen and (max-width: 400px) {
+    .vertical-nav li {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+}
+</style>
+<div class="container body-content" id="#maincontent" style="margin-top:10px; margin-bottom: 150px;">
+    <div class="panel panel-success" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-success text-center">
             <h3 class="panel-title">Admin Panel</h3>
         </div>
         <div class="panel-body">
@@ -14,11 +170,11 @@
                     <ul class="vertical-nav">
 
                         <li><a href="@Url.Action("ProductsAtFarm", "Menu")">Send Messages</a></li>
-                        <li><a href="@Url.Action("ProductsWool", "Menu")">View Registration</a></li>
+                        <li><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">View Registration</a></li>
                         <li>
                             <a href="#">Upload Files</a>
                             <ul class="sub-menu">
-                                <li><a href="#" id="tenderLink">Tenders</a></li>
+                                <li ><a href="#" id="tenderLink">Tenders</a></li>
                                 <li><a href="#" id="newsLink">News</a></li>
                                 <li><a href="#" id="pressLink">Press Information</a></li>
                                 <li><a href="#" id="imageUploadLink">Images</a></li>
@@ -28,6 +184,13 @@
                         <li><a href="#" id="feedbackLink">Check Feedbacks</a></li>
                         <li><a href="#" id="imageLink">Create Image Folders</a></li>
                         <li><a href="#" id="videoLink">Create Video Folders</a></li>
+                        <li>
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                <a href="javascript:document.getElementById('logoutForm').submit()">Log Out</a>
+                            }
+                        </li>
                     </ul>
                 </div>
                 <div class="col-md-9">
@@ -88,10 +251,10 @@
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
             $("#imageBlock").toggle();
-            $("#videoBlock").hide();    
+            $("#videoBlock").hide();
             $("#imageUploadBlock").hide();
             $("#videoUploadBlock").hide();
-           
+
         });
         $("#videoLink").click(function () {
             $("#pressBlock").hide();
@@ -99,7 +262,7 @@
             $("#tenderBlock").hide();
             $("#feedbackBlock").hide();
             $("#imageBlock").hide();
-            $("#videoBlock").toggle();     
+            $("#videoBlock").toggle();
             $("#imageUploadBlock").hide();
             $("#videoUploadBlock").hide();
         });
