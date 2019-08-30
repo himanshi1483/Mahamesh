@@ -63,7 +63,7 @@
                                     </tr>
 
                                 }
-                               
+                                
                             }
 
                         </tbody>
@@ -212,6 +212,9 @@
                 </div>
             </div>
         </div>
+        <div class="panel-footer text-center">
+            <a href="@Url.Action("AdminPanel", "Menu")" class="btn btn-info">Back to Admin Panel</a>
+        </div>
     </div>
 </div>
 <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
@@ -276,20 +279,34 @@
     $('#tblDistrict').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true },
+            { extend: 'print', footer: true }
         ],
         "paging": false
     });
     $('#tblTaluka').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true },
+            { extend: 'print', footer: true }
+        ],
+        "paging": false
     });
     $('#tblComponent').DataTable({
         dom: 'Bfrtip',
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true },
+            { extend: 'print', footer: true }
+        ],
+        "paging": false
     });
 </script>

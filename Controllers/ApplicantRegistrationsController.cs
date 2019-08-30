@@ -15,7 +15,7 @@ namespace Mahamesh.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-       [Authorize]
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.ApplicantRegistrations.ToList());
@@ -23,9 +23,9 @@ namespace Mahamesh.Controllers
 
         [Authorize]
         public ActionResult ApplicationIndexByDistrict()
-        {            
+        {
             var model = new ApplicationListsViewModel();
-            
+
             model.ApplicantsListByDist = new List<ApplicationListsViewModel>();
             model.ApplicantsListByTal = new List<ApplicationListsViewModel>();
             model.ApplicantsListByComp = new List<ApplicationListsViewModel>();
@@ -58,92 +58,162 @@ namespace Mahamesh.Controllers
                     model2.TalukaCode = taluka.Tal_Code;
                     listModelTal.Add(model2);
 
+                    var model3 = new ApplicationListsViewModel();
+                    model3.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model3.CountByDistrict = data;
+                    model3.DistrictCode = taluka.Dist_Code;
+                    model3.DistrictName = item.DistName;
+                    model3.TalukaName = taluka.TalName;
+                    model3.TalukaCode = taluka.Tal_Code;
                     //Component-wise
-                    foreach (var _item in list.Where(x => x.Tahashil == taluka.Tal_Code && x.CompNumber != null))
+                    var _talukaList = list.Where(x => x.Tahashil == taluka.Tal_Code).ToList();
+                    for (int k = 0; k < 15; k++)
                     {
-                        var model3 = new ApplicationListsViewModel();
-                        model3.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
-                        model3.CountByDistrict = data;
-                        model3.DistrictCode = taluka.Dist_Code;
-                        model3.DistrictName = item.DistName;
-                        model3.TalukaName = taluka.TalName;
-                        model3.TalukaCode = taluka.Tal_Code;
-                        var d = _item.CompNumber;
-                        var _comps = d.Split(',').ToList();
-                        for (int j = 0; j < _comps.Count; j++)
+                        int _count = 0;
+                        foreach (var _item in _talukaList.Where(x=>x.CompNumber != null))
                         {
-                            _comps[j] = _comps[j].Trim();
-                        }
-                        var _Components = new List<Tuple<int, string>>();
+                          
+                            var d = _item.CompNumber;
+                            var _comps = d.Split(',').ToList();
+                            for (int j = 0; j < _comps.Count; j++)
+                            {
+                                _comps[j] = _comps[j].Trim();
+                            }
 
-                        if (_comps.Any(x => x == "1"))
-                        {
-                            model3.CountByComponent1 += 1;
+                            if (_comps.Any(x => x == (k+1).ToString()))
+                            {
+                               _count += 1;
+                            }
+
+                            //if (_comps.Any(x => x == "1"))
+                            //{
+                            //    model3.CountByComponent1 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "2"))
+                            //{
+                            //    model3.CountByComponent2 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "3"))
+                            //{
+                            //    model3.CountByComponent3 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "4"))
+                            //{
+                            //    model3.CountByComponent4 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "5"))
+                            //{
+                            //    model3.CountByComponent5 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "6"))
+                            //{
+                            //    model3.CountByComponent6 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "7"))
+                            //{
+                            //    model3.CountByComponent7 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "8"))
+                            //{
+                            //    model3.CountByComponent8 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "9"))
+                            //{
+                            //    model3.CountByComponent9 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "10"))
+                            //{
+                            //    model3.CountByComponent10 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "11"))
+                            //{
+                            //    model3.CountByComponent11 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "12"))
+                            //{
+                            //    model3.CountByComponent12 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "13"))
+                            //{
+                            //    model3.CountByComponent13 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "14"))
+                            //{
+                            //    model3.CountByComponent14 += 1;
+                            //}
+                            //if (_comps.Any(x => x == "15"))
+                            //{
+                            //    model3.CountByComponent15 += 1;
+                            //}
+                          
                         }
-                        if (_comps.Any(x => x == "2"))
+                        if (k == 0)
                         {
-                            model3.CountByComponent2 += 1;
+                            model3.CountByComponent1 = _count;
                         }
-                        if (_comps.Any(x => x == "3"))
+                        else if (k == 1)
                         {
-                            model3.CountByComponent3 += 1;
+                            model3.CountByComponent2 = _count;
                         }
-                        if (_comps.Any(x => x == "4"))
+                        else if (k == 2)
                         {
-                            model3.CountByComponent4 += 1;
+                            model3.CountByComponent3 = _count;
                         }
-                        if (_comps.Any(x => x == "5"))
+                        else if (k == 3)
                         {
-                            model3.CountByComponent5 += 1;
+                            model3.CountByComponent4 = _count;
                         }
-                        if (_comps.Any(x => x == "6"))
+                        else if (k == 4)
                         {
-                            model3.CountByComponent6 += 1;
+                            model3.CountByComponent5 = _count;
                         }
-                        if (_comps.Any(x => x == "7"))
+                        else if (k == 5)
                         {
-                            model3.CountByComponent7 += 1;
+                            model3.CountByComponent6 = _count;
                         }
-                        if (_comps.Any(x => x == "8"))
+                        else if (k == 6)
                         {
-                            model3.CountByComponent8 += 1;
+                            model3.CountByComponent7 = _count;
                         }
-                        if (_comps.Any(x => x == "9"))
+                        else if (k == 7)
                         {
-                            model3.CountByComponent9 += 1;
+                            model3.CountByComponent8 = _count;
                         }
-                        if (_comps.Any(x => x == "10"))
+                        else if (k == 8)
                         {
-                            model3.CountByComponent10 += 1;
+                            model3.CountByComponent9 = _count;
                         }
-                        if (_comps.Any(x => x == "11"))
+                        else if (k == 9)
                         {
-                            model3.CountByComponent11 += 1;
+                            model3.CountByComponent10 = _count;
                         }
-                        if (_comps.Any(x => x == "12"))
+                        else if (k == 10)
                         {
-                            model3.CountByComponent12 += 1;
+                            model3.CountByComponent11 = _count;
                         }
-                        if (_comps.Any(x => x == "13"))
+                        else if (k == 11)
                         {
-                            model3.CountByComponent13 += 1;
+                            model3.CountByComponent12 = _count;
                         }
-                        if (_comps.Any(x => x == "14"))
+                        else if (k == 12)
                         {
-                            model3.CountByComponent14 += 1;
+                            model3.CountByComponent13 = _count;
                         }
-                        if (_comps.Any(x => x == "15"))
+                        else if (k == 13)
                         {
-                            model3.CountByComponent15 += 1;
+                            model3.CountByComponent14 = _count;
                         }
-                        listModelComp.Add(model3);
+                        else if (k == 14)
+                        {
+                            model3.CountByComponent15 = _count;
+                        }
+
                     }
-
-                    
+                    listModelComp.Add(model3);
                 }
             }
             model.ApplicantsListByComp = listModelComp;
-            model.ApplicantsListByDist = listModelDist.OrderBy(x=>x.DistrictName).ToList();
+            model.ApplicantsListByDist = listModelDist.OrderBy(x => x.DistrictName).ToList();
             model.ApplicantsListByTal = listModelTal;
 
             return View(model);
@@ -199,13 +269,13 @@ namespace Mahamesh.Controllers
             var list = db.ApplicantRegistrations.ToList();
             var districts = db.DistMaster.ToList();
             var talukaList = db.TalMaster.ToList();
-           
+
             var model = new ApplicationListsViewModel();
             var listModel = new List<ApplicationListsViewModel>();
             foreach (var item in districts)
             {
                 var data = list.Where(x => x.Dist == item.Dist_Code).Count();
-              
+
                 foreach (var taluka in talukaList.Where(x => x.Dist_Code == item.Dist_Code))
                 {
                     var model2 = new ApplicationListsViewModel();
@@ -216,13 +286,13 @@ namespace Mahamesh.Controllers
                     model2.TalukaName = taluka.TalName;
                     model2.TalukaCode = taluka.Tal_Code;
 
-                    foreach (var _item in list.Where(x=>x.Tahashil == taluka.Tal_Code && x.CompNumber != null))
+                    foreach (var _item in list.Where(x => x.Tahashil == taluka.Tal_Code && x.CompNumber != null))
                     {
                         var d = _item.CompNumber;
                         var _comps = d.Split(',').ToList();
                         var _Components = new List<Tuple<int, string>>();
 
-                        if(_comps.Any(x=>x == "1"))
+                        if (_comps.Any(x => x == "1"))
                         {
                             model2.CountByComponent1 += 1;
                         }
@@ -325,7 +395,7 @@ namespace Mahamesh.Controllers
             applicantRegistration.CuminEcre = Math.Round(Convert.ToDecimal(applicantRegistration.CuminEcre), 2);
             applicantRegistration.CompNumberList1 = applicantRegistration.CompNumber.Split(',').ToList();
             applicantRegistration.CompList = new List<Tuple<int, string>>();
-            
+
             foreach (var item in applicantRegistration.CompNumberList1)
             {
                 Components d = (Components)Enum.Parse(typeof(Components), item);
@@ -520,7 +590,7 @@ namespace Mahamesh.Controllers
             if (formStatus == "Draft")
             {
                 model = db.ApplicantRegistrations.Where(x => x.AdharCardNo == aadhar).FirstOrDefault();
- 
+
                 return View(model);
             }
             else
@@ -562,7 +632,7 @@ namespace Mahamesh.Controllers
                 if (applicantRegistration.CompNumberList2 != null && applicantRegistration.CompNumberList2.ToString() != ", ")
                 {
                     applicant.CompNumber = String.Join(", ", applicantRegistration.CompNumberList2.ToArray());
-                    _comp =  applicant.CompNumber + ", " + _comp ;
+                    _comp = applicant.CompNumber + ", " + _comp;
                 }
                 if (applicantRegistration.CompNumberList3 != null && applicantRegistration.CompNumberList3.ToString() != ", ")
                 {
@@ -583,7 +653,7 @@ namespace Mahamesh.Controllers
                 _comp = _comp.TrimEnd();
                 applicant.CompNumber = _comp.TrimEnd(',');
                 applicant.SubmitDatetime = DateTime.UtcNow;
-              //  var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
+                //  var id = db.ApplicantRegistrations.OrderByDescending(x => x.Id).Select(x => x.Id).FirstOrDefault();
                 applicant.ApplicationNumber = applicant.Dist + "/" + applicant.Tahashil + "/" + applicant.VillageName + "/" + applicant.Id;
                 applicant.FormSubmitted = true;
                 applicant.UserIP = GetIPAddress();
@@ -786,7 +856,7 @@ namespace Mahamesh.Controllers
             db.Entry(applicant).State = EntityState.Modified;
             db.SaveChanges();
 
-           
+
             return RedirectToAction("Create", new { aadhar = applicantRegistration.AdharCardNo, formStatus = "Draft" });
 
         }
@@ -927,7 +997,7 @@ namespace Mahamesh.Controllers
         {
             ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
             var subCaste = Convert.ToInt32(applicantRegistration.SubCatse);
-            var _caste = db.CasteUnderNTC.Where(x=>x.ID == subCaste).Select(x=>x.Caste).FirstOrDefault();
+            var _caste = db.CasteUnderNTC.Where(x => x.ID == subCaste).Select(x => x.Caste).FirstOrDefault();
             var _dist = db.DistMaster.Where(x => x.Dist_Code == applicantRegistration.Dist).Select(x => x.DistName).FirstOrDefault();
             var _tal = db.TalMaster.Where(x => x.Tal_Code == applicantRegistration.Tahashil).Select(x => x.TalName).FirstOrDefault();
             var _vil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.VillageName).Select(x => x.VillageName).FirstOrDefault();

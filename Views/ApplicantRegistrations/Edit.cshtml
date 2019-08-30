@@ -969,6 +969,14 @@
         $("#Caste").val("भटक्या जमातीचा - क");
 
         $("#nextBtn3").click(function () {
+
+            var checked = $("input[type=checkbox]:checked").length;
+
+            if (!checked) {
+                alert("You must check at least one checkbox.");
+                return false;
+            }
+
             var val1 = [];
             $("input[name=CompNumberList1]").removeAttr("disabled");
             $(':checkbox[name=CompNumberList1]:checked').each(function (i) {
