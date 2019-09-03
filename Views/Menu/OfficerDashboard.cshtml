@@ -1,0 +1,62 @@
+﻿@model Mahamesh.Models.OfficerLogin
+
+@{
+    ViewBag.Title = "Officer Dashboard";
+}
+
+<div class="container body-content" id="#maincontent" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary-2">
+            <h4 class="text-center">Welcome @Model.desgination</h4>
+            <h5>Distict Code: @Model.district - District Name: @Model.DistName</h5>
+        </div>
+        <div class="panel-body">
+            <div class="col-md-3">
+                <ul class="vertical-nav">
+
+                    <li><a href="#">View Login Details</a></li>
+                    <li><a href="@Url.Action("MahameshYojanaTargets", "Menu")">View Targets</a></li>
+
+                    <li><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">View Applications</a></li>
+
+                </ul>
+            </div>
+            <div class="col-md-9">
+                <table class="table table-bordered table-striped table-responsive">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Sr. No.</th>
+                            <th>Designation</th>
+                            <th>Taluka</th>
+                            <th>Username</th>
+                            <th>Password</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (int i = 0; i < Model.OfficerList.Count; i++)
+                        {
+                            <tr>
+                                <td class="text-center">@(i + 1)</td>
+                                <td>@Model.OfficerList[i].desgination</td>
+                                <td>@Model.OfficerList[i].taluka</td>
+                                <td>@Model.OfficerList[i].Username</td>
+                                <td>@Model.OfficerList[i].pwd</td>
+                                <td class="text-center"><a class="btn btn-info btn-xs" href="@Url.Action("ResetPwd", "Menu", new { username = Model.OfficerList[i].Username, changedBy = Model.Username})">Reset</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

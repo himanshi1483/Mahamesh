@@ -26,7 +26,7 @@ namespace Mahamesh.Models
         }
          public IDbSet<ApplicationDuration> ApplicationDuration { get; set; }
          public IDbSet<DistrictList> DistrictList { get; set; }
-
+       // public IDbSet<OfficerLogin> OfficerLogin { get; set; }
         public IDbSet<DistMaster> DistMaster { get; set; }
         public IDbSet<TalMaster> TalMaster { get; set; }
         public IDbSet<VillageMaster> VillageMaster { get; set; }
@@ -66,5 +66,8 @@ namespace Mahamesh.Models
         public System.Data.Entity.DbSet<Mahamesh.Models.ApplicantRegistration> ApplicantRegistrations { get; set; }
         public DbSet<AcreMaster> AcreMaster { get; set; }
 
+        public System.Data.Entity.DbSet<Mahamesh.Models.OfficerLogin> OfficerLogins { get; set; }
+
+        //public System.Data.Entity.DbSet<Mahamesh.Models.OfficerLogin> OfficerLogins { get; set; }
     }
 }

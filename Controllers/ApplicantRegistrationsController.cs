@@ -21,7 +21,7 @@ namespace Mahamesh.Controllers
             return View(db.ApplicantRegistrations.ToList());
         }
 
-        [Authorize]
+       // [Authorize]
         public ActionResult ApplicationIndexByDistrict()
         {
             var model = new ApplicationListsViewModel();

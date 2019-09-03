@@ -15,6 +15,15 @@
         margin-bottom: 10px;
     }
 
+    /* Mark input boxes that gets an error on validation: */
+    input.invalid {
+        background-color: #ffdddd;
+    }
+
+    select.invalid {
+        background-color: #ffdddd;
+    }
+
     .btn-file {
         position: relative;
         overflow: hidden;
@@ -168,7 +177,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Dist, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Dist, (SelectList)ViewBag.District, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.Dist, (SelectList)ViewBag.District, new { @class = "required form-control" })
 
                                 @Html.ValidationMessageFor(model => model.Dist, "", new { @class = "text-danger" })
                             </div>
@@ -182,14 +191,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Tahashil, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Tahashil, (SelectList)ViewBag.Taluka, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.Tahashil, (SelectList)ViewBag.Taluka, new { @class = "required form-control" })
                                 @Html.ValidationMessageFor(model => model.Tahashil, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group  col-lg-6">
                             @Html.LabelFor(model => model.VillageName)
                             <div>
-                                @Html.DropDownListFor(model => model.VillageName, (SelectList)ViewBag.Village, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.VillageName, (SelectList)ViewBag.Village, new { @class = "required form-control" })
                                 @Html.ValidationMessageFor(model => model.VillageName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -207,7 +216,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.HVillage, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.HVillage, (SelectList)ViewBag.HVilage, new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.HVillage, (SelectList)ViewBag.HVilage, new { @class = "required form-control" })
                                 @Html.ValidationMessageFor(model => model.HVillage, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -230,7 +239,7 @@
                                     </div>*@
                                 @*<div id="datepicker"></div>*@
 
-                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "required form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -263,7 +272,7 @@
                             @Html.LabelFor(model => model.ChildCount, htmlAttributes: new { @class = "control-label" })
                             <div>
                                 @*@Html.EditorFor(model => model.ChildCount, new { htmlAttributes = new { @class = "form-control" } })*@
-                                <select class="form-control" id="ChildCount" required>
+                                <select class="required form-control" id="ChildCount">
                                     <option value="-1">Select</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -286,7 +295,7 @@
                             @Html.LabelFor(model => model.Child2006, htmlAttributes: new { @class = "control-label" })
                             <div>
                                 @*@Html.EditorFor(model => model.Child2006, new { htmlAttributes = new { @class = "form-control" } })*@
-                                <select class="form-control" id="Child2006" required>
+                                <select class="required form-control" id="Child2006">
                                     <option value="-1">Select</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -317,7 +326,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.SubCatse, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.SubCatse, (SelectList)ViewBag.Caste, new { @class = "form-control",  @required = "required" })
+                                @Html.DropDownListFor(model => model.SubCatse, (SelectList)ViewBag.Caste, new { @class = "required form-control" })
                                 @Html.ValidationMessageFor(model => model.SubCatse, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -900,7 +909,7 @@
         //// This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("required");
+        y = x[currentTab].getElementsByClassName("required");
         z = x[currentTab].getElementsByClassName("pht");
         if (z.length > 0) {
             if (z[0].value == "") {
@@ -916,11 +925,15 @@
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
             if (y[i].value == "") {
+
+
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
-                //$("#photoErr").text("Please upload image");
-                //$("#Photo").style("background", "lightcoral");
+                valid = false;
+            }
+            else if (y[i].value == -1) {
+                y[i].className += " invalid";
                 valid = false;
             }
         }
@@ -968,7 +981,7 @@
     $(document).ready(function () {
         $("#Caste").val("भटक्या जमातीचा - क");
 
-        $("#nextBtn3").click(function () {
+        $("#nextBtn1").submit(function () {
 
             var checked = $("input[type=checkbox]:checked").length;
 
@@ -976,6 +989,7 @@
                 alert("You must check at least one checkbox.");
                 return false;
             }
+
 
             var val1 = [];
             $("input[name=CompNumberList1]").removeAttr("disabled");

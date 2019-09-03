@@ -396,6 +396,30 @@
     <Compile Include="Migrations\201908281611053_init009.Designer.cs">
       <DependentUpon>201908281611053_init009.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909030943024_init0091.cs" />
+    <Compile Include="Migrations\201909030943024_init0091.Designer.cs">
+      <DependentUpon>201909030943024_init0091.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031004485_init010.cs" />
+    <Compile Include="Migrations\201909031004485_init010.Designer.cs">
+      <DependentUpon>201909031004485_init010.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031018153_init011.cs" />
+    <Compile Include="Migrations\201909031018153_init011.Designer.cs">
+      <DependentUpon>201909031018153_init011.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031020378_init012.cs" />
+    <Compile Include="Migrations\201909031020378_init012.Designer.cs">
+      <DependentUpon>201909031020378_init012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031032191_init013.cs" />
+    <Compile Include="Migrations\201909031032191_init013.Designer.cs">
+      <DependentUpon>201909031032191_init013.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909031033510_init014.cs" />
+    <Compile Include="Migrations\201909031033510_init014.Designer.cs">
+      <DependentUpon>201909031033510_init014.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -412,6 +436,7 @@
     <Compile Include="Models\MediaFolders.cs" />
     <Compile Include="Models\MediaGalleryModel.cs" />
     <Compile Include="Models\NewsModel.cs" />
+    <Compile Include="Models\OfficerLoginModel.cs" />
     <Compile Include="Models\PhysicalTarget.cs" />
     <Compile Include="Models\PhysicalTargetViewModel.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
@@ -870,6 +895,9 @@
     <Content Include="Views\Shared\_LayoutReceipt.cshtml" />
     <Content Include="Views\ApplicantRegistrations\UserIndex.cshtml" />
     <Content Include="Views\ApplicantRegistrations\ApplicationIndexByDistrict.cshtml" />
+    <Content Include="Views\Menu\ChangePwd.cshtml" />
+    <Content Include="Views\Menu\OfficerDashboard.cshtml" />
+    <Content Include="Views\Menu\ResetPwd.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1044,6 +1072,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201908281611053_init009.resx">
       <DependentUpon>201908281611053_init009.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909030943024_init0091.resx">
+      <DependentUpon>201909030943024_init0091.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031004485_init010.resx">
+      <DependentUpon>201909031004485_init010.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031018153_init011.resx">
+      <DependentUpon>201909031018153_init011.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031020378_init012.resx">
+      <DependentUpon>201909031020378_init012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031032191_init013.resx">
+      <DependentUpon>201909031032191_init013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909031033510_init014.resx">
+      <DependentUpon>201909031033510_init014.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

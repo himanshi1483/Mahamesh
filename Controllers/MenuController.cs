@@ -1,9 +1,11 @@
 ﻿using Mahamesh.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static Mahamesh.FilterConfig;
 
 namespace Mahamesh.Controllers
 {
@@ -241,12 +243,89 @@ namespace Mahamesh.Controllers
             {
                 return RedirectToAction("Create", "ApplicantRegistrations", new { @aadhar = AdharCardNo });
             }
-            return View();
+           // return View();
         }
+
         public ActionResult MahameshYojanaOfficerLogin()
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult MahameshYojanaOfficerLogin(OfficerLogin model)
+        {
+            var officers = db.OfficerLogins.Any(x=>x.Username == model.Username);
+            if(officers)
+            {
+                var ofcrDetail = new OfficerLogin();
+                ofcrDetail = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
+                if (ofcrDetail.ResetPwd == null && ofcrDetail.pwd == model.pwd)
+                    return RedirectToAction("ChangePwd", "Menu", new { username = model.Username });
+                else if(ofcrDetail.ResetPwd == model.pwd)
+                {
+                    model.ChangedBy = model.Username;
+                    return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
+                }
+            }
+
+            return View();
+        }
+
+        [NoDirectAccess]
+        public ActionResult ResetPwd(string username, string changedBy)
+        {
+            var model = new OfficerLogin();
+            model.Username = username;
+            model.ChangedBy = changedBy;
+            return View(model);
+        }
+
+        [NoDirectAccess]
+        [HttpPost]
+        public ActionResult ResetPwd(OfficerLogin model)
+        {
+            var loginModel = new OfficerLogin();
+            loginModel = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
+            loginModel.ResetPwd = model.ResetPwd;
+            db.Entry(loginModel).State = EntityState.Modified;
+            db.SaveChanges();
+            //return Redirect(Request.UrlReferrer.PathAndQuery);
+             return RedirectToAction("OfficerDashboard", new { username = model.ChangedBy});
+        }
+
+        [NoDirectAccess]
+        public ActionResult ChangePwd(string username)
+        {
+            var model = new OfficerLogin();
+            model.Username = username;
+            return View(model);
+        }
+
+        [NoDirectAccess]
+        [HttpPost]
+        public ActionResult ChangePwd(OfficerLogin model)
+        {
+            var loginModel = new OfficerLogin();
+            loginModel = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
+            loginModel.ResetPwd = model.ResetPwd;
+            db.Entry(loginModel).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("MahameshYojanaOfficerLogin");
+        }
+
+        [NoDirectAccess]
+        public ActionResult OfficerDashboard(string username)
+        {
+            var list = db.OfficerLogins.ToList();
+            var officer = list.Where(x => x.Username == username).FirstOrDefault();
+            var distlist = db.DistMaster.ToList();
+            var model = new OfficerLogin();
+            model = officer;
+            model.DistName = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
+            model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
+            return View(model);
+        }
+
         public ActionResult MahameshYojanaContact()
         {
             return View();

@@ -1,4 +1,4 @@
-﻿
+﻿@model Mahamesh.Models.OfficerLogin
 @{
     ViewBag.Title = "Officer Login";
 }
@@ -131,6 +131,43 @@
                 color: #777;
             }
         }
+
+    .capbox {
+        background-color: rgba(0, 0, 0, 0.1);
+        border: rgba(0,0,0,.3) 0px solid;
+        border-width: 0px 12px 0px 0px;
+        display: inline-block;
+        *display: inline;
+        zoom: 1; /* FOR IE7-8 */
+        padding: 8px 40px 8px 8px;
+    }
+
+    .capbox-inner {
+        font: bold 11px arial, sans-serif;
+        color: #000000;
+        background-color: #b7e0ff;
+        margin: 5px auto 0px auto;
+        padding: 3px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+    #CaptchaDiv {
+        font: bold 17px verdana, arial, sans-serif;
+        font-style: italic;
+        color: #000000;
+        background-color: #FFFFFF;
+        padding: 4px;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+    }
+
+    #CaptchaInput {
+        margin: 1px 0px 1px 0px;
+        width: 135px;
+    }
 </style>
 <div class="container body-content" id="#maincontent" style="margin-bottom:150px;">
     <div class="headerDashboard">
@@ -150,30 +187,91 @@
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-left:28%">
                 <div class="card card-signin my-5">
                     <div class="card-body">
-                        <div style="margin-left:21%;padding-top:20px;padding-bottom:40px"><img src="~/Images/logo1.png" class="img-responsive" alt="Logo" width="220" height="220" /></div>
-                        <form class="form-signin">
-                            <div class="form-label-group">
-                                <input type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
-                                <label for="inputEmail">*Username</label>
-                            </div>
+                        <div style="margin-left:32%;padding-bottom:15px"><img src="~/Images/logo1.png" class="img-responsive" alt="Logo" width="150" height="150" /></div>
+                        @using (Html.BeginForm("MahameshYojanaOfficerLogin", "Menu", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return checkform(this);" }))
+                        {
+                        <div class="form-group" style="padding-bottom:10px !important">
+                            @Html.LabelFor(x=>x.Username, new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @required = "required" })
+                        </div>
 
-                            <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-                                <label for="inputPassword">Password</label>
-                            </div>
+                        <div class="form-group" style="padding-bottom:10px !important">
+                            @Html.Label("Password", new { @class = "control-label" })
+                            @Html.TextBoxFor(x => x.pwd, new { @class = "form-control",@type = "Password",  @required = "required" })
+                        </div>
+                        
+                            <div>
+                                <!-- START CAPTCHA -->
+                                <div class="capbox">
 
-                            @*<div class="custom-control custom-checkbox mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
-                                </div>*@
-                            <br />
+                                    <div id="CaptchaDiv"></div>
+
+                                    <div class="capbox-inner">
+                                        Type the above number:<br>
+
+                                        <input type="hidden" id="txtCaptcha">
+                                        <input type="text" name="CaptchaInput" id="CaptchaInput" size="15"><br>
+
+                                    </div>
+                                </div>
+                                <br><br>
+                                <!-- END CAPTCHA -->
+
+                            </div>
                             <button class="btn btn-sm btn-primary btn-block text-uppercase" type="submit">Sign In</button>
 
-                        </form>
-                    </div>
+                        }
+                        </div>
                 </div>
             </div>
         </div>
         <div class="panel-footer text-center text-danger">Note:- UserID and Password for all officers ( LDO, DAHO, DDC) will be available with the respective DDC Office</div>
     </div>
 </div>
+<script type="text/javascript">
+
+    // Captcha Script
+
+    function checkform(theform) {
+        var why = "";
+
+        if (theform.CaptchaInput.value == "") {
+            why += "- Please Enter CAPTCHA Code.\n";
+        }
+        if (theform.CaptchaInput.value != "") {
+            if (ValidCaptcha(theform.CaptchaInput.value) == false) {
+                why += "- The CAPTCHA Code Does Not Match.\n";
+            }
+        }
+        if (why != "") {
+            alert(why);
+            return false;
+        }
+    }
+
+    var a = Math.ceil(Math.random() * 9) + '';
+    var b = Math.ceil(Math.random() * 9) + '';
+    var c = Math.ceil(Math.random() * 9) + '';
+    var d = Math.ceil(Math.random() * 9) + '';
+    var e = Math.ceil(Math.random() * 9) + '';
+
+    var code = a + b + c + d + e;
+    document.getElementById("txtCaptcha").value = code;
+    document.getElementById("CaptchaDiv").innerHTML = code;
+
+    // Validate input against the generated number
+    function ValidCaptcha() {
+        var str1 = removeSpaces(document.getElementById('txtCaptcha').value);
+        var str2 = removeSpaces(document.getElementById('CaptchaInput').value);
+        if (str1 == str2) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    // Remove the spaces from the entered and generated code
+    function removeSpaces(string) {
+        return string.split(' ').join('');
+    }
+</script>

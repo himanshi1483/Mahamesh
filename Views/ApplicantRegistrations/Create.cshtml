@@ -51,6 +51,10 @@
         background-color: #ffdddd;
     }
 
+    select.invalid {
+        background-color: #ffdddd;
+    }
+
     /* Hide all steps by default: */
     .tab {
         display: none;
@@ -153,14 +157,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.ApName)
                             <div>
-                                @Html.EditorFor(model => model.ApName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.ApName, new { htmlAttributes = new { @class = "required form-control" } })
                                 @Html.ValidationMessageFor(model => model.ApName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Dist, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Dist, (SelectList)ViewBag.Dist, "Select", new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.Dist, (SelectList)ViewBag.Dist, "Select", new { @class = "required form-control" })
 
                                 @Html.ValidationMessageFor(model => model.Dist, "", new { @class = "text-danger" })
                             </div>
@@ -171,14 +175,14 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.Tahashil, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.Tahashil, (SelectList)ViewBag.Taluka, "Select", new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.Tahashil, (SelectList)ViewBag.Taluka, "Select", new { @class = " required form-control" })
                                 @Html.ValidationMessageFor(model => model.Tahashil, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group  col-lg-6">
                             @Html.LabelFor(model => model.VillageName)
                             <div>
-                                @Html.DropDownListFor(model => model.VillageName, (SelectList)ViewBag.Village, "Select", new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.VillageName, (SelectList)ViewBag.Village, "Select", new { @class = "required form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.VillageName, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -195,7 +199,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.HVillage, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.HVillage, new SelectList(string.Empty, "Value", "Text"), new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.HVillage, new SelectList(string.Empty, "Value", "Text"), new { @class = "required form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.HVillage, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -219,7 +223,7 @@
                                     </div>*@
                                 @*<div id="datepicker"></div>*@
 
-                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                                @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "required form-control", @readonly = "readonly" } })
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -259,7 +263,7 @@
                             @Html.LabelFor(model => model.ChildCount, htmlAttributes: new { @class = "control-label" })
                             <div>
                                 @*@Html.EditorFor(model => model.ChildCount, new { htmlAttributes = new { @class = "form-control" } })*@
-                                <select class="form-control" id="ChildCount" name="ChildCount" required>
+                                <select class="required form-control" id="ChildCount" name="ChildCount">
                                     <option value="-1">Select</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -282,7 +286,7 @@
                             @Html.LabelFor(model => model.Child2006, htmlAttributes: new { @class = "control-label" })
                             <div>
                                 @*@Html.EditorFor(model => model.Child2006, new { htmlAttributes = new { @class = "form-control" } })*@
-                                <select class="form-control" id="Child2006" name="Child2006" required>
+                                <select class="required form-control" id="Child2006" name="Child2006">
                                     <option value="-1">Select</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
@@ -312,7 +316,7 @@
                         <div class="form-group col-lg-6">
                             @Html.LabelFor(model => model.SubCatse, htmlAttributes: new { @class = "control-label" })
                             <div>
-                                @Html.DropDownListFor(model => model.SubCatse, (SelectList)ViewBag.Caste,"Select",  new { @class = "form-control", @required = "required" })
+                                @Html.DropDownListFor(model => model.SubCatse, (SelectList)ViewBag.Caste, "Select", new { @class = "required form-control", @required = "required" })
                                 @Html.ValidationMessageFor(model => model.SubCatse, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -712,52 +716,60 @@
                     <table class="table table-responsive table-condensed table-bordered">
                         <tr style="background:#2a88cf;height:40px;color:white;font-weight:700;font-size:15px;text-align:center"><td colspan="3">  १. अर्जदाराने खालील पहिल्या दोन उपघटकामधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना इतर उपघटकांमध्ये लाभ घेता येणार नाही.</td></tr>
                         <tr style="border-top:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
-                            <td width="2%"><input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumberList1" value="1">
-                            @*<input type="hidden" id="CompNumber1" name="CompNumberList" value="1" />*@
-</td>
+                            <td width="2%">
+                                <input type="checkbox" class="form-check-input" id="CompNumber1" name="CompNumberList1" value="1">
+                                @*<input type="hidden" id="CompNumber1" name="CompNumberList" value="1" />*@
+                            </td>
                             <td width="2%">1</td>
                             <td width="96%">@Components.Comp1.GetDescription()</td>
                         </tr>
                         <tr style="border-bottom:2px dotted orange;border-left:2px dotted orange;border-right:2px dotted orange;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumberList1" value="2">
-                            @*<input type="hidden" id="CompNumber2" name="CompNumberList" value="2" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber2" name="CompNumberList1" value="2">
+                                @*<input type="hidden" id="CompNumber2" name="CompNumberList" value="2" />*@
                             </td>
                             <td>2</td>
                             <td>@Components.Comp2.GetDescription()</td>
                         </tr>
                         <tr style="background:#2a88cf;height:35px;color:white;font-weight:700;font-size:15px;text-align:center">
-                        <td colspan="3">   २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.</td></tr>
+                            <td colspan="3">   २. अर्जदाराने खालील ३ ते ७ या उपघटकांमधील कोणत्याही एका उपघटकाचा लाभ घेतल्यास त्यांना पहिले २ उपघटक वगळता उर्वरित उपघटकांमधील मेंढीपालन व्यवसाय करण्याच्या प्रकारानुसार (स्थायी किंवा स्थलांतरित) व सध्या असलेल्या मेंढ्यांच्या संख्येनुसार खालीलप्रमाणे दर्शविण्यात आलेल्या उपघटक क्रमांक ८ ते ११ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल, तसेच १२ व १३ मधील कोणत्याही एका उपघटकाचा लाभ घेता येईल.</td>
+                        </tr>
                         <tr style="border-top:2px dotted blue;border-left:2px dotted blue;border-right:2px dotted blue;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber3" name="CompNumberList2" value="3"> 
-                            @*<input type="hidden" id="CompNumber3" name="CompNumberList" value="3" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber3" name="CompNumberList2" value="3">
+                                @*<input type="hidden" id="CompNumber3" name="CompNumberList" value="3" />*@
                             </td>
                             <td>3</td>
                             <td>@Components.Comp3.GetDescription()</td>
                         </tr>
                         <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber4" name="CompNumberList2" value="4"> 
-                            @*<input type="hidden" id="CompNumber4" name="CompNumberList" value="4" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber4" name="CompNumberList2" value="4">
+                                @*<input type="hidden" id="CompNumber4" name="CompNumberList" value="4" />*@
                             </td>
                             <td>4</td>
                             <td>@Components.Comp4.GetDescription()</td>
                         </tr>
                         <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber5" name="CompNumberList2" value="5">
-                            @*<input type="hidden" id="CompNumber5" name="CompNumberList" value="5" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber5" name="CompNumberList2" value="5">
+                                @*<input type="hidden" id="CompNumber5" name="CompNumberList" value="5" />*@
                             </td>
                             <td>5</td>
                             <td>@Components.Comp5.GetDescription()</td>
                         </tr>
                         <tr style="border-left:2px dotted blue;border-right:2px dotted blue;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber6" name="CompNumberList2" value="6"> 
-                            @*<input type="hidden" id="CompNumber6" name="CompNumberList" value="6" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber6" name="CompNumberList2" value="6">
+                                @*<input type="hidden" id="CompNumber6" name="CompNumberList" value="6" />*@
                             </td>
                             <td>6</td>
                             <td>@Components.Comp6.GetDescription()</td>
                         </tr>
                         <tr style="border-bottom:2px dotted blue;border-left:2px dotted blue;border-right:2px dotted blue;">
-                            <td><input type="checkbox" class="form-check-input" id="CompNumber7" name="CompNumberList2" value="7"> 
-                            @*<input type="hidden" id="CompNumber7" name="CompNumberList" value="7" />*@
+                            <td>
+                                <input type="checkbox" class="form-check-input" id="CompNumber7" name="CompNumberList2" value="7">
+                                @*<input type="hidden" id="CompNumber7" name="CompNumberList" value="7" />*@
                             </td>
                             <td>7</td>
                             <td>@Components.Comp7.GetDescription()</td>
@@ -1057,7 +1069,7 @@
         // This function will figure out which tab to display
         var x = document.getElementsByClassName("tab");
         // Exit the function if any field in the current tab is invalid:
-        if (n == 1 && validateForm()) return false;
+        if (n == 1 && !validateForm()) return false;
         // Hide the current tab:
         x[currentTab].style.display = "none";
         // Increase or decrease the current tab by 1:
@@ -1081,7 +1093,7 @@
         //// This function deals with validation of the form fields
         var x, y, i, valid = true;
         x = document.getElementsByClassName("tab");
-        y = x[currentTab].getElementsByTagName("required");
+        y = x[currentTab].getElementsByClassName("required");
         z = x[currentTab].getElementsByClassName("pht");
         if (z.length > 0) {
             if (z[0].value == "") {
@@ -1097,12 +1109,21 @@
         for (i = 0; i < y.length; i++) {
             // If a field is empty...
             if (y[i].value == "") {
+
+
                 // add an "invalid" class to the field:
                 y[i].className += " invalid";
                 // and set the current valid status to false
                 valid = false;
             }
+            else if (y[i].value == -1) {
+                y[i].className += " invalid";
+                valid = false;
+                }
+
         }
+
+
         //// If the valid status is true, mark the step as finished and valid:
         //if (valid) {
 
@@ -1252,7 +1273,7 @@
             }
         });
         $("#nextBtn3").click(function () {
-           
+
               var checked = $("input[type=checkbox]:checked").length;
 
                 if (!checked) {
@@ -1260,7 +1281,7 @@
                     return false;
                 }
 
-         
+
 
             var val1 = [];
             $("input[name=CompNumberList1]").removeAttr("disabled");
@@ -2390,7 +2411,7 @@
             });
         });
 
-       
+
 
         $(document).on('change', '.btn-file :file', function ()
         {
