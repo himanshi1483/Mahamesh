@@ -20,6 +20,8 @@ namespace Mahamesh.Models
         public int taluka { get; set; }
         [NotMapped]
         public string TalukaName { get; set; }
+        [NotMapped]
+        public string Component { get; set; }
 
         public string Username { get; set; }
         public string pwd { get; set; }
@@ -32,5 +34,8 @@ namespace Mahamesh.Models
         public List<OfficerLogin> OfficerList { get; set; }
         [NotMapped]
         public string ChangedBy { get; set; }
+
+        [NotMapped]
+        public PhysicalTargetViewModel TargetModel { get; set; }
     }
 }

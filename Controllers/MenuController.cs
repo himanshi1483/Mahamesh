@@ -1,4 +1,7 @@
 ﻿using Mahamesh.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,6 +15,41 @@ namespace Mahamesh.Controllers
     public class MenuController : Controller
     {
         ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationSignInManager _signInManager;
+        private ApplicationUserManager _userManager;
+
+        public MenuController()
+        {
+        }
+        public MenuController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        {
+            UserManager = userManager;
+            SignInManager = signInManager;
+        }
+
+        public ApplicationSignInManager SignInManager
+        {
+            get
+            {
+                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+            }
+            private set
+            {
+                _signInManager = value;
+            }
+        }
+
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         // GET: Menu
         public ActionResult Index()
         {
@@ -49,8 +87,8 @@ namespace Mahamesh.Controllers
 
         public JsonResult getTaluka(string dist)
         {
-          //  var d = db.Comp1PhysicalTargetTaluka.ToList();
-            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == dist).Select(x=>x.TalukaName).ToList();
+            var d = db.DistMaster.Where(x => x.DistName == dist).FirstOrDefault();
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == d.District_Mr).Select(x=>x.TalukaName).ToList();
             List<SelectListItem> liTaluka = new List<SelectListItem>();
 
             liTaluka.Add(new SelectListItem { Text = "--Select Taluka--", Value = "0" });
@@ -208,6 +246,79 @@ namespace Mahamesh.Controllers
             //return Json(model, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpGet]
+        public JsonResult MahameshYojanaTargetsByDist(string comp, string dist, string tal)
+        {
+           // getDistrict();
+            var model = new PhysicalTargetViewModel();
+            var d = db.DistMaster.Where(x => x.DistName == dist).FirstOrDefault();
+
+            model.Component = comp;
+            model.DistrictName =d.District_Mr;
+            //model1.TargetModel.DistrictName = d.District_Mr;
+            model.TalukaName =tal;
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
+            ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model.TalukaName);
+
+            var list = new List<PhysicalTargetViewModel>();
+            model.Comp1TargetList = new List<Comp1Target>();
+            model.Comp2TargetList = new List<CompTarget2>();
+            model.Comp3TargetList = new List<Comp3PhysicalTarget>();
+            model.Comp4TargetList = new List<Comp4PhysicalTarget>();
+            model.Comp1TalukaList = new List<Comp1TalukaTarget>();
+            model.Comp2TalukaList = new List<Comp2TargetTaluka>();
+            model.Comp3TalukaList = new List<Comp3TargetTaluka>();
+            model.Comp4TalukaList = new List<Comp4TargetTaluka>();
+            if ((model.Component == "1") && (model.TalukaName == "0") && (model.DistrictName != null))
+            {
+                //var comp1 = db.Comp1Target.ToList();
+                model.Comp1TargetList = db.Comp1Target.Where(x => x.DistrictName == model.DistrictName.Trim()).ToList();
+                //var data = db.Comp1Target.Where(x => x.DistrictName == district).ToList();
+
+            }
+            else if ((model.Component == "2") && (model.TalukaName == "0") && (model.DistrictName != null))
+            {
+                //var comp2 = db.Comp2PhysicalTarget.ToList();
+                model.Comp2TargetList = db.Comp2PhysicalTarget.Where(x => x.DistrictName == model.DistrictName.Trim()).ToList();
+            }
+            else if ((model.Component == "3") && (model.TalukaName == "0") && (model.DistrictName != null))
+            {
+                //var comp3 = db.Comp1Target.ToList();
+                model.Comp3TargetList = db.Comp3PhysicalTarget.Where(x => x.DistrictName == model.DistrictName.Trim()).ToList();
+            }
+            else if ((model.Component == "4") && (model.TalukaName == "0") && (model.DistrictName != null))
+            {
+                //var comp4 = db.Comp1Target.ToList();
+                model.Comp4TargetList = db.Comp4PhysicalTarget.Where(x => x.DistrictName == model.DistrictName.Trim()).ToList();
+            }
+            else if ((model.Component == "1") && (model.TalukaName != "0") && (model.DistrictName != null))
+            {
+                //var comp1 = db.Comp1Target.ToList();
+                model.Comp1TalukaList = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName.Trim() && x.TalukaName == model.TalukaName.Trim()).ToList();
+                //var data = db.Comp1Target.Where(x => x.DistrictName == district).ToList();
+
+            }
+            else if ((model.Component == "2") && (model.TalukaName != "0") && (model.DistrictName != null))
+            {
+                //var comp2 = db.Comp2PhysicalTarget.ToList();
+                model.Comp2TalukaList = db.Comp2PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName.Trim() && x.TalukaName == model.TalukaName.Trim()).ToList();
+            }
+            else if ((model.Component == "3") && (model.TalukaName != "0") && (model.DistrictName != null))
+            {
+                //var comp3 = db.Comp1Target.ToList();
+                model.Comp3TalukaList = db.Comp3PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName.Trim() && x.TalukaName == model.TalukaName).ToList();
+            }
+            else if ((model.Component == "4") && (model.TalukaName != "0") && (model.DistrictName != null))
+            {
+                //var comp4 = db.Comp1Target.ToList();
+                model.Comp4TalukaList = db.Comp4PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName.Trim() && x.TalukaName == model.TalukaName).ToList();
+            }
+            var model1 = new OfficerLogin();
+            model1.TargetModel = model;
+            //return Redirect(Request.UrlReferrer.PathAndQuery);
+            return Json(model1, JsonRequestBehavior.AllowGet);
+        }
+
 
         public ActionResult MahameshYojanaBeneficiary()
         {
@@ -260,10 +371,48 @@ namespace Mahamesh.Controllers
                 var ofcrDetail = new OfficerLogin();
                 ofcrDetail = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
                 if (ofcrDetail.ResetPwd == null && ofcrDetail.pwd == model.pwd)
-                    return RedirectToAction("ChangePwd", "Menu", new { username = model.Username });
+                {
+                    var user = new ApplicationUser();
+                    //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                    UserManager.PasswordValidator = new PasswordValidator
+                    {
+                        RequireDigit = false,
+                        RequiredLength = 3,
+                        RequireLowercase = false,
+                        RequireNonLetterOrDigit = false,
+                        RequireUppercase = false
+
+                    };
+                    UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                    {
+                        AllowOnlyAlphanumericUserNames = false,
+                        RequireUniqueEmail = false
+                    };
+                 
+                    user.UserName = model.Username.ToString();
+                    user.Email = "admin@mahamesh.co.in";                   
+                    var chkUser = UserManager.Create(user, model.pwd);
+
+                    //Add default User to Role Admin    
+                    if (chkUser.Succeeded)
+                    {
+                        var result1 = UserManager.AddToRole(user.Id, ofcrDetail.desgination);
+
+                    }
+
+                    String hashedNewPassword = UserManager.PasswordHasher.HashPassword(model.pwd);
+                    UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+                    store.SetPasswordHashAsync(user, hashedNewPassword);
+                    store.UpdateAsync(user);
+
+                    return RedirectToAction("ResetPwd", "Menu", new { username = model.Username });
+
+                }
                 else if(ofcrDetail.ResetPwd == model.pwd)
                 {
                     model.ChangedBy = model.Username;
+                    var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
+                   
                     return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
                 }
             }
@@ -284,13 +433,51 @@ namespace Mahamesh.Controllers
         [HttpPost]
         public ActionResult ResetPwd(OfficerLogin model)
         {
+            UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
             var loginModel = new OfficerLogin();
             loginModel = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
             loginModel.ResetPwd = model.ResetPwd;
             db.Entry(loginModel).State = EntityState.Modified;
             db.SaveChanges();
-            //return Redirect(Request.UrlReferrer.PathAndQuery);
-             return RedirectToAction("OfficerDashboard", new { username = model.ChangedBy});
+            var user = UserManager.FindByName(model.Username);
+            if(user == null)
+            {
+                UserManager.PasswordValidator = new PasswordValidator
+                {
+                    RequireDigit = false,
+                    RequiredLength = 3,
+                    RequireLowercase = false,
+                    RequireNonLetterOrDigit = false,
+                    RequireUppercase = false
+
+                };
+                UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = false
+                };
+                var user1 = new ApplicationUser();
+              
+                user1.UserName = loginModel.Username.ToString();
+                user1.Email = "admin@mahamesh.co.in";
+                //string pwd = "Admin123@";
+                var chkUser = UserManager.Create(user1, loginModel.pwd);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user1.Id, loginModel.desgination);
+
+                }
+                user = user1;
+            }
+
+            String hashedNewPassword = UserManager.PasswordHasher.HashPassword(model.ResetPwd);
+
+            store.SetPasswordHashAsync(user, hashedNewPassword);
+            store.UpdateAsync(user);
+            return RedirectToAction("OfficerDashboard", new { username = model.ChangedBy});
         }
 
         [NoDirectAccess]
@@ -305,15 +492,55 @@ namespace Mahamesh.Controllers
         [HttpPost]
         public ActionResult ChangePwd(OfficerLogin model)
         {
+            UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
             var loginModel = new OfficerLogin();
             loginModel = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
             loginModel.ResetPwd = model.ResetPwd;
             db.Entry(loginModel).State = EntityState.Modified;
             db.SaveChanges();
+
+            var user = UserManager.FindByName(loginModel.Username);
+            if (user == null)
+            {
+                UserManager.PasswordValidator = new PasswordValidator
+                {
+                    RequireDigit = false,
+                    RequiredLength = 3,
+                    RequireLowercase = false,
+                    RequireNonLetterOrDigit = false,
+                    RequireUppercase = false
+
+                };
+                UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = false
+                };
+                var user1 = new ApplicationUser();
+
+                user1.UserName = loginModel.Username.ToString();
+                user1.Email = "admin@mahamesh.co.in";
+                //string pwd = "Admin123@";
+                var chkUser = UserManager.Create(user1, loginModel.pwd);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user1.Id, loginModel.desgination);
+
+                }
+                user = user1;
+            }
+
+            String hashedNewPassword = UserManager.PasswordHasher.HashPassword(loginModel.ResetPwd);
+
+            store.SetPasswordHashAsync(user, hashedNewPassword);
+            store.UpdateAsync(user);
+
             return RedirectToAction("MahameshYojanaOfficerLogin");
         }
 
-        [NoDirectAccess]
+        //[NoDirectAccess]
         public ActionResult OfficerDashboard(string username)
         {
             var list = db.OfficerLogins.ToList();
@@ -323,6 +550,25 @@ namespace Mahamesh.Controllers
             model = officer;
             model.DistName = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
             model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
+
+            getDistrict();
+            var model1 = new PhysicalTargetViewModel();
+            model1.Component = model1.Component;
+            model1.DistrictName = model1.DistrictName;
+
+            model1.TalukaName = model1.TalukaName;
+            var list1 = new List<PhysicalTargetViewModel>();
+            model1.Comp1TargetList = new List<Comp1Target>();
+            model1.Comp2TargetList = new List<CompTarget2>();
+            model1.Comp3TargetList = new List<Comp3PhysicalTarget>();
+            model1.Comp4TargetList = new List<Comp4PhysicalTarget>();
+            model1.Comp1TalukaList = new List<Comp1TalukaTarget>();
+            model1.Comp2TalukaList = new List<Comp2TargetTaluka>();
+            model1.Comp3TalukaList = new List<Comp3TargetTaluka>();
+            model1.Comp4TalukaList = new List<Comp4TargetTaluka>();
+            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
+            ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model1.TalukaName);
+            model.TargetModel = model1;
             return View(model);
         }
 

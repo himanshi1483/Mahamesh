@@ -10,17 +10,17 @@ namespace Mahamesh.Migrations
             //CreateTable(
             //    "dbo.OfficerLogins",
             //    c => new
-            //        {
-            //            ID = c.Int(nullable: false, identity: true),
-            //            designation = c.String(),
-            //            districy = c.Int(nullable: false),
-            //            taluka = c.Int(nullable: false),
-            //            Username = c.String(),
-            //            pwd = c.String(),
-            //            ResetPwd = c.String(),
-            //        })
+            //    {
+            //        ID = c.Int(nullable: false, identity: true),
+            //        designation = c.String(),
+            //        districy = c.Int(nullable: false),
+            //        taluka = c.Int(nullable: false),
+            //        Username = c.String(),
+            //        pwd = c.String(),
+            //        ResetPwd = c.String(),
+            //    })
             //    .PrimaryKey(t => t.ID);
-            
+
         }
         
         public override void Down()

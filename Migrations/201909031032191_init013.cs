@@ -7,12 +7,12 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.OfficerLogins", "ResetPwd", c => c.String());
+           // AddColumn("dbo.OfficerLogins", "ResetPwd", c => c.String());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.OfficerLogins", "ResetPwd");
+          //  DropColumn("dbo.OfficerLogins", "ResetPwd");
         }
     }
 }

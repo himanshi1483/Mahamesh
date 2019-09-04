@@ -7,16 +7,16 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {//
-           // RenameTable(name: "dbo.OfficerLoginModels", newName: "OfficerLogins");
-           // AddColumn("dbo.OfficerLogins", "district", c => c.Int(nullable: false));
+            //RenameTable(name: "dbo.OfficerLoginModels", newName: "OfficerLogins");
+            //AddColumn("dbo.OfficerLogins", "district", c => c.Int(nullable: false));
             //DropColumn("dbo.OfficerLogins", "districy");
         }
         
         public override void Down()
         {
-           /// AddColumn("dbo.OfficerLogins", "districy", c => c.Int(nullable: false));
-           // DropColumn("dbo.OfficerLogins", "district");
-           // RenameTable(name: "dbo.OfficerLogins", newName: "OfficerLoginModels");
+            //AddColumn("dbo.OfficerLogins", "districy", c => c.Int(nullable: false));
+            //DropColumn("dbo.OfficerLogins", "district");
+            //RenameTable(name: "dbo.OfficerLogins", newName: "OfficerLoginModels");
         }
     }
 }

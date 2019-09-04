@@ -420,12 +420,21 @@
     <Compile Include="Migrations\201909031033510_init014.Designer.cs">
       <DependentUpon>201909031033510_init014.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909040653001_init0012.cs" />
+    <Compile Include="Migrations\201909040653001_init0012.Designer.cs">
+      <DependentUpon>201909040653001_init0012.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909040704393_init0013.cs" />
+    <Compile Include="Migrations\201909040704393_init0013.Designer.cs">
+      <DependentUpon>201909040704393_init0013.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
     <Compile Include="Models\ApplicantRegistration.cs" />
     <Compile Include="Models\ApplicationDuration.cs" />
     <Compile Include="Models\ApplicationListsViewModel.cs" />
+    <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\DistrictList.cs" />
     <Compile Include="Models\EnumExtension.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
@@ -906,6 +915,7 @@
     <Folder Include="Documents\Tenders\" />
     <Folder Include="Images\ApplicantPhoto\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Roles\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1090,6 +1100,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909031033510_init014.resx">
       <DependentUpon>201909031033510_init014.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909040653001_init0012.resx">
+      <DependentUpon>201909040653001_init0012.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909040704393_init0013.resx">
+      <DependentUpon>201909040704393_init0013.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
