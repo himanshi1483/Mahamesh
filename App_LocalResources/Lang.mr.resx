@@ -953,4 +953,141 @@
   <data name="Training" xml:space="preserve">
     <value>प्रशिक्षण</value>
   </data>
+  <data name="BerariGoat" xml:space="preserve">
+    <value>बेरारी शेळया</value>
+  </data>
+  <data name="BilakhedTraining" xml:space="preserve">
+    <value>मेंढी व शेळी पालन व्यवसाय व्यवस्थापनाचे प्रशिक्षण दर महिन्याला प्रक्षेत्रावर आयोजित करण्यात येते. 
+कालावधी:३दिवस 
+प्रशिक्षण शुल्क : रु. ५००/-</value>
+  </data>
+  <data name="BondriLocalBreed" xml:space="preserve">
+    <value>स्थानिक शेळ्या</value>
+  </data>
+  <data name="DeccaniSangamneri" xml:space="preserve">
+    <value>डेक्कणी (संगमनेरी) मेंढया</value>
+  </data>
+  <data name="FodderPlantNursery" xml:space="preserve">
+    <value>रोप वाटिका</value>
+  </data>
+  <data name="MachineShearing" xml:space="preserve">
+    <value>यांत्रिक लोकर कातरणी</value>
+  </data>
+  <data name="MadgyalSheep" xml:space="preserve">
+    <value>माडग्याळ मेंढया</value>
+  </data>
+  <data name="MahudSupply" xml:space="preserve">
+    <value>प्रक्षेत्रावर माडग्याळ जातीच्या मेंढया व उस्मानाबादी जातीच्या शेळयांचे पैदाशीकरीता संगोपन करण्यात येते. या पासून उत्पादित होणारे सुधारित मेंढेनर/बोकड स्थानिक मेंढ्यांची प्रतवारी सुधारण्या करिता पैदाशीकरिता शेतकर्‍यांना उपलब्ध करून देण्यात येत.</value>
+  </data>
+  <data name="MukhedSupply" xml:space="preserve">
+    <value>प्रक्षेत्रावर  डेक्कनी जातीच्या मेंढयाचे पैदाशीकरीता संगोपन करण्यात येते. या पासून उत्पादित होणारे सुधारित मेंढेनर पैदाशीकरिता शेतकर्‍यांना उपलब्ध करून देण्यात येत.</value>
+  </data>
+  <data name="PadegaonSupply" xml:space="preserve">
+    <value>प्रक्षेत्रावर डेक्कनी (संगमनेरी) व उस्मानाबादी जातीच्या मेंढया/मेंढयांचे पैदाशीकरीता संगोपन करण्यात येते. या पासून उत्पादित होणारे सुधारित मेंढेनर/बोकड स्थानिक शेळ्या/मेंढ्यांची  प्रतवारी सुधारण्या करिता पैदाशीकरिता शेतकर्‍यांना उपलब्ध करून देण्यात येत.</value>
+  </data>
+  <data name="RanjiniSupplyDetail" xml:space="preserve">
+    <value>प्रक्षेत्रावर माडग्याळ जातीच्या मेंढयाचे व उस्मानाबादी शेळयांचे पैदाशीकरीता संगोपन करण्यात येते. या पासून उत्पादित होणारे सुधारित मेंढेनर/बोकड  पैदाशीकरिता शेतकर्‍यांना उपलब्ध करून देण्यात येत.</value>
+  </data>
+  <data name="SangamneriSheep" xml:space="preserve">
+    <value>संगमनेरी शेळया</value>
+  </data>
+  <data name="SupplyofBucksGoats" xml:space="preserve">
+    <value>सुधारित जातीचे मेंढेनर व बोकड यांचे पैदाशीकरिता वाटप करणे</value>
+  </data>
+  <data name="SupplyofRams" xml:space="preserve">
+    <value>सुधारित जातीचे  बोकड यांचे पैदाशीकरिता वाटप करणे</value>
+  </data>
+  <data name="AdministrativeOfficer" xml:space="preserve">
+    <value>प्रशासकीय अधिकारी</value>
+  </data>
+  <data name="AGhatare" xml:space="preserve">
+    <value>डॉ. अक्षय घटारे</value>
+  </data>
+  <data name="AssistantDirector" xml:space="preserve">
+    <value>सहाय्यक संचालक</value>
+  </data>
+  <data name="BalasahebDodtale" xml:space="preserve">
+    <value>मा. श्री. बाळासाहेब प्रभाकर दोडतले (राज्यमंत्री दर्जा)</value>
+  </data>
+  <data name="Bkandhare" xml:space="preserve">
+    <value>डॉ. बालाजी कंधारे</value>
+  </data>
+  <data name="BSadar" xml:space="preserve">
+    <value>डॉ. भूषण सदार</value>
+  </data>
+  <data name="Chairman" xml:space="preserve">
+    <value>अध्यक्ष</value>
+  </data>
+  <data name="DDZanzare" xml:space="preserve">
+    <value>श्री. देवराम झांजरे</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>पद</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>सदस्य</value>
+  </data>
+  <data name="FarmManager" xml:space="preserve">
+    <value>Farm Manager</value>
+  </data>
+  <data name="FinAdvisor" xml:space="preserve">
+    <value>वित्तीय सल्लागार व प्रमुख लेखाअधिकारी</value>
+  </data>
+  <data name="GajananSangole" xml:space="preserve">
+    <value>डॉ. गजानन सांगोले</value>
+  </data>
+  <data name="GeneralManager" xml:space="preserve">
+    <value>महाव्यवस्थापक</value>
+  </data>
+  <data name="GWSangole" xml:space="preserve">
+    <value>डॉ. गजानन सांगोले</value>
+  </data>
+  <data name="InformationOfFarmManagers" xml:space="preserve">
+    <value>प्रक्षेत्र व्यवस्थापक यांची माहिती</value>
+  </data>
+  <data name="Lakshminarayan" xml:space="preserve">
+    <value>श्री. लक्ष्मीनारायण मिश्रा (भा.प्र.से.), आयुक्त पशूसंवर्धन, महाराष्ट्र राज्य</value>
+  </data>
+  <data name="MaheshBansode" xml:space="preserve">
+    <value>डॉ. महेश बनसोडे, व्यवस्थापकीय संचालक, पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ, पुणे</value>
+  </data>
+  <data name="MaheshBansode1" xml:space="preserve">
+    <value>डॉ. महेश बनसोडे</value>
+  </data>
+  <data name="ManagingDirector" xml:space="preserve">
+    <value>व्यवस्थापकीय संचालक</value>
+  </data>
+  <data name="PKarande" xml:space="preserve">
+    <value>डॉ.पोपट कारंडे</value>
+  </data>
+  <data name="Ptonde" xml:space="preserve">
+    <value>डॉ. प्रियंका तोंडे</value>
+  </data>
+  <data name="PYedage" xml:space="preserve">
+    <value>श्री. पांडुरंग येडगे</value>
+  </data>
+  <data name="RShaikh" xml:space="preserve">
+    <value>डॉ. रहीम शेख</value>
+  </data>
+  <data name="RTKadam" xml:space="preserve">
+    <value>श्री. रमेश कदम</value>
+  </data>
+  <data name="SDadas" xml:space="preserve">
+    <value>डॉ. सचिन दडस</value>
+  </data>
+  <data name="SHTekade" xml:space="preserve">
+    <value>डॉ. सचिन टेकाडे</value>
+  </data>
+  <data name="StaffOfHeadOffice" xml:space="preserve">
+    <value>मुख्यालयातील अधिकारी</value>
+  </data>
+  <data name="VBorse" xml:space="preserve">
+    <value>डॉ. विराज बोरसे</value>
+  </data>
+  <data name="VijayChaudhari" xml:space="preserve">
+    <value>श्री. विजय चौधरी, उपसचिव पशुसंवर्धन (पदुम), मंत्रालय, मुंबई</value>
+  </data>
+  <data name="VSalave" xml:space="preserve">
+    <value>डॉ. विक्रम साळवे</value>
+  </data>
 </root>

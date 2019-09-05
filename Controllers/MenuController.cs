@@ -405,7 +405,7 @@ namespace Mahamesh.Controllers
                     store.SetPasswordHashAsync(user, hashedNewPassword);
                     store.UpdateAsync(user);
 
-                    return RedirectToAction("ResetPwd", "Menu", new { username = model.Username });
+                    return RedirectToAction("ResetPwdNew", "Menu", new { username = model.Username });
 
                 }
                 else if(ofcrDetail.ResetPwd == model.pwd)
@@ -481,6 +481,66 @@ namespace Mahamesh.Controllers
         }
 
         [NoDirectAccess]
+        public ActionResult ResetPwdNew(string username, string changedBy)
+        {
+            var model = new OfficerLogin();
+            model.Username = username;
+            model.ChangedBy = changedBy;
+            return View(model);
+        }
+
+        [NoDirectAccess]
+        [HttpPost]
+        public ActionResult ResetPwdNew(OfficerLogin model)
+        {
+            UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var loginModel = new OfficerLogin();
+            loginModel = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
+            loginModel.ResetPwd = model.ResetPwd;
+            db.Entry(loginModel).State = EntityState.Modified;
+            db.SaveChanges();
+            var user = UserManager.FindByName(model.Username);
+            if (user == null)
+            {
+                UserManager.PasswordValidator = new PasswordValidator
+                {
+                    RequireDigit = false,
+                    RequiredLength = 3,
+                    RequireLowercase = false,
+                    RequireNonLetterOrDigit = false,
+                    RequireUppercase = false
+
+                };
+                UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                {
+                    AllowOnlyAlphanumericUserNames = false,
+                    RequireUniqueEmail = false
+                };
+                var user1 = new ApplicationUser();
+
+                user1.UserName = loginModel.Username.ToString();
+                user1.Email = "admin@mahamesh.co.in";
+                //string pwd = "Admin123@";
+                var chkUser = UserManager.Create(user1, loginModel.pwd);
+
+                //Add default User to Role Admin    
+                if (chkUser.Succeeded)
+                {
+                    var result1 = UserManager.AddToRole(user1.Id, loginModel.desgination);
+
+                }
+                user = user1;
+            }
+
+            String hashedNewPassword = UserManager.PasswordHasher.HashPassword(model.ResetPwd);
+
+            store.SetPasswordHashAsync(user, hashedNewPassword);
+            store.UpdateAsync(user);
+            return RedirectToAction("MahameshYojanaOfficerLogin");
+        }
+
+        [NoDirectAccess]
         public ActionResult ChangePwd(string username)
         {
             var model = new OfficerLogin();
@@ -540,7 +600,7 @@ namespace Mahamesh.Controllers
             return RedirectToAction("MahameshYojanaOfficerLogin");
         }
 
-        //[NoDirectAccess]
+        [NoDirectAccess]
         public ActionResult OfficerDashboard(string username)
         {
             var list = db.OfficerLogins.ToList();

@@ -428,6 +428,10 @@
     <Compile Include="Migrations\201909040704393_init0013.Designer.cs">
       <DependentUpon>201909040704393_init0013.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909041252484_check.cs" />
+    <Compile Include="Migrations\201909041252484_check.Designer.cs">
+      <DependentUpon>201909041252484_check.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -907,6 +911,7 @@
     <Content Include="Views\Menu\ChangePwd.cshtml" />
     <Content Include="Views\Menu\OfficerDashboard.cshtml" />
     <Content Include="Views\Menu\ResetPwd.cshtml" />
+    <Content Include="Views\Menu\ResetPwdNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1106,6 +1111,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909040704393_init0013.resx">
       <DependentUpon>201909040704393_init0013.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909041252484_check.resx">
+      <DependentUpon>201909041252484_check.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

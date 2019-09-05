@@ -18,7 +18,7 @@
     .vertical-nav {
         height: auto;
         list-style: none;
-        width: 100%; /******* MODIFIED ********/
+        width: 80%; /******* MODIFIED ********/
         /*margin: 20px 0 0 0;*/
     }
 
@@ -170,10 +170,17 @@
             position: relative;
         }
     }
+     .table-striped3 > tbody > tr:nth-of-type(odd) {
+        background-color: #f8d9d9;
+    }
+
+    .table > thead > tr > th {
+          background-color: #0294A5;
+    }
 </style>
 <div class="container-fluid body-content" id="#maincontent" style="margin-top:10px; margin-bottom: 150px;">
-    <div class="panel panel-success" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
-        <div class="panel-heading panel-success text-center">
+    <div class="panel panel-default" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-default text-center">
             @if (User.IsInRole("DDC"))
             {
                 <h4 class="text-center">Welcome DDC</h4>
@@ -186,18 +193,29 @@
 
         </div>
         <div class="panel-body">
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <ul class="vertical-nav">
+                    @if (User.IsInRole("DDC"))
+                    {
+                        <li style="background-color:#F03A47"><a id="link1" href="#">View Login Details</a></li>
+                    }
 
-                    <li><a id="link1" href="#">View Login Details</a></li>
-                    <li><a id="link2" href="#">View Targets</a></li>
-
-                    <li><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">View Application Statistics</a></li>
-                    <li><a href="#">Generate Random List</a></li>
-                    <li><a href="#">Preliminary Document Scrutiny</a></li>
-                    <li><a href="#">Final Beneficiary List</a></li>
-                    <li><a href="@Url.Action("ResetPwd", "Menu" , new { username = Model.Username})">Change Password</a></li>
-                    <li>
+                    <li  style="background-color:#3C3744"><a id="link2" href="#">View Targets</a></li>
+                    @if (User.IsInRole("DDC"))
+                    {
+                        <li style="background-color:#276FBF"><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">View Application Statistics</a></li>
+                        <li style="background-color:#183059"><a href="#">Generate Random List</a></li>
+                        <li style="background-color:#C46D73"><a href="#">Preliminary Document Scrutiny</a></li>
+                        <li style="background-color:#0294A5"><a href="#">Final Beneficiary List</a></li>
+                    }
+                    @if (User.IsInRole("DAHO") || User.IsInRole("LDO"))
+                    {
+                        <li style="background-color:#F03A47"><a href="#">View Preliminary List</a></li>
+                        <li style="background-color:#276FBF"><a href="#">Preliminary Scrutiny</a></li>
+                        <li style="background-color:#183059"><a href="#">View Final List</a></li>
+                    }
+                    <li style="background-color:#716D77"><a href="@Url.Action("ResetPwdNew", "Menu" , new { username = Model.Username})">Change Password</a></li>
+                    <li style="background-color:#19477A">
                         @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
                         {
                             @Html.AntiForgeryToken()
@@ -206,10 +224,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-9">
+            @*<div class="col-lg-1"></div>*@
+        <div class="col-md-9">
+            @if (User.IsInRole("DDC"))
+            {
                 <div id="tab1">
-                    <table class="table table-bordered table-striped table-responsive">
-                        <thead>
+                    <table class="table table-bordered table-striped3 table-responsive">
+                        <thead class="tableHeader">
                             <tr class="text-center">
                                 <th>Sr. No.</th>
                                 <th>Designation</th>
@@ -228,16 +249,17 @@
                                     <td>@Model.OfficerList[i].taluka</td>
                                     <td>@Model.OfficerList[i].Username</td>
                                     <td>@Model.OfficerList[i].pwd</td>
-                                    <td class="text-center"><a class="btn btn-info btn-xs" href="@Url.Action("ResetPwd", "Menu", new { username = Model.OfficerList[i].Username, changedBy = Model.Username})">Reset</a></td>
+                                    <td class="text-center"><a class="btn btn-info btn-xs" href="@Url.Action("ResetPwd", "Menu", new { username = Model.OfficerList[i].Username, changedBy = Model.Username })">Reset</a></td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
+            }
                 <div id="tab2" style="display:none">
                     <div class="panel-body">
                         @*@using (Html.BeginForm("MahameshYojanaTargetsByDist", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                            {*@
+                    {*@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="Comp" class="col-sm-2 control-label lbl">घटक:</label>

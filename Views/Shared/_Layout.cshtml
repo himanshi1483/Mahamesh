@@ -213,7 +213,7 @@
     </div>
     <!-- End header  -->
     <!-- Start menu -->
-    @if (!(User.IsInRole("Admin") || User.IsInRole("LDO") || User.IsInRole("DDC") || User.IsInRole("DAHO")))
+    @if (!User.Identity.IsAuthenticated)
     {
         <div class="container">
             <section id="mu-menu">

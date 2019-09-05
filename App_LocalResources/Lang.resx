@@ -941,4 +941,150 @@ Duration: 3 days.</value>
   <data name="Training" xml:space="preserve">
     <value>Training</value>
   </data>
+  <data name="BerariGoat" xml:space="preserve">
+    <value>Berari Goat</value>
+  </data>
+  <data name="BilakhedTraining" xml:space="preserve">
+    <value>Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Farm in every month.
+Fees: Rs. 500/- per trainee. 
+Duration: 3 days.</value>
+  </data>
+  <data name="BondriLocalBreed" xml:space="preserve">
+    <value>Local Breed</value>
+  </data>
+  <data name="DeccaniSangamneri" xml:space="preserve">
+    <value>Deccani (Sangamneri) Sheep</value>
+  </data>
+  <data name="FodderPlantNursery" xml:space="preserve">
+    <value>Fodder Plant Nursery</value>
+  </data>
+  <data name="MachineShearing" xml:space="preserve">
+    <value>Machine Shearing Program</value>
+  </data>
+  <data name="MadgyalSheep" xml:space="preserve">
+    <value>Madgyal Sheep</value>
+  </data>
+  <data name="MahudSupply" xml:space="preserve">
+    <value>Madgyal sheep and Osmanabadi Goat breed are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers.</value>
+  </data>
+  <data name="MukhedSupply" xml:space="preserve">
+    <value>Deccani sheep breed is reared at this farm for breeding purpose. The farm produced superior quality rams are reared up to attain reproductive age and then after the rams are distributed to farmers.</value>
+  </data>
+  <data name="PadegaonSupply" xml:space="preserve">
+    <value>Deccani (Sangamneri) sheep and Osmanabadi Goat breed are  reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers.</value>
+  </data>
+  <data name="RanjiniSupplyDetail" xml:space="preserve">
+    <value>Madgyal sheep and Osmanabadi goat breeds are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks  are reared up to attain reproductive age and then after the rams &amp; bucks  are distributed to farmers.</value>
+  </data>
+  <data name="SangamneriSheep" xml:space="preserve">
+    <value>Sangamneri Sheep</value>
+  </data>
+  <data name="SupplyofBucksGoats" xml:space="preserve">
+    <value>Supply of Rams and Bucks for Breeding</value>
+  </data>
+  <data name="SupplyofRams" xml:space="preserve">
+    <value>Supply of Rams for Breeding</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="SrNo" xml:space="preserve">
+    <value>Sr. No.</value>
+  </data>
+  <data name="AdministrativeOfficer" xml:space="preserve">
+    <value>Administrative Officer</value>
+  </data>
+  <data name="AGhatare" xml:space="preserve">
+    <value>Dr. Akshay Ghatare</value>
+  </data>
+  <data name="AssistantDirector" xml:space="preserve">
+    <value>Assistant Director</value>
+  </data>
+  <data name="BalasahebDodtale" xml:space="preserve">
+    <value>Hon. Shri. Balasaheb Dodtale
+ (State Minister Status)</value>
+  </data>
+  <data name="Bkandhare" xml:space="preserve">
+    <value>Dr. Balaji Kandhare</value>
+  </data>
+  <data name="BSadar" xml:space="preserve">
+    <value>Dr. Bhushan Sadar</value>
+  </data>
+  <data name="Chairman" xml:space="preserve">
+    <value>Chairman</value>
+  </data>
+  <data name="DDZanzare" xml:space="preserve">
+    <value>Shri. D. D. Zanjare</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="FarmManager" xml:space="preserve">
+    <value>Farm Manager</value>
+  </data>
+  <data name="FinAdvisor" xml:space="preserve">
+    <value>Financial Advisor and Chief Account Officer</value>
+  </data>
+  <data name="GajananSangole" xml:space="preserve">
+    <value>Dr. Gajanan Sangole</value>
+  </data>
+  <data name="GeneralManager" xml:space="preserve">
+    <value>General Manager</value>
+  </data>
+  <data name="GWSangole" xml:space="preserve">
+    <value>Dr. G. W. Sangole</value>
+  </data>
+  <data name="InformationOfFarmManagers" xml:space="preserve">
+    <value>Information Of Farm Managers</value>
+  </data>
+  <data name="Lakshminarayan" xml:space="preserve">
+    <value>Hon. Shri. Lakshminarayan Mishra (I.A.S) Commissioner Animal Husbandry, Maharashtra State, Pune</value>
+  </data>
+  <data name="MaheshBansode" xml:space="preserve">
+    <value>Dr. Mahesh Bansode
+Managing Director, Punyashlok Ahilyadevi Maharashtra Mendhi va Sheli Vikas Mahamandal, Gokhalenagar, Pune</value>
+  </data>
+  <data name="MaheshBansode1" xml:space="preserve">
+    <value>Dr. Mahesh Bansode</value>
+  </data>
+  <data name="ManagingDirector" xml:space="preserve">
+    <value>Managing Director</value>
+  </data>
+  <data name="PKarande" xml:space="preserve">
+    <value>Dr. Popat Karande</value>
+  </data>
+  <data name="Ptonde" xml:space="preserve">
+    <value>Dr. Priyanka Tonde</value>
+  </data>
+  <data name="PYedage" xml:space="preserve">
+    <value>Shri. Pandurang Yedage</value>
+  </data>
+  <data name="RShaikh" xml:space="preserve">
+    <value>Dr. Rahim Shaikh</value>
+  </data>
+  <data name="RTKadam" xml:space="preserve">
+    <value>Shri. R. T. Kadam</value>
+  </data>
+  <data name="SDadas" xml:space="preserve">
+    <value>Dr. Sachin Dadas</value>
+  </data>
+  <data name="SHTekade" xml:space="preserve">
+    <value>Dr. S. H. Tekade</value>
+  </data>
+  <data name="StaffOfHeadOffice" xml:space="preserve">
+    <value>Staff Of Head Office</value>
+  </data>
+  <data name="VBorse" xml:space="preserve">
+    <value>Dr. Veeraj Borse</value>
+  </data>
+  <data name="VijayChaudhari" xml:space="preserve">
+    <value>Hon. Shri. Vijay Choudhari
+Deputy Secretary, Department of Animal Husbandry, Dairy Development and Fishery, Mantralaya, Mumbai</value>
+  </data>
+  <data name="VSalave" xml:space="preserve">
+    <value>Dr. Vikram Salave</value>
+  </data>
 </root>

@@ -19,7 +19,7 @@ namespace Mahamesh.App_LocalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -57,6 +57,24 @@ namespace Mahamesh.App_LocalResources {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrative Officer.
+        /// </summary>
+        public static string AdministrativeOfficer {
+            get {
+                return ResourceManager.GetString("AdministrativeOfficer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Akshay Ghatare.
+        /// </summary>
+        public static string AGhatare {
+            get {
+                return ResourceManager.GetString("AGhatare", resourceCulture);
             }
         }
         
@@ -306,6 +324,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assistant Director.
+        /// </summary>
+        public static string AssistantDirector {
+            get {
+                return ResourceManager.GetString("AssistantDirector", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Audited report .
         /// </summary>
         public static string Auditedreport {
@@ -324,6 +351,16 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hon. Shri. Balasaheb Dodtale
+        /// (State Minister Status).
+        /// </summary>
+        public static string BalasahebDodtale {
+            get {
+                return ResourceManager.GetString("BalasahebDodtale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beneficiary list .
         /// </summary>
         public static string Beneficiarylist {
@@ -338,6 +375,15 @@ namespace Mahamesh.App_LocalResources {
         public static string Beneficiarylistpreliminaryandfinal {
             get {
                 return ResourceManager.GetString("Beneficiarylistpreliminaryandfinal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Berari Goat.
+        /// </summary>
+        public static string BerariGoat {
+            get {
+                return ResourceManager.GetString("BerariGoat", resourceCulture);
             }
         }
         
@@ -495,6 +541,26 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Farm in every month.
+        ///Fees: Rs. 500/- per trainee. 
+        ///Duration: 3 days..
+        /// </summary>
+        public static string BilakhedTraining {
+            get {
+                return ResourceManager.GetString("BilakhedTraining", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Balaji Kandhare.
+        /// </summary>
+        public static string Bkandhare {
+            get {
+                return ResourceManager.GetString("Bkandhare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Board of directors.
         /// </summary>
         public static string Boardofdirectors {
@@ -576,6 +642,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Local Breed.
+        /// </summary>
+        public static string BondriLocalBreed {
+            get {
+                return ResourceManager.GetString("BondriLocalBreed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to -7709300030.
         /// </summary>
         public static string BondriMobileNumber {
@@ -644,6 +719,24 @@ namespace Mahamesh.App_LocalResources {
         public static string Breed {
             get {
                 return ResourceManager.GetString("Breed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Bhushan Sadar.
+        /// </summary>
+        public static string BSadar {
+            get {
+                return ResourceManager.GetString("BSadar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chairman.
+        /// </summary>
+        public static string Chairman {
+            get {
+                return ResourceManager.GetString("Chairman", resourceCulture);
             }
         }
         
@@ -810,6 +903,24 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Shri. D. D. Zanjare.
+        /// </summary>
+        public static string DDZanzare {
+            get {
+                return ResourceManager.GetString("DDZanzare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deccani (Sangamneri) Sheep.
+        /// </summary>
+        public static string DeccaniSangamneri {
+            get {
+                return ResourceManager.GetString("DeccaniSangamneri", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Demonstration and production of Azola.
         /// </summary>
         public static string DemonstrationProduction {
@@ -837,6 +948,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Designation.
+        /// </summary>
+        public static string Designation {
+            get {
+                return ResourceManager.GetString("Designation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {
@@ -851,6 +971,15 @@ namespace Mahamesh.App_LocalResources {
         public static string Developmentactivity {
             get {
                 return ResourceManager.GetString("Developmentactivity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Director.
+        /// </summary>
+        public static string Director {
+            get {
+                return ResourceManager.GetString("Director", resourceCulture);
             }
         }
         
@@ -1017,6 +1146,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Farm Manager.
+        /// </summary>
+        public static string FarmManager {
+            get {
+                return ResourceManager.GetString("FarmManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Feed and fodder .
         /// </summary>
         public static string Feedandfodder {
@@ -1053,11 +1191,56 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Financial Advisor and Chief Account Officer.
+        /// </summary>
+        public static string FinAdvisor {
+            get {
+                return ResourceManager.GetString("FinAdvisor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fodder Plant Nursery.
+        /// </summary>
+        public static string FodderPlantNursery {
+            get {
+                return ResourceManager.GetString("FodderPlantNursery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Gajanan Sangole.
+        /// </summary>
+        public static string GajananSangole {
+            get {
+                return ResourceManager.GetString("GajananSangole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Manager.
+        /// </summary>
+        public static string GeneralManager {
+            get {
+                return ResourceManager.GetString("GeneralManager", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Government guidelines .
         /// </summary>
         public static string Governmentguidelines {
             get {
                 return ResourceManager.GetString("Governmentguidelines", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. G. W. Sangole.
+        /// </summary>
+        public static string GWSangole {
+            get {
+                return ResourceManager.GetString("GWSangole", resourceCulture);
             }
         }
         
@@ -1103,6 +1286,15 @@ namespace Mahamesh.App_LocalResources {
         public static string Informationoffarmers {
             get {
                 return ResourceManager.GetString("Informationoffarmers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information Of Farm Managers.
+        /// </summary>
+        public static string InformationOfFarmManagers {
+            get {
+                return ResourceManager.GetString("InformationOfFarmManagers", resourceCulture);
             }
         }
         
@@ -1170,6 +1362,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hon. Shri. Lakshminarayan Mishra (I.A.S) Commissioner Animal Husbandry, Maharashtra State, Pune.
+        /// </summary>
+        public static string Lakshminarayan {
+            get {
+                return ResourceManager.GetString("Lakshminarayan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Land Under Building, Roads, Percolation Tanks &amp; Forestation (hectare).
         /// </summary>
         public static string LandUnderBuilding {
@@ -1233,6 +1434,24 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Machine Shearing Program.
+        /// </summary>
+        public static string MachineShearing {
+            get {
+                return ResourceManager.GetString("MachineShearing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Madgyal Sheep.
+        /// </summary>
+        public static string MadgyalSheep {
+            get {
+                return ResourceManager.GetString("MadgyalSheep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mahamesh yojana .
         /// </summary>
         public static string Mahameshyojana {
@@ -1247,6 +1466,25 @@ namespace Mahamesh.App_LocalResources {
         public static string Mahameshyojnahighlights {
             get {
                 return ResourceManager.GetString("Mahameshyojnahighlights", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Mahesh Bansode
+        ///Managing Director, Punyashlok Ahilyadevi Maharashtra Mendhi va Sheli Vikas Mahamandal, Gokhalenagar, Pune.
+        /// </summary>
+        public static string MaheshBansode {
+            get {
+                return ResourceManager.GetString("MaheshBansode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Mahesh Bansode.
+        /// </summary>
+        public static string MaheshBansode1 {
+            get {
+                return ResourceManager.GetString("MaheshBansode1", resourceCulture);
             }
         }
         
@@ -1368,6 +1606,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Madgyal sheep and Osmanabadi Goat breed are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers..
+        /// </summary>
+        public static string MahudSupply {
+            get {
+                return ResourceManager.GetString("MahudSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 390.69.
         /// </summary>
         public static string MahudTotalLand {
@@ -1391,6 +1638,15 @@ namespace Mahamesh.App_LocalResources {
         public static string MaleKids {
             get {
                 return ResourceManager.GetString("MaleKids", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Managing Director.
+        /// </summary>
+        public static string ManagingDirector {
+            get {
+                return ResourceManager.GetString("ManagingDirector", resourceCulture);
             }
         }
         
@@ -1548,11 +1804,29 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deccani sheep breed is reared at this farm for breeding purpose. The farm produced superior quality rams are reared up to attain reproductive age and then after the rams are distributed to farmers..
+        /// </summary>
+        public static string MukhedSupply {
+            get {
+                return ResourceManager.GetString("MukhedSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 105.42.
         /// </summary>
         public static string MukhedTotalLand {
             get {
                 return ResourceManager.GetString("MukhedTotalLand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string Name {
+            get {
+                return ResourceManager.GetString("Name", resourceCulture);
             }
         }
         
@@ -1791,6 +2065,15 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deccani (Sangamneri) sheep and Osmanabadi Goat breed are  reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers..
+        /// </summary>
+        public static string PadegaonSupply {
+            get {
+                return ResourceManager.GetString("PadegaonSupply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 97.27.
         /// </summary>
         public static string PadegaonTotalLand {
@@ -1823,6 +2106,15 @@ namespace Mahamesh.App_LocalResources {
         public static string Physicalandfinancialtargets {
             get {
                 return ResourceManager.GetString("Physicalandfinancialtargets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Popat Karande.
+        /// </summary>
+        public static string PKarande {
+            get {
+                return ResourceManager.GetString("PKarande", resourceCulture);
             }
         }
         
@@ -2007,11 +2299,29 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dr. Priyanka Tonde.
+        /// </summary>
+        public static string Ptonde {
+            get {
+                return ResourceManager.GetString("Ptonde", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Purchase of Wool.
         /// </summary>
         public static string PurchaseofWool {
             get {
                 return ResourceManager.GetString("PurchaseofWool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shri. Pandurang Yedage.
+        /// </summary>
+        public static string PYedage {
+            get {
+                return ResourceManager.GetString("PYedage", resourceCulture);
             }
         }
         
@@ -2151,11 +2461,47 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Madgyal sheep and Osmanabadi goat breeds are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks  are reared up to attain reproductive age and then after the rams &amp; bucks  are distributed to farmers..
+        /// </summary>
+        public static string RanjiniSupplyDetail {
+            get {
+                return ResourceManager.GetString("RanjiniSupplyDetail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Rahim Shaikh.
+        /// </summary>
+        public static string RShaikh {
+            get {
+                return ResourceManager.GetString("RShaikh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RTI .
         /// </summary>
         public static string RTI {
             get {
                 return ResourceManager.GetString("RTI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shri. R. T. Kadam.
+        /// </summary>
+        public static string RTKadam {
+            get {
+                return ResourceManager.GetString("RTKadam", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sangamneri Sheep.
+        /// </summary>
+        public static string SangamneriSheep {
+            get {
+                return ResourceManager.GetString("SangamneriSheep", resourceCulture);
             }
         }
         
@@ -2174,6 +2520,15 @@ namespace Mahamesh.App_LocalResources {
         public static string SchemesYearwise {
             get {
                 return ResourceManager.GetString("SchemesYearwise", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Sachin Dadas.
+        /// </summary>
+        public static string SDadas {
+            get {
+                return ResourceManager.GetString("SDadas", resourceCulture);
             }
         }
         
@@ -2250,6 +2605,33 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dr. S. H. Tekade.
+        /// </summary>
+        public static string SHTekade {
+            get {
+                return ResourceManager.GetString("SHTekade", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sr. No..
+        /// </summary>
+        public static string SrNo {
+            get {
+                return ResourceManager.GetString("SrNo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Staff Of Head Office.
+        /// </summary>
+        public static string StaffOfHeadOffice {
+            get {
+                return ResourceManager.GetString("StaffOfHeadOffice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success stories .
         /// </summary>
         public static string Successstories {
@@ -2264,6 +2646,24 @@ namespace Mahamesh.App_LocalResources {
         public static string SupplyofBucks {
             get {
                 return ResourceManager.GetString("SupplyofBucks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supply of Rams and Bucks for Breeding.
+        /// </summary>
+        public static string SupplyofBucksGoats {
+            get {
+                return ResourceManager.GetString("SupplyofBucksGoats", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supply of Rams for Breeding.
+        /// </summary>
+        public static string SupplyofRams {
+            get {
+                return ResourceManager.GetString("SupplyofRams", resourceCulture);
             }
         }
         
@@ -2457,11 +2857,30 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dr. Veeraj Borse.
+        /// </summary>
+        public static string VBorse {
+            get {
+                return ResourceManager.GetString("VBorse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Video  .
         /// </summary>
         public static string Video {
             get {
                 return ResourceManager.GetString("Video", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hon. Shri. Vijay Choudhari
+        ///Deputy Secretary, Department of Animal Husbandry, Dairy Development and Fishery, Mantralaya, Mumbai.
+        /// </summary>
+        public static string VijayChaudhari {
+            get {
+                return ResourceManager.GetString("VijayChaudhari", resourceCulture);
             }
         }
         
@@ -2489,6 +2908,15 @@ namespace Mahamesh.App_LocalResources {
         public static string Visitoranalytics {
             get {
                 return ResourceManager.GetString("Visitoranalytics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dr. Vikram Salave.
+        /// </summary>
+        public static string VSalave {
+            get {
+                return ResourceManager.GetString("VSalave", resourceCulture);
             }
         }
         
