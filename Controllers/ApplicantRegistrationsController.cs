@@ -1067,7 +1067,7 @@ namespace Mahamesh.Controllers
             var list = new List<TargetViewModel>();
             var distTarget = db.DistrictTarget.ToList();
             var talukaTarg = db.TalukaTarget.ToList();
-            foreach (var district in distTarget)
+            foreach (var district in distTarget.Where(x=> x.Name_of_District != "Total"))
             {
                 var model = new TargetViewModel();
                 var talukaList = new List<TalukaViewModel>();
@@ -1138,7 +1138,7 @@ namespace Mahamesh.Controllers
                 model.FemaleTarget_Component_No_13 = female_comp13target;
 
                 //taluka-wise
-                foreach (var taluka in talukaTarg.Where(x => x.Name_of_District == district.Name_of_District))
+                foreach (var taluka in talukaTarg.Where(x => x.Name_of_District == district.Name_of_District && x.Name_of_District != "Total"))
                 {
                     var talukaModel = new TalukaViewModel();
                     talukaModel.Name_Of_Taluka = taluka.Name_Of_Taluka;

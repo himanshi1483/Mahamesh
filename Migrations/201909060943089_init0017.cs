@@ -7,12 +7,12 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            //AddColumn("dbo.TalMasters", "Tal_Mr", c => c.String());
+            AddColumn("dbo.TalMasters", "Tal_Mr", c => c.String());
         }
         
         public override void Down()
         {
-           // DropColumn("dbo.TalMasters", "Tal_Mr");
+            DropColumn("dbo.TalMasters", "Tal_Mr");
         }
     }
 }
