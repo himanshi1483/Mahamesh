@@ -610,7 +610,7 @@ namespace Mahamesh.Controllers
             model = officer;
             model.DistName = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
             model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
-
+            var dist_mr = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
             getDistrict();
             var model1 = new PhysicalTargetViewModel();
             model1.Component = model1.Component;
@@ -629,6 +629,115 @@ namespace Mahamesh.Controllers
             var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
             ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model1.TalukaName);
             model.TargetModel = model1;
+
+            //stats
+            var target = new TargetViewModel();
+            var _list = new List<TargetViewModel>();
+            var distTarget = db.DistrictTarget.ToList();
+            var talukaTarg = db.TalukaTarget.ToList();
+            foreach (var district in distTarget.Where(x => x.Name_of_District == dist_mr))
+            {
+                var model4 = new TargetViewModel();
+                var talukaList = new List<TalukaViewModel>();
+                var districtName = district.Name_of_District;
+                model4.Name_of_District = districtName;
+                //comp 1
+                var comp1_target = district.Component_No_1;
+                var handicap_comp1target = Math.Round(decimal.Multiply(3, comp1_target) / 100);
+                var female_comp1target = Math.Round(decimal.Multiply(30, comp1_target) / 100);
+                model4.Component_No_1 = comp1_target;
+                model4.HandicapTarget_Component_No_1 = handicap_comp1target;
+                model4.FemaleTarget_Component_No_1 = female_comp1target;
+                //comp 2
+                var comp2_target = district.Component_No_2;
+                var handicap_comp2target = Math.Round(decimal.Multiply(3, comp2_target) / 100);
+                var female_comp2target = Math.Round(decimal.Multiply(30, comp2_target) / 100);
+                model4.Component_No_2 = comp2_target;
+                model4.HandicapTarget_Component_No_2 = handicap_comp2target;
+                model4.FemaleTarget_Component_No_2 = female_comp2target;
+                //comp 3-7
+                var comp3_7_target = district.Component_No_3_7;
+                var handicap_comp3_7target = Math.Round(decimal.Multiply(3, comp3_7_target) / 100);
+                var female_comp3_7target = Math.Round(decimal.Multiply(30, comp3_7_target) / 100);
+                model4.Component_No_3_7 = comp3_7_target;
+                model4.HandicapTarget_Component_No_3_7 = handicap_comp3_7target;
+                model4.FemaleTarget_Component_No_3_7 = female_comp3_7target;
+                //comp 8
+                var comp8_target = district.Component_No_8;
+                var handicap_comp8target = Math.Round(decimal.Multiply(3, comp8_target) / 100);
+                var female_comp8target = Math.Round(decimal.Multiply(30, comp8_target) / 100);
+                model4.Component_No_8 = comp8_target;
+                model4.HandicapTarget_Component_No_8 = handicap_comp8target;
+                model4.FemaleTarget_Component_No_8 = female_comp8target;
+                //comp 9
+                var comp9_target = district.Component_No_9;
+                var handicap_comp9target = Math.Round(decimal.Multiply(3, comp9_target) / 100);
+                var female_comp9target = Math.Round(decimal.Multiply(30, comp9_target) / 100);
+                model4.Component_No_9 = comp9_target;
+                model4.HandicapTarget_Component_No_9 = handicap_comp9target;
+                model4.FemaleTarget_Component_No_9 = female_comp9target;
+                //comp 10
+                var comp10_target = district.Component_No_10;
+                var handicap_comp10target = Math.Round(decimal.Multiply(3, comp10_target) / 100);
+                var female_comp10target = Math.Round(decimal.Multiply(30, comp10_target) / 100);
+                model4.Component_No_10 = comp10_target;
+                model4.HandicapTarget_Component_No_10 = handicap_comp10target;
+                model4.FemaleTarget_Component_No_10 = female_comp10target;
+                //comp 11
+                var comp11_target = district.Component_No_11;
+                var handicap_comp11target = Math.Round(decimal.Multiply(3, comp11_target) / 100);
+                var female_comp11target = Math.Round(decimal.Multiply(30, comp11_target) / 100);
+                model4.Component_No_11 = comp11_target;
+                model4.HandicapTarget_Component_No_11 = handicap_comp11target;
+                model4.FemaleTarget_Component_No_11 = female_comp11target;
+                //comp 12
+                var comp12_target = district.Component_No_12;
+                var handicap_comp12target = Math.Round(decimal.Multiply(3, comp12_target) / 100);
+                var female_comp12target = Math.Round(decimal.Multiply(30, comp12_target) / 100);
+                model4.Component_No_12 = comp12_target;
+                model4.HandicapTarget_Component_No_12 = handicap_comp12target;
+                model4.FemaleTarget_Component_No_12 = female_comp12target;
+                //comp 13
+                var comp13_target = district.Component_No_13;
+                var handicap_comp13target = Math.Round(decimal.Multiply(3, comp13_target) / 100);
+                var female_comp13target = Math.Round(decimal.Multiply(30, comp13_target) / 100);
+                model4.Component_No_13 = comp13_target;
+                model4.HandicapTarget_Component_No_13 = handicap_comp13target;
+                model4.FemaleTarget_Component_No_13 = female_comp13target;
+
+                //taluka-wise
+                foreach (var taluka in talukaTarg.Where(x => x.Name_of_District == district.Name_of_District && x.Name_of_District != "Total"))
+                {
+                    var talukaModel = new TalukaViewModel();
+                    talukaModel.Name_Of_Taluka = taluka.Name_Of_Taluka;
+                    talukaModel.Component_No_1 = taluka.Component_No_1;
+                    talukaModel.Component_No_2 = taluka.Component_No_2;
+                    talukaModel.Component_No_3_7 = taluka.Component_No_3_7;
+                    talukaModel.Component_No_8 = taluka.Component_No_8;
+                    talukaModel.Component_No_9 = taluka.Component_No_9;
+                    talukaModel.Component_No_10 = taluka.Component_No_10;
+                    talukaModel.Component_No_11 = taluka.Component_No_11;
+                    talukaModel.Component_No_12 = taluka.Component_No_12;
+                    talukaModel.Component_No_13 = taluka.Component_No_13;
+                    talukaModel.GeneralTarget_Component_No_1 = Math.Round(decimal.Divide(decimal.Multiply(67, talukaModel.Component_No_1), 100));
+                    talukaModel.GeneralTarget_Component_No_2 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_2) / 100);
+                    talukaModel.GeneralTarget_Component_No_3_7 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_3_7) / 100);
+                    talukaModel.GeneralTarget_Component_No_8 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_8) / 100);
+                    talukaModel.GeneralTarget_Component_No_9 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_9) / 100);
+                    talukaModel.GeneralTarget_Component_No_10 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_10) / 100);
+                    talukaModel.GeneralTarget_Component_No_11 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_11) / 100);
+                    talukaModel.GeneralTarget_Component_No_12 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_12) / 100);
+                    talukaModel.GeneralTarget_Component_No_13 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_13) / 100);
+
+                    talukaList.Add(talukaModel);
+                }
+                model4.TalukaTarget = talukaList;
+                _list.Add(model4);
+
+            }
+            target.TargetList = _list;
+
+            model.NewTarget = target;
             return View(model);
         }
 

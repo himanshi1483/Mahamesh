@@ -203,7 +203,7 @@
                     <li  style="background-color:#3C3744"><a id="link2" href="#">View Targets</a></li>
                     @if (User.IsInRole("DDC"))
                     {
-                        <li style="background-color:#276FBF"><a href="@Url.Action("GenerateRandomList", "ApplicantRegistrations")">View Application Statistics</a></li>
+                        <li style="background-color:#276FBF"><a id="link3"  href="#">View Application Statistics</a></li>
                         <li style="background-color:#183059"><a href="#">Generate Random List</a></li>
                         <li style="background-color:#C46D73"><a href="#">Preliminary Document Scrutiny</a></li>
                         <li style="background-color:#0294A5"><a href="#">Final Beneficiary List</a></li>
@@ -821,7 +821,7 @@
                     </div>
                 </div>
 
-                <div id="tab3">
+                <div id="tab3" style="display:none">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -958,12 +958,17 @@
         $("#link1").click(function () {
             $("#tab1").toggle();
             $("#tab2").hide();
-
+            $("#tab3").hide();
         });
         $("#link2").click(function () {
             $("#tab2").toggle();
             $("#tab1").hide();
-
+            $("#tab3").hide();
+        });
+        $("#link3").click(function () {
+            $("#tab3").toggle();
+            $("#tab1").hide();
+            $("#tab2").hide();
         });
 
     });
