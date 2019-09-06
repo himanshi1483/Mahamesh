@@ -45,8 +45,8 @@ namespace Mahamesh.Models
         public IDbSet<DurationWaterAvailableForIrrigation> DurationWaterAvailableForIrrigation { get; set; }
         public IDbSet<TypeExistingCastle> TypeExistingCastle { get; set; }
 
-        ////public IDbSet<PressInformationModel> PressInformation { get; set; }
-
+        public IDbSet<DistrictTarget> DistrictTarget { get; set; }
+        public IDbSet<TalukaTarget> TalukaTarget { get; set; }
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

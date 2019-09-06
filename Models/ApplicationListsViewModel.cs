@@ -25,6 +25,7 @@ namespace Mahamesh.Models
         public int CountByComponent5 { get; set; }
         public int CountByComponent6 { get; set; }
         public int CountByComponent7 { get; set; }
+        public int CountByComponent3_7 { get; set; }
         public int CountByComponent8 { get; set; }
         public int CountByComponent9 { get; set; }
         public int CountByComponent10 { get; set; }

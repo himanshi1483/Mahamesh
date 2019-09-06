@@ -1,0 +1,156 @@
+﻿@model Mahamesh.Models.TargetViewModel
+@{
+    ViewBag.Title = "Application Statistics";
+}
+
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<style>
+    .tableheader {
+        background: #1a9b83 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 5.5px;
+        /* font-size: 13px; */
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+</style>
+
+<div class="container-fluid" style="margin-bottom:150px;">
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center"><h4>Application Statistics</h4></div>
+        <div class="panel-body">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>Sr. No.</td>
+                        <td>District</td>
+                        <td>Taluka</td>
+                        <td></td>
+                        <td>Component 1</td>
+                        <td>Component 2</td>
+                        <td>Component 3-7</td>
+                        <td>Component 8</td>
+                        <td>Component 9</td>
+                        <td>Component 10</td>
+                        <td>Component 11</td>
+                        <td>Component 12</td>
+                        <td>Component 13</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int j = 0; j < Model.TargetList.Count; j++)
+                    {
+                        <tr style="background-color:lightsalmon">
+                            <td>@(j+1)</td>
+                            <td>@Model.TargetList[j].Name_of_District</td>
+                            <td></td>
+                            <td>Physical Target</td>
+                            <td>@Model.TargetList[j].Component_No_1</td>
+                            <td>@Model.TargetList[j].Component_No_2</td>
+                            <td>@Model.TargetList[j].Component_No_3_7</td>
+                            <td>@Model.TargetList[j].Component_No_8</td>
+                            <td>@Model.TargetList[j].Component_No_9</td>
+                            <td>@Model.TargetList[j].Component_No_10</td>
+                            <td>@Model.TargetList[j].Component_No_11</td>
+                            <td>@Model.TargetList[j].Component_No_12</td>
+                            <td>@Model.TargetList[j].Component_No_13</td>
+                        </tr>
+                        <tr style="background-color:lightgray">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Target for Handicapped</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_1</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_2</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_3_7</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_8</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_9</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_10</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_11</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_12</td>
+                            <td>@Model.TargetList[j].HandicapTarget_Component_No_13</td>
+                        </tr>
+                        <tr style="background-color:lightsteelblue">
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Target for Female</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_1</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_2</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_3_7</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_8</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_9</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_10</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_11</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_12</td>
+                            <td>@Model.TargetList[j].FemaleTarget_Component_No_13</td>
+                        </tr>
+                        <tr>
+                            <td colspan="13"></td>
+                        </tr>
+                        for (int i = 0; i < Model.TargetList[j].TalukaTarget.Count; i++)
+                        {
+                            <tr style="background-color:lightblue">
+                                <td>@(j+1).@(i+1)</td>
+                                <td>@Model.TargetList[j].Name_of_District</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Name_Of_Taluka</td>
+                                <td>Physical Actual Target</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_1</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_2</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_3_7</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_8</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_9</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_10</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_11</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_12</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].Component_No_13</td>
+                            </tr>
+                            <tr style="background-color:lightgoldenrodyellow">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>General Target</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_1</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_2</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_3_7</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_8</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_9</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_10</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_11</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_12</td>
+                                <td>@Model.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_13</td>
+                            </tr>
+                            <tr style="background-color:lightcyan">
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td>Applications Received</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="13"></td>
+                            </tr>
+                        }
+
+                     
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -41,13 +41,73 @@
             </div>
             <div class="row">
                 <div id="divDistrict" style="display:none;border:1px solid #808080;padding:10px">
-                    <table class="display table table-bordered table-striped table-responsive" id="tblDistrict" style="width:40% !important">
+                    <table class="display table table-bordered table-striped table-responsive" id="tblDistrict" style="width:100% !important">
                         <thead>
                             <tr class="tableheader text-center">
                                 <th>Sr.No.</th>
                                 <th>District Name</th>
                                 <th>District Code</th>
                                 <th>Total Submitted</th>
+                                <th>
+                                    Component No. 1
+                                </th>
+                                <th>
+                                    Component No. 2
+                                </th>
+                                <th>
+                                    Component No. 3 - 7
+                                </th>
+                                <th>
+                                    Component No. 8
+                                </th>
+                                <th>
+                                    Component No. 9
+                                </th>
+                                <th>
+                                    Component No. 10
+                                </th>
+                                <th>
+                                    Component No. 11
+                                </th>
+                                <th>
+                                    Component No. 12
+                                </th>
+                                <th>
+                                    Component No. 13
+                                </th>
+                            </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)
+                                </th>
+                                <th>
+                                    स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    नरमेंढा ७५% अनुदानावर वाटप करणे. (Target shown in numbers of male animals)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत  स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत  स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)       (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या  कालावधी करिता)         (१२ किलो प्रती मेंढी)         (Total Target 248629 किलो)
+                                </th>
+                                <th>
+                                    भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या  कालावधी करिता )        (६ किलो प्रती मेंढी)         (Total Target 774037 किलो)
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,12 +115,21 @@
                             {
                                 for (int i = 0; i < Model.ApplicantsListByDist.Count; i++)
                                 {
-                                    <tr>
-                                        <td>@(i + 1)</td>
-                                        <td>@Model.ApplicantsListByDist[i].DistrictName</td>
-                                        <td>@Model.ApplicantsListByDist[i].DistrictCode</td>
-                                        <td class="text-right">@Model.ApplicantsListByDist[i].CountByDistrict</td>
-                                    </tr>
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@Model.ApplicantsListByDist[i].DistrictName</td>
+                                <td>@Model.ApplicantsListByDist[i].DistrictCode</td>
+                                <td class="text-right">@Model.ApplicantsListByDist[i].CountByDistrict</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent1</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent2</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent3_7</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent8</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent9</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent10</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent11</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent12</td>
+                                <td>@Model.ApplicantsListByDist[i].CountByComponent13</td>
+                            </tr>
 
                                 }
                                 
@@ -73,6 +142,15 @@
                                 <td></td>
                                 <td>Total</td>
                                 <td>@Model.ApplicantsListByDist.Sum(x => x.CountByDistrict)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent1)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent2)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent3_7)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent8)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent9)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent10)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent11)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent12)</td>
+                                <td>@Model.ApplicantsListByDist.Sum(x => x.CountByComponent13)</td>
                             </tr>
                         </tfoot>
                     </table>
@@ -87,21 +165,89 @@
                                 <th>Taluka Name</th>
                                 <th>Taluka Code</th>
                                 <th>Total Submitted</th>
+                                <th>
+                                    Component No. 1
+                                </th>
+                                <th>
+                                    Component No. 2
+                                </th>
+                                <th>
+                                    Component No. 3 - 7
+                                </th>
+                                <th>
+                                    Component No. 8
+                                </th>
+                                <th>
+                                    Component No. 9
+                                </th>
+                                <th>
+                                    Component No. 10
+                                </th>
+                                <th>
+                                    Component No. 11
+                                </th>
+                                <th>
+                                    Component No. 12
+                                </th>
+                                <th>
+                                    Component No. 13
+                                </th>
                             </tr>
+                            <tr>
+                                <th></th>
+                                <th></th>
+                                <th>
+                                    कायमस्वरूपी एका ठिकाणी राहून मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थायी)
+                                </th>
+                                <th>
+                                    स्थलांतर पद्धतीने मेंढीपालन करण्याकरिता पायाभूत सोई – सुविधेसह २० मेंढया + १ मेंढानर असा मेंढीगट ७५% अनुदानावर वाटप करणे (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    नरमेंढा ७५% अनुदानावर वाटप करणे. (Target shown in numbers of male animals)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या २० मेंढया व १ मेंढानर अशा एकूण २१ मेंढया किंवा त्यापेक्षा अधिक परंतु ४० मेंढ्यापेक्षा कमी अशा मेंढ्यांच्या स्थलांतरीत  स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)
+                                </th>
+                                <th>
+                                    ज्यांच्याकडे स्वत: च्या ४० मेंढया व २ मेंढानर अशा एकूण ४२ मेंढया किंवा त्यापेक्षा अधिक अशा मेंढ्यांच्या स्थलांतरीत  स्वरूपाचे मेंढी पालनासाठी पायाभूत सोई-सुविधा उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत)
+                                </th>
+                                <th>
+                                    एका ठिकाणी राहून स्थायी स्वरूपाचे मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थायी)       (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे माहे एप्रिल ते जुलै या ४ महिन्याच्या  कालावधी करिता)         (१२ किलो प्रती मेंढी)         (Total Target 248629 किलो)
+                                </th>
+                                <th>
+                                    भटकंती करणारे स्थलांतरीत स्वरूपाच्या मेंढी पालनासाठी संतुलित खाद्य उपलब्ध करून देण्यासाठी ७५% अनुदान वाटप (स्थलांतरीत) (१०० ग्रॅम प्रती दिन प्रती मेंढी याप्रमाणे जून ते जुलै या २ महिन्याच्या  कालावधी करिता )        (६ किलो प्रती मेंढी)         (Total Target 774037 किलो)
+                                </th>
+                            </tr>
+                           
                         </thead>
                         <tbody>
                             @if (Model.ApplicantsListByTal != null)
                             {
                                 for (int i = 0; i < Model.ApplicantsListByTal.Count; i++)
                                 {
-                                    <tr>
-                                        <td>@(i + 1)</td>
-                                        <td>@Model.ApplicantsListByTal[i].DistrictName</td>
-                                        <td>@Model.ApplicantsListByTal[i].DistrictCode</td>
-                                        <td>@Model.ApplicantsListByTal[i].TalukaName</td>
-                                        <td>@Model.ApplicantsListByTal[i].TalukaCode</td>
-                                        <td class="text-right">@Model.ApplicantsListByTal[i].CountByTaluka</td>
-                                    </tr>
+                            <tr>
+                                <td>@(i + 1)</td>
+                                <td>@Model.ApplicantsListByTal[i].DistrictName</td>
+                                <td>@Model.ApplicantsListByTal[i].DistrictCode</td>
+                                <td>@Model.ApplicantsListByTal[i].TalukaName</td>
+                                <td>@Model.ApplicantsListByTal[i].TalukaCode</td>
+                                <td class="text-right">@Model.ApplicantsListByTal[i].CountByTaluka</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent1</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent2</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent3_7</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent8</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent9</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent10</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent11</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent12</td>
+                                <td>@Model.ApplicantsListByTal[i].CountByComponent13</td>
+                            </tr>
 
                                 }
                                
@@ -115,6 +261,15 @@
                                 <td></td>
                                 <td class="text-center">Total</td>
                                 <td class="text-right">@Model.ApplicantsListByTal.Sum(x => x.CountByTaluka)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent1)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent2)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent3_7)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent8)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent9)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent10)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent11)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent12)</td>
+                                <td>@Model.ApplicantsListByTal.Sum(x => x.CountByComponent13)</td>
                             </tr>
                         </tfoot>
                     </table>

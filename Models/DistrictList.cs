@@ -42,6 +42,8 @@ namespace Mahamesh.Models
         public string TalName { get; set; }
         public int Tal_Code { get; set; }
         public int Dist_Code { get; set; }
+
+        public string Tal_Mr { get; set; }
     }
 
     public class CasteUnderNTC

@@ -432,6 +432,14 @@
     <Compile Include="Migrations\201909041252484_check.Designer.cs">
       <DependentUpon>201909041252484_check.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909060641550_init0016.cs" />
+    <Compile Include="Migrations\201909060641550_init0016.Designer.cs">
+      <DependentUpon>201909060641550_init0016.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909060943089_init0017.cs" />
+    <Compile Include="Migrations\201909060943089_init0017.Designer.cs">
+      <DependentUpon>201909060943089_init0017.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -440,6 +448,7 @@
     <Compile Include="Models\ApplicationListsViewModel.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
     <Compile Include="Models\DistrictList.cs" />
+    <Compile Include="Models\DistrictTarget.cs" />
     <Compile Include="Models\EnumExtension.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\FreiendlyEnum.cs" />
@@ -453,6 +462,8 @@
     <Compile Include="Models\PhysicalTarget.cs" />
     <Compile Include="Models\PhysicalTargetViewModel.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
+    <Compile Include="Models\TalukaTarget.cs" />
+    <Compile Include="Models\TargetViewModel.cs" />
     <Compile Include="Models\TenderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -912,6 +923,7 @@
     <Content Include="Views\Menu\OfficerDashboard.cshtml" />
     <Content Include="Views\Menu\ResetPwd.cshtml" />
     <Content Include="Views\Menu\ResetPwdNew.cshtml" />
+    <Content Include="Views\ApplicantRegistrations\GenerateRandomList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1114,6 +1126,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909041252484_check.resx">
       <DependentUpon>201909041252484_check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060641550_init0016.resx">
+      <DependentUpon>201909060641550_init0016.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909060943089_init0017.resx">
+      <DependentUpon>201909060943089_init0017.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
