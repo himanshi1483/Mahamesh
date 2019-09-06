@@ -21,7 +21,7 @@ namespace Mahamesh.Controllers
             return View(db.ApplicantRegistrations.ToList());
         }
 
-      //  [Authorize]
+        //  [Authorize]
         public ActionResult ApplicationIndexByDistrict()
         {
             var model = new ApplicationListsViewModel();
@@ -43,7 +43,7 @@ namespace Mahamesh.Controllers
             {
                 var _data1 = new ApplicationListsViewModel();
                 var data = list.Where(x => x.Dist == item.Dist_Code).Count();
-                var target = districtTarget.Where(x => x.Name_of_District == item.District_Mr && x.Name_of_District != "Total").FirstOrDefault();
+                var target = districtTarget.Where(x => x.Name_of_District.Trim() == item.District_Mr.Trim()).FirstOrDefault();
                 _data1.CountByDistrict = data;
                 _data1.DistrictCode = item.Dist_Code;
                 _data1.DistrictName = item.District_Mr;
@@ -62,23 +62,26 @@ namespace Mahamesh.Controllers
                 foreach (var taluka in talukaList.Where(x => x.Dist_Code == item.Dist_Code))
                 {
                     var model2 = new ApplicationListsViewModel();
-                   
-                    var target2 = talukaTarget.Where(x => x.Name_Of_Taluka == taluka.Tal_Mr && x.Name_of_District == item.District_Mr && x.Name_of_District != null && x.Name_Of_Taluka != null).FirstOrDefault();
+
+                    var target2 = talukaTarget.Where(x => x.Name_Of_Taluka.Trim() == taluka.Tal_Mr.Trim() && x.Name_of_District.Trim() == item.District_Mr.Trim()).FirstOrDefault();
                     model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
                     model2.CountByDistrict = data;
                     model2.DistrictCode = item.Dist_Code;
                     model2.DistrictName = item.District_Mr;
                     model2.TalukaName = taluka.Tal_Mr;
                     model2.TalukaCode = taluka.Tal_Code;
-                    model2.CountByComponent1 = target2.Component_No_1;
-                    model2.CountByComponent2 = target2.Component_No_2;
-                    model2.CountByComponent3_7 = target2.Component_No_3_7;
-                    model2.CountByComponent8 = target2.Component_No_8;
-                    model2.CountByComponent9 = target2.Component_No_9;
-                    model2.CountByComponent10 = target2.Component_No_10;
-                    model2.CountByComponent11 = target2.Component_No_11;
-                    model2.CountByComponent12 = target2.Component_No_12;
-                    model2.CountByComponent13 = target2.Component_No_13;
+                    if (target2 != null)
+                    {
+                        model2.CountByComponent1 = target2.Component_No_1;
+                        model2.CountByComponent2 = target2.Component_No_2;
+                        model2.CountByComponent3_7 = target2.Component_No_3_7;
+                        model2.CountByComponent8 = target2.Component_No_8;
+                        model2.CountByComponent9 = target2.Component_No_9;
+                        model2.CountByComponent10 = target2.Component_No_10;
+                        model2.CountByComponent11 = target2.Component_No_11;
+                        model2.CountByComponent12 = target2.Component_No_12;
+                        model2.CountByComponent13 = target2.Component_No_13;
+                    }
                     listModelTal.Add(model2);
 
                     var model3 = new ApplicationListsViewModel();
@@ -1067,7 +1070,7 @@ namespace Mahamesh.Controllers
             var list = new List<TargetViewModel>();
             var distTarget = db.DistrictTarget.ToList();
             var talukaTarg = db.TalukaTarget.ToList();
-            foreach (var district in distTarget.Where(x=> x.Name_of_District != "Total"))
+            foreach (var district in distTarget.Where(x => x.Name_of_District != "Total"))
             {
                 var model = new TargetViewModel();
                 var talukaList = new List<TalukaViewModel>();

@@ -37,5 +37,8 @@ namespace Mahamesh.Models
 
         [NotMapped]
         public PhysicalTargetViewModel TargetModel { get; set; }
+
+        [NotMapped]
+        public TargetViewModel NewTarget { get; set; }
     }
 }
