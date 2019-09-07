@@ -25,8 +25,14 @@ namespace Mahamesh.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-         public IDbSet<ApplicationDuration> ApplicationDuration { get; set; }
-         public IDbSet<DistrictList> DistrictList { get; set; }
+        public IDbSet<SelectedFemale> SelectedFemale { get; set; }
+
+        public IDbSet<SelectedGeneral> SelectedGeneral { get; set; }
+
+        public IDbSet<SelectedHandicapped> SelectedHandicapped { get; set; }
+
+        public IDbSet<ApplicationDuration> ApplicationDuration { get; set; }
+        public IDbSet<DistrictList> DistrictList { get; set; }
         public IDbSet<DistrictCountdown> DistrictCountdown { get; set; }
         public IDbSet<DistMaster> DistMaster { get; set; }
         public IDbSet<TalMaster> TalMaster { get; set; }

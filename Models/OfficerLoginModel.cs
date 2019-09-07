@@ -43,5 +43,8 @@ namespace Mahamesh.Models
 
         [NotMapped]
         public TargetViewModel NewTarget { get; set; }
+
+        [NotMapped]
+        public SelectedListViewModel SelectedList { get; set; }
     }
 }

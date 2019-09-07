@@ -448,6 +448,14 @@
     <Compile Include="Migrations\201909070825002_init1.Designer.cs">
       <DependentUpon>201909070825002_init1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909071419135_init25.cs" />
+    <Compile Include="Migrations\201909071419135_init25.Designer.cs">
+      <DependentUpon>201909071419135_init25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909071420254_init34.cs" />
+    <Compile Include="Migrations\201909071420254_init34.Designer.cs">
+      <DependentUpon>201909071420254_init34.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -471,6 +479,8 @@
     <Compile Include="Models\PhysicalTarget.cs" />
     <Compile Include="Models\PhysicalTargetViewModel.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
+    <Compile Include="Models\SelectedHandicapped.cs" />
+    <Compile Include="Models\SelectedListViewModel.cs" />
     <Compile Include="Models\TalukaTarget.cs" />
     <Compile Include="Models\TargetViewModel.cs" />
     <Compile Include="Models\TenderModel.cs" />
@@ -933,6 +943,7 @@
     <Content Include="Views\Menu\ResetPwd.cshtml" />
     <Content Include="Views\Menu\ResetPwdNew.cshtml" />
     <Content Include="Views\ApplicantRegistrations\GenerateRandomList.cshtml" />
+    <Content Include="Views\Shared\SelectRandomList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1147,6 +1158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909070825002_init1.resx">
       <DependentUpon>201909070825002_init1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909071419135_init25.resx">
+      <DependentUpon>201909071419135_init25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909071420254_init34.resx">
+      <DependentUpon>201909071420254_init34.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

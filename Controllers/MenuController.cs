@@ -765,7 +765,13 @@ namespace Mahamesh.Controllers
 
             }
             target.TargetList = _list;
-
+            model.SelectedList = new SelectedListViewModel();
+            model.SelectedList.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
+            model.SelectedList.WaitingList = new List<SelectedGeneral>();
+            //ApplicantRegistrationsController ctrl = new ApplicantRegistrationsController();
+            //ctrl.SelectRandomList(model.district);
             model.NewTarget = target;
             return View(model);
         }
