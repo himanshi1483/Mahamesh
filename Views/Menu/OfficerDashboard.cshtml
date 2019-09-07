@@ -170,12 +170,13 @@
             position: relative;
         }
     }
-     .table-striped3 > tbody > tr:nth-of-type(odd) {
+
+    .table-striped3 > tbody > tr:nth-of-type(odd) {
         background-color: #f8d9d9;
     }
 
     .table > thead > tr > th {
-          background-color: #0294A5;
+        background-color: #0294A5;
     }
 </style>
 <div class="container-fluid body-content" id="#maincontent" style="margin-top:10px; margin-bottom: 150px;">
@@ -200,11 +201,11 @@
                         <li style="background-color:#F03A47"><a id="link1" href="#">View Login Details</a></li>
                     }
 
-                    <li  style="background-color:#3C3744"><a id="link2" href="#">View Targets</a></li>
+                    <li style="background-color:#3C3744"><a id="link2" href="#">View Targets</a></li>
                     @if (User.IsInRole("DDC"))
                     {
-                        <li style="background-color:#276FBF"><a id="link3"  href="#">View Application Statistics</a></li>
-                        <li style="background-color:#183059"><a href="#">Generate Random List</a></li>
+                        <li style="background-color:#276FBF"><a id="link3" href="#">View Application Statistics</a></li>
+                        <li style="background-color:#183059"><a href="@Url.Action("GenerateRandomList", "ApplicantRegistrations")">Generate Random List</a></li>
                         <li style="background-color:#C46D73"><a href="#">Preliminary Document Scrutiny</a></li>
                         <li style="background-color:#0294A5"><a href="#">Final Beneficiary List</a></li>
                     }
@@ -225,41 +226,41 @@
                 </ul>
             </div>
             @*<div class="col-lg-1"></div>*@
-        <div class="col-md-9">
-            @if (User.IsInRole("DDC"))
-            {
-                <div id="tab1">
-                    <table class="table table-bordered table-striped3 table-responsive">
-                        <thead class="tableHeader">
-                            <tr class="text-center">
-                                <th>Sr. No.</th>
-                                <th>Designation</th>
-                                <th>Taluka</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @for (int i = 0; i < Model.OfficerList.Count; i++)
-                            {
-                                <tr>
-                                    <td class="text-center">@(i + 1)</td>
-                                    <td>@Model.OfficerList[i].desgination</td>
-                                    <td>@Model.OfficerList[i].taluka</td>
-                                    <td>@Model.OfficerList[i].Username</td>
-                                    <td>@Model.OfficerList[i].pwd</td>
-                                    <td class="text-center"><a class="btn btn-info btn-xs" href="@Url.Action("ResetPwd", "Menu", new { username = Model.OfficerList[i].Username, changedBy = Model.Username })">Reset</a></td>
+            <div class="col-md-9">
+                @if (User.IsInRole("DDC"))
+                {
+                    <div id="tab1">
+                        <table class="table table-bordered table-striped3 table-responsive">
+                            <thead class="tableHeader">
+                                <tr class="text-center">
+                                    <th>Sr. No.</th>
+                                    <th>Designation</th>
+                                    <th>Taluka</th>
+                                    <th>Username</th>
+                                    <th>Password</th>
+                                    <th></th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            }
+                            </thead>
+                            <tbody>
+                                @for (int i = 0; i < Model.OfficerList.Count; i++)
+                                {
+                                    <tr>
+                                        <td class="text-center">@(i + 1)</td>
+                                        <td>@Model.OfficerList[i].desgination</td>
+                                        <td>@Model.OfficerList[i].taluka</td>
+                                        <td>@Model.OfficerList[i].Username</td>
+                                        <td>@Model.OfficerList[i].pwd</td>
+                                        <td class="text-center"><a class="btn btn-info btn-xs" href="@Url.Action("ResetPwd", "Menu", new { username = Model.OfficerList[i].Username, changedBy = Model.Username })">Reset</a></td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                }
                 <div id="tab2" style="display:none">
                     <div class="panel-body">
                         @*@using (Html.BeginForm("MahameshYojanaTargetsByDist", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                    {*@
+                            {*@
                         <div class="row">
                             <div class="form-group col-lg-6">
                                 <label for="Comp" class="col-sm-2 control-label lbl">घटक:</label>
@@ -928,15 +929,15 @@
                                         <td></td>
                                         <td></td>
                                         <td>Applications Received</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_1</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_2</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_3_7</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_8</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_9</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_10</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_11</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_12</td>
+                                        <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_13</td>
                                     </tr>
                                     <tr>
                                         <td colspan="13"></td>
@@ -947,6 +948,15 @@
                             }
                         </tbody>
                     </table>
+                </div>
+
+                <div id="tab4">
+                    <p>
+                        @Html.LabelFor(a => a.Timer., new { id = "time" })
+        @Html.HiddenFor(a => a.ReaminTime, new { id = "timehidden" })
+                        @*<label id="time"></label>
+                        <input type="hidden" id="timehidden"/>*@
+                    </p>
                 </div>
             </div>
         </div>
@@ -1253,4 +1263,43 @@
         });
         return false;
 });
+</script>
+<script>
+        var start = Date.now(),
+            diff,
+            minutes,
+            seconds;
+        function startTimer(duration) {
+            function timer() {
+                // get the number of seconds that have elapsed since
+                // startTimer() was called
+                diff = duration - (((Date.now() - start) / 1000) | 0);
+
+                // does the same job as parseInt truncates the float
+                minutes = (diff / 60) | 0;
+                seconds = (diff % 60) | 0;
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                $("#time").text(minutes + ":" + seconds);
+                $("#timehidden").val(minutes + ":" + seconds);
+                if (diff <= 0) {
+                    // add one second so that the count down starts at the full duration
+                    // example 05:00 not 04:59
+                    start = Date.now() + 1000;
+                }
+            };
+            // we don't want to wait a full second before the timer starts
+            timer();
+            setInterval(timer, 1000);
+        }
+
+        window.onload = function () {
+            @*var fiveMinutes = 60 * @Model.ReaminTime.Minutes + @Model.ReaminTime.Seconds;
+                startTimer(fiveMinutes);*@
+             var fiveMinutes = 60 * 10 + 60;
+                startTimer(fiveMinutes);
+            $("#time").val("start");
+        };
 </script>

@@ -27,6 +27,7 @@ namespace Mahamesh.Models
         }
          public IDbSet<ApplicationDuration> ApplicationDuration { get; set; }
          public IDbSet<DistrictList> DistrictList { get; set; }
+        public IDbSet<DistrictCountdown> DistrictCountdown { get; set; }
         public IDbSet<DistMaster> DistMaster { get; set; }
         public IDbSet<TalMaster> TalMaster { get; set; }
         public IDbSet<VillageMaster> VillageMaster { get; set; }

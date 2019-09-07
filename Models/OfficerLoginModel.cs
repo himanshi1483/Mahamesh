@@ -29,7 +29,10 @@ namespace Mahamesh.Models
         public string confirmpwd { get; set; }
         public string ResetPwd { get; set; }
         //public string Reset_Pwd { get; set; }
-
+        [NotMapped]
+        public TimeSpan RemainingTime { get; set; }
+        [NotMapped]
+        public DistrictCountdown Timer { get; set; }
         [NotMapped]
         public List<OfficerLogin> OfficerList { get; set; }
         [NotMapped]

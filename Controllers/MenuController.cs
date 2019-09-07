@@ -606,12 +606,16 @@ namespace Mahamesh.Controllers
             var list = db.OfficerLogins.ToList();
             var officer = list.Where(x => x.Username == username).FirstOrDefault();
             var distlist = db.DistMaster.ToList();
+
             var model = new OfficerLogin();
             model = officer;
+            var timer = db.DistrictCountdown.Where(x => x.DistCode == model.district).FirstOrDefault();
+            TimeSpan remaining = timer.EnableDate.Value - DateTime.Now.Date;
             model.DistName = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
             model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
             var dist_mr = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
             getDistrict();
+            model.Timer = timer;
             var model1 = new PhysicalTargetViewModel();
             model1.Component = model1.Component;
             model1.DistrictName = model1.DistrictName;
@@ -635,11 +639,16 @@ namespace Mahamesh.Controllers
             var _list = new List<TargetViewModel>();
             var distTarget = db.DistrictTarget.ToList();
             var talukaTarg = db.TalukaTarget.ToList();
+            var distMaster = db.DistMaster.ToList();
+            var talMaster = db.TalMaster.ToList();
+            var applications = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
             foreach (var district in distTarget.Where(x => x.Name_of_District == dist_mr))
             {
                 var model4 = new TargetViewModel();
                 var talukaList = new List<TalukaViewModel>();
                 var districtName = district.Name_of_District;
+                var distCode = distMaster.Where(x => x.District_Mr.Trim() == districtName.Trim()).Select(x => x.Dist_Code).FirstOrDefault();
+
                 model4.Name_of_District = districtName;
                 //comp 1
                 var comp1_target = district.Component_No_1;
@@ -710,6 +719,26 @@ namespace Mahamesh.Controllers
                 {
                     var talukaModel = new TalukaViewModel();
                     talukaModel.Name_Of_Taluka = taluka.Name_Of_Taluka;
+                    var talCode = talMaster.Where(x => x.Dist_Code == distCode && x.Tal_Mr.Trim() == taluka.Name_Of_Taluka.Trim()).Select(x => x.Tal_Code).FirstOrDefault();
+                    if (talCode != 0)
+                    {
+                        var tal_applications = applications.Where(x => x.Tahashil == talCode && x.CompNumber != null).ToList();
+                        Console.Write(talCode);
+                        talukaModel.Application_Component_No_1 = tal_applications.Where(x => x.CompNumber.Contains("1")).Count();
+                        talukaModel.Application_Component_No_2 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("2")).Count();
+                        talukaModel.Application_Component_No_3_7 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("3")).Count() +
+                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("4")).Count() +
+                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("5")).Count() +
+                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("6")).Count() +
+                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("8")).Count();
+                        talukaModel.Application_Component_No_8 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("8")).Count();
+                        talukaModel.Application_Component_No_9 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("9")).Count();
+                        talukaModel.Application_Component_No_10 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("10")).Count();
+                        talukaModel.Application_Component_No_11 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("11")).Count();
+                        talukaModel.Application_Component_No_12 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("12")).Count();
+                        talukaModel.Application_Component_No_13 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("13")).Count();
+
+                    }
                     talukaModel.Component_No_1 = taluka.Component_No_1;
                     talukaModel.Component_No_2 = taluka.Component_No_2;
                     talukaModel.Component_No_3_7 = taluka.Component_No_3_7;
