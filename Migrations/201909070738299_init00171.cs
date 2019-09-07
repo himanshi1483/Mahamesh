@@ -7,22 +7,22 @@ namespace Mahamesh.Migrations
     {
         public override void Up()
         {
-            CreateTable(
-                "dbo.DistrictCountdowns",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        DistCode = c.Int(nullable: false),
-                        EnableDate = c.DateTime(),
-                        EnableTime = c.DateTime(),
-                    })
-                .PrimaryKey(t => t.Id);
+            //CreateTable(
+            //    "dbo.DistrictCountdowns",
+            //    c => new
+            //        {
+            //            Id = c.Int(nullable: false, identity: true),
+            //            DistCode = c.Int(nullable: false),
+            //            EnableDate = c.DateTime(),
+            //            EnableTime = c.DateTime(),
+            //        })
+            //    .PrimaryKey(t => t.Id);
             
         }
         
         public override void Down()
         {
-            DropTable("dbo.DistrictCountdowns");
+            //DropTable("dbo.DistrictCountdowns");
         }
     }
 }

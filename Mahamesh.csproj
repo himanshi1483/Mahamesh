@@ -444,6 +444,10 @@
     <Compile Include="Migrations\201909070738299_init00171.Designer.cs">
       <DependentUpon>201909070738299_init00171.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909070825002_init1.cs" />
+    <Compile Include="Migrations\201909070825002_init1.Designer.cs">
+      <DependentUpon>201909070825002_init1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -1140,6 +1144,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909070738299_init00171.resx">
       <DependentUpon>201909070738299_init00171.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909070825002_init1.resx">
+      <DependentUpon>201909070825002_init1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
