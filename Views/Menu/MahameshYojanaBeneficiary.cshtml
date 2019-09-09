@@ -1,4 +1,5 @@
-﻿
+﻿@model Mahamesh.Models.OfficerLogin
+
 @{
     ViewBag.Title = "Beneficiary List Preliminary & Final";
 }
@@ -59,33 +60,48 @@
         <div class="panel-heading panel-primary-2 text-center">
             <h3 class="panel-title">Beneficiary List Preliminary & Final</h3>
         </div>
-      
-            <div class="panel-body">
-                <div class="row">
-              
-                    <section id="mu-service">
-                        <div class="mu-service-area">
-                            <div class="grid">
 
-                                <div class="module" style="background:#ff7d7d;">
-                                    <div><span style="font-size:24px;" class="fa fa-th-list"></span></div>
-                                    <br />
-                                    <div>
-                                        <h5><a href="#">लाभार्थ्यांची प्राथमिक यादी</a></h5>
-                                        <h5><a href="#">Beneficiary List Preliminary</a></h5>
-                                    </div>
+        <div class="panel-body">
+            <div class="row">
+
+                <section id="mu-service">
+                    <div class="mu-service-area">
+                        <div class="grid">
+
+                            <div class="module" style="background:#ff7d7d;">
+                                <div><span style="font-size:24px;" class="fa fa-th-list"></span></div>
+                                <br />
+                                <div>
+                                    <h5><a href="@Url.Action("PrelimBeneficiary", "Menu")">लाभार्थ्यांची प्राथमिक यादी</a></h5>
+                                    <h5><a href="@Url.Action("PrelimBeneficiary", "Menu")">Beneficiary List Preliminary</a></h5>
                                 </div>
-                                <div class="module" style="background:#50d2ef">
-                                    <span style="font-size:24px" class="fa fa-list-ul"></span>
-                                    <div>
-                                        <h5><a href="#">लाभार्थ्यांची अंतिम यादी </a></h5>
-                                        <h5><a href="#">Beneficiary List Final</a></h5>
-                                    </div>
+                            </div>
+                            <div class="module" style="background:#50d2ef">
+                                <span style="font-size:24px" class="fa fa-list-ul"></span>
+                                <div>
+                                    <h5><a href="#">लाभार्थ्यांची अंतिम यादी </a></h5>
+                                    <h5><a href="#">Beneficiary List Final</a></h5>
                                 </div>
                             </div>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
+
+            
         </div>
     </div>
+</div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            var dateNow = new Date('@DateTime.Now');
+            var enableDate = new Date('@Model.Timer.EnableDate.Value');
+            //alert(dateNow);
+            if (dateNow >= enableDate) {
+                // alert(@Model.Timer.EnableDate.Value);
+                $("#btnGenerate").prop("disabled", false);
+            }
+        });
+    </script>*@

@@ -34,6 +34,8 @@ namespace Mahamesh.Models
         [NotMapped]
         public DistrictCountdown Timer { get; set; }
         [NotMapped]
+        public List<DistrictCountdown> TimerList { get; set; }
+        [NotMapped]
         public List<OfficerLogin> OfficerList { get; set; }
         [NotMapped]
         public string ChangedBy { get; set; }

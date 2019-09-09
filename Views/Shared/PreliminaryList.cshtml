@@ -1,0 +1,178 @@
+﻿@model Mahamesh.Models.OfficerLogin
+
+@{ 
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+    <meta charset="utf-8" lang="mr"/>
+    <link href="~/Content/Varsity/assets/css/bootstrap.css" rel="stylesheet" />
+    @*<link href="~/Content/Varsity/assets/css/custom.min.css" rel="stylesheet" />*@
+    <style>
+        @@import url('https://fonts.googleapis.com/css?family=Mukta&display=swap&subset=devanagari,latin-ext');
+
+        @@font-face {
+            font-family: "Arial Unicode MS";
+            src: url('../../Content/Varsity/assets/fonts/arialuni.ttf');
+        }
+        body {
+            font-family: 'Mukta', sans-serif  !important;
+        }
+    </style>
+
+</head>
+<body>
+
+    <h4> Selected List for Handicapped</h4>
+    <table class="display table table-bordered table-striped3 table-responsive" id="table1">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Application Number</th>
+                <th>District</th>
+                <th>Taluka</th>
+                <th>Village</th>
+                <th>Aadhar Number</th>
+                <th>Name</th>
+                <th>Phone No.</th>
+                <th>Gender</th>
+                <th>Handicapped?</th>
+                <th>Selected Number</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.SelectedList.SelectedHandicappedList.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicationNumber</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].District_Mr.ToString()</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].Taluka_Mr</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].VillageName</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].AadharNo</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].Name</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].PhNo</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].Gender</td>
+                    <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicantCrippled</td>
+                    <td>SL_@Model.SelectedList.SelectedHandicappedList[i].Component _@(i + 1)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <h4> Selected List for Females</h4>
+    <table class="display table table-bordered table-striped3 table-responsive" id="table2">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Application Number</th>
+                <th>District</th>
+                <th>Taluka</th>
+                <th>Village</th>
+                <th>Aadhar Number</th>
+                <th>Name</th>
+                <th>Phone No.</th>
+                <th>Gender</th>
+                <th>Handicapped?</th>
+                <th>Selected Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.SelectedList.SelectedFemaleList.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].ApplicationNumber</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].District_Mr</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].Taluka_Mr</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].VillageName</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].AadharNo</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].Name</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].PhNo</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].Gender</td>
+                    <td>@Model.SelectedList.SelectedFemaleList[i].ApplicantCrippled</td>
+                    <td>SL_@Model.SelectedList.SelectedFemaleList[i].Component _@(i + 1)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <h4> Selected List for General Target</h4>
+    <table class="display table table-bordered table-striped3 table-responsive" id="table3">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Application Number</th>
+                <th>District</th>
+                <th>Taluka</th>
+                <th>Village</th>
+                <th>Aadhar Number</th>
+                <th>Name</th>
+                <th>Phone No.</th>
+                <th>Gender</th>
+                <th>Handicapped?</th>
+                <th>Selected Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.SelectedList.SelectedGeneralList.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].ApplicationNumber</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].District_Mr</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].Taluka_Mr</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].VillageName</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].AadharNo</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].Name</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].PhNo</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].Gender</td>
+                    <td>@Model.SelectedList.SelectedGeneralList[i].ApplicantCrippled</td>
+                    <td>SL_@Model.SelectedList.SelectedGeneralList[i].Component _@(i + 1)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+
+    <h4> Waiting List</h4>
+    <table class="display table table-bordered table-striped table-responsive" id="table4">
+        <thead>
+            <tr>
+                <th>Sr. No.</th>
+                <th>Application Number</th>
+                <th>District</th>
+                <th>Taluka</th>
+                <th>Village</th>
+                <th>Aadhar Number</th>
+                <th>Name</th>
+                <th>Phone No.</th>
+                <th>Gender</th>
+                <th>Handicapped?</th>
+                <th>Selected Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.SelectedList.WaitingList.Count; i++)
+            {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedList.WaitingList[i].ApplicationNumber</td>
+                    <td>@Model.SelectedList.WaitingList[i].District_Mr</td>
+                    <td>@Model.SelectedList.WaitingList[i].Taluka_Mr</td>
+                    <td>@Model.SelectedList.WaitingList[i].VillageName</td>
+                    <td>@Model.SelectedList.WaitingList[i].AadharNo</td>
+                    <td>@Model.SelectedList.WaitingList[i].Name</td>
+                    <td>@Model.SelectedList.WaitingList[i].PhNo</td>
+                    <td>@Model.SelectedList.WaitingList[i].Gender</td>
+                    <td>@Model.SelectedList.WaitingList[i].ApplicantCrippled</td>
+                    <td>WL_@Model.SelectedList.WaitingList[i].Component _@(i + 1)</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>
+</html>

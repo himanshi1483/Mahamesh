@@ -87,8 +87,8 @@ namespace Mahamesh.Controllers
 
         public JsonResult getTaluka(string dist)
         {
-            var d = db.DistMaster.Where(x => x.DistName == dist).FirstOrDefault();
-            var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == d.District_Mr).Select(x=>x.TalukaName).ToList();
+            var d = db.DistMaster.Where(x => x.DistName.Trim() == dist.Trim()).FirstOrDefault();
+            var ddlTal = db.TalMaster.Where(x => x.Dist_Code == d.Dist_Code).Select(x=>x.Tal_Mr).ToList();
             List<SelectListItem> liTaluka = new List<SelectListItem>();
 
             liTaluka.Add(new SelectListItem { Text = "--Select Taluka--", Value = "0" });
@@ -322,7 +322,58 @@ namespace Mahamesh.Controllers
 
         public ActionResult MahameshYojanaBeneficiary()
         {
+            //var model = new OfficerLogin();
+            //var timeTable = db.DistrictCountdown.ToList();
+            //model.TimerList = new List<DistrictCountdown>();
+            //var distMaster = db.DistMaster.ToList();
+            //var isGenerated = db.SelectedFemale.ToList();
+            //foreach (var item in timeTable)
+            //{
+
+            //    if(isGenerated.Any(x=>x.DistCode == item.DistCode))
+            //    {
+            //        item.DistrictName = isGenerated.Where(x => x.DistCode == item.DistCode).Select(x => x.District_Mr).FirstOrDefault();
+            //        item.CreatedDate = isGenerated.Where(x => x.DistCode == item.DistCode).Select(x => x.CreatedOn).FirstOrDefault();
+            //        item.IsEnabled = true;
+            //    }
+            //    else
+            //    {
+            //        item.DistrictName = distMaster.Where(x => x.Dist_Code == item.DistCode).Select(x => x.District_Mr).FirstOrDefault();
+            //        item.CreatedDate = null;
+            //        item.IsEnabled = false;
+            //    }
+            //    model.TimerList.Add(item);
+            //}
             return View();
+       
+        }
+
+        public ActionResult PrelimBeneficiary()
+        {
+            var model = new OfficerLogin();
+            var timeTable = db.DistrictCountdown.ToList();
+            model.TimerList = new List<DistrictCountdown>();
+            var distMaster = db.DistMaster.ToList();
+            var isGenerated = db.SelectedFemale.ToList();
+            foreach (var item in timeTable)
+            {
+
+                if (isGenerated.Any(x => x.DistCode == item.DistCode))
+                {
+                    item.DistrictName = isGenerated.Where(x => x.DistCode == item.DistCode).Select(x => x.District_Mr).FirstOrDefault();
+                    item.CreatedDate = isGenerated.Where(x => x.DistCode == item.DistCode).Select(x => x.CreatedOn).FirstOrDefault();
+                    item.IsEnabled = true;
+                }
+                else
+                {
+                    item.DistrictName = distMaster.Where(x => x.Dist_Code == item.DistCode).Select(x => x.District_Mr).FirstOrDefault();
+                    item.CreatedDate = null;
+                    item.IsEnabled = false;
+                }
+                model.TimerList.Add(item);
+            }
+            return View(model);
+
         }
         public ActionResult MahameshYojanaUserLogin(string msg)
         {
@@ -600,27 +651,31 @@ namespace Mahamesh.Controllers
             return RedirectToAction("MahameshYojanaOfficerLogin");
         }
 
-        [NoDirectAccess]
+      //  [NoDirectAccess]
         public ActionResult OfficerDashboard(string username)
         {
             var list = db.OfficerLogins.ToList();
             var officer = list.Where(x => x.Username == username).FirstOrDefault();
-            var distlist = db.DistMaster.ToList();
-
+            var distTarget = db.DistrictTarget.ToList();
+            var talukaTarg = db.TalukaTarget.ToList();
+            var distMaster = db.DistMaster.ToList();
+            var talMaster = db.TalMaster.ToList();
             var model = new OfficerLogin();
             model = officer;
             var timer = db.DistrictCountdown.Where(x => x.DistCode == model.district).FirstOrDefault();
             TimeSpan remaining = timer.EnableDate.Value - DateTime.Now.Date;
-            model.DistName = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
+           
+            model.DistName = distMaster.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
             model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
-            var dist_mr = distlist.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
+            foreach (var item in model.OfficerList)
+            {
+                item.TalukaName = talMaster.Where(x => x.Dist_Code == item.district && x.Tal_Code == item.taluka).Select(x => x.Tal_Mr).FirstOrDefault();
+            }
+            var dist_mr = distMaster.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
             getDistrict();
             model.Timer = timer;
             var model1 = new PhysicalTargetViewModel();
-            model1.Component = model1.Component;
-            model1.DistrictName = model1.DistrictName;
-
-            model1.TalukaName = model1.TalukaName;
+            model.Component = model1.Component;
             var list1 = new List<PhysicalTargetViewModel>();
             model1.Comp1TargetList = new List<Comp1Target>();
             model1.Comp2TargetList = new List<CompTarget2>();
@@ -637,12 +692,9 @@ namespace Mahamesh.Controllers
             //stats
             var target = new TargetViewModel();
             var _list = new List<TargetViewModel>();
-            var distTarget = db.DistrictTarget.ToList();
-            var talukaTarg = db.TalukaTarget.ToList();
-            var distMaster = db.DistMaster.ToList();
-            var talMaster = db.TalMaster.ToList();
-            var applications = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
-            foreach (var district in distTarget.Where(x => x.Name_of_District == dist_mr))
+         
+            var applications = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == model.district).ToList();
+            foreach (var district in distTarget.Where(x => x.Name_of_District.Trim() == dist_mr))
             {
                 var model4 = new TargetViewModel();
                 var talukaList = new List<TalukaViewModel>();
@@ -715,7 +767,7 @@ namespace Mahamesh.Controllers
                 model4.FemaleTarget_Component_No_13 = female_comp13target;
 
                 //taluka-wise
-                foreach (var taluka in talukaTarg.Where(x => x.Name_of_District == district.Name_of_District && x.Name_of_District != "Total"))
+                foreach (var taluka in talukaTarg.Where(x => x.Name_of_District.Trim() == district.Name_of_District.Trim() && x.Name_of_District != "Total"))
                 {
                     var talukaModel = new TalukaViewModel();
                     talukaModel.Name_Of_Taluka = taluka.Name_Of_Taluka;
@@ -830,6 +882,7 @@ namespace Mahamesh.Controllers
         // GET: Menu
         public ActionResult BeneficiaryList()
         {
+ 
             return View();
         }
 
