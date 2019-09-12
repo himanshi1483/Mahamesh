@@ -1,0 +1,434 @@
+﻿@model Mahamesh.Models.ApplicantRegistration
+
+@{
+    ViewBag.Title = "Upload Documents";
+}
+<style>
+    input-file-container {
+        position: relative;
+        width: 225px;
+    }
+
+    .js .input-file-trigger {
+        display: block;
+        padding: 8px 44px;
+        background: #39D2B4;
+        color: #fff;
+        font-size: 1em;
+        transition: all .4s;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+    .js .input-file {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 225px;
+        opacity: 0;
+        padding: 14px 0;
+        cursor: pointer;
+    }
+
+        .js .input-file:hover + .input-file-trigger,
+        .js .input-file:focus + .input-file-trigger,
+        .js .input-file-trigger:hover,
+        .js .input-file-trigger:focus {
+            background: #34495E;
+            color: #39D2B4;
+        }
+
+    .file-return {
+        margin: 0;
+    }
+
+        .file-return:not(:empty) {
+            margin: 1em 0;
+        }
+
+    .js .file-return {
+        font-style: italic;
+        font-size: .9em;
+        font-weight: bold;
+    }
+
+        .js .file-return:not(:empty):before {
+            content: "Selected file: ";
+            font-style: normal;
+            font-weight: normal;
+        }
+</style>
+<div class="container body-content" id="#maincontent" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
+        <div class="panel-heading panel-primary-2 text-center">
+            <h3 class="panel-title">Upload Documents</h3>
+        </div>
+
+        <div class="panel-body">
+            <div class="alert alert-info text-center">
+                दस्तऐवज (Documents) केवळ JPEG, JPG, PNG आणि PDF स्वरुपण अपलोड करा
+            </div>
+         
+            @using (Html.BeginForm("UploadDocuments", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4 class="text-center">आवश्यक कागदपत्राची यादी खालील प्रमाणे आहे</h4>
+                <table class="table table-bordered table-responsive">
+                    <thead>
+                        <tr class="text-center">
+                            <td>Sr. No.</td>
+                            <td>Document Name</td>
+                            <td>Upload</td>
+                            <td>File Name</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="width:100%">
+                            <td style="width:5%" class="text-center">1.</td>
+                            <td style="width:50%;font-size:15px !important">आधार कार्ड <strong>(अनिवार्य आहे)</strong></td>
+                            <td style="width:20%">
+                                <div class="input-file-container">
+                                    <input class="input-file" id="AdharCardFU1" name="AdharCardFU" required type="file">
+                                    <label tabindex="0" for="AdharCardFU1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file1"></p>
+
+                            </td>
+                            <td style="width:25%">
+                                <input type="text" class="form-control" id="AdharCardFU" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">2.</td>
+                            <td style="width:50%;font-size:15px !important">रेशन कार्ड <strong> (अनिवार्य आहे)</strong></td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="ReshanCard1" required name="ReshanCard" type="file">
+                                    <label tabindex="0" for="ReshanCard1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file2"></p>
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="ReshanCard" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">3.</td>
+                            <td style="width:50%;font-size:15px !important">जातीचा दाखला (सक्षम अधिकार्‍यांचा)</td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="CasteCertificate1" required name="CasteCertificate" type="file">
+                                    <label tabindex="0" for="CasteCertificate1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file3"></p>
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="CasteCertificate" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">4.</td>
+                            <td style="width:50%;font-size:15px !important">मेंढी पालन करण्याची पद्धत किंवा स्वरूप व सध्या असलेल्या मेंढ्यांची संख्या (स्थलांतरित /फिरस्ती पद्धतीने किंवा एका ठिकाणी राहून स्थायी पद्धतीने) याबाबतचे संबंधीत पशुवैद्यकीय दवाखान्याचे पशुधन विकास अधिकारी यांचे प्रमाणपत्र (बंधपत्रामधील नमुना क्रमांक १ मध्येच सादर करावयाचा आहे)</td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="LivestockDevOffCertificate1" required name="LivestockDevOffCertificate" type="file">
+                                    <label tabindex="0" for="LivestockDevOffCertificate1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file4"></p>
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="LivestockDevOffCertificate" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">5.</td>
+                            <td style="width:50%;font-size:15px !important">रहिवासी दाखला (सक्षम प्राधिकारी) (बंधपत्रामधील नमुना क्रमांक २ मध्येच सादर करावयाचा आहे)</td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="ResidentCertificate1" required name="ResidentCertificate" type="file">
+                                    <label tabindex="0" for="ResidentCertificate1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file5"></p>
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="ResidentCertificate" readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">6.</td>
+                            <td style="width:50%;font-size:15px !important">अपत्य दाखला (बंधपत्रामधील नमुना क्रमांक ३ मध्येच सादर करावयाचा आहे). १ मे २००१ नंतर तिसरे हयात अपत्य नसावे.</td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="Childcertificate1" required name="Childcertificate" type="file">
+                                    <label tabindex="0" for="Childcertificate1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file6"></p>
+
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="Childcertificate" readonly>
+                            </td>
+                        </tr>
+                        @if (Model.IsApplicantOwnedLand == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">7.</td>
+                                <td style="width:50%;font-size:15px !important">अर्जदाराचे शेतजमिनीचा अलीकडील तीन महिन्यातील ७/१२ उतारा किंवा अर्जदाराच्या नावे जमीन नसल्यास (कुटुंबियांपैकी) संमतीपत्र देणाऱ्या व्यक्तीच्या नावाच्या शेतजमिनीचा ७/१२ उतारा व १०० रुपयाच्या स्टॅम्प पेपरवर संमतीपत्र (बंधपत्रामधील नमुना क्रमांक ४ मध्येच सादर करावयाचा आहे).</td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="FU712orIncomeCertificate1" required name="FU712orIncomeCertificate" type="file">
+                                        <label tabindex="0" for="FU712orIncomeCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file7"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="FU712orIncomeCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.IsNotIsAvailableOnLease == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">8.</td>
+                                <td style="width:50%;font-size:15px !important">भाडेतत्वावर शेतजमीन घेतली असल्यास शेतजमीन मालकासमवेत केलेल्या भाडेकराराची सत्यप्रत (रु.१००/- स्टॅम्प पेपर वर नोटरी करून) (बंधपत्रामधील नमुना क्रमांक ५ मध्येच सादर करावयाचा आहे).</td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="TenancyAgreement1" name="TenancyAgreement" type="file">
+                                        <label tabindex="0" for="TenancyAgreement1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file8"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="TenancyAgreement" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.IsWarehouseForSheep == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">9.</td>
+                                <td style="width:50%;font-size:15px !important">शेड बांधकामाचा लाभ घ्यावयाचा असल्यास, त्यासाठी स्वत:ची किमान १ गुंठा जागा उपलब्ध असल्याबाबत अलीकडील तीन महिन्यातील ७/१२ उतारा / मिळकत दाखला.</td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="ShedCertificate1" required name="ShedCertificate" type="file">
+                                        <label tabindex="0" for="ShedCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file9"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="ShedCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.IsSavingsGroupMember == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">10.</td>
+                                <td style="width:50%;font-size:15px !important">बचतगटाचे सदस्य असल्याचे प्रमाणपत्र (लागू असल्यास).</td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="BachatMemberCertificate1" required name="BachatMemberCertificate" type="file">
+                                        <label tabindex="0" for="BachatMemberCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file10"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="BachatMemberCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.IsanimalHusbandryManufacturingCompanyMember == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">11.</td>
+                                <td style="width:50%;font-size:15px !important">पशुपालक उत्पादक कंपनीचे सदस्य असल्याचे प्रमाणपत्र (लागू असल्यास) </td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="CompanyMemberCertificate1" required name="CompanyMemberCertificate" type="file">
+                                        <label tabindex="0" for="CompanyMemberCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file11"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="CompanyMemberCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.ApplicantCrippled == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">12.</td>
+                                <td style="width:50%;font-size:15px !important">अपंगत्व प्रमाणपत्र (लागू असल्यास). </td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="DisabilityCertificate1" required name="DisabilityCertificate" type="file">
+                                        <label tabindex="0" for="DisabilityCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file12"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="DisabilityCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                        @if (Model.IsTrained == "होय")
+                        {
+                            <tr>
+                                <td class="text-center">13.</td>
+                                <td style="width:50%;font-size:15px !important">महामंडळामार्फत शेळी मेंढी पालनाचे प्रशिक्षण घेतले असल्यास त्याबाबतचे प्रमाणपत्र</td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="TrainingCertificate1" name="TrainingCertificate" type="file">
+                                        <label tabindex="0" for="TrainingCertificate1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file13"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="TrainingCertificate" readonly>
+                                </td>
+                            </tr>
+                        }
+                            <tr>
+                                <td class="text-center">14.</td>
+                                <td style="width:50%;font-size:15px !important">स्वयंमघोषणा पत्र (बंधपत्रामधील नमुना क्रमांक ६ मध्येच सादर करावयाचा आहे) </td>
+                                <td>
+                                    <div class="input-file-container">
+                                        <input class="input-file" id="HamiPtra1" name="HamiPtra" required type="file">
+                                        <label tabindex="0" for="HamiPtra1" class="input-file-trigger">Select a file...</label>
+                                    </div>
+                                    <p class="file-return" id="file14"></p>
+
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control" id="HamiPtra" readonly>
+                                </td>
+                            </tr>
+                        </tbody>
+                </table>
+                <div class="text-center">
+                    <button type="submit" class="btn btn-info">Submit</button>
+                </div>
+                <a href="https://www.googleapis.com/drive/v3/files/1k47owB6wkzaj4TCYLGUieuZnJeBjatf3">click</a>
+            }
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.querySelector("html").classList.add('js');
+
+    var fileInput1 = document.querySelector("#AdharCardFU1"),
+        fileInput2 = document.querySelector("#ReshanCard1"),
+        fileInput3 = document.querySelector("#CasteCertificate1"),
+        fileInput4 = document.querySelector("#LivestockDevOffCertificate1"),
+        fileInput5 = document.querySelector("#ResidentCertificate1"),
+        fileInput6 = document.querySelector("#ChildCertificate1"),
+        fileInput7 = document.querySelector("#FU712orIncomeCertificate1"),
+        fileInput8 = document.querySelector("#TenancyAgreement1"),
+        fileInput9 = document.querySelector("#ShedCertificate1"),
+        fileInput10 = document.querySelector("#BachatMemberCertificate1"),
+         fileInput11 = document.querySelector("#CompanyMemberCertificate1"),
+        fileInput12 = document.querySelector("#DisabilityCertificate1"),
+        fileInput13 = document.querySelector("#TrainingCertificate1"),
+        fileInput14 = document.querySelector("#HamiPtra1"),
+
+        button = document.querySelector(".input-file-trigger"),
+        //the_return = document.querySelector(".file-return");
+        the_return = document.querySelector("#file1");
+    the_return2 = document.querySelector("#file2");
+    the_return3 = document.querySelector("#file3");
+    the_return4 = document.querySelector("#file4");
+    the_return5 = document.querySelector("#file5");
+    the_return6 = document.querySelector("#file6");
+    the_return7 = document.querySelector("#file7");
+    the_return8 = document.querySelector("#file8");
+    the_return9 = document.querySelector("#file9");
+    the_return10 = document.querySelector("#file10");
+    the_return11 = document.querySelector("#file11");
+    the_return12 = document.querySelector("#file12");
+    the_return13 = document.querySelector("#file13");
+     the_return14 = document.querySelector("#file14");
+    button.addEventListener("keydown", function (event) {
+        if (event.keyCode == 13 || event.keyCode == 32) {
+            fileInput1.focus();
+        }
+    });
+    button.addEventListener("click", function (event) {
+        fileInput1.focus();
+        return false;
+    });
+    fileInput1.addEventListener("change", function (event) {
+        the_return.innerHTML = this.value;
+
+    });
+    fileInput2.addEventListener("change", function (event) {
+        the_return2.innerHTML = this.value;
+    });
+
+    fileInput3.addEventListener("change", function (event) {
+        the_return3.innerHTML = this.value;
+    });
+
+    fileInput4.addEventListener("change", function (event) {
+        the_return4.innerHTML = this.value;
+    });
+
+    fileInput5.addEventListener("change", function (event) {
+        the_return5.innerHTML = this.value;
+    });
+
+    fileInput6.addEventListener("change", function (event) {
+        the_return6.innerHTML = this.value;
+    });
+
+    fileInput7.addEventListener("change", function (event) {
+        the_return7.innerHTML = this.value;
+    });
+
+    fileInput8.addEventListener("change", function (event) {
+        the_return8.innerHTML = this.value;
+    });
+
+    fileInput9.addEventListener("change", function (event) {
+        the_return9.innerHTML = this.value;
+    });
+
+    fileInput10.addEventListener("change", function (event) {
+        the_return10.innerHTML = this.value;
+    });
+
+    fileInput11.addEventListener("change", function (event) {
+        the_return11.innerHTML = this.value;
+    });
+
+    fileInput12.addEventListener("change", function (event) {
+        the_return12.innerHTML = this.value;
+    });
+    fileInput13.addEventListener("change", function (event) {
+        the_return13.innerHTML = this.value;
+    });
+    fileInput14.addEventListener("change", function (event) {
+        the_return14.innerHTML = this.value;
+    });
+</script>

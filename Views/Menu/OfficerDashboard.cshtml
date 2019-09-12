@@ -6,6 +6,27 @@
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
 <style>
+    .no-js #loader {
+        display: none;
+    }
+
+    .js #loader {
+        display: block;
+        position: absolute;
+        left: 100px;
+        top: 0;
+    }
+
+    .se-pre-con1 {
+        position: fixed;
+        left: 0px;
+        top: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        background: url('/Content/tenor.gif') center no-repeat #fff;
+    }
+
     .lds-ellipsis {
         display: inline-block;
         position: relative;
@@ -64,6 +85,75 @@
     }
 
     @@keyframes lds-ellipsis2 {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        100% {
+            transform: translate(19px, 0);
+        }
+    }
+
+
+
+    .lds-ellipsis-new {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+    }
+
+        .lds-ellipsis-new div {
+            position: absolute;
+            top: 27px;
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #fff;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+            .lds-ellipsis-new div:nth-child(1) {
+                left: 6px;
+                animation: lds-ellipsis-new1 0.6s infinite;
+            }
+
+            .lds-ellipsis-new div:nth-child(2) {
+                left: 6px;
+                animation: lds-ellipsis-new2 0.6s infinite;
+            }
+
+            .lds-ellipsis-new div:nth-child(3) {
+                left: 26px;
+                animation: lds-ellipsis-new2 0.6s infinite;
+            }
+
+            .lds-ellipsis-new div:nth-child(4) {
+                left: 45px;
+                animation: lds-ellipsis-new3 0.6s infinite;
+            }
+
+    @@keyframes lds-ellipsis-new1 {
+        0% {
+            transform: scale(0);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    @@keyframes lds-ellipsis-new3 {
+        0% {
+            transform: scale(1);
+        }
+
+        100% {
+            transform: scale(0);
+        }
+    }
+
+    @@keyframes lds-ellipsis-new2 {
         0% {
             transform: translate(0, 0);
         }
@@ -272,6 +362,7 @@
         color: #abcd58;
     }
 </style>
+<div class="se-pre-con1" style="display:none"></div>
 <div class="container-fluid body-content" id="#maincontent" style="margin-top:10px; margin-bottom: 150px;">
     <div class="panel panel-default" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-default text-center">
@@ -912,22 +1003,22 @@
                 </div>
 
                 <div id="tab3" style="display:none">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="tblStats">
                         <thead>
                             <tr>
                                 <td>Sr. No.</td>
                                 <td>District</td>
                                 <td>Taluka</td>
                                 <td></td>
-                                <td>Component 1</td>
-                                <td>Component 2</td>
-                                <td>Component 3-7</td>
-                                <td>Component 8</td>
-                                <td>Component 9</td>
-                                <td>Component 10</td>
-                                <td>Component 11</td>
-                                <td>Component 12</td>
-                                <td>Component 13</td>
+                                <td>Component 1 - Noof Rams</td>
+                                <td>Component 2 - Noof Rams</td>
+                                <td>Component 3-7 - Noof Rams</td>
+                                <td>Component 8 - Noof Rams</td>
+                                <td>Component 9 - Noof Rams</td>
+                                <td>Component 10 - Noof Rams</td>
+                                <td>Component 11 - Noof Rams</td>
+                                <td>Component 12 - Feed in kgs</td>
+                                <td>Component 13 - Feed in kgs</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -952,7 +1043,7 @@
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Target for Handicapped</td>
+                                    <td>Target for Handicapped (3%)</td>
                                     <td>@Model.NewTarget.TargetList[j].HandicapTarget_Component_No_1</td>
                                     <td>@Model.NewTarget.TargetList[j].HandicapTarget_Component_No_2</td>
                                     <td>@Model.NewTarget.TargetList[j].HandicapTarget_Component_No_3_7</td>
@@ -963,11 +1054,26 @@
                                     <td>@Model.NewTarget.TargetList[j].HandicapTarget_Component_No_12</td>
                                     <td>@Model.NewTarget.TargetList[j].HandicapTarget_Component_No_13</td>
                                 </tr>
+                                <tr style="background-color:lightgray">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Applications Received - Handicapped (3%)</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_1</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_2</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_3_7</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_8</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_9</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_10</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_11</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_12</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApHandicapTarget_Component_No_13</td>
+                                </tr>
                                 <tr style="background-color:lightsteelblue">
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td>Target for Female</td>
+                                    <td>Target for Female (30%)</td>
                                     <td>@Model.NewTarget.TargetList[j].FemaleTarget_Component_No_1</td>
                                     <td>@Model.NewTarget.TargetList[j].FemaleTarget_Component_No_2</td>
                                     <td>@Model.NewTarget.TargetList[j].FemaleTarget_Component_No_3_7</td>
@@ -978,8 +1084,35 @@
                                     <td>@Model.NewTarget.TargetList[j].FemaleTarget_Component_No_12</td>
                                     <td>@Model.NewTarget.TargetList[j].FemaleTarget_Component_No_13</td>
                                 </tr>
+                                <tr style="background-color:lightsteelblue">
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>Applications Received -  Female (30%)</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_1</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_2</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_3_7</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_8</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_9</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_10</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_11</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_12</td>
+                                    <td>@Model.NewTarget.TargetList[j].ApFemaleTarget_Component_No_13</td>
+                                </tr>
                                 <tr>
-                                    <td colspan="13"></td>
+                                    <td>- </td>
+                                    <td> -</td>
+                                    <td> -</td>
+                                    <td>- </td>
+                                    <td>- </td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
                                 </tr>
                                 for (int i = 0; i < Model.NewTarget.TargetList[j].TalukaTarget.Count; i++)
                                 {
@@ -1002,7 +1135,7 @@
                                         <td></td>
                                         <td></td>
                                         <td></td>
-                                        <td>General Target</td>
+                                        <td>General Target (67%)</td>
                                         <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_1</td>
                                         <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_2</td>
                                         <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].GeneralTarget_Component_No_3_7</td>
@@ -1029,24 +1162,37 @@
                                         <td>@Model.NewTarget.TargetList[j].TalukaTarget[i].Application_Component_No_13</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="13"></td>
+                                        <td>- </td>
+                                        <td> -</td>
+                                        <td> -</td>
+                                        <td>- </td>
+                                        <td>- </td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>-</td>
+
                                     </tr>
                                 }
 
-
                             }
+
                         </tbody>
                     </table>
                 </div>
                 @if (User.IsInRole("DDC"))
                 {
                     <div id="tab4" class="text-center" style="display:none">
-                        <p style="text-align:center;font-size:25px;color:#fe5719;margin-bottom:10px">Button will be activated after - </p>
+                        <p style="text-align:center;font-size:25px;color:#fe5719;margin-bottom:10px" id="btnText">Button will be activated after - </p>
                         <p id="demo" style="text-align:center;font-size:34px;color:#fe5719;background:#333333;margin-bottom:30px"></p>
                         <button id="btnGenerate" class="btn btn-default" disabled="disabled">Generate Random List</button>
-                        <a href="#" id="btnGenerateWaiting" class="btn btn-default" style="display:none">Generate Waiting List</a>
+                        <button id="btn1" class="btn btn-default" style="display:none">Generate Waiting List</button>
                     </div>
-                    <div id="tab5" style="display:none">
+                    <div style="display:none">
                         <h4> Selected List for Handicapped</h4>
                         <table class="table table-bordered table-striped table-responsive" id="table1">
                             <thead>
@@ -1121,7 +1267,7 @@
                                         <td>@Model.SelectedList.SelectedFemaleList[i].PhNo</td>
                                         <td>@Model.SelectedList.SelectedFemaleList[i].Gender</td>
                                         <td>@Model.SelectedList.SelectedFemaleList[i].ApplicantCrippled</td>
-                                        <td>SL_@Model.SelectedList.SelectedFemaleList[i].Component+"_"+@(i + 1)</td>
+                                        <td>SL_@Model.SelectedList.SelectedFemaleList[i].Component+_@(i + 1)</td>
                                     </tr>
                                 }
                             </tbody>
@@ -1165,13 +1311,16 @@
                         </table>
                         <br />
 
-                        <h4> Waiting List</h4>
-                        <div class="lds-ellipsis text-center" style="margin-left:48%"><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"> </div></div>
-                        <table class="table table-bordered table-striped table-responsive" id="table4">
+
+                    </div>
+                    <div id="tab5" style="display:none">
+                        <div class="lds-ellipsis-new text-center" style="margin-left:48%"><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"> </div></div>
+                        <table class="table table-bordered table-striped table-responsive" style="margin-top:20px" id="table5">
                             <thead>
                                 <tr>
                                     <th>Sr. No.</th>
                                     <th>Application Number</th>
+                                    <th>Component No.</th>
                                     <th>District</th>
                                     <th>Taluka</th>
                                     <th>Village</th>
@@ -1184,34 +1333,135 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for (int i = 0; i < Model.SelectedList.WaitingList.Count; i++)
+                                @for (int i = 0; i < Model.TalukaList.Count; i++)
                                 {
-                                    <tr>
-                                        <td>@(i + 1)</td>
-                                        <td>@Model.SelectedList.WaitingList[i].ApplicationNumber</td>
-                                        <td>@Model.SelectedList.WaitingList[i].District_Mr</td>
-                                        <td>@Model.SelectedList.WaitingList[i].Taluka_Mr</td>
-                                        <td>@Model.SelectedList.WaitingList[i].VillageName</td>
-                                        <td>@Model.SelectedList.WaitingList[i].AadharNo</td>
-                                        <td>@Model.SelectedList.WaitingList[i].Name</td>
-                                        <td>@Model.SelectedList.WaitingList[i].PhNo</td>
-                                        <td>@Model.SelectedList.WaitingList[i].Gender</td>
-                                        <td>@Model.SelectedList.WaitingList[i].ApplicantCrippled</td>
-                                        <td>WL_@Model.SelectedList.WaitingList[i].Component+"_"+@(i + 1)</td>
-                                    </tr>
+
+
+                                    if (Model.SelectedList1.SelectedHandicappedList != null)
+                                    {
+                                        for (int j = 0; j < (Model.SelectedList1.SelectedHandicappedList.Where(x => x.TalukaCode == Model.TalukaList[i].Tal_Code).ToList()).Count; j++)
+                                        {
+
+                                            <tr>
+                                                <td>@(j + 1)</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].ApplicationNumber</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].Component</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].District_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].Taluka_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].VillageName</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].AadharNo</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].Name</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].PhNo</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].Gender</td>
+                                                <td>@Model.SelectedList1.SelectedHandicappedList[j].ApplicantCrippled</td>
+                                                <td>SL_@Model.SelectedList1.SelectedHandicappedList[j].Component+_@(j + 1)</td>
+                                            </tr>
+                                        }
+                                    }
+
+                                    if (Model.SelectedList1.SelectedFemaleList != null)
+                                    {
+                                        for (int j = 0; j < (Model.SelectedList1.SelectedFemaleList.Where(x => x.TalukaCode == Model.TalukaList[i].Tal_Code).ToList()).Count; j++)
+                                        {
+                                            <tr>
+                                                <td>@(j + 1)</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].ApplicationNumber</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].Component</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].District_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].Taluka_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].VillageName</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].AadharNo</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].Name</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].PhNo</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].Gender</td>
+                                                <td>@Model.SelectedList1.SelectedFemaleList[j].ApplicantCrippled</td>
+                                                <td>SL_@Model.SelectedList1.SelectedFemaleList[j].Component+_@(j + 1)</td>
+                                            </tr>
+                                        }
+                                    }
+
+
+                                    if (Model.SelectedList1.SelectedGeneralList != null)
+                                    {
+                                        for (int j = 0; j < (Model.SelectedList1.SelectedGeneralList.Where(x => x.TalukaCode == Model.TalukaList[i].Tal_Code).ToList()).Count; j++)
+                                        {
+                                            <tr>
+                                                <td>@(j + 1)</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].ApplicationNumber</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].Component</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].District_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].Taluka_Mr</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].VillageName</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].AadharNo</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].Name</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].PhNo</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].Gender</td>
+                                                <td>@Model.SelectedList1.SelectedGeneralList[j].ApplicantCrippled</td>
+                                                <td>SL_@Model.SelectedList1.SelectedGeneralList[j].Component+_@(j + 1)</td>
+                                            </tr>
+                                        }
+                                    }
+
+
+
                                 }
                             </tbody>
                         </table>
+
+                        <div id="tab6" style="display:none">
+                            <h4> Waiting List</h4>
+                            <div class="lds-ellipsis text-center" style="margin-left:48%"><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"></div><div style="background:#183059"> </div></div>
+                            <table class="table table-bordered table-striped table-responsive" id="table4">
+                                <thead>
+                                    <tr>
+                                        <th>Sr. No.</th>
+                                        <th>Application Number</th>
+                                        <th>Component</th>
+                                        <th>District</th>
+                                        <th>Taluka</th>
+                                        <th>Village</th>
+                                        <th>Aadhar Number</th>
+                                        <th>Name</th>
+                                        <th>Phone No.</th>
+                                        <th>Gender</th>
+                                        <th>Handicapped?</th>
+                                        <th>Selected Number</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int i = 0; i < Model.SelectedList.WaitingList.Count; i++)
+                                    {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.SelectedList.WaitingList[i].ApplicationNumber</td>
+                                            <td>@Model.SelectedList.WaitingList[i].Component</td>
+                                            <td>@Model.SelectedList.WaitingList[i].District_Mr</td>
+                                            <td>@Model.SelectedList.WaitingList[i].Taluka_Mr</td>
+                                            <td>@Model.SelectedList.WaitingList[i].VillageName</td>
+                                            <td>@Model.SelectedList.WaitingList[i].AadharNo</td>
+                                            <td>@Model.SelectedList.WaitingList[i].Name</td>
+                                            <td>@Model.SelectedList.WaitingList[i].PhNo</td>
+                                            <td>@Model.SelectedList.WaitingList[i].Gender</td>
+                                            <td>@Model.SelectedList.WaitingList[i].ApplicantCrippled</td>
+                                            <td>WL_@Model.SelectedList.WaitingList[i].Component+_@(i + 1)</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @Html.HiddenFor(x => x.TCount)
+                        </div>
                         <div class="panel-footer text-center">
-                            <a class="btn btn-info" href="#" id="btnExport">Export</a>
-                            <a class="btn btn-danger" id="btnPublish" href="@Url.Action("Publish", "ApplicantRegistrations", new { distCode = Model.district})">Publish</a>
+                            <a class="btn btn-info" href="@Url.Action("PreliminaryList", "ApplicantRegistrations", new { distCode = Model.district})" id="btnExport">Export</a>
+                            @*<a class="btn btn-danger" target="_blank" id="btnPublish" href="@Url.Action("Publish", "ApplicantRegistrations", new { distCode = Model.district})">Publish</a>*@
                         </div>
                     </div>
+
                 }
             </div>
         </div>
     </div>
 </div>
+
 <script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js" type="text/javascript"></script>
@@ -1223,7 +1473,8 @@
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js" type="text/javascript"></script>
 
 <script>
-    $('#table1').DataTable({
+
+    $('#tblStats').DataTable({
         dom: 'Bfrtip',
         buttons: [
             { extend: 'copyHtml5', footer: true },
@@ -1232,50 +1483,34 @@
             { extend: 'pdfHtml5', footer: true },
             { extend: 'print', footer: true }
         ],
-        "paging": false
+        "paging": false,
+        "ordering": false,
+        "bSort" : false
     });
-      $('#table2').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            { extend: 'copyHtml5', footer: true },
-            { extend: 'excelHtml5', footer: true },
-            { extend: 'csvHtml5', footer: true },
-            { extend: 'pdfHtml5', footer: true },
-            { extend: 'print', footer: true }
-        ],
-        "paging": false
-      });
-      $('#table3').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            { extend: 'copyHtml5', footer: true },
-            { extend: 'excelHtml5', footer: true },
-            { extend: 'csvHtml5', footer: true },
-            { extend: 'pdfHtml5', footer: true },
-            { extend: 'print', footer: true }
-        ],
-        "paging": false
-      });
-      $('#table4').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            { extend: 'copyHtml5', footer: true },
-            { extend: 'excelHtml5', footer: true },
-            { extend: 'csvHtml5', footer: true },
-            { extend: 'pdfHtml5', footer: true },
-            { extend: 'print', footer: true }
-        ],
-        "paging": false
-    });
+
+
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var dateNow = new Date('@DateTime.Now');
+       var d = '@Model.isGenerated';
+
+        var dateNow = new Date('@Model.CurrentTime');
+
         var enableDate = new Date('@Model.Timer.EnableDate.Value');
         //alert(dateNow);
+
         if (dateNow >= enableDate) {
-           // alert(@Model.Timer.EnableDate.Value);
+            $("#btnText").empty();
+            $("#demo").hide();
+            $("#btnText").text("Click below to generate list");
+            if (d == 'True') {
+            $("#btnGenerate").prop("disabled", true);
+            }
+            else {
             $("#btnGenerate").prop("disabled", false);
+
+            }
+
         }
         $("#link1").click(function () {
             $("#tab1").toggle();
@@ -1299,11 +1534,21 @@
             $("#tab5").hide();
         });
         $("#link4").click(function () {
-               $("#tab4").toggle();
+           // $("#tab4").toggle();
             $("#tab3").hide();
             $("#tab1").hide();
             $("#tab2").hide();
-            $("#tab5").hide();
+          //  $("#tab5").hide();
+               if (d  == 'True') {
+                $("#tab4").hide();
+                   $("#tab5").show();
+                   $("#tab6").show();
+               }
+
+            else {
+                  $("#tab4").toggle();
+                $("#tab5").hide();
+            }
         });
 
 
@@ -1328,7 +1573,7 @@
     });
 </script>
 <script>
-    $("#btnGenerate").click(function () {
+    $("#btnGenerate1").click(function () {
        // $('.se-pre-con').show();
         var District = $("#district").val();
         $.ajax({
@@ -1342,8 +1587,8 @@
             data: {  distCode: District },
             success: function (result) {
 
-                $('#table1 tbody').empty();
-
+              //  $('#table1 tbody').empty();
+                table1.empty();
                 $.each(result.SelectedList.SelectedHandicappedList, function (i, item) {
                         var rows = "<tr>"
                             + "<td>" + (i+1) + "</td>"
@@ -1358,10 +1603,20 @@
                             + "<td>" + item.ApplicantCrippled + "</td>"
                             + "<td>" + "SL_" + item.Component +"_" + i + "</td>"
                             + "</tr>";
-                    $('#table1 tbody').append(rows);
-                      
+                    //$('#table1 tbody').append(rows);
+                      table1.append(rows);
                 });
-
+                table1.DataTable({
+                    //dom: 'Bfrtip',
+                    buttons: [
+                        { extend: 'copyHtml5', footer: true },
+                        { extend: 'excelHtml5', footer: true },
+                        { extend: 'csvHtml5', footer: true },
+                        { extend: 'pdfHtml5', footer: true },
+                        { extend: 'print', footer: true }
+                    ],
+                    "paging": false
+                });
                 //new $.fn.dataTable.Buttons( table1, {
                 //        buttons: [
                 //            'copy', 'excel', 'pdf'
@@ -1386,7 +1641,7 @@
                         + "</tr>";
                     $('#table2 tbody').append(rows);
                 });
-               
+
                 $('#table3 tbody').empty();
                 $.each(result.SelectedList.SelectedGeneralList, function (i, item) {
                     var rows = "<tr>"
@@ -1405,9 +1660,6 @@
                     $('#table3 tbody').append(rows);
                 });
 
-              
-
-                //$("#btnGenerateWaiting").click();
                 $('#tab5').show();
 
             },
@@ -1416,7 +1668,7 @@
                 $('.se-pre-con').hide();
 
 
-                $.ajax({
+          $.ajax({
             type: 'GET',
             beforeSend: function () {
                 // Show image container
@@ -1445,15 +1697,8 @@
                     $('#table4 tbody').append(rows);
                 });
 
-                
+                $('#tab4').hide();
                 $('#tab5').show();
-                //$('#table1').ajax.reload();
-
-                //$('#table2').ajax.reload();
-
-                //$('#table3').ajax.reload();
-
-                //$('#table4').ajax.reload();
 
                     },
                     complete: function (data) {
@@ -1465,51 +1710,226 @@
             }
         });
     });
-          
-     $("#btnGenerateWaiting").click(function () {
-       // $('.se-pre-con').show();
+</script>
+
+<script>
+    $("#btnGenerate").click(function () {
         var District = $("#district").val();
-        $.ajax({
-            type: 'GET',
-            beforeSend: function () {
+        //var talukaList = $("#TalukaList").val();
+        var tCount = $("#TCount").val();
+      // alert(tCount);
+           // var talCode = item3.Tal_Code;
+            $.ajax({
+                type: 'GET',
+               beforeSend: function () {
                 // Show image container
-                $('.se-pre-con').show();
-            },
-            url: '@Url.Action("SelectWaitingList", "ApplicantRegistrations", new { distCode = Model.district})',
-            dataType: 'json',
-            data: {  distCode: District },
-            success: function (result) {
-
-                $('#table4 tbody').empty();
-                $.each(result.SelectedList.WaitingList, function (i, item) {
-                    var rows = "<tr>"
-                        + "<td>" + (i + 1) + "</td>"
-                        + "<td>" + item.ApplicationNumber + "</td>"
-                        + "<td>" + item.District_Mr + "</td>"
-                        + "<td>" + item.Taluka_Mr + "</td>"
-                        + "<td>" + item.VillageName + "</td>"
-                        + "<td>" + item.AadharNo + "</td>"
-                        + "<td>" + item.Name + "</td>"
-                        + "<td>" + item.PhNo + "</td>"
-                        + "<td>" + item.Gender + "</td>"
-                        + "<td>" + item.ApplicantCrippled + "</td>"
-                        + "<td>" + "WL_" + item.Component + "_" + i + "</td>"
+                $('.se-pre-con1').show();
+                 },
+                url: '@Url.Action("SelectList1", "ApplicantRegistrations", new { distCode = Model.district})',
+                dataType: 'json',
+                data: { distCode: District},
+                success: function (result) {
+                  //  alert(result);
+                   $('#table5 tbody').empty();
+                     var rowsH = "<tr>"
+                                + "<td colspan='12'>"+"Handicapped List" +"</td>"
                         + "</tr>";
-                    $('#table4 tbody').append(rows);
-                });
-                $('#table1').hide();
-                $('#table2').hide();
-                $('#table3').hide();
-                $('#table4').hide();
-                $('#tab5').show();
+                  //   $('#table5 tbody').append(rowsH);
+                     $.each(result.SelectedList1.SelectedHandicappedList, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + (i + 1) + "</td>"
+                                + "<td>" + item.ApplicationNumber + "</td>"
+                                  + "<td>" + item.Component + "</td>"
+                                + "<td>" + item.District_Mr + "</td>"
+                                + "<td>" + item.Taluka_Mr + "</td>"
+                                + "<td>" + item.VillageName + "</td>"
+                                + "<td>" + item.AadharNo + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                                + "<td>" + item.PhNo + "</td>"
+                                + "<td>" + item.Gender + "</td>"
+                                + "<td>" + item.ApplicantCrippled + "</td>"
+                                + "<td>" + "SL_" + item.Component + "_" + i + "</td>"
+                                + "</tr>";
+                            $('#table5 tbody').append(rows);
+                     });
+                       var rowsF = "<tr>"
+                                + "<td colspan='12'>"+"Female List" +"</td>"
+                        + "</tr>";
+                        // $('#table5 tbody').append(rowsF);
+                        $.each(result.SelectedList1.SelectedFemaleList, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + (i + 1) + "</td>"
+                                + "<td>" + item.ApplicationNumber + "</td>"
+                                    + "<td>" + item.Component + "</td>"
+                                + "<td>" + item.District_Mr + "</td>"
+                                + "<td>" + item.Taluka_Mr + "</td>"
+                                + "<td>" + item.VillageName + "</td>"
+                                + "<td>" + item.AadharNo + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                                + "<td>" + item.PhNo + "</td>"
+                                + "<td>" + item.Gender + "</td>"
+                                + "<td>" + item.ApplicantCrippled + "</td>"
+                                + "<td>" + "SL_" + item.Component + "_" + i + "</td>"
+                                + "</tr>";
+                            $('#table5 tbody').append(rows);
+                        });
 
-            },
-            complete: function (data) {
-                // Hide image container
-                $('.se-pre-con').hide();
-            }
-        });
+
+                        $('.se-pre-con1').hide();
+                        $('#tab5').show();
+                        var k = result.TCount;
+
+                        console.log(tCount);
+                         getMoreData(k);
+
+                        $("#btnGenerate").prop("disabled", true);
+
+
+                },
+                complete: function () {
+
+
+                }
+            });
+
+       // });
     });
+
+    function getMoreData(count) {
+        var District = $("#district").val();
+        //console.log(count);
+        $('.lds-ellipsis-new').show();
+            $.ajax({
+                type: 'GET',
+
+                url: '@Url.Action("SelectList2", "ApplicantRegistrations", new { distCode = Model.district})',
+                dataType: 'json',
+                data: { distCode: District},
+                success: function (result) {
+                    console.log(count);
+                    $('#table5 tbody').empty();
+
+                     var rowsH = "<tr style='background:#183059;color:white;text-align:center'>"
+                                + "<td colspan='12'>"+"Handicapped List" +"</td>"
+                        + "</tr>";
+                    $('#table5 tbody').append(rowsH);
+
+
+                     $.each(result.SelectedList1.SelectedHandicappedList, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + (i + 1) + "</td>"
+                                + "<td>" + item.ApplicationNumber + "</td>"
+                                    + "<td>" + item.Component + "</td>"
+                                + "<td>" + item.District_Mr + "</td>"
+                                + "<td>" + item.Taluka_Mr + "</td>"
+                                + "<td>" + item.VillageName + "</td>"
+                                + "<td>" + item.AadharNo + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                                + "<td>" + item.PhNo + "</td>"
+                                + "<td>" + item.Gender + "</td>"
+                                + "<td>" + item.ApplicantCrippled + "</td>"
+                                + "<td>" + "SL_" + item.Component + "_" + i + "</td>"
+                                + "</tr>";
+                            $('#table5 tbody').append(rows);
+                     });
+                     var rowsF = "<tr style='background-color:#C46D73;color:white;text-align:center'>"
+                                + "<td colspan='12'>"+"Female List" +"</td>"
+                        + "</tr>";
+                    $('#table5 tbody').append(rowsF);
+                        $.each(result.SelectedList1.SelectedFemaleList, function (i, item) {
+                            var rows = "<tr>"
+                                + "<td>" + (i + 1) + "</td>"
+                                + "<td>" + item.ApplicationNumber + "</td>"
+                                + "<td>" + item.Component + "</td>"
+                                + "<td>" + item.District_Mr + "</td>"
+                                + "<td>" + item.Taluka_Mr + "</td>"
+                                + "<td>" + item.VillageName + "</td>"
+                                + "<td>" + item.AadharNo + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                                + "<td>" + item.PhNo + "</td>"
+                                + "<td>" + item.Gender + "</td>"
+                                + "<td>" + item.ApplicantCrippled + "</td>"
+                                + "<td>" + "SL_" + item.Component + "_" + i + "</td>"
+                                + "</tr>";
+                            $('#table5 tbody').append(rows);
+                        });
+                     var rowsG = "<tr style='background-color:#0294A5;color:white;text-align:center'>"
+                                + "<td colspan='12'>"+"General List" +"</td>"
+                        + "</tr>";
+                    var rowT = "<tr style='background-color:#0294A5;color:white;text-align:center'>"
+                                + "<td colspan='12'>"+ " " +"</td>"
+                        + "</tr>";
+                    $('#table5 tbody').append(rowsG);
+                    $.each(result.SelectedList1.SelectedGeneralList, function (i, item) {
+                               console.log(item.Taluka_Mr);
+                            rowT = "<tr style='background-color:#716D77;color:white;text-align:center'>"
+                                + "<td colspan='12'>" + item.Taluka_Mr + "</td>"
+                                + "</tr>";
+                            var rows = "<tr>"
+                                + "<td>" + (i + 1) + "</td>"
+                                + "<td>" + item.ApplicationNumber + "</td>"
+                                + "<td>" + item.Component + "</td>"
+                                + "<td>" + item.District_Mr + "</td>"
+                                + "<td>" + item.Taluka_Mr + "</td>"
+                                + "<td>" + item.VillageName + "</td>"
+                                + "<td>" + item.AadharNo + "</td>"
+                                + "<td>" + item.Name + "</td>"
+                                + "<td>" + item.PhNo + "</td>"
+                                + "<td>" + item.Gender + "</td>"
+                                + "<td>" + item.ApplicantCrippled + "</td>"
+                                + "<td>" + "SL_" + item.Component + "_" + i + "</td>"
+                                + "</tr>";
+
+                            $('#table5 tbody').append(rows);
+                    });
+                       $('#tab6').show();
+                      $('.lds-ellipsis').show();
+                       $.ajax({
+                        type: 'GET',
+
+                        url: '@Url.Action("SelectWaitingList", "ApplicantRegistrations", new { distCode = Model.district})',
+                        dataType: 'json',
+                        data: {  distCode: District },
+                        success: function (result) {
+
+                            $('#table4 tbody').empty();
+                            $.each(result.SelectedList.WaitingList, function (i, item) {
+                                var rows = "<tr>"
+                                    + "<td>" + (i + 1) + "</td>"
+                                    + "<td>" + item.ApplicationNumber + "</td>"
+                                    + "<td>" + item.Component + "</td>"
+                                    + "<td>" + item.District_Mr + "</td>"
+                                    + "<td>" + item.Taluka_Mr + "</td>"
+                                    + "<td>" + item.VillageName + "</td>"
+                                    + "<td>" + item.AadharNo + "</td>"
+                                    + "<td>" + item.Name + "</td>"
+                                    + "<td>" + item.PhNo + "</td>"
+                                    + "<td>" + item.Gender + "</td>"
+                                    + "<td>" + item.ApplicantCrippled + "</td>"
+                                    + "<td>" + "WL_" + item.Component + "_" + i + "</td>"
+                                    + "</tr>";
+                                $('#table4 tbody').append(rows);
+                            });
+
+
+
+                                },
+                                complete: function (data) {
+                                    // Hide image container
+                                    $('.lds-ellipsis').hide();
+
+                                }
+                          });
+
+
+                },
+                complete: function () {
+                     $('.lds-ellipsis-new').hide();
+                }
+            });
+    }
+</script>
+<script>
     $("#Component").change(function () {
         var District = "@Model.DistName";
 
@@ -1533,7 +1953,8 @@
         });
         return false;
 });
-
+</script>
+<script>
       $("#btnShow").click(function () {
           var Comp = $("#Component option:selected").val();
           var District =  $("#DistName").val();
@@ -1649,8 +2070,9 @@
                             $('#divcomp1taluka').hide();
                             $('#divcomp2taluka').hide();
                             $('#divcomp3taluka').hide();
-                              $('#divcomp4taluka').hide();
+                            $('#divcomp4taluka').hide();
                         }
+
                            else  if (Comp == "1" && taluka != "0") {
 
                               $('#comptaluka1 tbody').empty();
@@ -1766,14 +2188,14 @@
 
                      },
                     error: function(ex) {
-                alert('Failed.' + ex);
-            }
+                            alert('Failed.' + ex);
+                        }
         });
         return false;
 });
 </script>
 <script>
-        var countDownDate = new Date("@Model.Timer.EnableDate.Value").getTime();
+ var countDownDate = new Date("@Model.Timer.EnableDate.Value").getTime();
 
 // Update the count down every 1 second
 var x = setInterval(function() {
@@ -1796,8 +2218,9 @@ var x = setInterval(function() {
 
   // If the count down is over, write some text
   if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
+      clearInterval(x);
+      $("#btnGenerate").prop("disabled", false);
+   $("#demo").hide();
   }
 }, 1000);
 </script>

@@ -48,5 +48,21 @@ namespace Mahamesh.Models
 
         [NotMapped]
         public SelectedListViewModel SelectedList { get; set; }
+        [NotMapped]
+        public SelectedListViewModel SelectedList1 { get; set; }
+
+        [NotMapped]
+        public SelectedListViewModel SelectedList2 { get; set; }
+
+        [NotMapped]
+        public List<TalMaster> TalukaList { get; set; }
+
+        [NotMapped]
+        public int TCount { get; set; }
+
+        [NotMapped]
+        public bool isGenerated { get; set; }
+        [NotMapped]
+        public DateTime CurrentTime { get; set; }
     }
 }

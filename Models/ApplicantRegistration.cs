@@ -229,7 +229,13 @@ namespace Mahamesh.Models
         public string ReshanCard { get; set; }
         [Display(Name = "HamiPtra ")]
         public string HamiPtra { get; set; }
+        [Display(Name = "TrainingCertificate ")]
+        public string TrainingCertificate { get; set; }
+        [Display(Name = "ShedCertificate ")]
+        public string ShedCertificate { get; set; }
         /////////////////////////////////////////////////////////////////////
+        ///
+        public string FolderId { get; set; }
     }
 
     public enum Components

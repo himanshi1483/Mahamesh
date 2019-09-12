@@ -27,7 +27,7 @@
                     <div class="btn-group-vertical">
                         <button class="btn btn-info" style="margin-bottom:5px"><a target="_blank"  style="color:white !important" href="@Url.Action("Details", "ApplicantRegistrations", new { @id = Model.Id})">View Submitted Application</a></button>
                         <button class="btn btn-warning"style="margin-bottom:5px"><a target="_blank"  style="color:white !important" href="@Url.Action("GenerateReceipt", "ApplicantRegistrations", new { @id = Model.Id})">View Application Receipt</a></button>
-                        <button class="btn btn-primary"style="margin-bottom:5px;color:white !important" onclick="alertFunction()">Upload Documents</button>
+                        <button class="btn btn-primary"style="margin-bottom:5px;color:white !important"><a target="_blank" style="color:white !important" href="@Url.Action("UploadDocuments", "Menu", new { @id = Model.Id})">Upload Documents</a></button>
                         <button class="btn btn-danger" style="margin-bottom:5px"><a href="@Url.Action("Index", "Home")"  style="color:white !important">Log-out</a></button>
                     </div>
                 </div>

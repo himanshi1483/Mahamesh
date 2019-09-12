@@ -56,6 +56,24 @@
     <Reference Include="Common.Logging.Core, Version=3.4.1.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <HintPath>packages\Common.Logging.Core.3.4.1\lib\net40\Common.Logging.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.41.1\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.41.1\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Auth.1.41.1\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Core.1.41.1\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Drive.v3, Version=1.41.1.1705, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Drive.v3.1.41.1.1705\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.1.41.1\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
     <Reference Include="itext.barcodes, Version=7.1.7.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>packages\itext7.7.1.7\lib\net40\itext.barcodes.dll</HintPath>
     </Reference>
@@ -513,6 +531,14 @@
     <Compile Include="Migrations\201909080748314_init0021.Designer.cs">
       <DependentUpon>201909080748314_init0021.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909120743257_init41.cs" />
+    <Compile Include="Migrations\201909120743257_init41.Designer.cs">
+      <DependentUpon>201909120743257_init41.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909121224051_init411.cs" />
+    <Compile Include="Migrations\201909121224051_init411.Designer.cs">
+      <DependentUpon>201909121224051_init411.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -550,6 +576,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\loading.gif" />
+    <Content Include="Content\tenor.gif" />
     <Content Include="Content\Varsity\404.html" />
     <Content Include="Content\Varsity\assets\css\bootstrap.css" />
     <Content Include="Content\Varsity\assets\css\custom.min.css" />
@@ -635,6 +662,7 @@
     <Content Include="Content\Varsity\index.html" />
     <Content Include="Content\Varsity\mdb.lite.min.css" />
     <Content Include="Content\Varsity\ui.css" />
+    <Content Include="Content\vfs-fonts.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -717,8 +745,10 @@
     <Content Include="robots.txt" />
     <Content Include="Rotativa\help-wkhtmltoimage.txt" />
     <Content Include="Rotativa\help-wkhtmltopdf.txt" />
-    <Content Include="Rotativa\wkhtmltoimage.exe" />
-    <Content Include="Rotativa\wkhtmltopdf.exe" />
+    <Content Include="Rotativa\msvcp120.dll" />
+    <Content Include="Rotativa\msvcp140.dll" />
+    <Content Include="Rotativa\msvcr120.dll" />
+    <Content Include="Rotativa\vcruntime140.dll" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\Varsity\assets\fonts\fontawesome-webfont.eot" />
@@ -802,6 +832,9 @@
     <Content Include="Content\Varsity\assets\fonts\Sarai_07.ttf" />
     <Content Include="Documents\Mahamesh.apk" />
     <Content Include="App_Browsers\qt.browser" />
+    <Content Include="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -1009,6 +1042,7 @@
     <Content Include="Views\Shared\SelectRandomList.cshtml" />
     <Content Include="Views\Shared\PreliminaryList.cshtml" />
     <Content Include="Views\Menu\PrelimBeneficiary.cshtml" />
+    <Content Include="Views\Menu\UploadDocuments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1238,6 +1272,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909080748314_init0021.resx">
       <DependentUpon>201909080748314_init0021.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909120743257_init41.resx">
+      <DependentUpon>201909120743257_init41.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909121224051_init411.resx">
+      <DependentUpon>201909121224051_init411.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

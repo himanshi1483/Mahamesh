@@ -1,14 +1,21 @@
-﻿using Mahamesh.Models;
+﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using Mahamesh.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using static Mahamesh.FilterConfig;
+using DriveService = Google.Apis.Drive.v3.DriveService;
 
 namespace Mahamesh.Controllers
 {
@@ -17,7 +24,9 @@ namespace Mahamesh.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
-
+        private readonly DriveService _service;
+        static string[] Scopes = { DriveService.Scope.Drive, DriveService.Scope.DriveFile, DriveService.Scope.DriveMetadata, DriveService.Scope.DriveAppdata};
+        static string ApplicationName = "Mahamesh";
         public MenuController()
         {
         }
@@ -650,8 +659,9 @@ namespace Mahamesh.Controllers
 
             return RedirectToAction("MahameshYojanaOfficerLogin");
         }
+        private static TimeZoneInfo INDIAN_ZONE = TimeZoneInfo.FindSystemTimeZoneById("India Standard Time");
 
-      //  [NoDirectAccess]
+        //  [NoDirectAccess]
         public ActionResult OfficerDashboard(string username)
         {
             var list = db.OfficerLogins.ToList();
@@ -659,13 +669,16 @@ namespace Mahamesh.Controllers
             var distTarget = db.DistrictTarget.ToList();
             var talukaTarg = db.TalukaTarget.ToList();
             var distMaster = db.DistMaster.ToList();
-            var talMaster = db.TalMaster.ToList();
             var model = new OfficerLogin();
             model = officer;
             var timer = db.DistrictCountdown.Where(x => x.DistCode == model.district).FirstOrDefault();
-            TimeSpan remaining = timer.EnableDate.Value - DateTime.Now.Date;
            
+           
+            var talMaster = db.TalMaster.Where(x => x.Dist_Code == model.district).ToList();
+            model.TalukaList = talMaster;
+            model.TCount = talMaster.Count;
             model.DistName = distMaster.Where(x => x.Dist_Code == model.district).Select(x => x.DistName).FirstOrDefault();
+            model.isGenerated = db.SelectedGeneral.Any(x => x.DistCode == model.district);
             model.OfficerList = list.Where(x => x.district == model.district && (x.desgination == "LDO" || x.desgination == "DAHO")).ToList();
             foreach (var item in model.OfficerList)
             {
@@ -674,7 +687,9 @@ namespace Mahamesh.Controllers
             var dist_mr = distMaster.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
             getDistrict();
             model.Timer = timer;
-            var model1 = new PhysicalTargetViewModel();
+            DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
+            model.CurrentTime = indianTime;
+             var model1 = new PhysicalTargetViewModel();
             model.Component = model1.Component;
             var list1 = new List<PhysicalTargetViewModel>();
             model1.Comp1TargetList = new List<Comp1Target>();
@@ -709,6 +724,43 @@ namespace Mahamesh.Controllers
                 model4.Component_No_1 = comp1_target;
                 model4.HandicapTarget_Component_No_1 = handicap_comp1target;
                 model4.FemaleTarget_Component_No_1 = female_comp1target;
+                model4.ApFemaleTarget_Component_No_1 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("1") && 
+                ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
+                        x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))))).Count();
+
+                model4.ApFemaleTarget_Component_No_2 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("2") && 
+                ((!(x.CompNumber.Contains("12")))))).Count();
+
+                model4.ApFemaleTarget_Component_No_3_7 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4")
+                || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) && ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15")))))).Count();
+                model4.ApFemaleTarget_Component_No_1 = applications.Where(x => x.Gender == "Female" || x.Gender == "स्त्री" && (x.CompNumber.Contains("1") && ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
+                        x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))))).Count();
+
+                model4.ApFemaleTarget_Component_No_8 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("8")).Count();
+                model4.ApFemaleTarget_Component_No_9 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("9")).Count();
+                model4.ApFemaleTarget_Component_No_10 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("10")).Count();
+                model4.ApFemaleTarget_Component_No_11 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("11")).Count();
+                model4.ApFemaleTarget_Component_No_12 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("12")).Count();
+                model4.ApFemaleTarget_Component_No_13 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("13")).Count();
+
+                //
+                model4.ApHandicapTarget_Component_No_1 = applications.Where(x =>x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("1") &&
+                ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
+                        x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))))).Count();
+
+                model4.ApHandicapTarget_Component_No_2 = applications.Where(x =>x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("2") &&
+                ((!(x.CompNumber.Contains("12")))))).Count();
+
+                model4.ApHandicapTarget_Component_No_3_7 = applications.Where(x =>x.ApplicantCrippled == "होय" && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4")
+                || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) && ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15")))))).Count();
+
+                model4.ApHandicapTarget_Component_No_8 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("8")).Count();
+
+                model4.ApHandicapTarget_Component_No_9 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("9")).Count();
+                model4.ApHandicapTarget_Component_No_10 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("10")).Count();
+                model4.ApHandicapTarget_Component_No_11 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("11")).Count();
+                model4.ApHandicapTarget_Component_No_12 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("12")).Count();
+                model4.ApHandicapTarget_Component_No_13 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("13")).Count();
                 //comp 2
                 var comp2_target = district.Component_No_2;
                 var handicap_comp2target = Math.Round(decimal.Multiply(3, comp2_target) / 100);
@@ -776,13 +828,16 @@ namespace Mahamesh.Controllers
                     {
                         var tal_applications = applications.Where(x => x.Tahashil == talCode && x.CompNumber != null).ToList();
                         Console.Write(talCode);
-                        talukaModel.Application_Component_No_1 = tal_applications.Where(x => x.CompNumber.Contains("1")).Count();
-                        talukaModel.Application_Component_No_2 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("2")).Count();
-                        talukaModel.Application_Component_No_3_7 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("3")).Count() +
-                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("4")).Count() +
-                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("5")).Count() +
-                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("6")).Count() +
-                            tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("8")).Count();
+                        talukaModel.Application_Component_No_1 = tal_applications.Where(x => x.CompNumber.Contains("1") && 
+                        (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") || 
+                        x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))).Count();
+                        talukaModel.Application_Component_No_2 = tal_applications.Where(x => x.Tahashil == talCode && (x.CompNumber.Contains("2") && 
+                        !(x.CompNumber.Contains("12")))).Count();
+
+                        talukaModel.Application_Component_No_3_7 = tal_applications.Where(x => x.Tahashil == talCode && (x.CompNumber.Contains("3") ||
+                        x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) && 
+                        (!(x.CompNumber.Contains("14")  || (x.CompNumber.Contains("13")) || (x.CompNumber.Contains("15"))))).Count(); 
+   
                         talukaModel.Application_Component_No_8 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("8")).Count();
                         talukaModel.Application_Component_No_9 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("9")).Count();
                         talukaModel.Application_Component_No_10 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("10")).Count();
@@ -809,9 +864,10 @@ namespace Mahamesh.Controllers
                     talukaModel.GeneralTarget_Component_No_11 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_11) / 100);
                     talukaModel.GeneralTarget_Component_No_12 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_12) / 100);
                     talukaModel.GeneralTarget_Component_No_13 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_13) / 100);
-
+                   
                     talukaList.Add(talukaModel);
                 }
+               // model4.HandicapTarget_Component_No_1 = 
                 model4.TalukaTarget = talukaList;
                 _list.Add(model4);
 
@@ -822,6 +878,36 @@ namespace Mahamesh.Controllers
             model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
             model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
             model.SelectedList.WaitingList = new List<SelectedGeneral>();
+            model.SelectedList1 = new SelectedListViewModel();
+            model.SelectedList1.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
+            model.SelectedList.WaitingList = new List<SelectedGeneral>();
+            var data = db.SelectedFemale.Where(x => x.DistCode == model.district).ToList();
+            if(data.Count > 0)
+            {
+                model.SelectedList1.SelectedFemaleList = data;
+            }
+            var data1 = db.SelectedHandicapped.Where(x => x.DistCode == model.district).ToList();
+            if (data1.Count > 0)
+            {
+                model.SelectedList1.SelectedHandicappedList = data1;
+            }
+            var data2 = db.SelectedGeneral.Where(x => x.DistCode == model.district && x.Type == "Selected").ToList();
+            if (data2.Count > 0)
+            {
+                model.SelectedList1.SelectedGeneralList = data2;
+                model.isGenerated = true;
+            }
+            else
+            {
+                model.isGenerated = false;
+            }
+            var data3 = db.SelectedGeneral.Where(x => x.DistCode == model.district && x.Type == "Waiting").ToList();
+            if (data3.Count > 0)
+            {
+                model.SelectedList.WaitingList = data3;
+            }
             //ApplicantRegistrationsController ctrl = new ApplicantRegistrationsController();
             //ctrl.SelectRandomList(model.district);
             model.NewTarget = target;
@@ -1014,5 +1100,275 @@ namespace Mahamesh.Controllers
         {
             return View();
         }
+
+        public ActionResult UploadDocuments(int id)
+        {
+         
+            var model = new ApplicantRegistration();
+            model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault(); var applicationTime = new ApplicantRegistration();
+            model.appDuration = db.ApplicationDuration.FirstOrDefault();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UploadDocuments(ApplicantRegistration model, HttpPostedFileBase AdharCardFU, HttpPostedFileBase ReshanCard, HttpPostedFileBase LivestockDevOffCertificate
+            , HttpPostedFileBase CasteCertificate, HttpPostedFileBase ResidentCertificate, HttpPostedFileBase Childcertificate, HttpPostedFileBase FU712Certificate, HttpPostedFileBase TenancyAgreement,
+             HttpPostedFileBase FU712orIncomeCertificate, HttpPostedFileBase BachatMemberCertificate, HttpPostedFileBase CompanyMemberCertificate, HttpPostedFileBase DisabilityCertificate
+            , HttpPostedFileBase HamiPtra, HttpPostedFileBase TrainingCertificate, HttpPostedFileBase ShedCertificate)
+        {
+            UserCredential credential;
+
+            using (var stream =
+                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+            {
+                // The file token.json stores the user's access and refresh tokens, and is created
+                // automatically when the authorization flow completes for the first time.
+                string credPath = Server.MapPath("~/token.json");
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "admin",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+            // Create Drive API service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            model = db.ApplicantRegistrations.Where(x => x.Id == model.Id).FirstOrDefault();
+            var _parent = "";
+            if (model.FolderId == null)
+            {
+                _parent = createFolder(service, "Docs_" + model.AdharCardNo, "1SmRUlp_l9GwK-pmqWXCszEfQ1q3cRWVk", model.Id);
+                model.FolderId = _parent;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+            }
+            else
+                _parent = model.FolderId;
+
+            if (AdharCardFU != null && AdharCardFU.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(AdharCardFU.FileName);
+                var exten = Path.GetExtension(AdharCardFU.FileName);
+                int docId = 1;
+                var docPath = SaveToDrive(AdharCardFU, model.AdharCardNo, _parent, docId);
+                model.AdharCardFU = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (ResidentCertificate != null && ResidentCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(ResidentCertificate.FileName);
+                var exten = Path.GetExtension(ResidentCertificate.FileName);
+                int docId = 2;
+                var docPath = SaveToDrive(ResidentCertificate, model.AdharCardNo, _parent, docId);
+                model.ResidentCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (LivestockDevOffCertificate != null && LivestockDevOffCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(LivestockDevOffCertificate.FileName);
+                var exten = Path.GetExtension(LivestockDevOffCertificate.FileName);
+                int docId = 1;
+                var docPath = SaveToDrive(LivestockDevOffCertificate, model.AdharCardNo, _parent, docId);
+                model.LivestockDevOffCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            model.appDuration = db.ApplicationDuration.FirstOrDefault();
+
+            return View(model);
+        }
+
+        public string SaveToDrive(HttpPostedFileBase file1, long aadhar, string _parent, int docId)
+        {
+            UserCredential credential;
+
+            using (var stream =
+                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+            {
+                // The file token.json stores the user's access and refresh tokens, and is created
+                // automatically when the authorization flow completes for the first time.
+                string credPath = Server.MapPath("~/token.json");
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "admin",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+            // Create Drive API service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+           
+
+            Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+            body.Name = aadhar+"_"+docId+"_"+System.IO.Path.GetFileName(file1.FileName);
+            body.Description = "Mahamesh File";
+            body.MimeType = GetMimeType(file1.FileName);
+            if (!string.IsNullOrEmpty(_parent))
+            {
+                body.Parents = new List<string>() { _parent };
+            }
+
+
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            {
+                Name = file1.FileName,
+                Parents = new List<string>
+                {
+                    _parent
+                }
+            };
+
+            // File's content.
+            System.IO.BinaryReader b = new System.IO.BinaryReader(file1.InputStream);
+            byte[] byteArray = b.ReadBytes(file1.ContentLength);
+            System.IO.MemoryStream _stream = new System.IO.MemoryStream(byteArray);
+            try
+            {
+                FilesResource.CreateMediaUpload request = service.Files.Create(body, _stream, GetMimeType(file1.FileName));
+                request.Alt = FilesResource.CreateMediaUpload.AltEnum.Json;
+                request.Fields = "webViewLink";
+
+                request.Upload();
+                var d = request.ResponseBody;
+                return d.WebViewLink; 
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
+              
+        }
+
+        private static string GetMimeType(string fileName)
+        {
+            string mimeType = "application/unknown";
+            string ext = System.IO.Path.GetExtension(fileName).ToLower();
+            Microsoft.Win32.RegistryKey regKey = Microsoft.Win32.Registry.ClassesRoot.OpenSubKey(ext);
+            if (regKey != null && regKey.GetValue("Content Type") != null)
+            {
+                mimeType = regKey.GetValue("Content Type").ToString();
+            }
+
+            return mimeType;
+        }
+
+        #region StorageConfiguration
+        [HttpGet]
+        public string createDirectory()
+        {
+            UserCredential credential;
+
+            using (var stream =
+                new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+            {
+                // The file token.json stores the user's access and refresh tokens, and is created
+                // automatically when the authorization flow completes for the first time.
+                string credPath = Server.MapPath("~/token.json");
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "admin",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+
+            // Create Drive API service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+            Google.Apis.Drive.v3.Data.File NewDirectory = null;
+            string _parent = "AppFolder";
+            // Create metaData for a new Directory
+            Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+            body.Name = "Mahamesh";
+            body.Description = "";
+            body.MimeType = "application/vnd.google-apps.folder";
+            //body.Parents =  new List<string>() { "root" };
+            if (!string.IsNullOrEmpty(_parent))
+            {
+                body.Parents = new List<string>() { "root" };
+            };
+            //create parent folder for app
+            //   public static DriveService serv2 = new DriveService();
+            try
+            {
+                Google.Apis.Drive.v3.FilesResource.ListRequest checkDirectory = _service.Files.List();
+
+                //checkDirectory.Q = "name='PicAggo'";
+
+
+                // string folderId = checkDirectory.Execute().Files[0].Id;
+             
+               // FilesResource.CreateRequest request = serv2.Files.Create(body);
+                FilesResource.CreateRequest request = service.Files.Create(body);
+                NewDirectory = request.Execute();
+                return NewDirectory.Id;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+                return "";
+            }
+
+        }
+        public static string createFolder(DriveService _service, string _title, string _parent, int id)
+        {
+
+            Google.Apis.Drive.v3.Data.File NewDirectory = null;
+
+            // Create metaData for a new Directory
+            Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
+            body.Name = _title;
+            body.Description = "";
+            body.MimeType = "application/vnd.google-apps.folder";
+            //body.Parents = "root";
+            if (!string.IsNullOrEmpty(_parent))
+            {
+                body.Parents = new List<string>() { _parent };
+            };
+
+            //create parent folder for app
+            try
+            {
+                //FilesResource.ListRequest checkDirectory = _service.Files.Get("");
+                
+
+                FilesResource.CreateRequest request = _service.Files.Create(body);
+                NewDirectory = request.Execute();
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An error occurred: " + e.Message);
+            }
+          
+
+            return NewDirectory.Id;
+        }
+        #endregion
     }
 }

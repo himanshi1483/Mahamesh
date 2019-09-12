@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -30,7 +31,7 @@ namespace Mahamesh.Controllers
             model.ApplicantsListByTal = new List<ApplicationListsViewModel>();
             model.ApplicantsListByComp = new List<ApplicationListsViewModel>();
 
-            var list = db.ApplicantRegistrations.Where(x=>x.FormSubmitted == true).ToList();
+            var list = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
             var districts = db.DistMaster.ToList();
             var talukaList = db.TalMaster.ToList();
             var districtTarget = db.DistrictTarget.ToList();
@@ -1208,34 +1209,30 @@ namespace Mahamesh.Controllers
             var distMaster = db.DistMaster.ToList();
             var distName_Mr = distMaster.Where(x => x.Dist_Code == distCode).Select(x => x.District_Mr).FirstOrDefault();
             var distTarget = db.DistrictTarget.Where(x => x.Name_of_District == distName_Mr).FirstOrDefault();
-            var selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x=>x.ApplicationNumber).ToList();
+            var selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
             var talukaTarg = db.TalukaTarget.Where(x => x.Name_of_District == distName_Mr).ToList();
             var list = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == distCode && (!selected.Contains(x.ApplicationNumber))).ToList();
             var taluka = db.TalMaster.ToList();
             //comp 1
-          //  var comp1List = list.Where(x => x.CompNumber.Trim().Contains("1") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var comp1List = list.Where(x => x.CompNumber.Contains("1")).Select(x => x.Id).ToList();
             var comp1ListCount = distTarget.Component_No_1;
             //select 3% for handicapped
             var targetHandicapped = Math.Round(decimal.Multiply(3, comp1ListCount) / 100);
-
             //select 30% for females
-           // comp1List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp1ListCount = distTarget.Component_No_1;
             var targetFemale = Math.Round(decimal.Multiply(30, comp1ListCount) / 100);
-            
-            //taluka wise 67% 
+            var totalTaluka1 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-             var comp1List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp1ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
-                var targetTaluka = Math.Round(decimal.Multiply(67, comp1ListCount) / 100);
-
-                //Waiting List 1
+                totalTaluka1 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+            }
+           // foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
+           // {
                 comp1List = list.Where(x => x.CompNumber.Contains("1")).Select(x => x.Id).ToList();
-                //comp1ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1")).Count();
-                var waitingTarget = 5 * (targetFemale + targetHandicapped + targetTaluka);
-                IEnumerable<int> waitingRandomList = comp1List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
+
+                var targetTaluka1 = 5 * (targetFemale + targetHandicapped + totalTaluka1);
+                IEnumerable<int> waitingRandomList = comp1List.Shuffle().Take((Int32)targetTaluka1).Distinct();
+                foreach (var number in waitingRandomList.Distinct())
                 {
                     var gen_sel = new SelectedGeneral();
                     gen_sel.ApplicationId = number;
@@ -1249,7 +1246,7 @@ namespace Mahamesh.Controllers
                     gen_sel.ApplicantCrippled = data.ApplicantCrippled;
                     gen_sel.PhNo = data.PhNo;
                     gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
+                    gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
                     gen_sel.Name = data.ApName;
                     gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
                     gen_sel.TalukaCode = data.Tahashil.Value;
@@ -1257,385 +1254,321 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
-            }
+            //}
+            db.SaveChanges();
 
 
-            //comp2
-           // var comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("2") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
-            var comp2ListCount = distTarget.Component_No_2;
+            // comp2List = list.Where(x => x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
+            var comp2ListCount = distTarget.Component_No_1;
             //select 3% for handicapped
             var targetHandicapped2 = Math.Round(decimal.Multiply(3, comp2ListCount) / 100);
-
             //select 30% for females
-           // comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp2ListCount = distTarget.Component_No_2;
             var targetFemale2 = Math.Round(decimal.Multiply(30, comp2ListCount) / 100);
-            //taluka wise 67% 
+            var totalTaluka2 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-              //  comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp2ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_2).FirstOrDefault();
-                var targetTaluka2 = Math.Round(decimal.Multiply(67, comp2ListCount) / 100);
-
-                //Waiting List 2
-               var comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
-                var waitingTarget = 5 * (targetFemale2 + targetHandicapped2 + targetTaluka2);
-                IEnumerable<int> waitingRandomList = comp2List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 2;
-                    gen_sel.DistCode = distCode; gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka2 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_2).FirstOrDefault();
             }
+            var comp2List = list.Where(x => x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
 
-            //comp 3 -7
-            //var comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            //x.CompNumber.Trim().Contains("7")) && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var targetTaluka2 = 5 * (targetFemale2 + targetHandicapped2 + totalTaluka2);
+            IEnumerable<int> waitingRandomList2 = comp2List.Shuffle().Take((Int32)targetTaluka2).Distinct();
+            foreach (var number in waitingRandomList2.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 2;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
+
+            }
+           // }
+            db.SaveChanges();
+
+
+            var comp3List = list.Where(x => x.CompNumber.Contains("3") || x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6")
+            || x.CompNumber.Contains("7")).Select(x => x.Id).ToList();
             var comp3ListCount = distTarget.Component_No_3_7;
             //select 3% for handicapped
             var targetHandicapped3 = Math.Round(decimal.Multiply(3, comp3ListCount) / 100);
-
             //select 30% for females
-            //comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            //x.CompNumber.Trim().Contains("7")) && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp3ListCount = distTarget.Component_No_3_7;
             var targetFemale3 = Math.Round(decimal.Multiply(30, comp3ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka3 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-            //    comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            //x.CompNumber.Trim().Contains("7")) && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp3ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_3_7).FirstOrDefault();
-                var targetTaluka3 = Math.Round(decimal.Multiply(67, comp3ListCount) / 100);
-
-                //Waiting List 3
-              var comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            x.CompNumber.Trim().Contains("7"))).Select(x => x.Id).ToList();
-               
-                var waitingTarget = 5 * (targetFemale3 + targetHandicapped3 + targetTaluka3);
-                IEnumerable<int> waitingRandomList = comp3List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 3;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.Name = data.ApName;
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka3 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_3_7).FirstOrDefault();
             }
+            var targetTaluka3 = 5 * (targetFemale3 + targetHandicapped3 + totalTaluka3);
+            IEnumerable<int> waitingRandomList3 = comp1List.Shuffle().Take((Int32)targetTaluka3).Distinct();
+            foreach (var number in waitingRandomList3.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 3;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
+
+            }
+            db.SaveChanges();
 
 
-            //comp8
 
-           // var comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("8") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var comp8List = list.Where(x => x.CompNumber.Contains("8")).Select(x => x.Id).ToList();
             var comp8ListCount = distTarget.Component_No_8;
             //select 3% for handicapped
             var targetHandicapped8 = Math.Round(decimal.Multiply(3, comp8ListCount) / 100);
-
             //select 30% for females
-           // comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp8ListCount = distTarget.Component_No_8;
             var targetFemale8 = Math.Round(decimal.Multiply(30, comp8ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka8 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-               // comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp8ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_8).FirstOrDefault();
-                var targetTaluka8 = Math.Round(decimal.Multiply(67, comp8ListCount) / 100);
-
-                //Waiting List 8
-               var comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8")).Select(x => x.Id).ToList();
-                var waitingTarget = 5 * (targetFemale8 + targetHandicapped8 + targetTaluka8);
-                IEnumerable<int> waitingRandomList = comp8List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 8;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka8 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_8).FirstOrDefault();
             }
+            var targetTaluka8 = 5 * (targetFemale8 + targetHandicapped8 + totalTaluka8);
+            IEnumerable<int> waitingRandomList8 = comp8List.Shuffle().Take((Int32)targetTaluka8).Distinct();
+            foreach (var number in waitingRandomList8.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 8;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
+            }
+            db.SaveChanges();
 
-            //comp9
-           // var comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("9") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var comp9List = list.Where(x => x.CompNumber.Contains("9")).Select(x => x.Id).ToList();
             var comp9ListCount = distTarget.Component_No_9;
             //select 3% for handicapped
             var targetHandicapped9 = Math.Round(decimal.Multiply(3, comp9ListCount) / 100);
-
             //select 30% for females
-           // comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp9ListCount = distTarget.Component_No_9;
             var targetFemale9 = Math.Round(decimal.Multiply(30, comp9ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka9 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-               // comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp9ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
-                var targetTaluka9 = Math.Round(decimal.Multiply(67, comp9ListCount) / 100);
-
-                //Waiting List 9
-               var comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9")).Select(x => x.Id).ToList();
-               
-                var waitingTarget = 5 * (targetFemale9 + targetHandicapped9 + targetTaluka9);
-                IEnumerable<int> waitingRandomList = comp9List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 9;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka9 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
             }
+            var targetTaluka9 = 5 * (targetFemale9 + targetHandicapped9 + totalTaluka9);
+            IEnumerable<int> waitingRandomList9 = comp9List.Shuffle().Take((Int32)targetTaluka9).Distinct();
+            foreach (var number in waitingRandomList9.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 9;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
-            //comp 10
-           // var comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("10") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            }
+            db.SaveChanges();
+
+
+            var comp10List = list.Where(x => x.CompNumber.Contains("10")).Select(x => x.Id).ToList();
             var comp10ListCount = distTarget.Component_No_10;
             //select 3% for handicapped
             var targetHandicapped10 = Math.Round(decimal.Multiply(3, comp10ListCount) / 100);
-
             //select 30% for females
-           // comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp10ListCount = distTarget.Component_No_10;
             var targetFemale10 = Math.Round(decimal.Multiply(30, comp10ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka10 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-              //  comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp10ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_10).FirstOrDefault();
-                var targetTaluka10 = Math.Round(decimal.Multiply(67, comp10ListCount) / 100);
-
-                //Waiting List 10
-              var  comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10")).Select(x => x.Id).ToList();
-               
-                var waitingTarget = 5 * (targetFemale10 + targetHandicapped10 + targetTaluka10);
-                IEnumerable<int> waitingRandomList = comp10List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 10;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.Name = data.ApName;
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka10 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_10).FirstOrDefault();
             }
+            var targetTaluka10 = 5 * (targetFemale10 + targetHandicapped10 + totalTaluka10);
+            IEnumerable<int> waitingRandomList10 = comp10List.Shuffle().Take((Int32)targetTaluka10).Distinct();
+            foreach (var number in waitingRandomList10.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 10;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
-            //comp11
-          //  var comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("11") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            }
+            db.SaveChanges();
+
+
+
+            var comp11List = list.Where(x => x.CompNumber.Contains("11")).Select(x => x.Id).ToList();
             var comp11ListCount = distTarget.Component_No_11;
             //select 3% for handicapped
             var targetHandicapped11 = Math.Round(decimal.Multiply(3, comp11ListCount) / 100);
-
             //select 30% for females
-          //  comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp11ListCount = distTarget.Component_No_11;
             var targetFemale11 = Math.Round(decimal.Multiply(30, comp11ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka11 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-               // comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp11ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_11).FirstOrDefault();
-                var targetTaluka11 = Math.Round(decimal.Multiply(67, comp11ListCount) / 100);
-
-                //Waiting List 11
-               var comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11")).Select(x => x.Id).ToList();
-           
-                var waitingTarget = 5 * (targetFemale11 + targetHandicapped11 + targetTaluka11);
-                IEnumerable<int> waitingRandomList = comp11List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 11;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka11 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_11).FirstOrDefault();
             }
+            var targetTaluka11 = 5 * (targetFemale11 + targetHandicapped11 + totalTaluka11);
+            IEnumerable<int> waitingRandomList11 = comp11List.Shuffle().Take((Int32)targetTaluka11).Distinct();
+            foreach (var number in waitingRandomList11.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 11;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
+            }
+            db.SaveChanges();
 
-            //comp12
-          //  var comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("12") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var comp12List = list.Where(x => x.CompNumber.Contains("12")).Select(x => x.Id).ToList();
             var comp12ListCount = distTarget.Component_No_12;
             //select 3% for handicapped
             var targetHandicapped12 = Math.Round(decimal.Multiply(3, comp12ListCount) / 100);
-
             //select 30% for females
-          //  comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp12ListCount = distTarget.Component_No_12;
             var targetFemale12 = Math.Round(decimal.Multiply(30, comp12ListCount) / 100);
-
-            //taluka wise 67% 
+            var totalTaluka12 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-               // comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp12ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_12).FirstOrDefault();
-                var targetTaluka12 = Math.Round(decimal.Multiply(67, comp12ListCount) / 100);
-
-                //Waiting List 12
-              var  comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12")).Select(x => x.Id).ToList();
-           
-                var waitingTarget = 5 * (targetFemale12 + targetHandicapped12 + targetTaluka12);
-                IEnumerable<int> waitingRandomList = comp12List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 12;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
+                totalTaluka12 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_12).FirstOrDefault();
             }
+            var targetTaluka12 = 5 * (targetFemale12 + targetHandicapped12 + totalTaluka12);
+            IEnumerable<int> waitingRandomList12 = comp12List.Shuffle().Take((Int32)targetTaluka12).Distinct();
+            foreach (var number in waitingRandomList12.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 12;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
-            //comp 13
-            //var comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("13") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            }
+            db.SaveChanges();
+
+            var comp13List = list.Where(x => x.CompNumber.Contains("13")).Select(x => x.Id).ToList();
             var comp13ListCount = distTarget.Component_No_13;
             //select 3% for handicapped
             var targetHandicapped13 = Math.Round(decimal.Multiply(3, comp13ListCount) / 100);
             //select 30% for females
-           // comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp13ListCount = distTarget.Component_No_13;
             var targetFemale13 = Math.Round(decimal.Multiply(30, comp13ListCount) / 100);
-            //taluka wise 67% 
+            var totalTaluka13 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-              //  comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13") && x.Tahashil == item2.Tal_Code).Select(x => x.Id).ToList();
-                comp13ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
-                var targetTaluka13 = Math.Round(decimal.Multiply(67, comp13ListCount) / 100);
+                totalTaluka13 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
+            }
+            var targetTaluka13 = 5 * (targetFemale13 + targetHandicapped13 + totalTaluka13);
+            IEnumerable<int> waitingRandomList13 = comp13List.Shuffle().Take((Int32)targetTaluka13).Distinct();
+            foreach (var number in waitingRandomList13.Distinct())
+            {
+                var gen_sel = new SelectedGeneral();
+                gen_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                gen_sel.ApplicationNumber = data.ApplicationNumber;
+                gen_sel.Component = 13;
+                gen_sel.DistCode = distCode;
+                gen_sel.Type = "Waiting";
+                gen_sel.AadharNo = data.AdharCardNo;
+                gen_sel.Gender = data.Gender;
+                gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                gen_sel.PhNo = data.PhNo;
+                gen_sel.District_Mr = distName_Mr;
+                gen_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                gen_sel.Name = data.ApName;
+                gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                gen_sel.TalukaCode = data.Tahashil.Value;
+                gen_sel.CreatedOn = DateTime.Now;
+                db.SelectedGeneral.Add(gen_sel);
 
-                //Waiting List 13
-               var comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13")).Select(x => x.Id).ToList();
-          
-                var waitingTarget = 5 * (targetFemale13 + targetHandicapped13 + targetTaluka13);
-                IEnumerable<int> waitingRandomList = comp13List.Shuffle().Take((Int32)waitingTarget);
-                foreach (var number in waitingRandomList)
-                {
-                    var gen_sel = new SelectedGeneral();
-                    gen_sel.ApplicationId = number;
-                    var data = list.Where(x => x.Id == number).FirstOrDefault();
-                    gen_sel.ApplicationNumber = data.ApplicationNumber;
-                    gen_sel.Component = 13;
-                    gen_sel.DistCode = distCode;
-                    gen_sel.Type = "Waiting";
-                    gen_sel.AadharNo = data.AdharCardNo;
-                    gen_sel.Gender = data.Gender;
-                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-                    gen_sel.PhNo = data.PhNo;
-                    gen_sel.Name = data.ApName;
-                    gen_sel.District_Mr = distName_Mr;
-                    gen_sel.Taluka_Mr = item2.Tal_Mr;
-                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-                    gen_sel.TalukaCode = data.Tahashil.Value;
-                    gen_sel.CreatedOn = DateTime.Now;
-                    db.SelectedGeneral.Add(gen_sel);
-
-                }
             }
             db.SaveChanges();
 
@@ -1644,6 +1577,1075 @@ namespace Mahamesh.Controllers
             ofcrModel.SelectedList = model;
             return Json(ofcrModel, JsonRequestBehavior.AllowGet);
         }
+
+        public JsonResult SelectList1(int distCode)
+        {
+            db.Database.ExecuteSqlCommand("delete from [SelectedFemales] where DistCode =" + distCode);
+            db.Database.ExecuteSqlCommand("delete from [SelectedHandicappeds] where DistCode =" + distCode);
+            db.Database.ExecuteSqlCommand("delete from [SelectedGenerals] where Type = 'Selected' and DistCode =" + distCode);
+            var ofcrModel = new OfficerLogin();
+            var model = new SelectedListViewModel();
+            ofcrModel.SelectedList1 = new SelectedListViewModel();
+
+            var distMaster = db.DistMaster.ToList();
+            var selectedTaluka = db.SelectedGeneral.Where(x => x.DistCode == distCode).Select(x => x.TalukaCode).ToList();
+            var taluka = db.TalMaster.Where(x => x.Dist_Code == distCode).ToList();
+            var distName_Mr = distMaster.Where(x => x.Dist_Code == distCode).Select(x => x.District_Mr).FirstOrDefault();
+            var distTarget = db.DistrictTarget.Where(x => x.Name_of_District.Trim() == distName_Mr.Trim()).FirstOrDefault();
+            var talukaTarg = db.TalukaTarget.Where(x => x.Name_of_District.Trim() == distName_Mr.Trim()).ToList();
+            ofcrModel.TCount = taluka.Count;
+            var selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected.AddRange(selectedFemale);
+            selected.AddRange(selectedHandicapped);
+            var list = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == distCode && (!selected.Contains(x.ApplicationNumber))).ToList();
+
+
+            var comp1List = list.Where(x => (x.CompNumber.Trim().Contains("1") && (!(x.CompNumber.Contains("13") ||
+            x.CompNumber.Contains("11") || x.CompNumber.Contains("10") || x.CompNumber.Contains("12"))))
+            && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
+            var comp1ListCount = distTarget.Component_No_1;
+            //select 3% for handicapped
+            var targetHandicapped = Math.Round(decimal.Multiply(3, comp1ListCount) / 100);
+            IEnumerable<int> handicapRandomList = comp1List.Shuffle().Take((Int32)targetHandicapped).Distinct();
+            // var villMaster = db.VillageMaster.ToList();
+            foreach (var number in handicapRandomList)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 1;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+
+            }
+            db.SaveChanges();
+           // selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            //females
+            var selected2 = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            //selected2.AddRange(selectedHandicapped);
+            comp1List = list.Where(x => x.Dist == distCode && (x.CompNumber.Contains("1") && (!(x.CompNumber.Contains("13") ||
+            x.CompNumber.Contains("11") || x.CompNumber.Contains("10") || x.CompNumber.Contains("12")))) && (x.Gender == "Female" || x.Gender == "स्त्री")
+            && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp1ListCount = distTarget.Component_No_1;
+            var targetFemale = Math.Round(decimal.Multiply(30, comp1ListCount) / 100);
+            IEnumerable<int> femaleRandomList = comp1List.Shuffle().Take((Int32)targetFemale).Distinct();
+            foreach (var number in femaleRandomList)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 1;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+
+            }
+            db.SaveChanges();
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+           // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            var comp2List = list.Where(x => x.CompNumber.Trim().Contains("2") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp2ListCount = distTarget.Component_No_2;
+            //select 3% for handicapped
+            var targetHandicapped2 = Math.Round(decimal.Multiply(3, comp2ListCount) / 100);
+            IEnumerable<int> handicapRandomList2 = comp2List.Shuffle().Take((Int32)targetHandicapped2).Distinct();
+            // var villMaster = db.VillageMaster.ToList();
+            foreach (var number in handicapRandomList2)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 2;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+
+            }
+            db.SaveChanges();
+
+            //females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp2ListCount = distTarget.Component_No_2;
+            var targetFemale2 = Math.Round(decimal.Multiply(30, comp2ListCount) / 100);
+            IEnumerable<int> femaleRandomList2 = comp2List.Shuffle().Take((Int32)targetFemale2).Distinct();
+            foreach (var number in femaleRandomList2)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 2;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil).FirstOrDefault().Tal_Mr;
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+
+            }
+            db.SaveChanges();
+
+            //comp 3 -7
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); var comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
+            x.CompNumber.Trim().Contains("7")) && (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15"))) && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp3ListCount = distTarget.Component_No_3_7;
+            //select 3% for handicapped
+            var targetHandicapped3 = Math.Round(decimal.Multiply(3, comp3ListCount) / 100);
+            IEnumerable<int> handicapRandomList3 = comp3List.Shuffle().Take((Int32)targetHandicapped3).Distinct();
+            foreach (var number in handicapRandomList3)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 3;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
+            x.CompNumber.Trim().Contains("7")) && (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15"))) && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp3ListCount = distTarget.Component_No_3_7;
+            var targetFemale3 = Math.Round(decimal.Multiply(30, comp3ListCount) / 100);
+            IEnumerable<int> femaleRandomList3 = comp3List.Shuffle().Take((Int32)targetFemale3).Distinct();
+            foreach (var number in femaleRandomList3)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 3;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); var comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("8") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp8ListCount = distTarget.Component_No_8;
+            //select 3% for handicapped
+            var targetHandicapped8 = Math.Round(decimal.Multiply(3, comp8ListCount) / 100);
+            IEnumerable<int> handicapRandomList8 = comp8List.Shuffle().Take((Int32)targetHandicapped8).Distinct();
+            foreach (var number in handicapRandomList8)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 8;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp8ListCount = distTarget.Component_No_8;
+            var targetFemale8 = Math.Round(decimal.Multiply(30, comp8ListCount) / 100);
+            IEnumerable<int> femaleRandomList8 = comp8List.Shuffle().Take((Int32)targetFemale8).Distinct();
+            foreach (var number in femaleRandomList8)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 8;
+                female_sel.DistCode = distCode;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); var comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("9") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp9ListCount = distTarget.Component_No_9;
+            //select 3% for handicapped
+            var targetHandicapped9 = Math.Round(decimal.Multiply(3, comp9ListCount) / 100);
+            IEnumerable<int> handicapRandomList9 = comp9List.Shuffle().Take((Int32)targetHandicapped9).Distinct();
+            foreach (var number in handicapRandomList9)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 9;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped); comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp9ListCount = distTarget.Component_No_9;
+            var targetFemale9 = Math.Round(decimal.Multiply(30, comp9ListCount) / 100);
+            IEnumerable<int> femaleRandomList9 = comp9List.Shuffle().Take((Int32)targetFemale9).Distinct();
+            foreach (var number in femaleRandomList9)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 9;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            var comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("10") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp10ListCount = distTarget.Component_No_10;
+            //select 3% for handicapped
+            var targetHandicapped10 = Math.Round(decimal.Multiply(3, comp10ListCount) / 100);
+            IEnumerable<int> handicapRandomList10 = comp10List.Shuffle().Take((Int32)targetHandicapped10).Distinct();
+            foreach (var number in handicapRandomList10)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 10;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp10ListCount = distTarget.Component_No_10;
+            var targetFemale10 = Math.Round(decimal.Multiply(30, comp10ListCount) / 100);
+            IEnumerable<int> femaleRandomList10 = comp10List.Shuffle().Take((Int32)targetFemale10).Distinct();
+            foreach (var number in femaleRandomList10)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 10;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            var comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("11") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp11ListCount = distTarget.Component_No_11;
+            //select 3% for handicapped
+            var targetHandicapped11 = Math.Round(decimal.Multiply(3, comp11ListCount) / 100);
+            IEnumerable<int> handicapRandomList11 = comp11List.Shuffle().Take((Int32)targetHandicapped11).Distinct();
+            foreach (var number in handicapRandomList11)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 11;
+
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp11ListCount = distTarget.Component_No_11;
+            var targetFemale11 = Math.Round(decimal.Multiply(30, comp11ListCount) / 100);
+            IEnumerable<int> femaleRandomList11 = comp11List.Shuffle().Take((Int32)targetFemale11).Distinct();
+            foreach (var number in femaleRandomList11)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 11;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            var comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("12") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp12ListCount = distTarget.Component_No_12;
+            //select 3% for handicapped
+            var targetHandicapped12 = Math.Round(decimal.Multiply(3, comp12ListCount) / 100);
+            IEnumerable<int> handicapRandomList12 = comp12List.Shuffle().Take((Int32)targetHandicapped12).Distinct();
+            foreach (var number in handicapRandomList12)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 12;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            db.SaveChanges();
+            //select 30% for females
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp12ListCount = distTarget.Component_No_12;
+            var targetFemale12 = Math.Round(decimal.Multiply(30, comp12ListCount) / 100);
+            IEnumerable<int> femaleRandomList12 = comp12List.Shuffle().Take((Int32)targetFemale12).Distinct();
+            foreach (var number in femaleRandomList12)
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 12;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+
+            var comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("13") && x.ApplicantCrippled == "होय" && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            var comp13ListCount = distTarget.Component_No_13;
+            //select 3% for handicapped
+            var targetHandicapped13 = Math.Round(decimal.Multiply(3, comp13ListCount) / 100);
+            IEnumerable<int> handicapRandomList13 = comp13List.Shuffle().Take((Int32)targetHandicapped13).Distinct();
+            foreach (var number in handicapRandomList13)
+            {
+                var handicaps_sel = new SelectedHandicapped();
+                handicaps_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                handicaps_sel.ApplicationNumber = data.ApplicationNumber;
+                handicaps_sel.Component = 13;
+                handicaps_sel.DistCode = distCode;
+                handicaps_sel.TalukaCode = data.Tahashil.Value;
+                handicaps_sel.AadharNo = data.AdharCardNo;
+                handicaps_sel.Gender = data.Gender;
+                handicaps_sel.ApplicantCrippled = data.ApplicantCrippled;
+                handicaps_sel.PhNo = data.PhNo;
+                handicaps_sel.District_Mr = distName_Mr;
+                handicaps_sel.Name = data.ApName;
+                handicaps_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                handicaps_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                handicaps_sel.Type = "Selected";
+                handicaps_sel.CreatedOn = DateTime.Now;
+                db.SelectedHandicapped.Add(handicaps_sel);
+            }
+            //select 30% for females
+
+            selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            // selected2 = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected2.AddRange(selectedFemale);
+            selected2.AddRange(selectedHandicapped);
+            comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13") && (x.Gender == "Female" || x.Gender == "स्त्री") && (!selected2.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            comp13ListCount = distTarget.Component_No_13;
+            var targetFemale13 = Math.Round(decimal.Multiply(30, comp13ListCount) / 100);
+            IEnumerable<int> femaleRandomList13 = comp13List.Shuffle().Take((Int32)targetFemale13).Distinct();
+            foreach (var number in femaleRandomList13.Distinct())
+            {
+                var female_sel = new SelectedFemale();
+                female_sel.ApplicationId = number;
+                var data = list.Where(x => x.Id == number).FirstOrDefault();
+                female_sel.ApplicationNumber = data.ApplicationNumber;
+                female_sel.Component = 13;
+                female_sel.DistCode = distCode;
+                female_sel.TalukaCode = data.Tahashil.Value;
+                female_sel.AadharNo = data.AdharCardNo;
+                female_sel.Gender = data.Gender;
+                female_sel.ApplicantCrippled = data.ApplicantCrippled;
+                female_sel.PhNo = data.PhNo;
+                female_sel.Name = data.ApName;
+                female_sel.District_Mr = distName_Mr;
+                female_sel.Taluka_Mr = taluka.Where(x => x.Tal_Code == data.Tahashil.Value).Select(x => x.Tal_Mr).FirstOrDefault();
+                female_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                female_sel.Type = "Selected";
+                female_sel.CreatedOn = DateTime.Now;
+                db.SelectedFemale.Add(female_sel);
+                // db.SaveChanges();
+            }
+            db.SaveChanges();
+
+
+            //foreach (var item in taluka)
+            //{
+            //    //comp 1                           
+            //    //general
+            //    selected = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            //    comp1List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            //    comp1ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+            //    var targetTaluka = Math.Round(decimal.Multiply(67, comp1ListCount) / 100);
+            //    IEnumerable<int> talukaRandomList = comp1List.Shuffle().Take((Int32)targetTaluka);
+            //    foreach (var number in talukaRandomList)
+            //    {
+            //        var gen_sel = new SelectedGeneral();
+            //        gen_sel.ApplicationId = number;
+            //        var data = list.Where(x => x.Id == number).FirstOrDefault();
+            //        gen_sel.ApplicationNumber = data.ApplicationNumber;
+            //        gen_sel.Component = 1;
+            //        gen_sel.DistCode = distCode;
+            //        gen_sel.AadharNo = data.AdharCardNo;
+            //        gen_sel.Gender = data.Gender;
+            //        gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+            //        gen_sel.PhNo = data.PhNo;
+            //        gen_sel.District_Mr = distName_Mr;
+            //        gen_sel.Taluka_Mr = item.Tal_Mr;
+            //        gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            //        gen_sel.TalukaCode = data.Tahashil.Value;
+            //        gen_sel.Name = data.ApName;
+            //        gen_sel.Type = "Selected";
+            //        gen_sel.CreatedOn = DateTime.Now;
+            //        db.SelectedGeneral.Add(gen_sel);
+
+            //    }
+            //    db.SaveChanges();             
+
+            //    selected = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            //    comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+            //    comp2ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+            //    var targetTaluka2 = Math.Round(decimal.Multiply(67, comp2ListCount) / 100);
+            //    IEnumerable<int> talukaRandomList2 = comp2List.Shuffle().Take((Int32)targetTaluka2);
+            //    foreach (var number in talukaRandomList2)
+            //    {
+            //        var gen_sel = new SelectedGeneral();
+            //        gen_sel.ApplicationId = number;
+            //        var data = list.Where(x => x.Id == number).FirstOrDefault();
+            //        gen_sel.ApplicationNumber = data.ApplicationNumber;
+            //        gen_sel.Component = 2;
+            //        gen_sel.DistCode = distCode;
+            //        gen_sel.AadharNo = data.AdharCardNo;
+            //        gen_sel.Gender = data.Gender;
+            //        gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+            //        gen_sel.PhNo = data.PhNo;
+            //        gen_sel.District_Mr = distName_Mr;
+            //        gen_sel.Taluka_Mr = item.Tal_Mr;
+            //        gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            //        gen_sel.TalukaCode = data.Tahashil.Value;
+            //        gen_sel.Name = data.ApName;
+            //        gen_sel.Type = "Selected";
+            //        gen_sel.CreatedOn = DateTime.Now;
+            //        db.SelectedGeneral.Add(gen_sel);
+
+            //    }
+
+            //    db.SaveChanges();
+
+
+            //    return Json(ofcrModel, JsonRequestBehavior.AllowGet);
+            //}
+            model.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedHandicappedList = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").ToList();
+
+            model.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedFemaleList = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").ToList();
+
+            model.SelectedGeneralList = new List<SelectedGeneral>();
+            model.SelectedGeneralList = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").ToList();
+            ofcrModel.SelectedList1 = model;
+            return Json(ofcrModel, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public JsonResult SelectList2(int distCode)
+        {
+
+            var ofcrModel = new OfficerLogin();
+            var model = new SelectedListViewModel();
+            ofcrModel.SelectedList1 = new SelectedListViewModel();
+
+            var distMaster = db.DistMaster.ToList();
+            var selectedTaluka = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.TalukaCode).ToList();
+            var taluka = db.TalMaster.Where(x => x.Dist_Code == distCode).ToList();
+            var taluka2 = taluka.Where(x => x.Dist_Code == distCode && (!selectedTaluka.Contains(x.Tal_Code))).ToList();
+            var distName_Mr = distMaster.Where(x => x.Dist_Code == distCode).Select(x => x.District_Mr).FirstOrDefault();
+            var distTarget = db.DistrictTarget.Where(x => x.Name_of_District.Trim() == distName_Mr.Trim()).FirstOrDefault();
+            var talukaTarg = db.TalukaTarget.Where(x => x.Name_of_District.Trim() == distName_Mr.Trim()).ToList();
+            var selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            selected.AddRange(selectedFemale);
+            selected.AddRange(selectedHandicapped);
+            var list = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == distCode && (!selected.Contains(x.ApplicationNumber))).ToList();
+
+            foreach (var item in taluka2)
+            {
+
+                //comp 1                           
+                //general  
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+
+                var comp1List = list.Where(x => x.Dist == distCode && (x.CompNumber.Contains("1") && (!(x.CompNumber.Contains("14") || x.CompNumber.Contains("15")
+                 || x.CompNumber.Contains("10") || x.CompNumber.Contains("11") || x.CompNumber.Contains("12") || x.CompNumber.Contains("13"))))
+                && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp1ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+                var targetTaluka = Math.Round(decimal.Multiply(67, comp1ListCount) / 100);
+                IEnumerable<int> talukaRandomList = comp1List.Shuffle().Take(Convert.ToInt32(targetTaluka)).Distinct();
+                foreach (var number in talukaRandomList)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 1;
+                    gen_sel.DistCode = distCode;
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.Type = "Selected";
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 1)))
+                {
+                    db.SaveChanges();
+                }
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp2ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_2).FirstOrDefault();
+                var targetTaluka2 = Math.Round(decimal.Multiply(67, comp2ListCount) / 100);
+                IEnumerable<int> talukaRandomList2 = comp2List.Shuffle().Take((Int32)targetTaluka2).Distinct();
+                foreach (var number in talukaRandomList2)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 2;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.Name = data.ApName;
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 2)))
+                {
+                    db.SaveChanges();
+                }
+
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp3List = list.Where(x => x.Dist == distCode && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") ||
+           x.CompNumber.Contains("7")) && (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15")))) && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp3ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_3_7).FirstOrDefault();
+                var targetTaluka3 = Math.Round(decimal.Multiply(67, comp3ListCount) / 100);
+                IEnumerable<int> talukaRandomList3 = comp3List.Shuffle().Take((Int32)targetTaluka3).Distinct();
+                foreach (var number in talukaRandomList3)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.Component = 3;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 3)))
+                {
+                    db.SaveChanges();
+                }
+
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp8ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_8).FirstOrDefault();
+                var targetTaluka8 = Math.Round(decimal.Multiply(67, comp8ListCount) / 100);
+                IEnumerable<int> talukaRandomList8 = comp8List.Shuffle().Take((Int32)targetTaluka8).Distinct();
+                foreach (var number in talukaRandomList8)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 8;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 8)))
+                {
+                    db.SaveChanges();
+                }
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp9ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
+                var targetTaluka9 = Math.Round(decimal.Multiply(67, comp9ListCount) / 100);
+                IEnumerable<int> talukaRandomList9 = comp9List.Shuffle().Take((Int32)targetTaluka9).Distinct();
+                foreach (var number in talukaRandomList9)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 9;
+                    gen_sel.DistCode = distCode;
+                    gen_sel.Type = "Selected";
+                    gen_sel.Name = data.ApName;
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 9)))
+                {
+                    db.SaveChanges();
+                }
+
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp10ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_10).FirstOrDefault();
+                var targetTaluka10 = Math.Round(decimal.Multiply(67, comp10ListCount) / 100);
+                IEnumerable<int> talukaRandomList10 = comp10List.Shuffle().Take((Int32)targetTaluka10).Distinct();
+                foreach (var number in talukaRandomList10)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 10;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 10)))
+                {
+                    db.SaveChanges();
+                }
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp11ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_11).FirstOrDefault();
+                var targetTaluka11 = Math.Round(decimal.Multiply(67, comp11ListCount) / 100);
+                IEnumerable<int> talukaRandomList11 = comp11List.Shuffle().Take((Int32)targetTaluka11).Distinct();
+                foreach (var number in talukaRandomList11)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 11;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 11)))
+                {
+                    db.SaveChanges();
+                }
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp12ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_12).FirstOrDefault();
+                var targetTaluka12 = Math.Round(decimal.Multiply(67, comp12ListCount) / 100);
+                IEnumerable<int> talukaRandomList12 = comp12List.Shuffle().Take((Int32)targetTaluka12).Distinct();
+                foreach (var number in talukaRandomList12)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 12;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 12)))
+                {
+                    db.SaveChanges();
+                }
+
+                selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+                selected.AddRange(selectedFemale);
+                selected.AddRange(selectedHandicapped);
+                var comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13") && x.Tahashil == item.Tal_Code && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
+                var comp13ListCount = talukaTarg.Where(x => x.Name_Of_Taluka == item.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
+                var targetTaluka13 = Math.Round(decimal.Multiply(67, comp13ListCount) / 100);
+                IEnumerable<int> talukaRandomList13 = comp13List.Shuffle().Take((Int32)targetTaluka13).Distinct();
+                foreach (var number in talukaRandomList13)
+                {
+                    var gen_sel = new SelectedGeneral();
+                    gen_sel.ApplicationId = number;
+                    var data = list.Where(x => x.Id == number).FirstOrDefault();
+                    gen_sel.ApplicationNumber = data.ApplicationNumber;
+                    gen_sel.Component = 13;
+                    gen_sel.DistCode = distCode; gen_sel.Type = "Selected";
+                    gen_sel.AadharNo = data.AdharCardNo;
+                    gen_sel.Gender = data.Gender;
+                    gen_sel.Name = data.ApName;
+                    gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                    gen_sel.PhNo = data.PhNo;
+                    gen_sel.District_Mr = distName_Mr;
+                    gen_sel.Taluka_Mr = item.Tal_Mr;
+                    gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                    gen_sel.TalukaCode = data.Tahashil.Value;
+                    gen_sel.CreatedOn = DateTime.Now;
+                    db.SelectedGeneral.Add(gen_sel);
+
+                }
+
+
+                if (!(db.SelectedGeneral.Any(x => x.TalukaCode == item.Tal_Code && x.Type == "Selected" && x.Component == 13)))
+                {
+                    db.SaveChanges();
+                }
+                //model.SelectedHandicappedList = new List<SelectedHandicapped>();
+                //model.SelectedHandicappedList = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+                //ofcrModel.SelectedList1.SelectedHandicappedList = new List<SelectedHandicapped>();
+                //model.SelectedFemaleList = new List<SelectedFemale>();
+                //model.SelectedFemaleList = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+                //ofcrModel.SelectedList1.SelectedFemaleList = new List<SelectedFemale>();
+                //model.SelectedGeneralList = new List<SelectedGeneral>();
+                //ofcrModel.SelectedList1.SelectedGeneralList = new List<SelectedGeneral>();
+                //model.SelectedGeneralList = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+                //ofcrModel.SelectedList1.SelectedGeneralList = model.SelectedGeneralList;
+                //ofcrModel.SelectedList1.SelectedFemaleList = model.SelectedFemaleList;
+                //ofcrModel.SelectedList1.SelectedHandicappedList = model.SelectedHandicappedList;
+                ////ofcrModel.TCount = taluka2.Count;
+                //return Json(ofcrModel, JsonRequestBehavior.AllowGet);
+            }
+            model.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedHandicappedList = db.SelectedHandicapped.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+            ofcrModel.SelectedList1.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedFemaleList = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+            ofcrModel.SelectedList1.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedGeneralList = new List<SelectedGeneral>();
+            ofcrModel.SelectedList1.SelectedGeneralList = new List<SelectedGeneral>();
+            model.SelectedGeneralList = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
+            ofcrModel.SelectedList1.SelectedGeneralList = model.SelectedGeneralList;
+            ofcrModel.SelectedList1.SelectedFemaleList = model.SelectedFemaleList;
+            ofcrModel.SelectedList1.SelectedHandicappedList = model.SelectedHandicappedList;
+            //ofcrModel.TCount = taluka2.Count;
+            return Json(ofcrModel, JsonRequestBehavior.AllowGet);
+
+        }
+
         public JsonResult SelectRandomList(int distCode)
         {
             db.Database.ExecuteSqlCommand("delete from [SelectedFemales] where DistCode =" + distCode);
@@ -1685,8 +2687,9 @@ namespace Mahamesh.Controllers
                 handicaps_sel.Type = "Selected";
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
-                // db.SaveChanges();
+
             }
+            db.SaveChanges();
             //select 30% for females
             comp1List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp1ListCount = distTarget.Component_No_1;
@@ -1714,6 +2717,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -1743,6 +2747,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 1
                 //comp1List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1")).Select(x => x.Id).ToList();
                 //comp1ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("1")).Count();
@@ -1801,6 +2806,7 @@ namespace Mahamesh.Controllers
                 db.SelectedHandicapped.Add(handicaps_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //select 30% for females
             comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp2ListCount = distTarget.Component_No_2;
@@ -1828,6 +2834,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -1856,6 +2863,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 2
                 //comp2List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
                 //comp2ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("2")).Count();
@@ -1912,6 +2920,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
             x.CompNumber.Trim().Contains("7")) && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
@@ -1940,6 +2949,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -1970,35 +2980,36 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
-            //    //Waiting List 3
-            //    comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            //x.CompNumber.Trim().Contains("7"))).Select(x => x.Id).ToList();
-            //    comp3ListCount = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
-            //x.CompNumber.Trim().Contains("7"))).Count();
-            //    var waitingTarget = 5 * (targetFemale3 + targetHandicapped3 + targetTaluka3);
-            //    IEnumerable<int> waitingRandomList = comp3List.Shuffle().Take((Int32)comp3ListCount);
-            //    foreach (var number in waitingRandomList)
-            //    {
-            //        var gen_sel = new SelectedGeneral();
-            //        gen_sel.ApplicationId = number;
-            //        var data = list.Where(x => x.Id == number).FirstOrDefault();
-            //        gen_sel.ApplicationNumber = data.ApplicationNumber;
-            //        gen_sel.Component = 3;
-            //        gen_sel.DistCode = distCode;
-            //        gen_sel.Type = "Waiting";
-            //        gen_sel.Name = data.ApName;
-            //        gen_sel.AadharNo = data.AdharCardNo;
-            //        gen_sel.Gender = data.Gender;
-            //        gen_sel.ApplicantCrippled = data.ApplicantCrippled;
-            //        gen_sel.PhNo = data.PhNo;
-            //        gen_sel.District_Mr = distName_Mr;
-            //        gen_sel.Taluka_Mr = item2.Tal_Mr;
-            //        gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
-            //        gen_sel.TalukaCode = data.Tahashil.Value;
-            //        gen_sel.CreatedOn = DateTime.Now;
-            //        db.SelectedGeneral.Add(gen_sel);
+                db.SaveChanges();
+                //    //Waiting List 3
+                //    comp3List = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
+                //x.CompNumber.Trim().Contains("7"))).Select(x => x.Id).ToList();
+                //    comp3ListCount = list.Where(x => x.Dist == distCode && (x.CompNumber.Trim().Contains("3") || x.CompNumber.Trim().Contains("4") || x.CompNumber.Trim().Contains("5") || x.CompNumber.Trim().Contains("6") ||
+                //x.CompNumber.Trim().Contains("7"))).Count();
+                //    var waitingTarget = 5 * (targetFemale3 + targetHandicapped3 + targetTaluka3);
+                //    IEnumerable<int> waitingRandomList = comp3List.Shuffle().Take((Int32)comp3ListCount);
+                //    foreach (var number in waitingRandomList)
+                //    {
+                //        var gen_sel = new SelectedGeneral();
+                //        gen_sel.ApplicationId = number;
+                //        var data = list.Where(x => x.Id == number).FirstOrDefault();
+                //        gen_sel.ApplicationNumber = data.ApplicationNumber;
+                //        gen_sel.Component = 3;
+                //        gen_sel.DistCode = distCode;
+                //        gen_sel.Type = "Waiting";
+                //        gen_sel.Name = data.ApName;
+                //        gen_sel.AadharNo = data.AdharCardNo;
+                //        gen_sel.Gender = data.Gender;
+                //        gen_sel.ApplicantCrippled = data.ApplicantCrippled;
+                //        gen_sel.PhNo = data.PhNo;
+                //        gen_sel.District_Mr = distName_Mr;
+                //        gen_sel.Taluka_Mr = item2.Tal_Mr;
+                //        gen_sel.VillageName = db.VillageMaster.Where(x => x.Village_Code == data.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                //        gen_sel.TalukaCode = data.Tahashil.Value;
+                //        gen_sel.CreatedOn = DateTime.Now;
+                //        db.SelectedGeneral.Add(gen_sel);
 
-            //    }
+                //    }
             }
 
 
@@ -2030,6 +3041,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp8ListCount = distTarget.Component_No_8;
@@ -2058,6 +3070,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2086,6 +3099,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 8
                 //comp8List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8")).Select(x => x.Id).ToList();
                 //comp8ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("8")).Count();
@@ -2143,6 +3157,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp9ListCount = distTarget.Component_No_9;
@@ -2170,6 +3185,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2199,6 +3215,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
 
                 ////Waiting List 9
                 //comp9List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("9")).Select(x => x.Id).ToList();
@@ -2256,6 +3273,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp10ListCount = distTarget.Component_No_10;
@@ -2283,6 +3301,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2311,6 +3330,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
 
                 ////Waiting List 10
                 //comp10List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("10")).Select(x => x.Id).ToList();
@@ -2369,6 +3389,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp11ListCount = distTarget.Component_No_11;
@@ -2396,6 +3417,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2424,6 +3446,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 11
                 //comp11List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11")).Select(x => x.Id).ToList();
                 //comp11ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("11")).Count();
@@ -2481,6 +3504,7 @@ namespace Mahamesh.Controllers
                 handicaps_sel.CreatedOn = DateTime.Now;
                 db.SelectedHandicapped.Add(handicaps_sel);
             }
+            db.SaveChanges();
             //select 30% for females
             comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12") && (x.Gender == "Female" || x.Gender == "स्त्री")).Select(x => x.Id).ToList();
             comp12ListCount = distTarget.Component_No_12;
@@ -2508,6 +3532,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2536,6 +3561,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 12
                 //comp12List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12")).Select(x => x.Id).ToList();
                 //comp12ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("12")).Count();
@@ -2564,6 +3590,7 @@ namespace Mahamesh.Controllers
 
                 //}
             }
+            db.SaveChanges();
 
             //comp 13
             var comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Trim().Contains("13") && x.ApplicantCrippled == "होय").Select(x => x.Id).ToList();
@@ -2619,6 +3646,7 @@ namespace Mahamesh.Controllers
                 db.SelectedFemale.Add(female_sel);
                 // db.SaveChanges();
             }
+            db.SaveChanges();
             //taluka wise 67% 
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
@@ -2647,6 +3675,7 @@ namespace Mahamesh.Controllers
                     db.SelectedGeneral.Add(gen_sel);
 
                 }
+                db.SaveChanges();
                 ////Waiting List 13
                 //comp13List = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13")).Select(x => x.Id).ToList();
                 //comp12ListCount = list.Where(x => x.Dist == distCode && x.CompNumber.Contains("13")).Count();
@@ -2675,7 +3704,6 @@ namespace Mahamesh.Controllers
 
                 //}
             }
-            db.SaveChanges();
 
             model.SelectedFemaleList = new List<SelectedFemale>();
             model.SelectedFemaleList = db.SelectedFemale.Where(x => x.DistCode == distCode && x.Type == "Selected").ToList();
@@ -2694,10 +3722,11 @@ namespace Mahamesh.Controllers
         public ActionResult PreliminaryList(int distCode)
         {
             var model = new OfficerLogin();
-            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).ToList();
-            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).ToList();
-            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
-            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().ToList();
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().OrderBy(x => x.Component).ToList();
+            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().OrderBy(x => x.Component).ToList();
+            var talukaList = db.SelectedGeneral.Select(x => x.TalukaCode).Distinct();
             model.SelectedList = new SelectedListViewModel();
             model.SelectedList.SelectedFemaleList = new List<SelectedFemale>();
             model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
@@ -2705,24 +3734,64 @@ namespace Mahamesh.Controllers
             model.SelectedList.WaitingList = new List<SelectedGeneral>();
             model.SelectedList.SelectedFemaleList = selectedFemale;
             model.SelectedList.SelectedHandicappedList = selectedHandicapped;
+            model.district = distCode;
             model.SelectedList.SelectedGeneralList = selectedGeneral;
             model.SelectedList.WaitingList = selectedWaiting;
 
             return View(model);
         }
 
+        public static void SaveHttpResponseAsFile(string RequestUrl, string FilePath)
+        {
+            try
+            {
+                HttpWebRequest httpRequest = (HttpWebRequest)WebRequest.Create(RequestUrl);
+                httpRequest.UserAgent = "Mozilla / 5.0(compatible; MSIE 9.0; Windows NT 6.1; Trident / 5.0)";
+                httpRequest.Headers.Add(HttpRequestHeader.AcceptEncoding, "gzip, deflate");
+                HttpWebResponse response = null;
+                try
+                {
+                    response = (HttpWebResponse)httpRequest.GetResponse();
+                }
+                catch (System.Net.WebException ex)
+                {
+                    if (ex.Status == WebExceptionStatus.ProtocolError)
+                        response = (HttpWebResponse)ex.Response;
+                }
+
+                using (Stream responseStream = response.GetResponseStream())
+                {
+                    Stream FinalStream = responseStream;
+                    if (response.ContentEncoding.ToLower().Contains("gzip"))
+                        FinalStream = new GZipStream(FinalStream, CompressionMode.Decompress);
+                    else if (response.ContentEncoding.ToLower().Contains("deflate"))
+                        FinalStream = new DeflateStream(FinalStream, CompressionMode.Decompress);
+
+                    using (var fileStream = System.IO.File.Create(FilePath))
+                    {
+                        FinalStream.CopyTo(fileStream);
+                    }
+
+                    response.Close();
+                    FinalStream.Close();
+                }
+            }
+            catch
+            { }
+        }
+
         public ActionResult Publish(int distCode)
         {
 
             var root = Server.MapPath("~/Documents/MahameshYojana/");
-            var pdfname = String.Format("PreliminaryList_" + distCode + ".pdf", Guid.NewGuid().ToString());
+            var pdfname = String.Format("PreliminaryList_" + distCode + ".pdf");
             var path = Path.Combine(root, pdfname);
             path = Path.GetFullPath(path);
             var model = new OfficerLogin();
-            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).ToList();
-            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).ToList();
-            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().ToList();
-            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().ToList();
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.TalukaCode).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.TalukaCode).ToList();
+            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().OrderBy(x => x.TalukaCode).ToList();
+            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().OrderBy(x => x.TalukaCode).ToList();
             model.SelectedList = new SelectedListViewModel();
             model.SelectedList.SelectedFemaleList = new List<SelectedFemale>();
             model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
@@ -2732,8 +3801,9 @@ namespace Mahamesh.Controllers
             model.SelectedList.SelectedHandicappedList = selectedHandicapped;
             model.SelectedList.SelectedGeneralList = selectedGeneral;
             model.SelectedList.WaitingList = selectedWaiting;
-            var something = new Rotativa.ViewAsPdf("PreliminaryList", model) { FileName = "PreliminaryList_" + distCode + ".pdf", SaveOnServerPath = path };
-             return something;
+            var something = new Rotativa.ViewAsPdf("PreliminaryList", model) { FileName = "PreliminaryList_" + distCode + ".pdf", PageMargins = { Left = 10, Bottom = 10, Right = 10, Top = 10 }, PageSize = Rotativa.Options.Size.A4 };
+            SaveHttpResponseAsFile(Url.Action("PreliminaryList", new { distCode = distCode }), path);
+            return something;
             //return new ActionAsPdf("PreliminaryList",new { distCode = distCode })
             //{
             //   // SaveOnServerPath = "",
@@ -2742,7 +3812,7 @@ namespace Mahamesh.Controllers
             //    PageSize = Rotativa.Options.Size.A4
             //};
             /*Creating iTextSharp’s Document & Writer*/
-          
+
         }
 
 

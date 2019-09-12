@@ -65,9 +65,9 @@
         <div class="panel-body">
 
             <div class="row text-center">
-                <table class="table table-bordered table-striped table-responsive" style="width:70%;margin-left:15%;margin-top:5%">
+                <table class="table table-bordered table-striped table-responsive" style="width:80%;margin-left:10%;margin-top:5%">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>Sr. No.</th>
                             <th>District Code</th>
                             <th>District Name</th>
@@ -95,7 +95,7 @@
                                 <td>
                                     @if (Model.TimerList[i].IsEnabled)
                                     {
-                                    <a href="~/Documents/MahameshYojana/PreliminaryList_@(Model.TimerList[i].DistCode).pdf"><i class="fa fa-file-pdf-o red"></i>PreliminaryList_@Model.TimerList[i].DistCode</a>
+                                    <a href="~/Documents/MahameshYojana/PreliminaryList_@(Model.TimerList[i].DistCode).pdf"><i class="fa fa-file-pdf-o red"></i> PreliminaryList_@Model.TimerList[i].DistCode</a>
                                     }
                                 </td>
                             </tr>
