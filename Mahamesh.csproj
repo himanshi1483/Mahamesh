@@ -68,6 +68,9 @@
     <Reference Include="Google.Apis.Core, Version=1.41.1.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>packages\Google.Apis.Core.1.41.1\lib\net45\Google.Apis.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Google.Apis.Drive.v2, Version=1.41.1.1705, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>packages\Google.Apis.Drive.v2.1.41.1.1705\lib\net45\Google.Apis.Drive.v2.dll</HintPath>
+    </Reference>
     <Reference Include="Google.Apis.Drive.v3, Version=1.41.1.1705, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>packages\Google.Apis.Drive.v3.1.41.1.1705\lib\net45\Google.Apis.Drive.v3.dll</HintPath>
     </Reference>
@@ -552,6 +555,7 @@
     <Compile Include="Models\EnumExtension.cs" />
     <Compile Include="Models\FeedbackModel.cs" />
     <Compile Include="Models\FreiendlyEnum.cs" />
+    <Compile Include="Models\GoogleDriveFile.cs" />
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -569,6 +573,7 @@
     <Compile Include="Models\TenderModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utility\GoogleDriveFilesRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

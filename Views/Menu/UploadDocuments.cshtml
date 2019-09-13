@@ -77,7 +77,7 @@
             <div class="alert alert-info text-center">
                 दस्तऐवज (Documents) केवळ JPEG, JPG, PNG आणि PDF स्वरुपण अपलोड करा
             </div>
-         
+
             @using (Html.BeginForm("UploadDocuments", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
@@ -104,7 +104,12 @@
 
                             </td>
                             <td style="width:25%">
-                                <input type="text" class="form-control" id="AdharCardFU" readonly>
+                                @if (Model.AdharCardFU != null)
+                                {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download"  target="_blank" 
+                                class="btn btn-link">Aadhar Card </a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { aadhar = Model.AdharCardNo, doc = Model.AdharCardFU})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -119,7 +124,13 @@
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="ReshanCard" readonly>
+                                @if (Model.ReshanCard != null)
+                                {
+                                    @*<a href="https://drive.google.com/a/aarushsystems.com/file/d/@Model.ReshanCard/view?usp=drivesdk" target="_blank" class="btn btn-link">Reshan Card</a>*@
+
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.ReshanCard&export=download" target="_blank" class="btn btn-link">Reshan Card</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.ReshanCard})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -134,8 +145,12 @@
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="CasteCertificate" readonly>
-                            </td>
+                                @if (Model.CasteCertificate != null)
+                                {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.CasteCertificate&export=download" download target="_blank" class="btn btn-link">Caste Certificate</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.CasteCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
+                                </td>
                         </tr>
                         <tr>
                             <td class="text-center">4.</td>
@@ -149,7 +164,11 @@
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="LivestockDevOffCertificate" readonly>
+                                @if (Model.LivestockDevOffCertificate != null)
+                                {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.LivestockDevOffCertificate&export=download" download target="_blank" class="btn btn-link">Livestock DevOff Certificate</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.LivestockDevOffCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -164,7 +183,11 @@
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="ResidentCertificate" readonly>
+                                @if (Model.ResidentCertificate != null)
+                                {
+                                <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.ResidentCertificate&export=download" target="_blank" class="btn btn-link">Resident Certificate</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.ResidentCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -172,14 +195,18 @@
                             <td style="width:50%;font-size:15px !important">अपत्य दाखला (बंधपत्रामधील नमुना क्रमांक ३ मध्येच सादर करावयाचा आहे). १ मे २००१ नंतर तिसरे हयात अपत्य नसावे.</td>
                             <td>
                                 <div class="input-file-container">
-                                    <input class="input-file" id="Childcertificate1" required name="Childcertificate" type="file">
-                                    <label tabindex="0" for="Childcertificate1" class="input-file-trigger">Select a file...</label>
+                                    <input class="input-file" id="ChildCertificate1" required name="ChildCertificate" type="file">
+                                    <label tabindex="0" for="ChildCertificate1" class="input-file-trigger">Select a file...</label>
                                 </div>
                                 <p class="file-return" id="file6"></p>
 
                             </td>
                             <td>
-                                <input type="text" class="form-control" id="Childcertificate" readonly>
+                                @if (Model.Childcertificate != null)
+                                {
+                                <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.Childcertificate&export=download" target="_blank" class="btn btn-link">Child Certificate</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.Childcertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
                             </td>
                         </tr>
                         @if (Model.IsApplicantOwnedLand == "होय")
@@ -196,7 +223,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="FU712orIncomeCertificate" readonly>
+                                    @if (Model.FU712orIncomeCertificate != null)
+                                    {
+                                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.FU712orIncomeCertificate&export=download" target="_blank" class="btn btn-link">Land Owned Certificate</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.FU712orIncomeCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -214,7 +245,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="TenancyAgreement" readonly>
+                                    @if (Model.TenancyAgreement != null)
+                                    {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.TenancyAgreement&export=download" target="_blank" class="btn btn-link">Tenancy Agreement</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.TenancyAgreement})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -232,7 +267,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="ShedCertificate" readonly>
+                                    @if (Model.ShedCertificate != null)
+                                    {
+                                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.ShedCertificate&export=download" target="_blank" class="btn btn-link">Shed Availability</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.ShedCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -250,7 +289,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="BachatMemberCertificate" readonly>
+                                    @if (Model.BachatMemberCertificate != null)
+                                    {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.BachatMemberCertificate&export=download" target="_blank" class="btn btn-link">Bachat Member Certificate</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.BachatMemberCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -268,7 +311,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="CompanyMemberCertificate" readonly>
+                                    @if (Model.CompanyMemberCertificate != null)
+                                    {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.CompanyMemberCertificate&export=download" target="_blank" class="btn btn-link">Company Member Certificate</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.CompanyMemberCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -286,7 +333,11 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="DisabilityCertificate" readonly>
+                                    @if (Model.DisabilityCertificate != null)
+                                    {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.DisabilityCertificate&export=download" target="_blank" class="btn btn-link">Disability Certificate</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.DisabilityCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
@@ -304,26 +355,34 @@
 
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" id="TrainingCertificate" readonly>
+                                    @if (Model.TrainingCertificate != null)
+                                    {
+                                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.TrainingCertificate&export=download" target="_blank" class="btn btn-link">Training Certificate</a>
+                                        <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.TrainingCertificate})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    }
                                 </td>
                             </tr>
                         }
-                            <tr>
-                                <td class="text-center">14.</td>
-                                <td style="width:50%;font-size:15px !important">स्वयंमघोषणा पत्र (बंधपत्रामधील नमुना क्रमांक ६ मध्येच सादर करावयाचा आहे) </td>
-                                <td>
-                                    <div class="input-file-container">
-                                        <input class="input-file" id="HamiPtra1" name="HamiPtra" required type="file">
-                                        <label tabindex="0" for="HamiPtra1" class="input-file-trigger">Select a file...</label>
-                                    </div>
-                                    <p class="file-return" id="file14"></p>
+                        <tr>
+                            <td class="text-center">14.</td>
+                            <td style="width:50%;font-size:15px !important">स्वयंमघोषणा पत्र (बंधपत्रामधील नमुना क्रमांक ६ मध्येच सादर करावयाचा आहे) </td>
+                            <td>
+                                <div class="input-file-container">
+                                    <input class="input-file" id="HamiPtra1" name="HamiPtra" required type="file">
+                                    <label tabindex="0" for="HamiPtra1" class="input-file-trigger">Select a file...</label>
+                                </div>
+                                <p class="file-return" id="file14"></p>
 
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" id="HamiPtra" readonly>
-                                </td>
-                            </tr>
-                        </tbody>
+                            </td>
+                            <td>
+                                @if (Model.HamiPtra != null)
+                                {
+                                <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.HamiPtra&export=download" target="_blank" class="btn btn-link">Hami Ptra</a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.HamiPtra})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                }
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div class="text-center">
                     <button type="submit" class="btn btn-info">Submit</button>
@@ -348,7 +407,7 @@
         fileInput8 = document.querySelector("#TenancyAgreement1"),
         fileInput9 = document.querySelector("#ShedCertificate1"),
         fileInput10 = document.querySelector("#BachatMemberCertificate1"),
-         fileInput11 = document.querySelector("#CompanyMemberCertificate1"),
+        fileInput11 = document.querySelector("#CompanyMemberCertificate1"),
         fileInput12 = document.querySelector("#DisabilityCertificate1"),
         fileInput13 = document.querySelector("#TrainingCertificate1"),
         fileInput14 = document.querySelector("#HamiPtra1"),
@@ -368,7 +427,7 @@
     the_return11 = document.querySelector("#file11");
     the_return12 = document.querySelector("#file12");
     the_return13 = document.querySelector("#file13");
-     the_return14 = document.querySelector("#file14");
+    the_return14 = document.querySelector("#file14");
     button.addEventListener("keydown", function (event) {
         if (event.keyCode == 13 || event.keyCode == 32) {
             fileInput1.focus();
@@ -401,33 +460,43 @@
     fileInput6.addEventListener("change", function (event) {
         the_return6.innerHTML = this.value;
     });
+    if (fileInput7 != null) {
+        fileInput7.addEventListener("change", function (event) {
+            the_return7.innerHTML = this.value;
+        });
+    }
 
-    fileInput7.addEventListener("change", function (event) {
-        the_return7.innerHTML = this.value;
-    });
+    if (fileInput8 != null) {
+        fileInput8.addEventListener("change", function (event) {
+            the_return8.innerHTML = this.value;
+        });
+    }
 
-    fileInput8.addEventListener("change", function (event) {
-        the_return8.innerHTML = this.value;
-    });
-
-    fileInput9.addEventListener("change", function (event) {
-        the_return9.innerHTML = this.value;
-    });
-
-    fileInput10.addEventListener("change", function (event) {
-        the_return10.innerHTML = this.value;
-    });
-
-    fileInput11.addEventListener("change", function (event) {
-        the_return11.innerHTML = this.value;
-    });
-
-    fileInput12.addEventListener("change", function (event) {
-        the_return12.innerHTML = this.value;
-    });
-    fileInput13.addEventListener("change", function (event) {
-        the_return13.innerHTML = this.value;
-    });
+    if (fileInput9 != null) {
+        fileInput9.addEventListener("change", function (event) {
+            the_return9.innerHTML = this.value;
+        });
+    }
+    if (fileInput10 != null) {
+        fileInput10.addEventListener("change", function (event) {
+            the_return10.innerHTML = this.value;
+        });
+    }
+    if (fileInput11 != null) {
+        fileInput11.addEventListener("change", function (event) {
+            the_return11.innerHTML = this.value;
+        });
+    }
+    if (fileInput12 != null) {
+        fileInput12.addEventListener("change", function (event) {
+            the_return12.innerHTML = this.value;
+        });
+    }
+    if (fileInput13 != null) {
+        fileInput13.addEventListener("change", function (event) {
+            the_return13.innerHTML = this.value;
+        });
+    }
     fileInput14.addEventListener("change", function (event) {
         the_return14.innerHTML = this.value;
     });

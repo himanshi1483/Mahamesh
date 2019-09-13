@@ -25,7 +25,7 @@ namespace Mahamesh.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly DriveService _service;
-        static string[] Scopes = { DriveService.Scope.Drive, DriveService.Scope.DriveFile, DriveService.Scope.DriveMetadata, DriveService.Scope.DriveAppdata};
+        static string[] Scopes = { DriveService.Scope.Drive, DriveService.Scope.DriveFile, DriveService.Scope.DriveMetadata, DriveService.Scope.DriveAppdata };
         static string ApplicationName = "Mahamesh";
         public MenuController()
         {
@@ -62,13 +62,13 @@ namespace Mahamesh.Controllers
         // GET: Menu
         public ActionResult Index()
         {
-          
+
             return View();
         }
 
         public void getDistrict()
         {
-            var ddlDist = db.Comp1Target.Select(x=>x.DistrictName).Distinct().ToList();
+            var ddlDist = db.Comp1Target.Select(x => x.DistrictName).Distinct().ToList();
             List<SelectListItem> li = new List<SelectListItem>();
             li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
 
@@ -97,7 +97,7 @@ namespace Mahamesh.Controllers
         public JsonResult getTaluka(string dist)
         {
             var d = db.DistMaster.Where(x => x.DistName.Trim() == dist.Trim()).FirstOrDefault();
-            var ddlTal = db.TalMaster.Where(x => x.Dist_Code == d.Dist_Code).Select(x=>x.Tal_Mr).ToList();
+            var ddlTal = db.TalMaster.Where(x => x.Dist_Code == d.Dist_Code).Select(x => x.Tal_Mr).ToList();
             List<SelectListItem> liTaluka = new List<SelectListItem>();
 
             liTaluka.Add(new SelectListItem { Text = "--Select Taluka--", Value = "0" });
@@ -131,7 +131,7 @@ namespace Mahamesh.Controllers
         [Authorize]
         public ActionResult AdminPanel()
         {
-            var ImgFolders = db.MediaFolders.Where(x=>x.MediaType == "Pictures").ToList();
+            var ImgFolders = db.MediaFolders.Where(x => x.MediaType == "Pictures").ToList();
             ViewBag.ImgFolders = new SelectList(ImgFolders, "FolderName", "FolderName");
             var VidFolders = db.MediaFolders.Where(x => x.MediaType == "Videos").ToList();
             ViewBag.VidFolders = new SelectList(VidFolders, "FolderName", "FolderName");
@@ -167,7 +167,7 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaTargets()
         {
             getDistrict();
-           
+
             var model = new PhysicalTargetViewModel();
 
             var ddlTal = db.Comp1PhysicalTargetTaluka.Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
@@ -191,7 +191,7 @@ namespace Mahamesh.Controllers
             var model = new PhysicalTargetViewModel();
             model.Component = model1.Component;
             model.DistrictName = model1.DistrictName;
-          
+
             model.TalukaName = model1.TalukaName;
             var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
             ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model.TalukaName);
@@ -210,7 +210,7 @@ namespace Mahamesh.Controllers
                 //var comp1 = db.Comp1Target.ToList();
                 model.Comp1TargetList = db.Comp1Target.Where(x => x.DistrictName == model1.DistrictName.Trim()).ToList();
                 //var data = db.Comp1Target.Where(x => x.DistrictName == district).ToList();
-                
+
             }
             else if ((model1.Component == "2") && (model1.TalukaName == null) && (model1.DistrictName != null))
             {
@@ -250,7 +250,7 @@ namespace Mahamesh.Controllers
                 model.Comp4TalukaList = db.Comp4PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName.Trim() && x.TalukaName == model1.TalukaName).ToList();
             }
 
-           
+
             return View(model);
             //return Json(model, JsonRequestBehavior.AllowGet);
         }
@@ -258,14 +258,14 @@ namespace Mahamesh.Controllers
         [HttpGet]
         public JsonResult MahameshYojanaTargetsByDist(string comp, string dist, string tal)
         {
-           // getDistrict();
+            // getDistrict();
             var model = new PhysicalTargetViewModel();
             var d = db.DistMaster.Where(x => x.DistName == dist).FirstOrDefault();
 
             model.Component = comp;
-            model.DistrictName =d.District_Mr;
+            model.DistrictName = d.District_Mr;
             //model1.TargetModel.DistrictName = d.District_Mr;
-            model.TalukaName =tal;
+            model.TalukaName = tal;
             var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
             ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model.TalukaName);
 
@@ -354,7 +354,7 @@ namespace Mahamesh.Controllers
             //    model.TimerList.Add(item);
             //}
             return View();
-       
+
         }
 
         public ActionResult PrelimBeneficiary()
@@ -386,7 +386,7 @@ namespace Mahamesh.Controllers
         }
         public ActionResult MahameshYojanaUserLogin(string msg)
         {
-            if(msg != null)
+            if (msg != null)
                 ViewBag.Msg = "Your appliation has been submitted successfully. To view the appliation, please login again.";
 
             var applicationTime = new ApplicantRegistration();
@@ -398,10 +398,10 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaUserLogin(long AdharCardNo)
         {
             var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AdharCardNo);
-            if(applicantExist == true)
+            if (applicantExist == true)
             {
                 var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
-                if(applicantData.FormSubmitted == true)
+                if (applicantData.FormSubmitted == true)
                 {
                     return RedirectToAction("UserIndex", "ApplicantRegistrations", new { id = applicantData.Id });
                 }
@@ -414,7 +414,7 @@ namespace Mahamesh.Controllers
             {
                 return RedirectToAction("Create", "ApplicantRegistrations", new { @aadhar = AdharCardNo });
             }
-           // return View();
+            // return View();
         }
 
         public ActionResult MahameshYojanaOfficerLogin()
@@ -425,8 +425,8 @@ namespace Mahamesh.Controllers
         [HttpPost]
         public ActionResult MahameshYojanaOfficerLogin(OfficerLogin model)
         {
-            var officers = db.OfficerLogins.Any(x=>x.Username == model.Username);
-            if(officers)
+            var officers = db.OfficerLogins.Any(x => x.Username == model.Username);
+            if (officers)
             {
                 var ofcrDetail = new OfficerLogin();
                 ofcrDetail = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
@@ -448,9 +448,9 @@ namespace Mahamesh.Controllers
                         AllowOnlyAlphanumericUserNames = false,
                         RequireUniqueEmail = false
                     };
-                 
+
                     user.UserName = model.Username.ToString();
-                    user.Email = "admin@mahamesh.co.in";                   
+                    user.Email = "admin@mahamesh.co.in";
                     var chkUser = UserManager.Create(user, model.pwd);
 
                     //Add default User to Role Admin    
@@ -468,11 +468,11 @@ namespace Mahamesh.Controllers
                     return RedirectToAction("ResetPwdNew", "Menu", new { username = model.Username });
 
                 }
-                else if(ofcrDetail.ResetPwd == model.pwd)
+                else if (ofcrDetail.ResetPwd == model.pwd)
                 {
                     model.ChangedBy = model.Username;
                     var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
-                   
+
                     return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
                 }
             }
@@ -501,7 +501,7 @@ namespace Mahamesh.Controllers
             db.Entry(loginModel).State = EntityState.Modified;
             db.SaveChanges();
             var user = UserManager.FindByName(model.Username);
-            if(user == null)
+            if (user == null)
             {
                 UserManager.PasswordValidator = new PasswordValidator
                 {
@@ -518,7 +518,7 @@ namespace Mahamesh.Controllers
                     RequireUniqueEmail = false
                 };
                 var user1 = new ApplicationUser();
-              
+
                 user1.UserName = loginModel.Username.ToString();
                 user1.Email = "admin@mahamesh.co.in";
                 //string pwd = "Admin123@";
@@ -537,7 +537,7 @@ namespace Mahamesh.Controllers
 
             store.SetPasswordHashAsync(user, hashedNewPassword);
             store.UpdateAsync(user);
-            return RedirectToAction("OfficerDashboard", new { username = model.ChangedBy});
+            return RedirectToAction("OfficerDashboard", new { username = model.ChangedBy });
         }
 
         [NoDirectAccess]
@@ -672,8 +672,8 @@ namespace Mahamesh.Controllers
             var model = new OfficerLogin();
             model = officer;
             var timer = db.DistrictCountdown.Where(x => x.DistCode == model.district).FirstOrDefault();
-           
-           
+
+
             var talMaster = db.TalMaster.Where(x => x.Dist_Code == model.district).ToList();
             model.TalukaList = talMaster;
             model.TCount = talMaster.Count;
@@ -689,7 +689,7 @@ namespace Mahamesh.Controllers
             model.Timer = timer;
             DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
             model.CurrentTime = indianTime;
-             var model1 = new PhysicalTargetViewModel();
+            var model1 = new PhysicalTargetViewModel();
             model.Component = model1.Component;
             var list1 = new List<PhysicalTargetViewModel>();
             model1.Comp1TargetList = new List<Comp1Target>();
@@ -707,7 +707,7 @@ namespace Mahamesh.Controllers
             //stats
             var target = new TargetViewModel();
             var _list = new List<TargetViewModel>();
-         
+
             var applications = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == model.district).ToList();
             foreach (var district in distTarget.Where(x => x.Name_of_District.Trim() == dist_mr))
             {
@@ -724,11 +724,11 @@ namespace Mahamesh.Controllers
                 model4.Component_No_1 = comp1_target;
                 model4.HandicapTarget_Component_No_1 = handicap_comp1target;
                 model4.FemaleTarget_Component_No_1 = female_comp1target;
-                model4.ApFemaleTarget_Component_No_1 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("1") && 
+                model4.ApFemaleTarget_Component_No_1 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("1") &&
                 ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
                         x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))))).Count();
 
-                model4.ApFemaleTarget_Component_No_2 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("2") && 
+                model4.ApFemaleTarget_Component_No_2 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && (x.CompNumber.Contains("2") &&
                 ((!(x.CompNumber.Contains("12")))))).Count();
 
                 model4.ApFemaleTarget_Component_No_3_7 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4")
@@ -744,23 +744,23 @@ namespace Mahamesh.Controllers
                 model4.ApFemaleTarget_Component_No_13 = applications.Where(x => (x.Gender == "Female" || x.Gender == "स्त्री") && x.CompNumber.Contains("13")).Count();
 
                 //
-                model4.ApHandicapTarget_Component_No_1 = applications.Where(x =>x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("1") &&
+                model4.ApHandicapTarget_Component_No_1 = applications.Where(x => x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("1") &&
                 ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
                         x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))))).Count();
 
-                model4.ApHandicapTarget_Component_No_2 = applications.Where(x =>x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("2") &&
+                model4.ApHandicapTarget_Component_No_2 = applications.Where(x => x.ApplicantCrippled == "होय" && (x.CompNumber.Contains("2") &&
                 ((!(x.CompNumber.Contains("12")))))).Count();
 
-                model4.ApHandicapTarget_Component_No_3_7 = applications.Where(x =>x.ApplicantCrippled == "होय" && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4")
+                model4.ApHandicapTarget_Component_No_3_7 = applications.Where(x => x.ApplicantCrippled == "होय" && ((x.CompNumber.Contains("3") || x.CompNumber.Contains("4")
                 || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) && ((!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15")))))).Count();
 
-                model4.ApHandicapTarget_Component_No_8 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("8")).Count();
+                model4.ApHandicapTarget_Component_No_8 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("8")).Count();
 
-                model4.ApHandicapTarget_Component_No_9 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("9")).Count();
-                model4.ApHandicapTarget_Component_No_10 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("10")).Count();
-                model4.ApHandicapTarget_Component_No_11 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("11")).Count();
-                model4.ApHandicapTarget_Component_No_12 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("12")).Count();
-                model4.ApHandicapTarget_Component_No_13 = applications.Where(x =>x.ApplicantCrippled == "होय" && x.CompNumber.Contains("13")).Count();
+                model4.ApHandicapTarget_Component_No_9 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("9")).Count();
+                model4.ApHandicapTarget_Component_No_10 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("10")).Count();
+                model4.ApHandicapTarget_Component_No_11 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("11")).Count();
+                model4.ApHandicapTarget_Component_No_12 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("12")).Count();
+                model4.ApHandicapTarget_Component_No_13 = applications.Where(x => x.ApplicantCrippled == "होय" && x.CompNumber.Contains("13")).Count();
                 //comp 2
                 var comp2_target = district.Component_No_2;
                 var handicap_comp2target = Math.Round(decimal.Multiply(3, comp2_target) / 100);
@@ -828,16 +828,16 @@ namespace Mahamesh.Controllers
                     {
                         var tal_applications = applications.Where(x => x.Tahashil == talCode && x.CompNumber != null).ToList();
                         Console.Write(talCode);
-                        talukaModel.Application_Component_No_1 = tal_applications.Where(x => x.CompNumber.Contains("1") && 
-                        (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") || 
+                        talukaModel.Application_Component_No_1 = tal_applications.Where(x => x.CompNumber.Contains("1") &&
+                        (!(x.CompNumber.Contains("13") || x.CompNumber.Contains("14") || x.CompNumber.Contains("15") || x.CompNumber.Contains("10") ||
                         x.CompNumber.Contains("11") || x.CompNumber.Contains("12")))).Count();
-                        talukaModel.Application_Component_No_2 = tal_applications.Where(x => x.Tahashil == talCode && (x.CompNumber.Contains("2") && 
+                        talukaModel.Application_Component_No_2 = tal_applications.Where(x => x.Tahashil == talCode && (x.CompNumber.Contains("2") &&
                         !(x.CompNumber.Contains("12")))).Count();
 
                         talukaModel.Application_Component_No_3_7 = tal_applications.Where(x => x.Tahashil == talCode && (x.CompNumber.Contains("3") ||
-                        x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) && 
-                        (!(x.CompNumber.Contains("14")  || (x.CompNumber.Contains("13")) || (x.CompNumber.Contains("15"))))).Count(); 
-   
+                        x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6") || x.CompNumber.Contains("7")) &&
+                        (!(x.CompNumber.Contains("14") || (x.CompNumber.Contains("13")) || (x.CompNumber.Contains("15"))))).Count();
+
                         talukaModel.Application_Component_No_8 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("8")).Count();
                         talukaModel.Application_Component_No_9 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("9")).Count();
                         talukaModel.Application_Component_No_10 = tal_applications.Where(x => x.Tahashil == talCode && x.CompNumber.Contains("10")).Count();
@@ -864,10 +864,10 @@ namespace Mahamesh.Controllers
                     talukaModel.GeneralTarget_Component_No_11 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_11) / 100);
                     talukaModel.GeneralTarget_Component_No_12 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_12) / 100);
                     talukaModel.GeneralTarget_Component_No_13 = Math.Round(decimal.Multiply(67, talukaModel.Component_No_13) / 100);
-                   
+
                     talukaList.Add(talukaModel);
                 }
-               // model4.HandicapTarget_Component_No_1 = 
+                // model4.HandicapTarget_Component_No_1 = 
                 model4.TalukaTarget = talukaList;
                 _list.Add(model4);
 
@@ -884,7 +884,7 @@ namespace Mahamesh.Controllers
             model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
             model.SelectedList.WaitingList = new List<SelectedGeneral>();
             var data = db.SelectedFemale.Where(x => x.DistCode == model.district).ToList();
-            if(data.Count > 0)
+            if (data.Count > 0)
             {
                 model.SelectedList1.SelectedFemaleList = data;
             }
@@ -968,7 +968,7 @@ namespace Mahamesh.Controllers
         // GET: Menu
         public ActionResult BeneficiaryList()
         {
- 
+
             return View();
         }
 
@@ -1101,9 +1101,10 @@ namespace Mahamesh.Controllers
             return View();
         }
 
+        [NoDirectAccess]
         public ActionResult UploadDocuments(int id)
         {
-         
+
             var model = new ApplicantRegistration();
             model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault(); var applicationTime = new ApplicantRegistration();
             model.appDuration = db.ApplicationDuration.FirstOrDefault();
@@ -1113,7 +1114,8 @@ namespace Mahamesh.Controllers
 
         [HttpPost]
         public ActionResult UploadDocuments(ApplicantRegistration model, HttpPostedFileBase AdharCardFU, HttpPostedFileBase ReshanCard, HttpPostedFileBase LivestockDevOffCertificate
-            , HttpPostedFileBase CasteCertificate, HttpPostedFileBase ResidentCertificate, HttpPostedFileBase Childcertificate, HttpPostedFileBase FU712Certificate, HttpPostedFileBase TenancyAgreement,
+            , HttpPostedFileBase CasteCertificate, HttpPostedFileBase ResidentCertificate, HttpPostedFileBase ChildCertificate, HttpPostedFileBase FU712Certificate,
+            HttpPostedFileBase TenancyAgreement,
              HttpPostedFileBase FU712orIncomeCertificate, HttpPostedFileBase BachatMemberCertificate, HttpPostedFileBase CompanyMemberCertificate, HttpPostedFileBase DisabilityCertificate
             , HttpPostedFileBase HamiPtra, HttpPostedFileBase TrainingCertificate, HttpPostedFileBase ShedCertificate)
         {
@@ -1158,7 +1160,7 @@ namespace Mahamesh.Controllers
                 var exten = Path.GetExtension(AdharCardFU.FileName);
                 int docId = 1;
                 var docPath = SaveToDrive(AdharCardFU, model.AdharCardNo, _parent, docId);
-                model.AdharCardFU = docPath;
+                model.AdharCardFU = docPath;//"https://drive.google.com/a/aarushsystems.com/file/d/"+docPath +"/view?usp=drivesdk" ;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -1168,7 +1170,7 @@ namespace Mahamesh.Controllers
                 // extract only the filename
                 var fileName = Path.GetFileName(ResidentCertificate.FileName);
                 var exten = Path.GetExtension(ResidentCertificate.FileName);
-                int docId = 2;
+                int docId = 5;
                 var docPath = SaveToDrive(ResidentCertificate, model.AdharCardNo, _parent, docId);
                 model.ResidentCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
@@ -1180,9 +1182,155 @@ namespace Mahamesh.Controllers
                 // extract only the filename
                 var fileName = Path.GetFileName(LivestockDevOffCertificate.FileName);
                 var exten = Path.GetExtension(LivestockDevOffCertificate.FileName);
-                int docId = 1;
+                int docId = 4;
                 var docPath = SaveToDrive(LivestockDevOffCertificate, model.AdharCardNo, _parent, docId);
                 model.LivestockDevOffCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (ReshanCard != null && ReshanCard.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(ReshanCard.FileName);
+                var exten = Path.GetExtension(ReshanCard.FileName);
+                int docId = 2;
+                var docPath = SaveToDrive(ReshanCard, model.AdharCardNo, _parent, docId);
+                model.ReshanCard = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (CasteCertificate != null && CasteCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(CasteCertificate.FileName);
+                var exten = Path.GetExtension(CasteCertificate.FileName);
+                int docId = 3;
+                var docPath = SaveToDrive(CasteCertificate, model.AdharCardNo, _parent, docId);
+                model.CasteCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+
+            if (ChildCertificate != null && ChildCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(ChildCertificate.FileName);
+                var exten = Path.GetExtension(ChildCertificate.FileName);
+                int docId = 6;
+                var docPath = SaveToDrive(ChildCertificate, model.AdharCardNo, _parent, docId);
+                model.Childcertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (FU712Certificate != null && FU712Certificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(FU712Certificate.FileName);
+                var exten = Path.GetExtension(FU712Certificate.FileName);
+                int docId = 1;
+                var docPath = SaveToDrive(FU712Certificate, model.AdharCardNo, _parent, docId);
+                model.FU712Certificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (TenancyAgreement != null && TenancyAgreement.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(TenancyAgreement.FileName);
+                var exten = Path.GetExtension(TenancyAgreement.FileName);
+                int docId = 8;
+                var docPath = SaveToDrive(TenancyAgreement, model.AdharCardNo, _parent, docId);
+                model.TenancyAgreement = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+
+            if (FU712orIncomeCertificate != null && FU712orIncomeCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(FU712orIncomeCertificate.FileName);
+                var exten = Path.GetExtension(FU712orIncomeCertificate.FileName);
+                int docId = 7;
+                var docPath = SaveToDrive(FU712orIncomeCertificate, model.AdharCardNo, _parent, docId);
+                model.FU712orIncomeCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (BachatMemberCertificate != null && BachatMemberCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(BachatMemberCertificate.FileName);
+                var exten = Path.GetExtension(BachatMemberCertificate.FileName);
+                int docId = 10;
+                var docPath = SaveToDrive(BachatMemberCertificate, model.AdharCardNo, _parent, docId);
+                model.BachatMemberCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (CompanyMemberCertificate != null && CompanyMemberCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(CompanyMemberCertificate.FileName);
+                var exten = Path.GetExtension(CompanyMemberCertificate.FileName);
+                int docId = 11;
+                var docPath = SaveToDrive(CompanyMemberCertificate, model.AdharCardNo, _parent, docId);
+                model.CompanyMemberCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (DisabilityCertificate != null && DisabilityCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(DisabilityCertificate.FileName);
+                var exten = Path.GetExtension(DisabilityCertificate.FileName);
+                int docId = 12;
+                var docPath = SaveToDrive(DisabilityCertificate, model.AdharCardNo, _parent, docId);
+                model.DisabilityCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (HamiPtra != null && HamiPtra.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(HamiPtra.FileName);
+                var exten = Path.GetExtension(HamiPtra.FileName);
+                int docId = 14;
+                var docPath = SaveToDrive(HamiPtra, model.AdharCardNo, _parent, docId);
+                model.HamiPtra = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (TrainingCertificate != null && TrainingCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(TrainingCertificate.FileName);
+                var exten = Path.GetExtension(TrainingCertificate.FileName);
+                int docId = 13;
+                var docPath = SaveToDrive(TrainingCertificate, model.AdharCardNo, _parent, docId);
+                model.TrainingCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+            if (ShedCertificate != null && ShedCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(ShedCertificate.FileName);
+                var exten = Path.GetExtension(ShedCertificate.FileName);
+                int docId = 9;
+                var docPath = SaveToDrive(ShedCertificate, model.AdharCardNo, _parent, docId);
+                model.ShedCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -1192,6 +1340,95 @@ namespace Mahamesh.Controllers
             return View(model);
         }
 
+        public ActionResult DeleteDoc(int id, string doc)
+        {
+            var model = new ApplicantRegistration();
+            model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
+            if(doc == model.AdharCardFU)
+            {
+                model.AdharCardFU = null;
+
+            }
+            else if (doc == model.ReshanCard)
+            {
+                model.ReshanCard = null;
+            }
+            else if (doc == model.LivestockDevOffCertificate)
+            {
+                model.LivestockDevOffCertificate = null;
+            }
+            else if (doc == model.ResidentCertificate)
+            {
+                model.ResidentCertificate = null;
+            }
+            else if (doc == model.CasteCertificate)
+            {
+                model.CasteCertificate = null;
+            }
+            else if (doc == model.Childcertificate)
+            {
+                model.Childcertificate = null;
+            }
+            else if (doc == model.TrainingCertificate)
+            {
+                model.TrainingCertificate = null;
+            }
+            else if (doc == model.TenancyAgreement)
+            {
+                model.TenancyAgreement = null;
+            }
+            else if (doc == model.ShedCertificate)
+            {
+                model.ShedCertificate = null;
+            }
+            else if (doc == model.FU712Certificate)
+            {
+                model.FU712Certificate = null;
+            }
+            else if (doc == model.FU712orIncomeCertificate)
+            {
+                model.FU712orIncomeCertificate = null;
+            }
+            else if (doc == model.BachatMemberCertificate)
+            {
+                model.BachatMemberCertificate = null;
+            }
+            else if (doc == model.HamiPtra)
+            {
+                model.HamiPtra = null;
+            }
+            else if (doc == model.DisabilityCertificate)
+            {
+                model.DisabilityCertificate = null;
+            }
+            db.SaveChanges();
+            UserCredential credential;
+
+            using (var stream =
+                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+            {
+                // The file token.json stores the user's access and refresh tokens, and is created
+                // automatically when the authorization flow completes for the first time.
+                string credPath = Server.MapPath("~/token.json");
+                credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    GoogleClientSecrets.Load(stream).Secrets,
+                    Scopes,
+                    "admin",
+                    CancellationToken.None,
+                    new FileDataStore(credPath, true)).Result;
+                Console.WriteLine("Credential file saved to: " + credPath);
+            }
+            // Create Drive API service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = ApplicationName,
+            });
+
+            service.Files.Delete(doc).Execute();
+         
+            return RedirectToAction("UploadDocuments",new { id = id });
+        }
         public string SaveToDrive(HttpPostedFileBase file1, long aadhar, string _parent, int docId)
         {
             UserCredential credential;
@@ -1217,10 +1454,10 @@ namespace Mahamesh.Controllers
                 ApplicationName = ApplicationName,
             });
 
-           
+
 
             Google.Apis.Drive.v3.Data.File body = new Google.Apis.Drive.v3.Data.File();
-            body.Name = aadhar+"_"+docId+"_"+System.IO.Path.GetFileName(file1.FileName);
+            body.Name = aadhar + "_" + docId + "_" + System.IO.Path.GetFileName(file1.FileName);
             body.Description = "Mahamesh File";
             body.MimeType = GetMimeType(file1.FileName);
             if (!string.IsNullOrEmpty(_parent))
@@ -1246,17 +1483,17 @@ namespace Mahamesh.Controllers
             {
                 FilesResource.CreateMediaUpload request = service.Files.Create(body, _stream, GetMimeType(file1.FileName));
                 request.Alt = FilesResource.CreateMediaUpload.AltEnum.Json;
-                request.Fields = "webViewLink";
+                request.Fields = "id";
 
                 request.Upload();
                 var d = request.ResponseBody;
-                return d.WebViewLink; 
+                return d.Id;
             }
             catch (Exception e)
             {
                 return "";
             }
-              
+
         }
 
         private static string GetMimeType(string fileName)
@@ -1321,8 +1558,8 @@ namespace Mahamesh.Controllers
 
 
                 // string folderId = checkDirectory.Execute().Files[0].Id;
-             
-               // FilesResource.CreateRequest request = serv2.Files.Create(body);
+
+                // FilesResource.CreateRequest request = serv2.Files.Create(body);
                 FilesResource.CreateRequest request = service.Files.Create(body);
                 NewDirectory = request.Execute();
                 return NewDirectory.Id;
@@ -1354,7 +1591,7 @@ namespace Mahamesh.Controllers
             try
             {
                 //FilesResource.ListRequest checkDirectory = _service.Files.Get("");
-                
+
 
                 FilesResource.CreateRequest request = _service.Files.Create(body);
                 NewDirectory = request.Execute();
@@ -1365,7 +1602,7 @@ namespace Mahamesh.Controllers
             {
                 Console.WriteLine("An error occurred: " + e.Message);
             }
-          
+
 
             return NewDirectory.Id;
         }
