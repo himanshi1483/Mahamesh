@@ -25,17 +25,35 @@
                 <div class="alert alert-info text-center"><h5>User Aadhar Number: @Model.AdharCardNo</h5></div>
                 <div class="text-center">
                     <div class="btn-group-vertical">
-                        <button class="btn btn-info" style="margin-bottom:5px"><a target="_blank"  style="color:white !important" href="@Url.Action("Details", "ApplicantRegistrations", new { @id = Model.Id})">View Submitted Application</a></button>
-                        <button class="btn btn-warning"style="margin-bottom:5px"><a target="_blank"  style="color:white !important" href="@Url.Action("GenerateReceipt", "ApplicantRegistrations", new { @id = Model.Id})">View Application Receipt</a></button>
-                        <button id="btnUpload" class="btn btn-primary"style="margin-bottom:5px;color:white !important"><a target="_blank" style="color:white !important" href="@Url.Action("UploadDocuments", "Menu", new { @id = Model.Id})">Upload Documents</a></button>
-                        <button class="btn btn-danger" style="margin-bottom:5px"><a href="@Url.Action("Index", "Home")"  style="color:white !important">Log-out</a></button>
+                        <button class="btn btn-info" style="margin-bottom:5px"><a target="_blank" style="color:white !important" href="@Url.Action("Details", "ApplicantRegistrations", new { @id = Model.Id})">View Submitted Application</a></button>
+                        <button class="btn btn-warning" style="margin-bottom:5px"><a target="_blank" style="color:white !important" href="@Url.Action("GenerateReceipt", "ApplicantRegistrations", new { @id = Model.Id})">View Application Receipt</a></button>
+                        <button id="btnUpload" class="btn btn-primary" style="margin-bottom:5px;color:white !important"><a target="_blank" style="color:white !important" href="@Url.Action("UploadDocuments", "Menu", new { @id = Model.Id})">Upload Documents</a></button>
+                        <button class="btn btn-danger" style="margin-bottom:5px"><a href="@Url.Action("Index", "Home")" style="color:white !important">Log-out</a></button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+
 <script type="text/javascript">
+      $(document).ready(function () {
+        @*var msg = "";
+        msg = "@ViewBag.Msg";
+        if (msg != "") {
+            alert(msg);
+        }*@
+
+        var appStart = new Date();
+        appStart = new Date("@Model.appDuration.StartDatetime");
+        console.log(appStart);
+        var appEnd = new Date();
+        appEnd = new Date("@Model.appDuration.EndDatetime");
+        console.log(appEnd);
+        var currentDate = new Date($.now());
+        console.log(currentDate);
+    });
     function alertFunction() {
         alert("Will be active after Your selection in Preliminary List");
     }

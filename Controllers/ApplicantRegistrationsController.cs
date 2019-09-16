@@ -413,6 +413,8 @@ namespace Mahamesh.Controllers
         public ActionResult UserIndex(int id)
         {
             var model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
+            model.appDuration = new ApplicationDuration();
+            model.appDuration = db.ApplicationDuration.FirstOrDefault();
             return View(model);
         }
 

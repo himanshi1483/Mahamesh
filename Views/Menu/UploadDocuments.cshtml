@@ -108,7 +108,7 @@
                                 {
                                     <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download"  target="_blank" 
                                 class="btn btn-link">Aadhar Card </a>
-                                    <a href="@Url.Action("DeleteDoc", "Menu", new { aadhar = Model.AdharCardNo, doc = Model.AdharCardFU})" class="btn btn-link"><i class="fa fa-remove"></i></a>
+                                    <a href="@Url.Action("DeleteDoc", "Menu", new { id = Model.Id, doc = Model.AdharCardFU})" class="btn btn-link"><i class="fa fa-remove"></i></a>
                                 }
                             </td>
                         </tr>
@@ -387,7 +387,7 @@
                 <div class="text-center">
                     <button type="submit" class="btn btn-info">Submit</button>
                 </div>
-                <a href="https://www.googleapis.com/drive/v3/files/1k47owB6wkzaj4TCYLGUieuZnJeBjatf3">click</a>
+              
             }
         </div>
     </div>

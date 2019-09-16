@@ -1,4 +1,5 @@
 ﻿using Google.Apis.Auth.OAuth2;
+using Google.Apis.Auth.OAuth2.Flows;
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
@@ -25,6 +26,8 @@ namespace Mahamesh.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private readonly DriveService _service;
+        private static string _clientID = "386766609952-jg6mglmbo59qr0jam0bsvg4235lknm7q.apps.googleusercontent.com";
+        private static string _clientSecret = "g9b-RPF7j32WnVGal3x79pRn";
         static string[] Scopes = { DriveService.Scope.Drive, DriveService.Scope.DriveFile, DriveService.Scope.DriveMetadata, DriveService.Scope.DriveAppdata };
         static string ApplicationName = "Mahamesh";
         public MenuController()
@@ -1120,19 +1123,22 @@ namespace Mahamesh.Controllers
             , HttpPostedFileBase HamiPtra, HttpPostedFileBase TrainingCertificate, HttpPostedFileBase ShedCertificate)
         {
             UserCredential credential;
-
+            string credPath1 = @"~\Documents\credentials.json";
             using (var stream =
-                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+                 new FileStream(Server.MapPath(credPath1), FileMode.Open, FileAccess.ReadWrite))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.
-                string credPath = Server.MapPath("~/token.json");
+
+
+                string credPath = Server.MapPath(@"~\Documents\token.json");
+                //credential = GoogleWebAuthorizationBroker.AuthorizeAsync(GoogleClientSecrets.Load(stream).Secrets, Scopes,"admin", CancellationToken.None, new FileDataStore("MyAppsToken"))
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
                     "admin",
                     CancellationToken.None,
-                    new FileDataStore(credPath, true)).Result;
+                    new FileDataStore(credPath, false)).Result;
                 Console.WriteLine("Credential file saved to: " + credPath);
             }
             // Create Drive API service.
@@ -1405,11 +1411,11 @@ namespace Mahamesh.Controllers
             UserCredential credential;
 
             using (var stream =
-                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+                 new FileStream(Server.MapPath("~/Documents/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.
-                string credPath = Server.MapPath("~/token.json");
+                string credPath = Server.MapPath("~/Documents/token.json");
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
@@ -1434,11 +1440,11 @@ namespace Mahamesh.Controllers
             UserCredential credential;
 
             using (var stream =
-                 new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+                 new FileStream(Server.MapPath("~/Documents/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.
-                string credPath = Server.MapPath("~/token.json");
+                string credPath = Server.MapPath("~/Documents/token.json");
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
                     Scopes,
@@ -1514,9 +1520,20 @@ namespace Mahamesh.Controllers
         public string createDirectory()
         {
             UserCredential credential;
-
+            //var apiCodeFlow = new GoogleAuthorizationCodeFlow(new GoogleAuthorizationCodeFlow.Initializer
+            //{
+            //    ClientSecrets = new ClientSecrets
+            //    {
+            //        ClientId = _clientID,
+            //        ClientSecret = _clientSecret
+            //    },
+            //    Scopes = new[] { DriveService.Scope.Drive, DriveService.Scope.DriveFile, DriveService.Scope.DriveMetadata, DriveService.Scope.DriveAppdata },
+            //    DataStore = new FileDataStore(HttpContext.Server.MapPath("~/App_Data/credentials.json")),
+            //});
+            //   UserCredential usercred = new UserCredential (apiCodeFlow, )
+           
             using (var stream =
-                new FileStream(Server.MapPath("~/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
+                new FileStream(Server.MapPath("~/Documents/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
             {
                 // The file token.json stores the user's access and refresh tokens, and is created
                 // automatically when the authorization flow completes for the first time.

@@ -80,28 +80,31 @@
                     <tbody>
                         @for (int i = 0; i < Model.TimerList.Count; i++)
                         {
-                            <tr>
-                                <td>@(i + 1)</td>
-                                <td>@Model.TimerList[i].DistCode</td>
-                                <td>@Model.TimerList[i].DistrictName</td>
-                                <td>@Model.TimerList[i].EnableDate</td>
-                                <td>
-                                    @if (Model.TimerList[i].IsEnabled)
-                                    {<i id="check" class="fa fa-check-circle" style="color:green;font-size:25px;"></i>}
-                                    else
-                                    {<i id="uncheck" class="fa fa-remove" style="color:grey;font-size:25px;"></i>}
-                                </td>
-                                <td>@Model.TimerList[i].CreatedDate</td>
-                                <td>
-                                    @if (Model.TimerList[i].IsEnabled)
-                                    {
-                                    <a href="~/Documents/MahameshYojana/PreliminaryList_@(Model.TimerList[i].DistCode).pdf"><i class="fa fa-file-pdf-o red"></i> PreliminaryList_@Model.TimerList[i].DistCode</a>
-                                    }
-                                </td>
-                            </tr>
-                        }
+                           if (Model.TimerList[i].IsEnabled)
+                            {
+                                <tr>
+                                    <td>@(i + 1)</td>
+                                    <td>@Model.TimerList[i].DistCode</td>
+                                    <td>@Model.TimerList[i].DistrictName</td>
+                                    <td>@Model.TimerList[i].EnableDate</td>
+                                    <td>
+                                        @if (Model.TimerList[i].IsEnabled)
+                            {<i id="check" class="fa fa-check-circle" style="color:green;font-size:25px;"></i>}
+                            else
+                            {<i id="uncheck" class="fa fa-remove" style="color:grey;font-size:25px;"></i>}
+                                    </td>
+                                    <td>@Model.TimerList[i].CreatedDate</td>
+                                    <td>
+                                        @if (Model.TimerList[i].IsEnabled)
+                            {
+                                            <a href="~/Documents/MahameshYojana/PreliminaryList_@(Model.TimerList[i].DistCode).pdf"><i class="fa fa-file-pdf-o red"></i> PreliminaryList_@Model.TimerList[i].DistCode</a>
+                            }
+                                    </td>
+                                </tr>
+                                }
+                            }
 
-                    </tbody>
+                        </tbody>
                 </table>
             </div>
         </div>
