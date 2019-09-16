@@ -183,6 +183,7 @@
         <div class="panel-heading panel-primary-2">
             <h5 class="text-center">अधिकारी लॉगिन</h5>
         </div>
+        <marquee style="color:forestgreen; font-size:15px; margin-top:10px;font-weight:600" class="marquee"> <strong>"सुधारित वेळापत्रक लवकरच येत आहे </strong> </marquee>
         <div class="panel-body text-center">
             <div class="col-sm-9 col-md-7 col-lg-5 mx-auto" style="margin-left:28%">
                 <div class="card card-signin my-5">
@@ -190,16 +191,16 @@
                         <div style="margin-left:32%;padding-bottom:15px"><img src="~/Images/logo1.png" class="img-responsive" alt="Logo" width="150" height="150" /></div>
                         @using (Html.BeginForm("MahameshYojanaOfficerLogin", "Menu", FormMethod.Post, new { enctype = "multipart/form-data", onsubmit = "return checkform(this);" }))
                         {
-                        <div class="form-group" style="padding-bottom:10px !important">
-                            @Html.LabelFor(x=>x.Username, new { @class = "control-label" })
-                            @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @required = "required" })
-                        </div>
+                            <div class="form-group" style="padding-bottom:10px !important">
+                                @Html.LabelFor(x => x.Username, new { @class = "control-label" })
+                                @Html.TextBoxFor(x => x.Username, new { @class = "form-control", @required = "required" })
+                            </div>
 
-                        <div class="form-group" style="padding-bottom:10px !important">
-                            @Html.Label("Password", new { @class = "control-label" })
-                            @Html.TextBoxFor(x => x.pwd, new { @class = "form-control",@type = "Password",  @required = "required" })
-                        </div>
-                        
+                            <div class="form-group" style="padding-bottom:10px !important">
+                                @Html.Label("Password", new { @class = "control-label" })
+                                @Html.TextBoxFor(x => x.pwd, new { @class = "form-control", @type = "Password", @required = "required" })
+                            </div>
+
                             <div>
                                 <!-- START CAPTCHA -->
                                 <div class="capbox">
@@ -221,7 +222,7 @@
                             <button class="btn btn-sm btn-primary btn-block text-uppercase" type="submit">Sign In</button>
 
                         }
-                        </div>
+                    </div>
                 </div>
             </div>
         </div>
