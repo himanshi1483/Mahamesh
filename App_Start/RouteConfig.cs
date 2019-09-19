@@ -8,7 +8,7 @@ namespace Mahamesh
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
+         //   routes.MapRoute("AppData", "{controller}/{action}", new { controller = "ApplicantRegistrations", action = "GetAplications" });
             routes.MapRoute(
                   name: "Language",
                   url: "{lang}/{controller}/{action}/{id}",

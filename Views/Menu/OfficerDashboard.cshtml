@@ -1499,19 +1499,19 @@
         var enableDate = new Date('@Model.Timer.EnableDate.Value');
         //alert(dateNow);
 
-        //if (dateNow >= enableDate) {
-        //    $("#btnText").empty();
-        //    $("#demo").hide();
-        //    $("#btnText").text("Click below to generate list");
-        //    if (d == 'True') {
-        //    $("#btnGenerate").prop("disabled", true);
-        //    }
-        //    else {
-        //    $("#btnGenerate").prop("disabled", false);
+        if (dateNow >= enableDate) {
+            $("#btnText").empty();
+            $("#demo").hide();
+            $("#btnText").text("Click below to generate list");
+            if (d == 'True') {
+            $("#btnGenerate").prop("disabled", true);
+            }
+            else {
+            $("#btnGenerate").prop("disabled", true);
 
-        //    }
+            }
 
-        //}
+        }
         $("#link1").click(function () {
             $("#tab1").toggle();
             $("#tab2").hide();

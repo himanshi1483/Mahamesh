@@ -3,6 +3,9 @@
 @{
     ViewBag.Title = "Index";
 }
+<link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/scroller/2.0.0/css/scroller.dataTables.min.css" rel="stylesheet" />
 <style>
     .tableheader {
         background: #1a9b83 !important;
@@ -10,14 +13,22 @@
         text-align: center;
         font-weight: bold;
     }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 5.5px;
+        /* font-size: 13px; */
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
 </style>
-<div class="container" style="margin-bottom:150px;">
+<div class="container-fluid" style="margin-bottom:150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
         </div>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
-            <img src="~/Images/Raje.jpg" class="img-responsive" alt="Raje Yashwant Holkar" />
+            <img src="~/Images/Raje.jpg" style="max-height:93px" class="img-responsive" alt="Raje Yashwant Holkar" />
         </div>
 
     </div>
@@ -27,60 +38,281 @@
             </p>*@
         <div class="panel-heading panel-primary-2 text-center"><h4>Applicant's List</h4></div>
         <div class="panel-body">
-            <table class="table table-bordered table-striped table-responsive">
-                <tr class="tableheader">
-                    <th>
-                        @Html.DisplayNameFor(model => model.ApName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.VillageName)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Tahashil)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Dist)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.PinCode)
-                    </th>
-                  
-                    <th>
-                        @Html.DisplayNameFor(model => model.AdharCardNo)
-                    </th>
-                    <th></th>
-                </tr>
+            <div style="background-color:#f5f5f5;">
+                <h4>Filter Records</h4>
+                <div class="col-lg-4 text-right" style="padding-right:50px">
+                    Filter By:
+                    <select id="ddlSearch" class="btn btn-primary dropdown-toggle" name="ddlSearch" type="button" data-toggle="dropdown">
+                        <option value="Name">Applicant Name</option>
+                        <option value="Aadhar">Aadhar Number</option>
+                        <option value="DistCode">District Code</option>
+                        <option value="DistName">District Name</option>
+                        <option value="Tahashil">Taluka Code</option>
+                        <option value="TalukaName">Taluka Name</option>
+                        @*<option value="TalukaName">Taluka Name</option>*@
+                    </select>
+                </div>
+                <div class="col-lg-3"><input type="text" class="form-control" name="txtSearch" id="txtSearch" /></div>
+                <div class="col-lg-3"> <input type="button" class="btn btn-success btn-md" value="Filter" id="btnFilter" /></div>
+            </div>
+            <table id="tbl1" class="display table table-bordered table-striped table-responsive infinite-scroll" style="width:100%">
+                <thead>
 
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.VillageName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Tahashil)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Dist)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PinCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.AdharCardNo)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                        </td>
+                    <tr class="tableheader">
+                        <th>
+                            @Html.DisplayNameFor(model => model.ApName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VillageName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.VilName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Tahashil)
+                        </th>
+                        <th> @Html.DisplayNameFor(model => model.TalukaName)</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Dist)
+                        </th>
+                        <th>  @Html.DisplayNameFor(model => model.DistrictName)</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AdharCardNo)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.CompNumber)
+                        </th>
+                        <th></th>
                     </tr>
-                }
+                </thead>
+                @*<thead>
+                    <tr id="srch">
+                        <th style="color:black !important">Name</th>
+                        <th style="color:black !important">Village Code</th>
+                        <th style="color:black !important">Village Name</th>
+                        <th style="color:black !important">Tahashil</th>
+                        <th style="color:black !important">Tahashil Name</th>
+                        <th style="color:black !important">District</th>
+                        <th style="color:black !important">District Name</th>
+                        <th style="color:black !important">Aadhar Number</th>
+                        <th style="color:black !important">Component</th>
+                        <th style="color:black !important"></th>
+                    </tr>
+                </thead>*@
+                @*<tbody>
 
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ApName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VillageName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VilName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tahashil)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TalukaName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Dist)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DistrictName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AdharCardNo)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CompNumber)
+                                </td>
+
+                                <td>
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                                    @Html.ActionLink("Receipt", "GenerateReceipt", new { id = item.Id })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>*@
+                @*<tfoot>
+                    <tr>
+                        <th>Name</th>
+                        <th>Village Code</th>
+                        <th>Village Name</th>
+                        <th>Tahashil</th>
+                        <th>Tahashil Name</th>
+                        <th>District</th>
+                        <th>District Name</th>
+                        <th>Aadhar Number</th>
+                        <th>Component</th>
+                        <th></th>
+                    </tr>
+                </tfoot>*@
             </table>
         </div>
     </div>
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.flash.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js" type="text/javascript"></script>
+<script src="https://cdn.datatables.net/scroller/2.0.0/js/dataTables.scroller.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var table = $("#tbl1").DataTable({
+            "language":
+            {
+                "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color' style='font-size:40px'></i></div>"
+            },
+            "processing": true,
+            "serverSide": true,
+            "orderMulti": false,
+            "dom": '<"top"i>rt<"bottom"lp><"clear">',
+            "pageLength": 10,
+            "ajax": {
+                "url": "/ApplicantRegistrations/GetApplicantList",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "orderCellsTop": true,
+            "columns": [
+                { "data": "ApName", "name": "ApName", "autoWidth": true },
+                { "data": "VillageName", "name": "VillageName", "autoWidth": true },
+                { "data": "VilName", "title": "VilName", "name": "VilName", "autoWidth": true },
+                { "data": "Tahashil", "name": "Tahashil", "autoWidth": true },
+                { "data": "TalukaName", "name": "TalukaName", "autoWidth": true },
+                { "data": "Dist", "name": "Dist", "autoWidth": true },
+                { "data": "DistrictName", "name": "DistrictName", "autoWidth": true },
+                { "data": "AdharCardNo", "name": "AdharCardNo", "title": "AdharCardNo", "autoWidth": true },
+                { "data": "CompNumber", "name": "CompNumber", "title": "CompNumber", "autoWidth": true },
+                {
+                    "render": function (data, type, full, meta) { return '<a class="btn btn-info" href="/ApplicantRegistrations/Details/' + full.ID + '">Details</a> | <a class="btn btn-info" href="/ApplicantRegistrations/GenerateReceipt/' + full.ID + '">Receipt</a>'; }
+                }
+            ]
+
+        });
+
+        oTable = $('#tbl1').DataTable(); 
+        $('#btnFilter').click(function () {
+           var searchCriteria = $("#ddlSearch option:selected").val();
+         
+           // if ($("#ddlSearch option:selected").val() == "Name") {
+               
+                oTable.columns(0).search($('#txtSearch').val().trim());
+            oTable.columns(1).search(searchCriteria);
+                oTable.draw();
+
+            //}
+            //else if ($("#ddlSearch option:selected").val() == "VillageName") {
+
+            //    oTable.columns(0).search($('#txtSearch').val().trim());
+            //     oTable.columns(1).search(searchCriteria);
+            //    oTable.draw();
+
+            //}
+            //    table.columns(5).search($('#txtSearch').val().trim());
+            //    table.draw();
+        });
+
+        //$('#tbl1 tfoot th').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" name=' + title + '  placeholder="Search ' + title + '" />');
+        //});
+        ////$('#tbl1 thead #srch th').each(function () {
+        ////    var title = $(this).text();
+        ////    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        ////});
+
+        //$('#tbl1 tbody #srch td').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" name=' + title + ' placeholder="Search ' + title + '" />');
+        //});
+
+        //// Apply the search
+        //table.columns().every(function () {
+        //    var that = this;
+
+        //    $('input', this.footer()).on('keyup change clear', function () {
+        //        if (that.search() !== this.value) {
+        //            that
+        //                .search(this.value)
+        //                .draw();
+        //        }
+        //    });
+        //});
+    });
+</script>
+
+@*<script>
+
+        $('#tbl1 thead tr:eq(1) th').each(function () {
+            var title = $('#example thead tr:eq(0) th').eq($(this).index()).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+
+
+
+
+        var table = $('#tbl1').DataTable({
+            dom: 'Bfrtip',
+            "lengthMenu": [[20, 50, 100, -1], [20, 50, 100, "All"]],
+            buttons: [
+                { extend: 'copyHtml5', footer: true },
+                { extend: 'excelHtml5', footer: true },
+                { extend: 'csvHtml5', footer: true },
+                { extend: 'pdfHtml5', footer: true },
+            ],
+            "paging": true,
+            orderCellsTop: true
+
+        });
+
+        // Apply the search
+        table.columns().every(function (index) {
+            $('#tbl1 thead tr:eq(1) th:eq(' + index + ') input').on('keyup change', function () {
+                table.column($(this).parent().index() + ':visible')
+                    .search(this.value)
+                    .draw();
+            });
+        });
+
+
+        $('#tbl1 tfoot th').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+        //$('#tbl1 thead #srch th').each(function () {
+        //    var title = $(this).text();
+        //    $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        //});
+
+        $('#tbl1 tbody #srch td').each(function () {
+            var title = $(this).text();
+            $(this).html('<input type="text" placeholder="Search ' + title + '" />');
+        });
+
+        // Apply the search
+        table.columns().every(function () {
+            var that = this;
+
+            $('input', this.footer()).on('keyup change clear', function () {
+                if (that.search() !== this.value) {
+                    that
+                        .search(this.value)
+                        .draw();
+                }
+            });
+        });
+
+    </script>*@

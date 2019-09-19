@@ -1,0 +1,187 @@
+﻿@model Mahamesh.Models.ApplicantRegistration
+
+@{
+    ViewBag.Title = "Document Receipt";
+    Layout = "~/Views/Shared/_LayoutReceipt.cshtml";
+}
+
+<div class="container" style="margin-bottom:150px;">
+    <div class="heading" style="margin-bottom:40px;background:#808080;height:130px;">
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/logo.jpg" height="120" width="125" alt="पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे" />
+        </div>
+
+        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 headerText">
+            <h2 class="text-center" style="color:white;padding-top:10px">
+                पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे
+            </h2>
+            <h3 class="text-center" style="color:white">राजे यशवंतराव होळकर महामेष योजना</h3>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" height="120" width="90" alt="राजे यशवंतराव होळकर" />
+        </div>
+    </div>
+    <div class="panel panel-primary" id="printDiv">
+        <div class="panel-heading panel-primary text-center"><h3 class="text-center" style="color:white">पावती-2</h3></div>
+        <div class="panel-body">
+            <table class="table table-bordered table-striped table-responsive">
+                <tr>
+                    <td>@Html.DisplayNameFor(x => x.ApplicationNumber)</td>
+                    <td style="font-weight:800">@Model.ApplicationNumber</td>
+                </tr>
+                <tr>
+                    <td>पशुवैद्यकीय दवाखाना :</td>
+                    <td>
+                        <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
+                            <tr>
+                                <td>गावाचे नाव :</td>
+                                <td>@Model.VilName</td>
+                            </tr>
+                            <tr>
+                                <td>तालुका:</td>
+                                <td>@Model.TalukaName</td>
+                            </tr>
+                            <tr>
+                                <td>जिल्हा:</td>
+                                <td>@Model.DistrictName</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>अर्जदाराचे नाव :</td>
+                    <td>@Model.ApName</td>
+                </tr>
+                <tr>
+                    <td>अर्जदारचा पत्ता:</td>
+                    <td>
+                        <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
+                            <tr>
+                                <td>राहणार:</td>
+                                <td>@Model.HvilName</td>
+                            </tr>
+                            <tr>
+                                <td>तालुका:</td>
+                                <td>@Model.TalukaName</td>
+                            </tr>
+                            <tr>
+                                <td>जिल्हा:</td>
+                                <td>@Model.DistrictName</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>अर्जदाराने अर्ज केलेल्या उपघटकाचे नाव:	</td>
+                    <td>@Model.CompNumber</td>
+                </tr>
+                <tr>
+                    <td width="25%">Documents Submitted:</td>
+                    <td width="75%">
+                        <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
+                            <tr>
+                                <td>आधार कार्ड</td>
+                                @*<td>@Model.AdharCardFU</td>*@
+                            </tr>
+                            <tr>
+                                <td>रेशन कार्ड</td>
+                                @*<td>@Model.ReshanCard</td>*@
+                            </tr>
+                            <tr>
+                                <td>जातीचा दाखला (सक्षम अधिकार्‍यांचा)</td>
+                                @*<td>@Model.CasteCertificate</td>*@
+                            </tr>
+                            <tr>
+                                <td>मेंढी पालन करण्याची पद्धत किंवा स्वरूप व सध्या असलेल्या मेंढ्यांची संख्या (स्थलांतरित /फिरस्ती पद्धतीने किंवा एका ठिकाणी राहून स्थायी पद्धतीने) याबाबतचे संबंधीत पशुवैद्यकीय दवाखान्याचे पशुधन विकास अधिकारी यांचे प्रमाणपत्र</td>
+                                @*<td>@Model.LivestockDevOffCertificate</td>*@
+                            </tr>
+                            <tr>
+                                <td>रहिवासी दाखला</td>
+                                @*<td>@Model.ResidentCertificate</td>*@
+                            </tr>
+                            <tr>
+                                <td>अपत्य दाखला</td>
+                                @*<td>@Model.Childcertificate</td>*@
+                            </tr>
+                            @if (Model.FU712orIncomeCertificate != null)
+                            {
+                                <tr>
+                                    <td>अर्जदाराचे शेतजमिनीचा अलीकडील तीन महिन्यातील ७/१२ उतारा किंवा अर्जदाराच्या नावे जमीन नसल्यास (कुटुंबियांपैकी) संमतीपत्र देणाऱ्या व्यक्तीच्या नावाच्या शेतजमिनीचा ७/१२ उतारा व १०० रुपयाच्या स्टॅम्प पेपरवर संमतीपत्र </td>
+                                    @*<td>@Model.FU712orIncomeCertificate</td>*@
+                                </tr>
+                            }
+                            @if (Model.TenancyAgreement != null)
+                            {
+                                <tr>
+                                    <td>भाडेतत्वावर शेतजमीन घेतली असल्यास शेतजमीन मालकासमवेत केलेल्या भाडेकराराची सत्यप्रत</td>
+                                    @*<td>@Model.TenancyAgreement</td>*@
+                                </tr>
+                            }   @if (Model.ShedCertificate != null)
+                            {
+                                <tr>
+                                    <td>शेड बांधकामाचा लाभ घ्यावयाचा असल्यास, त्यासाठी स्वत:ची किमान १ गुंठा जागा उपलब्ध असल्याबाबत अलीकडील तीन महिन्यातील ७/१२ उतारा / मिळकत दाखला</td>
+                                    @*<td>@Model.ShedCertificate</td>*@
+                                </tr>
+                            }   @if (Model.BachatMemberCertificate != null)
+                            {
+                                <tr>
+                                    <td>बचतगटाचे सदस्य असल्याचे प्रमाणपत्र</td>
+                                    @*<td>@Model.BachatMemberCertificate</td>*@
+                                </tr>
+                            }   @if (Model.CompanyMemberCertificate != null)
+                            {
+                                <tr>
+                                    <td>पशुपालक उत्पादक कंपनीचे सदस्य असल्याचे प्रमाणपत्र</td>
+                                    @*<td>@Model.CompanyMemberCertificate</td>*@
+                                </tr>
+                            }   @if (Model.DisabilityCertificate != null)
+                            {
+                                <tr>
+                                    <td>अपंगत्व प्रमाणपत्र</td>
+                                    @*<td>@Model.DisabilityCertificate</td>*@
+                                </tr>
+                            }   @if (Model.TrainingCertificate != null)
+                            {
+                                <tr>
+                                    <td>महामंडळामार्फत शेळी मेंढी पालनाचे प्रशिक्षण घेतले असल्यास त्याबाबतचे प्रमाणपत्र</td>
+                                    @*<td>@Model.TrainingCertificate</td>*@
+                                </tr>
+                            }
+                            <tr>
+                                <td>स्वयंमघोषणा पत्र</td>
+                                @*<td>@Model.HamiPtra</td>*@
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>दिनांक (Server Date):</td>
+                    <td>@Model.SubmitDatetime.Value.Date.ToShortDateString()</td>
+                </tr>
+                <tr>
+                    <td>वेळ (Server Time):</td>
+                    <td>@Model.SubmitDatetime.Value.ToLocalTime()</td>
+                </tr>
+                <tr>
+                    <td>Submited Machine IP Address:</td>
+                    <td>@Model.UserIP</td>
+                </tr>
+            </table>
+        </div>
+        <p style="text-align:right">
+            * Reciept is Computer generated, signature is not required.
+
+        </p>
+    </div>
+    <div class="panel-footer text-center"> <button class="btn btn-default"><a href="@Url.Action("Index", "Home")">Home Page</a></button> <button class="btn btn-primary" onclick="printDiv('print-content')">Print</button></div>
+</div>
+<script>
+    function printDiv(divName) {
+        var printContents = document.getElementById("printDiv").innerHTML;
+        w = window.open();
+        w.document.write(printContents);
+        w.print();
+        w.close();
+    }
+</script>

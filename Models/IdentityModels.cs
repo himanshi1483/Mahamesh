@@ -26,7 +26,7 @@ namespace Mahamesh.Models
         {
         }
         public IDbSet<SelectedFemale> SelectedFemale { get; set; }
-
+        public IDbSet<PreliminaryList> PreliminaryList { get; set; }
         public IDbSet<SelectedGeneral> SelectedGeneral { get; set; }
 
         public IDbSet<SelectedHandicapped> SelectedHandicapped { get; set; }

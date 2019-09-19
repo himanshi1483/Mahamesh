@@ -9,17 +9,172 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using static Mahamesh.Models.DatatableModel;
 
 namespace Mahamesh.Controllers
 {
     public class ApplicantRegistrationsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        public const int RecordsPerPage = 100;
+        //[Authorize]
+        //public ActionResult Index()
+        //{
+        //    db.Configuration.LazyLoadingEnabled = false;
+        //    //return RedirectToAction("GetApplications");
+        //    var applicantRegistrationList = db.ApplicantRegistrations.AsNoTracking().Where(x => x.FormSubmitted == true & (x.ApName != string.Empty || x.ApName != null)).ToList();
+        //    var _dist = db.DistMaster.AsNoTracking().ToList();
+        //    var _tal = db.TalMaster.AsNoTracking().ToList();
+        //   // var _vil = db.VillageMaster.AsNoTracking().ToList();
+        //    foreach (var item in applicantRegistrationList)
+        //    {
+        //        item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+        //        item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+        //        item.VilName = db.VillageMaster.AsNoTracking().Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+        //    }
+        //    return View(applicantRegistrationList);
+        //}
 
-        [Authorize]
+
         public ActionResult Index()
         {
-            return View(db.ApplicantRegistrations.ToList());
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult ApplicantList(DTParameters param)
+        {
+
+            int TotalCount = 0;
+            var filtered = this.GetApplications(param.Search.Value,param.Search.Type, param.SortOrder, param.Start, param.Length, out TotalCount);
+
+            var OrderList = filtered;
+
+
+
+            DTResult<ApplicantRegistration> finalresult = new DTResult<ApplicantRegistration>
+            {
+                draw = param.Draw,
+                data = OrderList.ToList(),
+                recordsFiltered = TotalCount,
+                recordsTotal = filtered.Count
+
+            };
+
+            return Json(finalresult);
+
+        }
+
+        public JsonResult GetApplicantList()
+        {
+            var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            var start = Request.Form.GetValues("start").FirstOrDefault();
+            var length = Request.Form.GetValues("length").FirstOrDefault();
+            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+            var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+            var searchName = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+            var searchVil = Request.Form.GetValues("columns[1][search][value]").FirstOrDefault();
+          //  var searchVil1 = Request.Form.GetValues("columns[2][search][value]").FirstOrDefault();
+            //Paging Size (10,20,50,100)    
+            int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            int skip = start != null ? Convert.ToInt32(start) : 0;
+            int recordsTotal = 0;
+           // db.Configuration.LazyLoadingEnabled = false;
+         
+            var applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x=>x.FormSubmitted).ThenBy(x=>x.Dist).ToList();
+            var _dist = db.DistMaster.ToList();
+            var _tal = db.TalMaster.ToList();
+            var _vil = db.VillageMaster.ToList();
+            foreach (var item in applicantRegistrationList)
+            {
+                item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            }
+            if (searchVil == "Name")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.ApName != null && x.ApName != string.Empty && x.ApName.ToLower().Contains(searchName)).ToList();
+            }
+            else if (searchVil == "VillageName")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.VillageName != null && x.VillageName.Value == Convert.ToInt64(searchName)).ToList();
+            }
+            else if (searchVil == "VilName")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.VilName != null && x.VilName.ToLower().Contains(searchName)).ToList();
+            }
+            else if (searchVil == "DistrictName")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.DistrictName != null && x.DistrictName != string.Empty && x.DistrictName.ToLower().Contains(searchName)).ToList();
+            }
+            else if (searchVil == "TalukaName")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.TalukaName != null && x.TalukaName != string.Empty && x.TalukaName.ToLower().Contains(searchName)).ToList();
+            }
+            else if (searchVil == "DistCode")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.Dist != null && x.Dist.Value == Convert.ToInt64(searchName)).ToList();
+            }
+            else if (searchVil == "Tahashil")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.Tahashil != null && x.Tahashil.Value == Convert.ToInt64(searchName)).ToList();
+            }
+            else if (searchVil == "Aadhar")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.AdharCardNo != null && x.AdharCardNo == Convert.ToInt64(searchName)).ToList();
+            }
+            recordsTotal = applicantRegistrationList.Count();
+            //Paging     
+            var data = applicantRegistrationList.Skip(skip).Take(pageSize).ToList();
+            //Returning Json Data    
+            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+
+        }
+
+        public List<ApplicantRegistration> GetApplications(string search,string searchType, string sortOrder, int start, int length, out int TotalCount)
+        {
+            var applicantRegistrationList = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
+
+            if (searchType == "distCode")
+            {
+                applicantRegistrationList = applicantRegistrationList.Where(x => x.Dist == Convert.ToInt64(search)).ToList();
+            }
+            var _dist = db.DistMaster.ToList();
+            var _tal = db.TalMaster.ToList();
+            var _vil = db.VillageMaster.ToList();
+            foreach (var item in applicantRegistrationList)
+            {
+                item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            }
+
+            TotalCount = applicantRegistrationList.Count;
+
+            applicantRegistrationList = applicantRegistrationList.Skip(start).Take(length).ToList();
+            return applicantRegistrationList.ToList();
+        }
+
+        public List<ApplicantRegistration> GetRecordsForPage(int pageNum)
+        {
+            var applicantRegistrationList = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
+            var _dist = db.DistMaster.ToList();
+            var _tal = db.TalMaster.ToList();
+            var _vil = db.VillageMaster.ToList();
+            foreach (var item in applicantRegistrationList)
+            {
+                item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            }
+
+            int from = (pageNum * RecordsPerPage);
+
+            var tempList = (from rec in applicantRegistrationList
+                            select rec).Skip(from).Take(20).ToList<ApplicantRegistration>();
+
+            return tempList;
         }
 
         //  [Authorize]
@@ -414,7 +569,7 @@ namespace Mahamesh.Controllers
         {
             var model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
             model.appDuration = new ApplicationDuration();
-            model.appDuration = db.ApplicationDuration.FirstOrDefault();
+            model.appDuration = db.ApplicationDuration.Where(x=>x.Id == 5).FirstOrDefault();
             return View(model);
         }
 
@@ -1226,7 +1381,9 @@ namespace Mahamesh.Controllers
             var totalTaluka1 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka1 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka1 += Convert.ToInt32(targ);//talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_1).FirstOrDefault();
             }
            // foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
            // {
@@ -1260,7 +1417,7 @@ namespace Mahamesh.Controllers
             db.SaveChanges();
 
 
-            // comp2List = list.Where(x => x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
+            selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
             var comp2ListCount = distTarget.Component_No_1;
             //select 3% for handicapped
             var targetHandicapped2 = Math.Round(decimal.Multiply(3, comp2ListCount) / 100);
@@ -1270,9 +1427,12 @@ namespace Mahamesh.Controllers
             var totalTaluka2 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka2 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_2).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_2).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka2 += Convert.ToInt32(targ);
+           
             }
-            var comp2List = list.Where(x => x.CompNumber.Contains("2")).Select(x => x.Id).ToList();
+            var comp2List = list.Where(x => x.CompNumber.Contains("2") && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
 
             var targetTaluka2 = 5 * (targetFemale2 + targetHandicapped2 + totalTaluka2);
             IEnumerable<int> waitingRandomList2 = comp2List.Shuffle().Take((Int32)targetTaluka2).Distinct();
@@ -1301,9 +1461,9 @@ namespace Mahamesh.Controllers
            // }
             db.SaveChanges();
 
-
-            var comp3List = list.Where(x => x.CompNumber.Contains("3") || x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6")
-            || x.CompNumber.Contains("7")).Select(x => x.Id).ToList();
+            selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var comp3List = list.Where(x => (x.CompNumber.Contains("3") || x.CompNumber.Contains("4") || x.CompNumber.Contains("5") || x.CompNumber.Contains("6")
+            || x.CompNumber.Contains("7")) && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
             var comp3ListCount = distTarget.Component_No_3_7;
             //select 3% for handicapped
             var targetHandicapped3 = Math.Round(decimal.Multiply(3, comp3ListCount) / 100);
@@ -1313,10 +1473,13 @@ namespace Mahamesh.Controllers
             var totalTaluka3 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka3 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_3_7).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_3_7).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka3 += Convert.ToInt32(targ);
+                
             }
             var targetTaluka3 = 5 * (targetFemale3 + targetHandicapped3 + totalTaluka3);
-            IEnumerable<int> waitingRandomList3 = comp1List.Shuffle().Take((Int32)targetTaluka3).Distinct();
+            IEnumerable<int> waitingRandomList3 = comp3List.Shuffle().Take((Int32)targetTaluka3).Distinct();
             foreach (var number in waitingRandomList3.Distinct())
             {
                 var gen_sel = new SelectedGeneral();
@@ -1342,8 +1505,8 @@ namespace Mahamesh.Controllers
             db.SaveChanges();
 
 
-
-            var comp8List = list.Where(x => x.CompNumber.Contains("8")).Select(x => x.Id).ToList();
+          //  selected = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Select(x => x.ApplicationNumber).ToList();
+            var comp8List = list.Where(x => x.CompNumber.Contains("8") && (!selected.Contains(x.ApplicationNumber))).Select(x => x.Id).ToList();
             var comp8ListCount = distTarget.Component_No_8;
             //select 3% for handicapped
             var targetHandicapped8 = Math.Round(decimal.Multiply(3, comp8ListCount) / 100);
@@ -1353,7 +1516,9 @@ namespace Mahamesh.Controllers
             var totalTaluka8 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka8 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_8).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_8).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka8 += Convert.ToInt32(targ);
             }
             var targetTaluka8 = 5 * (targetFemale8 + targetHandicapped8 + totalTaluka8);
             IEnumerable<int> waitingRandomList8 = comp8List.Shuffle().Take((Int32)targetTaluka8).Distinct();
@@ -1391,7 +1556,10 @@ namespace Mahamesh.Controllers
             var totalTaluka9 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka9 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka9 += Convert.ToInt32(targ);
+               // totalTaluka9 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_9).FirstOrDefault();
             }
             var targetTaluka9 = 5 * (targetFemale9 + targetHandicapped9 + totalTaluka9);
             IEnumerable<int> waitingRandomList9 = comp9List.Shuffle().Take((Int32)targetTaluka9).Distinct();
@@ -1430,7 +1598,9 @@ namespace Mahamesh.Controllers
             var totalTaluka10 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka10 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_10).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_10).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka10 += Convert.ToInt32(targ);
             }
             var targetTaluka10 = 5 * (targetFemale10 + targetHandicapped10 + totalTaluka10);
             IEnumerable<int> waitingRandomList10 = comp10List.Shuffle().Take((Int32)targetTaluka10).Distinct();
@@ -1470,7 +1640,9 @@ namespace Mahamesh.Controllers
             var totalTaluka11 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka11 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_11).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_11).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka11 += Convert.ToInt32(targ);
             }
             var targetTaluka11 = 5 * (targetFemale11 + targetHandicapped11 + totalTaluka11);
             IEnumerable<int> waitingRandomList11 = comp11List.Shuffle().Take((Int32)targetTaluka11).Distinct();
@@ -1508,7 +1680,9 @@ namespace Mahamesh.Controllers
             var totalTaluka12 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka12 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_12).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_12).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka12 += Convert.ToInt32(targ);
             }
             var targetTaluka12 = 5 * (targetFemale12 + targetHandicapped12 + totalTaluka12);
             IEnumerable<int> waitingRandomList12 = comp12List.Shuffle().Take((Int32)targetTaluka12).Distinct();
@@ -1546,7 +1720,10 @@ namespace Mahamesh.Controllers
             var totalTaluka13 = 0;
             foreach (var item2 in taluka.Where(x => x.Dist_Code == distCode))
             {
-                totalTaluka13 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
+                var d = talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
+                var targ = Math.Round(decimal.Multiply(67, d) / 100);
+                totalTaluka13 += Convert.ToInt32(targ);
+               // totalTaluka13 += talukaTarg.Where(x => x.Name_Of_Taluka == item2.Tal_Mr).Select(x => x.Component_No_13).FirstOrDefault();
             }
             var targetTaluka13 = 5 * (targetFemale13 + targetHandicapped13 + totalTaluka13);
             IEnumerable<int> waitingRandomList13 = comp13List.Shuffle().Take((Int32)targetTaluka13).Distinct();
@@ -3723,6 +3900,29 @@ namespace Mahamesh.Controllers
 
         public ActionResult PreliminaryList(int distCode)
         {
+            var model = new OfficerLogin();
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().OrderBy(x => x.Component).ToList();
+            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().OrderBy(x => x.Component).ToList();
+            var talukaList = db.SelectedGeneral.Select(x => x.TalukaCode).Distinct();
+            model.SelectedList = new SelectedListViewModel();
+            model.SelectedList.SelectedFemaleList = new List<SelectedFemale>();
+            model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
+            model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
+            model.SelectedList.WaitingList = new List<SelectedGeneral>();
+            model.SelectedList.SelectedFemaleList = selectedFemale;
+            model.SelectedList.SelectedHandicappedList = selectedHandicapped;
+            model.district = distCode;
+            model.SelectedList.SelectedGeneralList = selectedGeneral;
+            model.SelectedList.WaitingList = selectedWaiting;
+
+            return View(model);
+        }
+
+        public ActionResult PrelimList_Dist(FormCollection form)
+        {
+            var distCode = Convert.ToInt32(form["District"]);
             var model = new OfficerLogin();
             var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
             var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();

@@ -542,6 +542,10 @@
     <Compile Include="Migrations\201909121224051_init411.Designer.cs">
       <DependentUpon>201909121224051_init411.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909160916219_init421.cs" />
+    <Compile Include="Migrations\201909160916219_init421.Designer.cs">
+      <DependentUpon>201909160916219_init421.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -549,6 +553,7 @@
     <Compile Include="Models\ApplicationDuration.cs" />
     <Compile Include="Models\ApplicationListsViewModel.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
+    <Compile Include="Models\DatatableModel.cs" />
     <Compile Include="Models\DistrictCountdown.cs" />
     <Compile Include="Models\DistrictList.cs" />
     <Compile Include="Models\DistrictTarget.cs" />
@@ -565,6 +570,7 @@
     <Compile Include="Models\OfficerLoginModel.cs" />
     <Compile Include="Models\PhysicalTarget.cs" />
     <Compile Include="Models\PhysicalTargetViewModel.cs" />
+    <Compile Include="Models\PreliminaryList.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
     <Compile Include="Models\SelectedHandicapped.cs" />
     <Compile Include="Models\SelectedListViewModel.cs" />
@@ -1053,6 +1059,10 @@
     <Content Include="Views\Shared\PreliminaryList.cshtml" />
     <Content Include="Views\Menu\PrelimBeneficiary.cshtml" />
     <Content Include="Views\Menu\UploadDocuments.cshtml" />
+    <Content Include="Views\Menu\GenerateDocReceipt.cshtml" />
+    <Content Include="Views\Menu\OfficerIndex.cshtml" />
+    <Content Include="Views\Shared\_Applications.cshtml" />
+    <Content Include="Views\Shared\PrelimList_Dist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1288,6 +1298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909121224051_init411.resx">
       <DependentUpon>201909121224051_init411.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909160916219_init421.resx">
+      <DependentUpon>201909160916219_init421.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

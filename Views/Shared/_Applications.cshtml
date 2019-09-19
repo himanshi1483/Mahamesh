@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Mahamesh.Models.ApplicantRegistration>
+
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ApName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VillageName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VilName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tahashil)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TalukaName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dist)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DistrictName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdharCardNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompNumber)
+        </td>
+
+        <td>
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Receipt", "GenerateReceipt", new { id = item.Id })
+        </td>
+    </tr>
+}

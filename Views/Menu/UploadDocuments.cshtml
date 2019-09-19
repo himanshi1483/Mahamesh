@@ -77,15 +77,73 @@
             <div class="alert alert-info text-center">
                 दस्तऐवज (Documents) केवळ JPEG, JPG, PNG आणि PDF स्वरुपण अपलोड करा
             </div>
+            <div style="padding:10px">
+                <table class="table table-bordered table-striped table-responsive">
+                    <tr class="text-center">
+                        <td colspan="2"><img src="@Model.Photo" height="100" width="100" /></td>
+                    </tr>
+                    <tr>
+                        <td>@Html.DisplayNameFor(x => x.ApplicationNumber)</td>
+                        <td style="font-weight:800">@Model.ApplicationNumber</td>
+                    </tr>
+                    <tr>
+                        <td>पशुवैद्यकीय दवाखाना :</td>
+                        <td>
+                            <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
+                                <tr>
+                                    <td>गावाचे नाव :</td>
+                                    <td>@Model.VilName</td>
+                                </tr>
+                                <tr>
+                                    <td>तालुका:</td>
+                                    <td>@Model.TalukaName</td>
+                                </tr>
+                                <tr>
+                                    <td>जिल्हा:</td>
+                                    <td>@Model.DistrictName</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>अर्जदाराचे नाव :</td>
+                        <td>@Model.ApName</td>
+                    </tr>
+                    <tr>
+                        <td>अर्जदारचा पत्ता:</td>
+                        <td>
+                            <table class="table table-bordered" style="box-shadow:none !important;margin-bottom:0 !important">
+                                <tr>
+                                    <td>राहणार:</td>
+                                    <td>@Model.HvilName</td>
+                                </tr>
+                                <tr>
+                                    <td>तालुका:</td>
+                                    <td>@Model.TalukaName</td>
+                                </tr>
+                                <tr>
+                                    <td>जिल्हा:</td>
+                                    <td>@Model.DistrictName</td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
 
-            @using (Html.BeginForm("UploadDocuments", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    <tr>
+                        <td>अर्जदाराने अर्ज केलेल्या उपघटकाचे नाव:	</td>
+                        <td>@Model.CompNumber</td>
+                    </tr>
+                
+                </table>
+            </div>
+            @using (Html.BeginForm("UploadDocuments", "Menu", FormMethod.Post, new { enctype = "multipart/form-data" ,onsubmit="return confirm('Please verify before submitting, changes are not allowed once submitted.');"}))
             {
                 @Html.AntiForgeryToken()
                 <h4 class="text-center">आवश्यक कागदपत्राची यादी खालील प्रमाणे आहे</h4>
                 <table class="table table-bordered table-responsive">
                     <thead>
                         <tr class="text-center">
-                            <td>Sr. No.</td>
+                            <td>Doc Id</td>
                             <td>Document Name</td>
                             <td>Upload</td>
                             <td>File Name</td>
@@ -385,7 +443,15 @@
                     </tbody>
                 </table>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-info">Submit</button>
+                    @if (Model.AdharCardFU == null)
+                    {
+                        <button type="submit" class="btn btn-info">Submit</button>
+                    }
+                    else
+                    {
+                        <button type="submit" disabled class="btn btn-info">Submit</button>
+                    }
+
                 </div>
               
             }

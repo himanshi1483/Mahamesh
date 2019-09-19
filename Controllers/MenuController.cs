@@ -393,7 +393,8 @@ namespace Mahamesh.Controllers
                 ViewBag.Msg = "Your appliation has been submitted successfully. To view the appliation, please login again.";
 
             var applicationTime = new ApplicantRegistration();
-            applicationTime.appDuration = db.ApplicationDuration.FirstOrDefault();
+            applicationTime.appDuration = new ApplicationDuration();
+            applicationTime.appDuration = db.ApplicationDuration.Where(x => x.Id == 5).FirstOrDefault();
 
             return View(applicationTime);
         }
@@ -401,9 +402,11 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaUserLogin(long AdharCardNo)
         {
             var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AdharCardNo);
+
             if (applicantExist == true)
             {
                 var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
+              
                 if (applicantData.FormSubmitted == true)
                 {
                     return RedirectToAction("UserIndex", "ApplicantRegistrations", new { id = applicantData.Id });
@@ -433,7 +436,7 @@ namespace Mahamesh.Controllers
             {
                 var ofcrDetail = new OfficerLogin();
                 ofcrDetail = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
-                if (ofcrDetail.ResetPwd == null && ofcrDetail.pwd == model.pwd)
+                if (ofcrDetail.ResetPwd == null && ofcrDetail.pwd == model.pwd && ofcrDetail.desgination != "SGDC")
                 {
                     var user = new ApplicationUser();
                     //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -471,15 +474,34 @@ namespace Mahamesh.Controllers
                     return RedirectToAction("ResetPwdNew", "Menu", new { username = model.Username });
 
                 }
-                else if (ofcrDetail.ResetPwd == model.pwd)
+                else if (ofcrDetail.ResetPwd == model.pwd && ofcrDetail.desgination != "SGDC")
                 {
                     model.ChangedBy = model.Username;
                     var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
 
                     return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
                 }
+                else if(ofcrDetail.desgination == "SGDC")
+                {
+                    return RedirectToAction("OfficerIndex", "Menu");
+                }
+
             }
 
+            return View();
+        }
+
+        public ActionResult OfficerIndex()
+        {
+            var ddlDist = db.DistMaster.ToList();
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
+
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.District_Mr, Value = m.Dist_Code.ToString() });
+                ViewBag.District = li;
+            }
             return View();
         }
 
@@ -1111,6 +1133,23 @@ namespace Mahamesh.Controllers
             var model = new ApplicantRegistration();
             model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault(); var applicationTime = new ApplicantRegistration();
             model.appDuration = db.ApplicationDuration.FirstOrDefault();
+            var subCaste = Convert.ToInt32(model.SubCatse);
+            var _caste = db.CasteUnderNTC.Where(x => x.ID == subCaste).Select(x => x.Caste).FirstOrDefault();
+            var _dist = db.DistMaster.Where(x => x.Dist_Code == model.Dist).Select(x => x.DistName).FirstOrDefault();
+            var _tal = db.TalMaster.Where(x => x.Tal_Code == model.Tahashil).Select(x => x.TalName).FirstOrDefault();
+            var _vil = db.VillageMaster.Where(x => x.Village_Code == model.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            var _hvil = db.VillageMaster.Where(x => x.Village_Code == model.HVillage).Select(x => x.VillageName).FirstOrDefault();
+
+            model.SubCasteName = _caste;
+            model.DistrictName = _dist;
+            model.TalukaName = _tal;
+            model.VilName = _vil;
+            model.HvilName = _hvil;
+            model.YesAvailableOnLeaseEcre = Math.Round(Convert.ToDecimal(model.YesAvailableOnLeaseEcre), 2);
+            model.YesApplicantOwnedLandEcre = Math.Round(Convert.ToDecimal(model.YesApplicantOwnedLandEcre), 2);
+            model.GardeningEcre = Math.Round(Convert.ToDecimal(model.GardeningEcre), 2);
+            model.CuminEcre = Math.Round(Convert.ToDecimal(model.CuminEcre), 2);
+            model.CompNumberList1 = model.CompNumber.Split(',').ToList();
 
             return View(model);
         }
@@ -1171,30 +1210,6 @@ namespace Mahamesh.Controllers
                 db.SaveChanges();
 
             }
-            if (ResidentCertificate != null && ResidentCertificate.ContentLength > 0)
-            {
-                // extract only the filename
-                var fileName = Path.GetFileName(ResidentCertificate.FileName);
-                var exten = Path.GetExtension(ResidentCertificate.FileName);
-                int docId = 5;
-                var docPath = SaveToDrive(ResidentCertificate, model.AdharCardNo, _parent, docId);
-                model.ResidentCertificate = docPath;
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-
-            }
-            if (LivestockDevOffCertificate != null && LivestockDevOffCertificate.ContentLength > 0)
-            {
-                // extract only the filename
-                var fileName = Path.GetFileName(LivestockDevOffCertificate.FileName);
-                var exten = Path.GetExtension(LivestockDevOffCertificate.FileName);
-                int docId = 4;
-                var docPath = SaveToDrive(LivestockDevOffCertificate, model.AdharCardNo, _parent, docId);
-                model.LivestockDevOffCertificate = docPath;
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-
-            }
             if (ReshanCard != null && ReshanCard.ContentLength > 0)
             {
                 // extract only the filename
@@ -1219,7 +1234,31 @@ namespace Mahamesh.Controllers
                 db.SaveChanges();
 
             }
+            if (LivestockDevOffCertificate != null && LivestockDevOffCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(LivestockDevOffCertificate.FileName);
+                var exten = Path.GetExtension(LivestockDevOffCertificate.FileName);
+                int docId = 4;
+                var docPath = SaveToDrive(LivestockDevOffCertificate, model.AdharCardNo, _parent, docId);
+                model.LivestockDevOffCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
 
+            }
+            if (ResidentCertificate != null && ResidentCertificate.ContentLength > 0)
+            {
+                // extract only the filename
+                var fileName = Path.GetFileName(ResidentCertificate.FileName);
+                var exten = Path.GetExtension(ResidentCertificate.FileName);
+                int docId = 5;
+                var docPath = SaveToDrive(ResidentCertificate, model.AdharCardNo, _parent, docId);
+                model.ResidentCertificate = docPath;
+                db.Entry(model).State = EntityState.Modified;
+                db.SaveChanges();
+
+            }
+                     
             if (ChildCertificate != null && ChildCertificate.ContentLength > 0)
             {
                 // extract only the filename
@@ -1232,14 +1271,14 @@ namespace Mahamesh.Controllers
                 db.SaveChanges();
 
             }
-            if (FU712Certificate != null && FU712Certificate.ContentLength > 0)
+            if (FU712orIncomeCertificate != null && FU712orIncomeCertificate.ContentLength > 0)
             {
                 // extract only the filename
-                var fileName = Path.GetFileName(FU712Certificate.FileName);
-                var exten = Path.GetExtension(FU712Certificate.FileName);
-                int docId = 1;
-                var docPath = SaveToDrive(FU712Certificate, model.AdharCardNo, _parent, docId);
-                model.FU712Certificate = docPath;
+                var fileName = Path.GetFileName(FU712orIncomeCertificate.FileName);
+                var exten = Path.GetExtension(FU712orIncomeCertificate.FileName);
+                int docId = 7;
+                var docPath = SaveToDrive(FU712orIncomeCertificate, model.AdharCardNo, _parent, docId);
+                model.FU712orIncomeCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
 
@@ -1256,19 +1295,19 @@ namespace Mahamesh.Controllers
                 db.SaveChanges();
 
             }
-
-            if (FU712orIncomeCertificate != null && FU712orIncomeCertificate.ContentLength > 0)
+            if (ShedCertificate != null && ShedCertificate.ContentLength > 0)
             {
                 // extract only the filename
-                var fileName = Path.GetFileName(FU712orIncomeCertificate.FileName);
-                var exten = Path.GetExtension(FU712orIncomeCertificate.FileName);
-                int docId = 7;
-                var docPath = SaveToDrive(FU712orIncomeCertificate, model.AdharCardNo, _parent, docId);
-                model.FU712orIncomeCertificate = docPath;
+                var fileName = Path.GetFileName(ShedCertificate.FileName);
+                var exten = Path.GetExtension(ShedCertificate.FileName);
+                int docId = 9;
+                var docPath = SaveToDrive(ShedCertificate, model.AdharCardNo, _parent, docId);
+                model.ShedCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
                 db.SaveChanges();
 
             }
+
             if (BachatMemberCertificate != null && BachatMemberCertificate.ContentLength > 0)
             {
                 // extract only the filename
@@ -1329,21 +1368,44 @@ namespace Mahamesh.Controllers
                 db.SaveChanges();
 
             }
-            if (ShedCertificate != null && ShedCertificate.ContentLength > 0)
-            {
-                // extract only the filename
-                var fileName = Path.GetFileName(ShedCertificate.FileName);
-                var exten = Path.GetExtension(ShedCertificate.FileName);
-                int docId = 9;
-                var docPath = SaveToDrive(ShedCertificate, model.AdharCardNo, _parent, docId);
-                model.ShedCertificate = docPath;
-                db.Entry(model).State = EntityState.Modified;
-                db.SaveChanges();
-
-            }
+         
             model.appDuration = db.ApplicationDuration.FirstOrDefault();
 
-            return View(model);
+            PreliminaryList prelimList = new PreliminaryList();
+            prelimList.AadharNumber = model.AdharCardNo;
+            prelimList.ApplicantID = model.Id;
+            prelimList.DistCode = model.Dist.Value;
+            prelimList.TalukaCode = model.Tahashil.Value;
+            prelimList.DocumentVerified = false;
+            db.PreliminaryList.Add(prelimList);
+            db.SaveChanges();
+            //  return View(model);
+            return RedirectToAction("GenerateDocReceipt", new { id = model.Id });
+        }
+
+
+        public ActionResult GenerateDocReceipt(int id)
+        {
+            ApplicantRegistration applicantRegistration = db.ApplicantRegistrations.Find(id);
+            var subCaste = Convert.ToInt32(applicantRegistration.SubCatse);
+            var _caste = db.CasteUnderNTC.Where(x => x.ID == subCaste).Select(x => x.Caste).FirstOrDefault();
+            var _dist = db.DistMaster.Where(x => x.Dist_Code == applicantRegistration.Dist).Select(x => x.DistName).FirstOrDefault();
+            var _tal = db.TalMaster.Where(x => x.Tal_Code == applicantRegistration.Tahashil).Select(x => x.TalName).FirstOrDefault();
+            var _vil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.VillageName).Select(x => x.VillageName).FirstOrDefault();
+            var _hvil = db.VillageMaster.Where(x => x.Village_Code == applicantRegistration.HVillage).Select(x => x.VillageName).FirstOrDefault();
+
+            applicantRegistration.SubCasteName = _caste;
+            applicantRegistration.DistrictName = _dist;
+            applicantRegistration.TalukaName = _tal;
+            applicantRegistration.VilName = _vil;
+            applicantRegistration.HvilName = _hvil;
+            applicantRegistration.YesAvailableOnLeaseEcre = Math.Round(Convert.ToDecimal(applicantRegistration.YesAvailableOnLeaseEcre), 2);
+            applicantRegistration.YesApplicantOwnedLandEcre = Math.Round(Convert.ToDecimal(applicantRegistration.YesApplicantOwnedLandEcre), 2);
+            applicantRegistration.GardeningEcre = Math.Round(Convert.ToDecimal(applicantRegistration.GardeningEcre), 2);
+            applicantRegistration.CuminEcre = Math.Round(Convert.ToDecimal(applicantRegistration.CuminEcre), 2);
+            applicantRegistration.CompNumberList1 = applicantRegistration.CompNumber.Split(',').ToList();
+
+            return View(applicantRegistration);
         }
 
         public ActionResult DeleteDoc(int id, string doc)
