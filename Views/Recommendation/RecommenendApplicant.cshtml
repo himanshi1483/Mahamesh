@@ -1,0 +1,50 @@
+﻿@model Mahamesh.Models.RecommendationViewModel
+
+@{
+    ViewBag.Title = "Recommend Applicant";
+}
+
+
+<div class="container" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" style="max-height:93px" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center">
+            <h4>LDO Dashboard</h4>
+            <div class="alert alert-info text-center">Authorized as : Livestock Developement Officer - Dist: @Model.DistCode  Taluka: @Model.TalukaCode</div>
+        </div>
+        <div class="panel-body">
+            <div>
+                <div class="alert alert-info text-left" style="float:left">@Model._applicant.ApplicationNumber</div>
+                <div style="float:right"><img src="@Model._applicant.Photo" /></div>
+            </div>
+            <table>
+                <tr>
+                    <td>1.</td>
+                    <td>अर्जदाराचे नाव:</td>
+                    <td>@Model._applicant.ApName</td>
+                    <td>
+                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download" target="_blank"
+                           class="btn btn-link">आधार कार्ड</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td>पत्रव्यवहाराचा पत्ता:</td>
+                    <td>@Model._applicant.VilName -</td>
+                    <td>
+                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download" target="_blank"
+                           class="btn btn-link">आधार कार्ड</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

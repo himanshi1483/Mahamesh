@@ -394,7 +394,7 @@ namespace Mahamesh.Controllers
 
             var applicationTime = new ApplicantRegistration();
             applicationTime.appDuration = new ApplicationDuration();
-            applicationTime.appDuration = db.ApplicationDuration.Where(x => x.Id == 5).FirstOrDefault();
+            applicationTime.appDuration = db.ApplicationDuration.OrderByDescending(x=>x.Id).FirstOrDefault();
 
             return View(applicationTime);
         }
@@ -406,7 +406,7 @@ namespace Mahamesh.Controllers
             if (applicantExist == true)
             {
                 var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
-              
+
                 if (applicantData.FormSubmitted == true)
                 {
                     return RedirectToAction("UserIndex", "ApplicantRegistrations", new { id = applicantData.Id });
@@ -481,7 +481,7 @@ namespace Mahamesh.Controllers
 
                     return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
                 }
-                else if(ofcrDetail.desgination == "SGDC")
+                else if (ofcrDetail.desgination == "SGDC")
                 {
                     return RedirectToAction("OfficerIndex", "Menu");
                 }
@@ -1207,6 +1207,20 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(AdharCardFU, model.AdharCardNo, _parent, docId);
                 model.AdharCardFU = docPath;//"https://drive.google.com/a/aarushsystems.com/file/d/"+docPath +"/view?usp=drivesdk" ;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 1))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 1;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
                 db.SaveChanges();
 
             }
@@ -1219,6 +1233,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(ReshanCard, model.AdharCardNo, _parent, docId);
                 model.ReshanCard = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                // 
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 2))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 2;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1231,6 +1260,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(CasteCertificate, model.AdharCardNo, _parent, docId);
                 model.CasteCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 3))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 3;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1243,6 +1287,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(LivestockDevOffCertificate, model.AdharCardNo, _parent, docId);
                 model.LivestockDevOffCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 4))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 4;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1255,10 +1314,25 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(ResidentCertificate, model.AdharCardNo, _parent, docId);
                 model.ResidentCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 5))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 5;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
-                     
+
             if (ChildCertificate != null && ChildCertificate.ContentLength > 0)
             {
                 // extract only the filename
@@ -1268,6 +1342,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(ChildCertificate, model.AdharCardNo, _parent, docId);
                 model.Childcertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 6))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 6;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1280,6 +1369,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(FU712orIncomeCertificate, model.AdharCardNo, _parent, docId);
                 model.FU712orIncomeCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 7))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 7;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1292,6 +1396,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(TenancyAgreement, model.AdharCardNo, _parent, docId);
                 model.TenancyAgreement = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 8))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 8;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+
+                }
                 db.SaveChanges();
 
             }
@@ -1304,6 +1423,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(ShedCertificate, model.AdharCardNo, _parent, docId);
                 model.ShedCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 9))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 9;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1317,6 +1451,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(BachatMemberCertificate, model.AdharCardNo, _parent, docId);
                 model.BachatMemberCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 10))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 10;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+
+                }
                 db.SaveChanges();
 
             }
@@ -1329,6 +1478,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(CompanyMemberCertificate, model.AdharCardNo, _parent, docId);
                 model.CompanyMemberCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 11))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 11;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1341,6 +1505,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(DisabilityCertificate, model.AdharCardNo, _parent, docId);
                 model.DisabilityCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 12))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 12;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+
+                }
                 db.SaveChanges();
 
             }
@@ -1353,6 +1532,21 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(HamiPtra, model.AdharCardNo, _parent, docId);
                 model.HamiPtra = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 14))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 14;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+                }
+
                 db.SaveChanges();
 
             }
@@ -1365,20 +1559,41 @@ namespace Mahamesh.Controllers
                 var docPath = SaveToDrive(TrainingCertificate, model.AdharCardNo, _parent, docId);
                 model.TrainingCertificate = docPath;
                 db.Entry(model).State = EntityState.Modified;
+
+                //
+                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 13))
+                {
+                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                    applicantDocuments.ApplicantID = model.Id;
+                    applicantDocuments.AadharNumber = model.AdharCardNo;
+                    applicantDocuments.DistCode = model.Dist.Value;
+                    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                    applicantDocuments.DocNumber = 13;
+                    applicantDocuments.GoogleDocID = docPath;
+                    applicantDocuments.LDOApproved = false;
+                    db.ApplicantDocument.Add(applicantDocuments);
+
+                }
+
                 db.SaveChanges();
 
             }
-         
-            model.appDuration = db.ApplicationDuration.FirstOrDefault();
 
-            PreliminaryList prelimList = new PreliminaryList();
-            prelimList.AadharNumber = model.AdharCardNo;
-            prelimList.ApplicantID = model.Id;
-            prelimList.DistCode = model.Dist.Value;
-            prelimList.TalukaCode = model.Tahashil.Value;
-            prelimList.DocumentVerified = false;
-            db.PreliminaryList.Add(prelimList);
-            db.SaveChanges();
+            model.appDuration = db.ApplicationDuration.FirstOrDefault();
+            if (!db.PreliminaryList.Any(x => x.ApplicantID == model.Id))
+            {
+                PreliminaryList prelimList = new PreliminaryList();
+                prelimList.AadharNumber = model.AdharCardNo;
+                prelimList.ApplicantID = model.Id;
+                prelimList.DistCode = model.Dist.Value;
+                prelimList.TalukaCode = model.Tahashil.Value;
+                prelimList.LDORecommended = false;
+                prelimList.DAHORecommended = false;
+                prelimList.DDCRecommended = false;
+                prelimList.SGDCRecommended = false;
+                db.PreliminaryList.Add(prelimList);
+                db.SaveChanges();
+            }
             //  return View(model);
             return RedirectToAction("GenerateDocReceipt", new { id = model.Id });
         }
@@ -1412,7 +1627,7 @@ namespace Mahamesh.Controllers
         {
             var model = new ApplicantRegistration();
             model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
-            if(doc == model.AdharCardFU)
+            if (doc == model.AdharCardFU)
             {
                 model.AdharCardFU = null;
 
@@ -1494,8 +1709,8 @@ namespace Mahamesh.Controllers
             });
 
             service.Files.Delete(doc).Execute();
-         
-            return RedirectToAction("UploadDocuments",new { id = id });
+
+            return RedirectToAction("UploadDocuments", new { id = id });
         }
         public string SaveToDrive(HttpPostedFileBase file1, long aadhar, string _parent, int docId)
         {
@@ -1593,7 +1808,7 @@ namespace Mahamesh.Controllers
             //    DataStore = new FileDataStore(HttpContext.Server.MapPath("~/App_Data/credentials.json")),
             //});
             //   UserCredential usercred = new UserCredential (apiCodeFlow, )
-           
+
             using (var stream =
                 new FileStream(Server.MapPath("~/Documents/credentials.json"), FileMode.Open, FileAccess.ReadWrite))
             {

@@ -261,6 +261,7 @@
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\OrganizationController.cs" />
     <Compile Include="Controllers\PressInformationController.cs" />
+    <Compile Include="Controllers\RecommendationController.cs" />
     <Compile Include="Controllers\RTIController.cs" />
     <Compile Include="Controllers\SchemesController.cs" />
     <Compile Include="Controllers\TenderController.cs" />
@@ -546,6 +547,22 @@
     <Compile Include="Migrations\201909160916219_init421.Designer.cs">
       <DependentUpon>201909160916219_init421.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909200545558_init422.cs" />
+    <Compile Include="Migrations\201909200545558_init422.Designer.cs">
+      <DependentUpon>201909200545558_init422.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909200702595_init431.cs" />
+    <Compile Include="Migrations\201909200702595_init431.Designer.cs">
+      <DependentUpon>201909200702595_init431.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909220515398_init432.cs" />
+    <Compile Include="Migrations\201909220515398_init432.Designer.cs">
+      <DependentUpon>201909220515398_init432.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909220529135_init441.cs" />
+    <Compile Include="Migrations\201909220529135_init441.Designer.cs">
+      <DependentUpon>201909220529135_init441.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -572,6 +589,7 @@
     <Compile Include="Models\PhysicalTargetViewModel.cs" />
     <Compile Include="Models\PreliminaryList.cs" />
     <Compile Include="Models\PressInformationModel.cs" />
+    <Compile Include="Models\RecommendationViewModel.cs" />
     <Compile Include="Models\SelectedHandicapped.cs" />
     <Compile Include="Models\SelectedListViewModel.cs" />
     <Compile Include="Models\TalukaTarget.cs" />
@@ -657,6 +675,7 @@
     <Content Include="Content\Varsity\assets\js\bootstrap.js" />
     <Content Include="Content\Varsity\assets\js\custom.js" />
     <Content Include="Content\Varsity\assets\js\custom.min.js" />
+    <Content Include="Content\Varsity\assets\js\jquery-duplifer.js" />
     <Content Include="Content\Varsity\assets\js\jquery.counterup.js" />
     <Content Include="Content\Varsity\assets\js\jquery.fancybox.pack.js" />
     <Content Include="Content\Varsity\assets\js\jquery.min.js" />
@@ -1063,6 +1082,8 @@
     <Content Include="Views\Menu\OfficerIndex.cshtml" />
     <Content Include="Views\Shared\_Applications.cshtml" />
     <Content Include="Views\Shared\PrelimList_Dist.cshtml" />
+    <Content Include="Views\Recommendation\LDODashboard.cshtml" />
+    <Content Include="Views\Recommendation\RecommenendApplicant.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1301,6 +1322,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909160916219_init421.resx">
       <DependentUpon>201909160916219_init421.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909200545558_init422.resx">
+      <DependentUpon>201909200545558_init422.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909200702595_init431.resx">
+      <DependentUpon>201909200702595_init431.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909220515398_init432.resx">
+      <DependentUpon>201909220515398_init432.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909220529135_init441.resx">
+      <DependentUpon>201909220529135_init441.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

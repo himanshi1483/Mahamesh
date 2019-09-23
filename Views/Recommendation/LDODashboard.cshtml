@@ -1,0 +1,259 @@
+﻿@model Mahamesh.Models.RecommendationViewModel
+@{
+    ViewBag.Title = "LDO Dashboard";
+}
+
+<div class="container-fluid" style="margin-bottom:150px;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" style="max-height:93px" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    <div class="panel panel-primary-2">
+        <div class="panel-heading panel-primary-2 text-center">
+            <h4>LDO Dashboard</h4>
+            <div class="alert alert-info text-center">Authorized as : Livestock Developement Officer - Dist: @Model.DistCode  Taluka: @Model.TalukaCode</div>
+
+        </div>
+        <div class="text-right"><a href="#">Generate Component-wise Report</a></div>
+    </div>
+
+    <div class="panel-body">
+        <h4>Summary Report of Total No. of application submitted and Total no of aplication in process</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Applications - Submitted and In-Process</th>
+                    <th>Applications - Submitted</th>
+                    <th>Applications - In-Process</th>
+                    <th>Applications - Saved</th>
+                    <th>Applications - Recommended</th>
+                    <th>Applications - Non-Recommended</th>
+                    <th>Pending Cases</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
+        </table>
+        <hr />
+        <h4>Summary Report of Total No. of application submitted and Total no of aplication in process - Taluka: @Model.TalukaName  Taluka COde: @Model.TalukaCode</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Applications - Submitted and In-Process</th>
+                    <th>Applications - Submitted</th>
+                    <th>Applications - In-Process</th>
+                    <th>Applications - Saved</th>
+                    <th>Applications - Recommended</th>
+                    <th>Applications - Non-Recommended</th>
+                    <th>Pending Cases</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="panel-body">
+        <h4>Complete List of Recommended Female Applications</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Application Number</th>
+                    <th>Name</th>
+                    <th>Mobile No.</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Child Count</th>
+                    <th>Sub-Caste</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Aadhar No.</th>
+                    <th>Crippled</th>
+                    <th>Crippled %</th>
+                    <th>Status</th>
+                    <th>Submit Datetime</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+               @for (int i = 0; i < Model.SelectedFemales.Count; i++)
+               {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedFemales[i].ApplicationNumber</td>
+                    <td>@Model.SelectedFemales[i].Name</td>
+                    <td>@Model.SelectedFemales[i].PhNo</td>
+                    <td>@Model.SelectedFemales[i].DOB</td>
+                    <td>@Model.SelectedFemales[i].Gender</td>
+                    <td>@Model.SelectedFemales[i].ChildCount</td>
+                    <td>@Model.SelectedFemales[i].SubCaste</td>
+                    <td>@Model.SelectedFemales[i].District_Mr</td>
+                    <td>@Model.SelectedFemales[i].Taluka_Mr</td>
+                    <td>@Model.SelectedFemales[i].VillageName</td>
+                    <td>@Model.SelectedFemales[i].AadharNo</td>
+                    <td>@Model.SelectedFemales[i].ApplicantCrippled</td>
+                    <td>@Model.SelectedFemales[i].CripplePercent</td>
+                    <td>@Model.SelectedFemales[i].LDORecommended</td>
+                    <td>@Model.SelectedFemales[i].CreatedOn</td>
+                    <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <h4>Complete List of Recommended Handicapped Applications</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Application Number</th>
+                    <th>Name</th>
+                    <th>Mobile No.</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Child Count</th>
+                    <th>Sub-Caste</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Aadhar No.</th>
+                    <th>Crippled</th>
+                    <th>Crippled %</th>
+                    <th>Status</th>
+                    <th>Submit Datetime</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.SelectedHandicaps.Count; i++)
+                {
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedHandicaps[i].ApplicationNumber</td>
+                    <td>@Model.SelectedHandicaps[i].Name</td>
+                    <td>@Model.SelectedHandicaps[i].PhNo</td>
+                    <td>@Model.SelectedHandicaps[i].DOB</td>
+                    <td>@Model.SelectedHandicaps[i].Gender</td>
+                    <td>@Model.SelectedHandicaps[i].ChildCount</td>
+                    <td>@Model.SelectedHandicaps[i].SubCaste</td>
+                    <td>@Model.SelectedHandicaps[i].District_Mr</td>
+                    <td>@Model.SelectedHandicaps[i].Taluka_Mr</td>
+                    <td>@Model.SelectedHandicaps[i].VillageName</td>
+                    <td>@Model.SelectedHandicaps[i].AadharNo</td>
+                    <td>@Model.SelectedHandicaps[i].ApplicantCrippled</td>
+                    <td>@Model.SelectedHandicaps[i].CripplePercent</td>
+                    <td>@Model.SelectedHandicaps[i].LDORecommended</td>
+                    <td>@Model.SelectedHandicaps[i].CreatedOn</td>
+                    <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <h4>Complete List of Recommended General Applications</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Application Number</th>
+                    <th>Name</th>
+                    <th>Mobile No.</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Child Count</th>
+                    <th>Sub-Caste</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Aadhar No.</th>
+                    <th>Crippled</th>
+                    <th>Crippled %</th>
+                    <th>Status</th>
+                    <th>Submit Datetime</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.SelectedGenerals.Count; i++)
+                {
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.SelectedGenerals[i].ApplicationNumber</td>
+                        <td>@Model.SelectedGenerals[i].Name</td>
+                        <td>@Model.SelectedGenerals[i].PhNo</td>
+                        <td>@Model.SelectedGenerals[i].DOB</td>
+                        <td>@Model.SelectedGenerals[i].Gender</td>
+                        <td>@Model.SelectedGenerals[i].ChildCount</td>
+                        <td>@Model.SelectedGenerals[i].SubCaste</td>
+                        <td>@Model.SelectedGenerals[i].District_Mr</td>
+                        <td>@Model.SelectedGenerals[i].Taluka_Mr</td>
+                        <td>@Model.SelectedGenerals[i].VillageName</td>
+                        <td>@Model.SelectedGenerals[i].AadharNo</td>
+                        <td>@Model.SelectedGenerals[i].ApplicantCrippled</td>
+                        <td>@Model.SelectedGenerals[i].CripplePercent</td>
+                        <td>@Model.SelectedGenerals[i].LDORecommended</td>
+                        <td>@Model.SelectedGenerals[i].CreatedOn</td>
+                        <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <hr />
+        <h4>Complete List of Non-Recommended Applications</h4>
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th>Sr. No.</th>
+                    <th>Application Number</th>
+                    <th>Name</th>
+                    <th>Mobile No.</th>
+                    <th>DOB</th>
+                    <th>Gender</th>
+                    <th>Child Count</th>
+                    <th>Sub-Caste</th>
+                    <th>District</th>
+                    <th>Taluka</th>
+                    <th>Village</th>
+                    <th>Aadhar No.</th>
+                    <th>Crippled</th>
+                    <th>Crippled %</th>
+                    <th>Status</th>
+                    <th>Submit Datetime</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.NonRecommendedGenerals.Count; i++)
+                {
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.NonRecommendedGenerals[i].ApplicationNumber</td>
+                        <td>@Model.NonRecommendedGenerals[i].Name</td>
+                        <td>@Model.NonRecommendedGenerals[i].PhNo</td>
+                        <td>@Model.NonRecommendedGenerals[i].DOB</td>
+                        <td>@Model.NonRecommendedGenerals[i].Gender</td>
+                        <td>@Model.NonRecommendedGenerals[i].ChildCount</td>
+                        <td>@Model.NonRecommendedGenerals[i].SubCaste</td>
+                        <td>@Model.NonRecommendedGenerals[i].District_Mr</td>
+                        <td>@Model.NonRecommendedGenerals[i].Taluka_Mr</td>
+                        <td>@Model.NonRecommendedGenerals[i].VillageName</td>
+                        <td>@Model.NonRecommendedGenerals[i].AadharNo</td>
+                        <td>@Model.NonRecommendedGenerals[i].ApplicantCrippled</td>
+                        <td>@Model.NonRecommendedGenerals[i].CripplePercent</td>
+                        <td>@Model.NonRecommendedGenerals[i].LDORecommended</td>
+                        <td>@Model.NonRecommendedGenerals[i].CreatedOn</td>
+                        <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

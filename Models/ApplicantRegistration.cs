@@ -236,6 +236,8 @@ namespace Mahamesh.Models
         /////////////////////////////////////////////////////////////////////
         ///
         public string FolderId { get; set; }
+
+        public int OldId { get; set; }
     }
 
     public enum Components

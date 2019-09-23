@@ -65,70 +65,128 @@ namespace Mahamesh.Controllers
 
         }
 
-        public JsonResult GetApplicantList()
+        protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
-            var draw = Request.Form.GetValues("draw").FirstOrDefault();
-            var start = Request.Form.GetValues("start").FirstOrDefault();
-            var length = Request.Form.GetValues("length").FirstOrDefault();
-            var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-            var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
-            var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
-            var searchName = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
-            var searchVil = Request.Form.GetValues("columns[1][search][value]").FirstOrDefault();
+            return new JsonResult()
+            {
+                Data = data,
+                ContentType = contentType,
+                ContentEncoding = contentEncoding,
+                JsonRequestBehavior = behavior,
+                MaxJsonLength = Int32.MaxValue // Use this value to set your maximum size for all of your Requests
+            };
+        }
+        public JsonResult GetApplicantList(string searchVil, string searchName)
+        {
+            //var draw = Request.Form.GetValues("draw").FirstOrDefault();
+            //var start = Request.Form.GetValues("start").FirstOrDefault();
+            //var length = Request.Form.GetValues("length").FirstOrDefault();
+            //var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
+            //var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
+            //var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
+            //var searchName = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
+            //var searchVil = Request.Form.GetValues("columns[1][search][value]").FirstOrDefault();
           //  var searchVil1 = Request.Form.GetValues("columns[2][search][value]").FirstOrDefault();
             //Paging Size (10,20,50,100)    
-            int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            int skip = start != null ? Convert.ToInt32(start) : 0;
+            //int pageSize = length != null ? Convert.ToInt32(length) : 0;
+            //int skip = start != null ? Convert.ToInt32(start) : 0;
             int recordsTotal = 0;
-           // db.Configuration.LazyLoadingEnabled = false;
-         
-            var applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x=>x.FormSubmitted).ThenBy(x=>x.Dist).ToList();
+            // db.Configuration.LazyLoadingEnabled = false;
+
+            var applicantRegistrationList = new List<ApplicantRegistration>();// = db.ApplicantRegistrations.OrderByDescending(x=>x.FormSubmitted).ThenBy(x=>x.Dist).ToList();
             var _dist = db.DistMaster.ToList();
             var _tal = db.TalMaster.ToList();
             var _vil = db.VillageMaster.ToList();
-            foreach (var item in applicantRegistrationList)
-            {
-                item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
-                item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
-                item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
-            }
+           
             if (searchVil == "Name")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.ApName != null && x.ApName != string.Empty && x.ApName.ToLower().Contains(searchName)).ToList();
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.ApName != null && x.ApName != string.Empty && x.ApName.ToLower().Contains(searchName)).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "VillageName")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.VillageName != null && x.VillageName.Value == Convert.ToInt64(searchName)).ToList();
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.VillageName != null && x.VillageName.Value == Convert.ToInt64(searchName)).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "VilName")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.VilName != null && x.VilName.ToLower().Contains(searchName)).ToList();
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.VilName != null && x.VilName.ToLower().Contains(searchName)).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "DistrictName")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.DistrictName != null && x.DistrictName != string.Empty && x.DistrictName.ToLower().Contains(searchName)).ToList();
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.DistrictName != null && x.DistrictName != string.Empty && x.DistrictName.ToLower().Contains(searchName)).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "TalukaName")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.TalukaName != null && x.TalukaName != string.Empty && x.TalukaName.ToLower().Contains(searchName)).ToList();
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.TalukaName != null && x.TalukaName != string.Empty && 
+                x.TalukaName.ToLower().Contains(searchName)).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "DistCode")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.Dist != null && x.Dist.Value == Convert.ToInt64(searchName)).ToList();
+                int distCode = Convert.ToInt32(searchName);
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.Dist != null && x.Dist.Value == distCode).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "Tahashil")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.Tahashil != null && x.Tahashil.Value == Convert.ToInt64(searchName)).ToList();
+                int talCOde = Convert.ToInt32(searchName);
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.Tahashil != null && x.Tahashil.Value == talCOde).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             else if (searchVil == "Aadhar")
             {
-                applicantRegistrationList = applicantRegistrationList.Where(x => x.AdharCardNo != null && x.AdharCardNo == Convert.ToInt64(searchName)).ToList();
+                long aadhar = Convert.ToInt64(searchName);
+                applicantRegistrationList = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.AdharCardNo != null && x.AdharCardNo == aadhar).ToList();
+                foreach (var item in applicantRegistrationList)
+                {
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
             }
             recordsTotal = applicantRegistrationList.Count();
             //Paging     
-            var data = applicantRegistrationList.Skip(skip).Take(pageSize).ToList();
+            var data = applicantRegistrationList.ToList();
             //Returning Json Data    
-            return Json(new { draw = draw, recordsFiltered = recordsTotal, recordsTotal = recordsTotal, data = data });
+            return Json( data, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -569,7 +627,7 @@ namespace Mahamesh.Controllers
         {
             var model = db.ApplicantRegistrations.Where(x => x.Id == id).FirstOrDefault();
             model.appDuration = new ApplicationDuration();
-            model.appDuration = db.ApplicationDuration.Where(x=>x.Id == 5).FirstOrDefault();
+            model.appDuration = db.ApplicationDuration.OrderByDescending(x => x.Id).FirstOrDefault();
             return View(model);
         }
 
