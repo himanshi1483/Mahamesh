@@ -276,13 +276,13 @@ if it's not present, don't show loader */
                                     <li class="liMenu"><a href="@Url.Action("KeyOfficials", "Organization")">@Mahamesh.App_LocalResources.Lang.Keyofficials</a></li>
                                     <li class="liMenu"><a href="@Url.Action("ObjectOfOrganization", "Organization")">@Mahamesh.App_LocalResources.Lang.Objectoforganization</a></li>
                                     <li class="liMenu"><a href="@Url.Action("VariousCommittees", "Organization")">@Mahamesh.App_LocalResources.Lang.Variouscommittees</a></li>
-                                    <li class="liMenu"><a href="@Url.Action("OfficeBearers", "Organization")">Office Bearers</a></li>
+                                    <li class="liMenu"><a href="@Url.Action("OfficeBearers", "Organization")">@Mahamesh.App_LocalResources.Lang.Officebeares</a></li>
                                 </ul>
                             </li>
                             <li class="dropdown" id="schemes">
                                 <a href="#" class="dropdown-toggle">@Mahamesh.App_LocalResources.Lang.Schemes <span class="fa fa-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class="liMenu"><a href="@Url.Action("ImplimentedSchemes", "Schemes")">@Mahamesh.App_LocalResources.Lang.SchemesYearwise</a></li>
+                                    <li class="liMenu"><a href="#">@Mahamesh.App_LocalResources.Lang.SchemesYearwise</a></li>
                                     <li class="liMenu"><a href="@Url.Action("ImplimentedSchemes", "Schemes")">@Mahamesh.App_LocalResources.Lang.Implementedschemes</a></li>
                                     <li class="liMenu"><a href="@Url.Action("InProgressSchemes", "Schemes")">@Mahamesh.App_LocalResources.Lang.Inprogressschemes</a></li>
                                 </ul>
@@ -297,7 +297,7 @@ if it's not present, don't show loader */
                             </li>
                             <li class="dropdown" id="farms">
                                 <a href="#" class="dropdown-toggle">
-                                    Farms
+                                    @Mahamesh.App_LocalResources.Lang.Farms
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
@@ -353,7 +353,7 @@ if it's not present, don't show loader */
                                     {
                                         <li class="liMenu"><a href="@Url.Action("Create", "Media")">Upload Media</a></li>
                                     }
-                                    <li class="liMenu"><a href="@Url.Action("VideoGallery", "Media")">@Mahamesh.App_LocalResources.Lang.Video</a></li>
+                                    <li class="liMenu"><a href="@Url.Action("VideoGallery", "Media")">@Mahamesh.App_LocalResources.Lang.Video /@Mahamesh.App_LocalResources.Lang.Photos</a></li>
                                     @*<li class="liMenu"><a href="@Url.Action("Index", "Media")">@Mahamesh.App_LocalResources.Lang.Video</a></li>*@
                                 </ul>
                             </li>
