@@ -15,6 +15,15 @@ namespace Mahamesh.Controllers
             model.TenderList = db.TenderModels.ToList();
             return View(model);
         }
+
+        public ActionResult Disclaimer()
+        {
+            return View();
+        }
+        public ActionResult WebInfo()
+        {
+            return View();
+        }
         public ActionResult Vision()
         {
             return View();

@@ -1,12 +1,56 @@
 ﻿@model Mahamesh.Models.OfficerLogin
 
 @{
-      ViewBag.Title = "Selected List";
+    ViewBag.Title = "Selected List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
+<style type='text/css'>
+    .my-legend .legend-title {
+        text-align: left;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 90%;
+    }
+
+    .my-legend .legend-scale ul {
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 0;
+        float: left;
+        list-style: none;
+    }
+
+        .my-legend .legend-scale ul li {
+            font-size: 80%;
+            list-style: none;
+            margin-left: 0;
+            line-height: 18px;
+            margin-bottom: 2px;
+        }
+
+    .my-legend ul.legend-labels li span {
+        display: block;
+        float: left;
+        height: 16px;
+        width: 30px;
+        margin-right: 5px;
+        margin-left: 0;
+        border: 1px solid #999;
+    }
+
+    .my-legend .legend-source {
+        font-size: 70%;
+        color: #999;
+        clear: both;
+    }
+
+    .my-legend a {
+        color: #777;
+    }
+</style>
 <style>
     .tableheader {
         background: #1a9b83 !important;
@@ -22,6 +66,37 @@
         vertical-align: top;
         border-top: 1px solid #ddd;
     }
+
+     .prevBad {
+        background-color: #eaee93 !important;
+    }
+    .wrongEntry {
+        background-color: palevioletred !important;
+    }
+
+    .duplicateBad {
+        background-color: #f77f7f !important;
+    }
+
+    .ageBad {
+        background-color: #ffd800 !important;
+    }
+
+    .componentBad {
+        background-color: #c997dd !important;
+    }
+
+    .childBad {
+        background-color: #acacac !important;
+    }
+
+    .photoBad {
+        background-color: #8de2fe !important;
+    }
+
+    .aadharBad {
+        background-color: #88b7af !important;
+    }
 </style>
 <div class="container-fluid" style="margin-bottom:150px;">
     <div class="headerDashboard">
@@ -35,8 +110,8 @@
     </div>
     <div class="panel panel-primary-2">
         @*<p>
-                @Html.ActionLink("Create New", "Create")
-            </p>*@
+            @Html.ActionLink("Create New", "Create")
+        </p>*@
         <div class="panel-heading panel-primary-2 text-center"><h4>Applicant's List</h4></div>
         <div class="panel-body">
             <h4> Selected List for Handicapped</h4>
@@ -46,6 +121,7 @@
                         <th>Sr. No.</th>
                         <th>Application Number</th>
                         <th>Component</th>
+                        <th style="display:none"></th>
                         <th>District</th>
                         <th>Taluka</th>
                         <th>Village</th>
@@ -55,26 +131,42 @@
                         <th>Gender</th>
                         <th>Handicapped?</th>
                         <th>Selected Number</th>
-
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.SelectedList.SelectedHandicappedList.Count; i++)
                     {
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicationNumber</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].Component</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].District_Mr.ToString()</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].Taluka_Mr</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].VillageName</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].AadharNo</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].Name</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].PhNo</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].Gender</td>
-                            <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicantCrippled</td>
-                            <td>SL_@Model.SelectedList.SelectedHandicappedList[i].Component _@(i + 1)</td>
-                        </tr>
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicationNumber</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].Component</td>
+                        <td style="display:none" class="distCode">@Model.SelectedList.SelectedHandicappedList[i].DistCode</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].District_Mr.ToString()</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].Taluka_Mr</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].VillageName</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].AadharNo</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].Name</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].PhNo</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].Gender</td>
+                        <td>@Model.SelectedList.SelectedHandicappedList[i].ApplicantCrippled</td>
+                        <td>SL_@Model.SelectedList.SelectedHandicappedList[i].Component _@(i + 1)</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsAadharUnique</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsAgeProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsChildCountProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsComponentProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsPhotoAvailable</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsWrongEntry</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsSelectedTwice</td>
+                        <td style="display:none">@Model.SelectedList.SelectedHandicappedList[i].IsPreviouslySelected</td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -86,6 +178,7 @@
                         <th>Sr. No.</th>
                         <th>Application Number</th>
                         <th>Component</th>
+                        <th style="display:none"></th>
                         <th>District</th>
                         <th>Taluka</th>
                         <th>Village</th>
@@ -95,25 +188,42 @@
                         <th>Gender</th>
                         <th>Handicapped?</th>
                         <th>Selected Number</th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.SelectedList.SelectedFemaleList.Count; i++)
                     {
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].ApplicationNumber</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].Component</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].District_Mr</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].Taluka_Mr</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].VillageName</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].AadharNo</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].Name</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].PhNo</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].Gender</td>
-                            <td>@Model.SelectedList.SelectedFemaleList[i].ApplicantCrippled</td>
-                            <td>SL_@Model.SelectedList.SelectedFemaleList[i].Component _@(i + 1)</td>
-                        </tr>
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].ApplicationNumber</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].Component</td>
+                        <td style="display:none" class="distCode">@Model.SelectedList.SelectedFemaleList[i].DistCode</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].District_Mr</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].Taluka_Mr</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].VillageName</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].AadharNo</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].Name</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].PhNo</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].Gender</td>
+                        <td>@Model.SelectedList.SelectedFemaleList[i].ApplicantCrippled</td>
+                        <td>SL_@Model.SelectedList.SelectedFemaleList[i].Component _@(i + 1)</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsAadharUnique</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsAgeProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsChildCountProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsComponentProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsPhotoAvailable</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsWrongEntry</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsSelectedTwice</td>
+                        <td style="display:none">@Model.SelectedList.SelectedFemaleList[i].IsPreviouslySelected</td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -125,6 +235,7 @@
                         <th>Sr. No.</th>
                         <th>Application Number</th>
                         <th>Component</th>
+                        <td style="display:none"></td>
                         <th>District</th>
                         <th>Taluka</th>
                         <th>Village</th>
@@ -134,25 +245,42 @@
                         <th>Gender</th>
                         <th>Handicapped?</th>
                         <th>Selected Number</th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.SelectedList.SelectedGeneralList.Count; i++)
                     {
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].ApplicationNumber</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].Component</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].District_Mr</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].Taluka_Mr</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].VillageName</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].AadharNo</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].Name</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].PhNo</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].Gender</td>
-                            <td>@Model.SelectedList.SelectedGeneralList[i].ApplicantCrippled</td>
-                            <td>SL_@Model.SelectedList.SelectedGeneralList[i].Component _@(i + 1)</td>
-                        </tr>
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].ApplicationNumber</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].Component</td>
+                        <td style="display:none" class="distCode">@Model.SelectedList.SelectedGeneralList[i].DistCode</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].District_Mr</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].Taluka_Mr</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].VillageName</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].AadharNo</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].Name</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].PhNo</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].Gender</td>
+                        <td>@Model.SelectedList.SelectedGeneralList[i].ApplicantCrippled</td>
+                        <td>SL_@Model.SelectedList.SelectedGeneralList[i].Component _@(i + 1)</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsAadharUnique</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsAgeProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsChildCountProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsComponentProper</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsPhotoAvailable</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsWrongEntry</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsSelectedTwice</td>
+                        <td style="display:none">@Model.SelectedList.SelectedGeneralList[i].IsPreviouslySelected</td>
+                    </tr>
                     }
                 </tbody>
             </table>
@@ -175,29 +303,63 @@
                         <th>Gender</th>
                         <th>Handicapped?</th>
                         <th>Selected Number</th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
+                        <th style="display:none"></th>
                     </tr>
                 </thead>
                 <tbody>
                     @for (int i = 0; i < Model.SelectedList.WaitingList.Count; i++)
                     {
-                        <tr>
-                            <td>@(i + 1)</td>
-                            <td>@Model.SelectedList.WaitingList[i].ApplicationNumber</td>
-                            <td>@Model.SelectedList.WaitingList[i].Component</td>
-                            <td style="display:none" class="distCode">@Model.SelectedList.WaitingList[i].DistCode</td>
-                            <td>@Model.SelectedList.WaitingList[i].District_Mr</td>
-                            <td>@Model.SelectedList.WaitingList[i].Taluka_Mr</td>
-                            <td>@Model.SelectedList.WaitingList[i].VillageName</td>
-                            <td>@Model.SelectedList.WaitingList[i].AadharNo</td>
-                            <td>@Model.SelectedList.WaitingList[i].Name</td>
-                            <td>@Model.SelectedList.WaitingList[i].PhNo</td>
-                            <td>@Model.SelectedList.WaitingList[i].Gender</td>
-                            <td>@Model.SelectedList.WaitingList[i].ApplicantCrippled</td>
-                            <td>WL_@Model.SelectedList.WaitingList[i].Component _@(i + 1)</td>
-                        </tr>
+                    <tr>
+                        <td>@(i + 1)</td>
+                        <td>@Model.SelectedList.WaitingList[i].ApplicationNumber</td>
+                        <td>@Model.SelectedList.WaitingList[i].Component</td>
+                        <td style="display:none" class="distCode">@Model.SelectedList.WaitingList[i].DistCode</td>
+                        <td>@Model.SelectedList.WaitingList[i].District_Mr</td>
+                        <td>@Model.SelectedList.WaitingList[i].Taluka_Mr</td>
+                        <td>@Model.SelectedList.WaitingList[i].VillageName</td>
+                        <td>@Model.SelectedList.WaitingList[i].AadharNo</td>
+                        <td>@Model.SelectedList.WaitingList[i].Name</td>
+                        <td>@Model.SelectedList.WaitingList[i].PhNo</td>
+                        <td>@Model.SelectedList.WaitingList[i].Gender</td>
+                        <td>@Model.SelectedList.WaitingList[i].ApplicantCrippled</td>
+                        <td>WL_@Model.SelectedList.WaitingList[i].Component _@(i + 1)</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsAadharUnique</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsAgeProper</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsChildCountProper</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsComponentProper</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsPhotoAvailable</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsWrongEntry</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsSelectedTwice</td>
+                        <td style="display:none">@Model.SelectedList.WaitingList[i].IsPreviouslySelected</td>
+                    </tr>
                     }
                 </tbody>
             </table>
+        </div>
+        <div class="panel-footer">
+            <div class='my-legend'>
+                <div class='legend-title'>Improper Entries</div>
+                <div class='legend-scale'>
+                    <ul class='legend-labels'>
+                        <li><span style='background:palevioletred;'></span>Wrong Entry</li>
+                        <li><span style='background:#f77f7f;'></span>Duplicate Entry</li>
+                        <li><span style='background:#ffd800;'></span>Age not in permitted range (greater than 60 or less than 18)</li>
+                        <li><span style='background:#c997dd;'></span>Incorrect Component Selection</li>
+                        <li><span style='background:#acacac;'></span>No. of Child after 2001 greater than 2</li>
+                        <li><span style='background:#8de2fe;'></span>Photo not uploaded</li>
+                        <li><span style='background:#88b7af;'></span>Duplicate Aadhar</li>
+                        <li><span style='background:#eaee93;'></span>Beneficiary Selected in 2018</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
@@ -220,7 +382,7 @@
                 italics: 'gargi.ttf',
                 bolditalics: 'gargi.ttf'
         }
-};
+            };
         $('#table1').DataTable
             ({
                 dom: 'Bfrtip',
@@ -238,7 +400,45 @@
                 "paging": false,
                  "ordering": false,
                 "info" : false,
-                "searching" : false
+                "searching" : false,
+                "initComplete": function(settings, json) {
+             $("tr").each(function () {
+                     var age_val = $(this).find("td:eq(14)").text();
+                     var child_val = $(this).find("td:eq(15)").text();
+                     var aadhar_val = $(this).find("td:eq(13)").text();
+                     var comp_val = $(this).find("td:eq(16)").text();
+                     var photo_val = $(this).find("td:eq(17)").text();
+                     var wrong_val = $(this).find("td:eq(18)").text();
+                 var duplicate_val = $(this).find("td:eq(19)").text();
+                  var prev_val = $(this).find("td:eq(20)").text();
+                     // console.log(col_val + $(this).find("td:eq(2)").text());
+                      if (wrong_val == 'True')
+                      {
+                          $(this).addClass('wrongEntry');
+                      }
+                      else if (age_val == 'False') {
+                          $(this).addClass('ageBad');
+                      }
+                      else if (child_val == 'False') {
+                          $(this).addClass('childBad');
+                      }
+                      else if (comp_val == 'False') {
+                          $(this).addClass('componentBad');
+                      }
+                     else if (photo_val == 'False') {
+                          $(this).addClass('photoBad');
+                      }
+                      else if (aadhar_val == 'False') {
+                          $(this).addClass('aadharBad');
+                    }
+                      else if (duplicate_val == 'True') {
+                              $(this).addClass('duplicateBad');
+                 }
+                 else if (prev_val == 'True') {
+                              $(this).addClass('prevBad');
+                    }
+                });
+  }
             });
         $('#table2').DataTable
             ({
@@ -254,10 +454,47 @@
                         }
                     }
                 ],
-                 "paging": false,
-                 "ordering": false,
+                "paging": false,
+                "ordering": false,
                 "info" : false,
-                "searching" : false
+                "searching" : false,
+                "initComplete": function(settings, json) {
+             $("tr").each(function () {
+                     var age_val = $(this).find("td:eq(14)").text();
+                     var child_val = $(this).find("td:eq(15)").text();
+                     var aadhar_val = $(this).find("td:eq(13)").text();
+                     var comp_val = $(this).find("td:eq(16)").text();
+                     var photo_val = $(this).find("td:eq(17)").text();
+                     var wrong_val = $(this).find("td:eq(18)").text();
+                     var duplicate_val = $(this).find("td:eq(19)").text();
+                  var prev_val = $(this).find("td:eq(20)").text();
+                      if (wrong_val == 'True')
+                      {
+                          $(this).addClass('wrongEntry');
+                      }
+                      else if (age_val == 'False') {
+                          $(this).addClass('ageBad');
+                      }
+                      else if (child_val == 'False') {
+                          $(this).addClass('childBad');
+                      }
+                      else if (comp_val == 'False') {
+                          $(this).addClass('componentBad');
+                      }
+                     else if (photo_val == 'False') {
+                          $(this).addClass('photoBad');
+                      }
+                      else if (aadhar_val == 'False') {
+                          $(this).addClass('aadharBad');
+                    }
+                      else if (duplicate_val == 'True') {
+                              $(this).addClass('duplicateBad');
+                 }
+                  else if (prev_val == 'True') {
+                              $(this).addClass('prevBad');
+                    }
+                });
+  }
             });
         $('#table3').DataTable
             ({
@@ -273,10 +510,47 @@
                         }
                     }
                 ],
-                  "paging": false,
-                 "ordering": false,
+                "paging": false,
+                "ordering": false,
                 "info" : false,
-                "searching" : false
+                "searching": false,
+                "initComplete": function(settings, json) {
+             $("tr").each(function () {
+                     var age_val = $(this).find("td:eq(14)").text();
+                     var child_val = $(this).find("td:eq(15)").text();
+                     var aadhar_val = $(this).find("td:eq(13)").text();
+                     var comp_val = $(this).find("td:eq(16)").text();
+                     var photo_val = $(this).find("td:eq(17)").text();
+                     var wrong_val = $(this).find("td:eq(18)").text();
+                     var duplicate_val = $(this).find("td:eq(19)").text();
+                     var prev_val = $(this).find("td:eq(20)").text();
+                      if (wrong_val == 'True')
+                      {
+                          $(this).addClass('wrongEntry');
+                      }
+                      else if (age_val == 'False') {
+                          $(this).addClass('ageBad');
+                      }
+                      else if (child_val == 'False') {
+                          $(this).addClass('childBad');
+                      }
+                      else if (comp_val == 'False') {
+                          $(this).addClass('componentBad');
+                      }
+                     else if (photo_val == 'False') {
+                          $(this).addClass('photoBad');
+                      }
+                      else if (aadhar_val == 'False') {
+                          $(this).addClass('aadharBad');
+                    }
+                      else if (duplicate_val == 'True') {
+                              $(this).addClass('duplicateBad');
+                 }
+                  else if (prev_val == 'True') {
+                              $(this).addClass('prevBad');
+                    }
+                });
+  }
             });
         $('#table4').DataTable
             ({
@@ -292,9 +566,47 @@
                         }
                     }
                 ],
-                  "paging": false,
-                 "ordering": false,
+                "paging": false,
+                "ordering": false,
                 "info" : false,
-                "searching" : false
+                "searching" : false,
+                "initComplete": function(settings, json) {
+             $("tr").each(function () {
+                     var age_val = $(this).find("td:eq(14)").text();
+                     var child_val = $(this).find("td:eq(15)").text();
+                     var aadhar_val = $(this).find("td:eq(13)").text();
+                     var comp_val = $(this).find("td:eq(16)").text();
+                     var photo_val = $(this).find("td:eq(17)").text();
+                     var wrong_val = $(this).find("td:eq(18)").text();
+                     var duplicate_val = $(this).find("td:eq(19)").text();
+  var prev_val = $(this).find("td:eq(20)").text();
+                      if (wrong_val == 'True')
+                      {
+                          $(this).addClass('wrongEntry');
+                      }
+                      else if (age_val == 'False') {
+                          $(this).addClass('ageBad');
+                      }
+                      else if (child_val == 'False') {
+                          $(this).addClass('childBad');
+                      }
+                      else if (comp_val == 'False') {
+                          $(this).addClass('componentBad');
+                      }
+                     else if (photo_val == 'False') {
+                          $(this).addClass('photoBad');
+                      }
+                      else if (aadhar_val == 'False') {
+                          $(this).addClass('aadharBad');
+                    }
+                      else if (duplicate_val == 'True') {
+                              $(this).addClass('duplicateBad');
+                 }
+                  else if (prev_val == 'True') {
+                              $(this).addClass('prevBad');
+                    }
+                });
+  }
             });
+    
 </script>

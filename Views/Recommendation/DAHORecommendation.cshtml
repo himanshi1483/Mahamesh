@@ -1,0 +1,63 @@
+﻿@model Mahamesh.Models.RecommendationViewModel
+
+@{
+    ViewBag.Title = "View DAHO Recommendation";
+}
+
+
+<div class="container-fluid" style="margin:150px; margin-top:10px !important;">
+
+    <div class="panel panel-primary-2">
+
+        <div class="panel-body">
+            @Html.HiddenFor(x => x.ApplicantId)
+            <table class="table table-bordered table-responsive">
+                <tr>
+                    <td>Application No. : @Model._applicant.ApplicationNumber</td>
+                    <td>Name: @Model._applicant.ApName</td>
+                    <td><img src="@Model._applicant.Photo" /></td>
+                </tr>
+                <tr>
+                    <td colspan="3">Component Selected by Applicant: @Model.Preliminaries[0].Component</td>
+                </tr>
+            </table>
+
+            <div style="margin-top:20px">
+                <h4 class="text-center header-main">District Animal Husbandary Officer Remark/ Recommendation</h4>
+                <table class="table table-bordered table-responsive table-striped">
+                    <tr>
+                        <td width="30%">आपण या अर्जदारास योजने अंतर्गत पुढील निवडी करीत शिफारस करू इच्छिता का:</td>
+                        <td width="20%"><input type="radio" disabled name="Preliminaries[0].DAHORecommended" id="Approved" value="Yes" /><label for="Approved">Recommend</label></td>
+                        <td width="20%"><input type="radio" disabled name="Preliminaries[0].DAHORecommended" id="Rejected" value="No" /><label for="Rejected">Not Recommend</label></td>
+                        <td width="30%">@Html.DisplayFor(x => x.Preliminaries[0].DAHORemarks, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">शिफारस अधिकारी यांचे नाव:</td>
+                        <td>@Html.DisplayFor(x => x.Preliminaries[0].DAHOName, new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+                <div>
+                    <p>Submit Date & Time: @Html.DisplayFor(x => x.Preliminaries[0].DAHOSubmitDate)</p>
+                    <p>Submit IP: @Html.DisplayFor(x => x.Preliminaries[0].DAHO_Ip)</p>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="text-center">
+                    <a class="btn btn-danger" href="@Url.Action("OfficerDashboard", "Menu", new { username = User.Identity.Name})">Back</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+        var IsChekced = "@Model.Preliminaries[0].DAHORecommended";
+      //  alert(IsChekced.toLowerCase());
+        if (IsChekced != "") {
+            $("input:radio[name='Preliminaries[0].DAHORecommended'][value='@Model.Preliminaries[0].DAHORecommended.ToString()']").prop('checked', true);
+        }
+    });
+</script>

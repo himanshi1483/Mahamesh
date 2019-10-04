@@ -563,6 +563,46 @@
     <Compile Include="Migrations\201909220529135_init441.Designer.cs">
       <DependentUpon>201909220529135_init441.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201909230643052_init45.cs" />
+    <Compile Include="Migrations\201909230643052_init45.Designer.cs">
+      <DependentUpon>201909230643052_init45.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909230901085_init46.cs" />
+    <Compile Include="Migrations\201909230901085_init46.Designer.cs">
+      <DependentUpon>201909230901085_init46.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909231312205_init47.cs" />
+    <Compile Include="Migrations\201909231312205_init47.Designer.cs">
+      <DependentUpon>201909231312205_init47.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240710049_init461.cs" />
+    <Compile Include="Migrations\201909240710049_init461.Designer.cs">
+      <DependentUpon>201909240710049_init461.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909240851361_init471.cs" />
+    <Compile Include="Migrations\201909240851361_init471.Designer.cs">
+      <DependentUpon>201909240851361_init471.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909250602100_init48.cs" />
+    <Compile Include="Migrations\201909250602100_init48.Designer.cs">
+      <DependentUpon>201909250602100_init48.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909250827191_init49.cs" />
+    <Compile Include="Migrations\201909250827191_init49.Designer.cs">
+      <DependentUpon>201909250827191_init49.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909251217420_init450.cs" />
+    <Compile Include="Migrations\201909251217420_init450.Designer.cs">
+      <DependentUpon>201909251217420_init450.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909260712531_init51.cs" />
+    <Compile Include="Migrations\201909260712531_init51.Designer.cs">
+      <DependentUpon>201909260712531_init51.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201909260929215_init52.cs" />
+    <Compile Include="Migrations\201909260929215_init52.Designer.cs">
+      <DependentUpon>201909260929215_init52.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminPanelViewModel.cs" />
@@ -570,6 +610,7 @@
     <Compile Include="Models\ApplicationDuration.cs" />
     <Compile Include="Models\ApplicationListsViewModel.cs" />
     <Compile Include="Models\ApplicationRoleManager.cs" />
+    <Compile Include="Models\BeneficiarySelectedList2018.cs" />
     <Compile Include="Models\DatatableModel.cs" />
     <Compile Include="Models\DistrictCountdown.cs" />
     <Compile Include="Models\DistrictList.cs" />
@@ -581,6 +622,7 @@
     <Compile Include="Models\HomePageViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MasterRole.cs" />
     <Compile Include="Models\MediaFolders.cs" />
     <Compile Include="Models\MediaGalleryModel.cs" />
     <Compile Include="Models\NewsModel.cs" />
@@ -700,11 +742,13 @@
     <Content Include="Images\1.jpg" />
     <Content Include="Images\3.jpg" />
     <Content Include="Images\6.jpg" />
+    <Content Include="Images\bakrid.PNG" />
     <Content Include="Images\carousel-bg.png" />
     <Content Include="Images\Chairman Photo %281%29.jpg" />
     <Content Include="Images\Chairman Photo.jpg" />
     <Content Include="Images\Chairman2.jpg" />
     <Content Include="Images\Chairman2_opt.jpg" />
+    <Content Include="Images\Citizen.PNG" />
     <Content Include="Images\cmf-logo.png" />
     <Content Include="Images\default-image.png" />
     <Content Include="Images\digital-india.png" />
@@ -1084,6 +1128,12 @@
     <Content Include="Views\Shared\PrelimList_Dist.cshtml" />
     <Content Include="Views\Recommendation\LDODashboard.cshtml" />
     <Content Include="Views\Recommendation\RecommenendApplicant.cshtml" />
+    <Content Include="Views\Recommendation\DAHORecommend.cshtml" />
+    <Content Include="Views\Recommendation\LDORecommendation.cshtml" />
+    <Content Include="Views\Recommendation\DDCRecommend.cshtml" />
+    <Content Include="Views\Recommendation\DAHORecommendation.cshtml" />
+    <Content Include="Views\Home\WebInfo.cshtml" />
+    <Content Include="Views\Home\Disclaimer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1334,6 +1384,36 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909220529135_init441.resx">
       <DependentUpon>201909220529135_init441.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909230643052_init45.resx">
+      <DependentUpon>201909230643052_init45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909230901085_init46.resx">
+      <DependentUpon>201909230901085_init46.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909231312205_init47.resx">
+      <DependentUpon>201909231312205_init47.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240710049_init461.resx">
+      <DependentUpon>201909240710049_init461.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909240851361_init471.resx">
+      <DependentUpon>201909240851361_init471.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909250602100_init48.resx">
+      <DependentUpon>201909250602100_init48.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909250827191_init49.resx">
+      <DependentUpon>201909250827191_init49.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909251217420_init450.resx">
+      <DependentUpon>201909251217420_init450.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909260712531_init51.resx">
+      <DependentUpon>201909260712531_init51.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201909260929215_init52.resx">
+      <DependentUpon>201909260929215_init52.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

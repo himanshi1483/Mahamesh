@@ -3,7 +3,7 @@
     ViewBag.Title = "LDO Dashboard";
 }
 
-<div class="container-fluid" style="margin-bottom:150px;">
+<div class="container" style="margin:150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
@@ -103,7 +103,7 @@
                     <td>@Model.SelectedFemales[i].CripplePercent</td>
                     <td>@Model.SelectedFemales[i].LDORecommended</td>
                     <td>@Model.SelectedFemales[i].CreatedOn</td>
-                    <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", new { id = Model.SelectedFemales[i].ApplicationId})">View</a></td>
                 </tr>
                 }
             </tbody>
@@ -152,7 +152,7 @@
                     <td>@Model.SelectedHandicaps[i].CripplePercent</td>
                     <td>@Model.SelectedHandicaps[i].LDORecommended</td>
                     <td>@Model.SelectedHandicaps[i].CreatedOn</td>
-                    <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
+                    <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", new { id = Model.SelectedHandicaps[i].ApplicationId})">View</a></td>
                 </tr>
                 }
             </tbody>
@@ -184,25 +184,25 @@
             <tbody>
                 @for (int i = 0; i < Model.SelectedGenerals.Count; i++)
                 {
-                    <tr>
-                        <td>@(i + 1)</td>
-                        <td>@Model.SelectedGenerals[i].ApplicationNumber</td>
-                        <td>@Model.SelectedGenerals[i].Name</td>
-                        <td>@Model.SelectedGenerals[i].PhNo</td>
-                        <td>@Model.SelectedGenerals[i].DOB</td>
-                        <td>@Model.SelectedGenerals[i].Gender</td>
-                        <td>@Model.SelectedGenerals[i].ChildCount</td>
-                        <td>@Model.SelectedGenerals[i].SubCaste</td>
-                        <td>@Model.SelectedGenerals[i].District_Mr</td>
-                        <td>@Model.SelectedGenerals[i].Taluka_Mr</td>
-                        <td>@Model.SelectedGenerals[i].VillageName</td>
-                        <td>@Model.SelectedGenerals[i].AadharNo</td>
-                        <td>@Model.SelectedGenerals[i].ApplicantCrippled</td>
-                        <td>@Model.SelectedGenerals[i].CripplePercent</td>
-                        <td>@Model.SelectedGenerals[i].LDORecommended</td>
-                        <td>@Model.SelectedGenerals[i].CreatedOn</td>
-                        <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
-                    </tr>
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.SelectedGenerals[i].ApplicationNumber</td>
+                    <td>@Model.SelectedGenerals[i].Name</td>
+                    <td>@Model.SelectedGenerals[i].PhNo</td>
+                    <td>@Model.SelectedGenerals[i].DOB</td>
+                    <td>@Model.SelectedGenerals[i].Gender</td>
+                    <td>@Model.SelectedGenerals[i].ChildCount</td>
+                    <td>@Model.SelectedGenerals[i].SubCaste</td>
+                    <td>@Model.SelectedGenerals[i].District_Mr</td>
+                    <td>@Model.SelectedGenerals[i].Taluka_Mr</td>
+                    <td>@Model.SelectedGenerals[i].VillageName</td>
+                    <td>@Model.SelectedGenerals[i].AadharNo</td>
+                    <td>@Model.SelectedGenerals[i].ApplicantCrippled</td>
+                    <td>@Model.SelectedGenerals[i].CripplePercent</td>
+                    <td>@Model.SelectedGenerals[i].LDORecommended</td>
+                    <td>@Model.SelectedGenerals[i].CreatedOn</td>
+                    <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", new { id = Model.SelectedGenerals[i].ApplicationId})">View</a></td>
+                </tr>
                 }
             </tbody>
         </table>
@@ -233,25 +233,25 @@
             <tbody>
                 @for (int i = 0; i < Model.NonRecommendedGenerals.Count; i++)
                 {
-                    <tr>
-                        <td>@(i + 1)</td>
-                        <td>@Model.NonRecommendedGenerals[i].ApplicationNumber</td>
-                        <td>@Model.NonRecommendedGenerals[i].Name</td>
-                        <td>@Model.NonRecommendedGenerals[i].PhNo</td>
-                        <td>@Model.NonRecommendedGenerals[i].DOB</td>
-                        <td>@Model.NonRecommendedGenerals[i].Gender</td>
-                        <td>@Model.NonRecommendedGenerals[i].ChildCount</td>
-                        <td>@Model.NonRecommendedGenerals[i].SubCaste</td>
-                        <td>@Model.NonRecommendedGenerals[i].District_Mr</td>
-                        <td>@Model.NonRecommendedGenerals[i].Taluka_Mr</td>
-                        <td>@Model.NonRecommendedGenerals[i].VillageName</td>
-                        <td>@Model.NonRecommendedGenerals[i].AadharNo</td>
-                        <td>@Model.NonRecommendedGenerals[i].ApplicantCrippled</td>
-                        <td>@Model.NonRecommendedGenerals[i].CripplePercent</td>
-                        <td>@Model.NonRecommendedGenerals[i].LDORecommended</td>
-                        <td>@Model.NonRecommendedGenerals[i].CreatedOn</td>
-                        <td><a class="btn btn-sm btn-danger" href="#">View</a></td>
-                    </tr>
+                <tr>
+                    <td>@(i + 1)</td>
+                    <td>@Model.NonRecommendedGenerals[i].ApplicationNumber</td>
+                    <td>@Model.NonRecommendedGenerals[i].Name</td>
+                    <td>@Model.NonRecommendedGenerals[i].PhNo</td>
+                    <td>@Model.NonRecommendedGenerals[i].DOB</td>
+                    <td>@Model.NonRecommendedGenerals[i].Gender</td>
+                    <td>@Model.NonRecommendedGenerals[i].ChildCount</td>
+                    <td>@Model.NonRecommendedGenerals[i].SubCaste</td>
+                    <td>@Model.NonRecommendedGenerals[i].District_Mr</td>
+                    <td>@Model.NonRecommendedGenerals[i].Taluka_Mr</td>
+                    <td>@Model.NonRecommendedGenerals[i].VillageName</td>
+                    <td>@Model.NonRecommendedGenerals[i].AadharNo</td>
+                    <td>@Model.NonRecommendedGenerals[i].ApplicantCrippled</td>
+                    <td>@Model.NonRecommendedGenerals[i].CripplePercent</td>
+                    <td>@Model.NonRecommendedGenerals[i].LDORecommended</td>
+                    <td>@Model.NonRecommendedGenerals[i].CreatedOn</td>
+                    <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", new { id = Model.NonRecommendedGenerals[i].ApplicationId})">View</a></td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -237,7 +237,28 @@ namespace Mahamesh.Models
         ///
         public string FolderId { get; set; }
 
-        public int OldId { get; set; }
+        public int? OldId { get; set; }
+
+        public bool DocReceiptGenerated { get; set; }
+
+        [NotMapped]
+        public bool IsAgeProper { get; set; }
+
+        [NotMapped]
+        public bool IsChildCountProper { get; set; }
+
+        [NotMapped]
+        public bool IsComponentProper { get; set; }
+
+        [NotMapped]
+        public bool IsAadharUnique { get; set; }
+        [NotMapped]
+        public bool IsWrongEntry { get; set; }
+        [NotMapped]
+        public bool IsPhotoAvailable { get; set; }
+        [NotMapped]
+        public bool IsPreviouslySelected { get; set; }
+
     }
 
     public enum Components

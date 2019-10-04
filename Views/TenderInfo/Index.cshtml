@@ -5,61 +5,32 @@
 }
 
 
-<div class="container body-content" id="#maincontent" style="margin-top:70px; margin-bottom: 150px;">
+<div class="container body-content" id="#maincontent" style="margin-top:20px; margin-bottom: 150px;">
     <div class="panel panel-primary" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary" style="background:#52b2fa;border-color:transparent;text-align:center;font-weight:800">
-            <h3 class="panel-title">Tenders</h3>
+            <h3 class="panel-title">Tender  Notices</h3>
         </div>
-        <div style="float:right;padding:10px">
+        @*<div style="float:right;padding:10px">
             <a class="btn btn-info" href="@Url.Action("Create")">Add Tender</a>
-        </div>
+        </div>*@
         <div class="panel-body">
 
             <div class="row">
                 <table class="table table-bordered table-responsive table-striped">
-                    <tr>
-                        <th>
-                            @Html.DisplayNameFor(model => model.TenderTitle)
-                        </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.TenderDescription)
-                        </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.TenderDate)
-                        </th>
-                        @*<th>
-                            @Html.DisplayNameFor(model => model.TenderDocument)
-                        </th>*@
-                        <th>
-                            @Html.DisplayNameFor(model => model.CreatedBy)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.CreatedDate)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UpdatedBy)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UpdatedDate)
-                        </th>
-                        <th></th>
-                    </tr>
+                 
 
                     @foreach (var item in Model)
                     {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => item.TenderTitle)
+                            <a href="@item.TenderDocument">@item.DocumentName</a>
+                            @*@Html.DisplayFor(modelItem => item.TenderDocument)*@
                         </td>
+                       
                         @*<td>
-            @Html.DisplayFor(modelItem => item.TenderDescription)
-        </td>*@
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TenderDate)
+                            @Html.DisplayFor(modelItem => item.UpdatedDate)
                         </td>
-                        @*<td>
-                            @Html.DisplayFor(modelItem => item.TenderDocument)
-                        </td>*@
+                      
                         <td>
                             @Html.DisplayFor(modelItem => item.CreatedBy)
                         </td>
@@ -85,7 +56,7 @@
                                 </button>
                             </div>
 
-                        </td>
+                        </td>*@
                     </tr>
                     }
 

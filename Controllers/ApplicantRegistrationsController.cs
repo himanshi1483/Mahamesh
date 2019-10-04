@@ -17,53 +17,13 @@ namespace Mahamesh.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         public const int RecordsPerPage = 100;
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    db.Configuration.LazyLoadingEnabled = false;
-        //    //return RedirectToAction("GetApplications");
-        //    var applicantRegistrationList = db.ApplicantRegistrations.AsNoTracking().Where(x => x.FormSubmitted == true & (x.ApName != string.Empty || x.ApName != null)).ToList();
-        //    var _dist = db.DistMaster.AsNoTracking().ToList();
-        //    var _tal = db.TalMaster.AsNoTracking().ToList();
-        //   // var _vil = db.VillageMaster.AsNoTracking().ToList();
-        //    foreach (var item in applicantRegistrationList)
-        //    {
-        //        item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
-        //        item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
-        //        item.VilName = db.VillageMaster.AsNoTracking().Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
-        //    }
-        //    return View(applicantRegistrationList);
-        //}
-
-
+   
         public ActionResult Index()
         {
             return View();
         }
 
-        [HttpPost]
-        public JsonResult ApplicantList(DTParameters param)
-        {
 
-            int TotalCount = 0;
-            var filtered = this.GetApplications(param.Search.Value,param.Search.Type, param.SortOrder, param.Start, param.Length, out TotalCount);
-
-            var OrderList = filtered;
-
-
-
-            DTResult<ApplicantRegistration> finalresult = new DTResult<ApplicantRegistration>
-            {
-                draw = param.Draw,
-                data = OrderList.ToList(),
-                recordsFiltered = TotalCount,
-                recordsTotal = filtered.Count
-
-            };
-
-            return Json(finalresult);
-
-        }
 
         protected override JsonResult Json(object data, string contentType, System.Text.Encoding contentEncoding, JsonRequestBehavior behavior)
         {
@@ -78,22 +38,9 @@ namespace Mahamesh.Controllers
         }
         public JsonResult GetApplicantList(string searchVil, string searchName)
         {
-            //var draw = Request.Form.GetValues("draw").FirstOrDefault();
-            //var start = Request.Form.GetValues("start").FirstOrDefault();
-            //var length = Request.Form.GetValues("length").FirstOrDefault();
-            //var sortColumn = Request.Form.GetValues("columns[" + Request.Form.GetValues("order[0][column]").FirstOrDefault() + "][name]").FirstOrDefault();
-            //var sortColumnDir = Request.Form.GetValues("order[0][dir]").FirstOrDefault();
-            //var searchValue = Request.Form.GetValues("search[value]").FirstOrDefault();
-            //var searchName = Request.Form.GetValues("columns[0][search][value]").FirstOrDefault();
-            //var searchVil = Request.Form.GetValues("columns[1][search][value]").FirstOrDefault();
-          //  var searchVil1 = Request.Form.GetValues("columns[2][search][value]").FirstOrDefault();
-            //Paging Size (10,20,50,100)    
-            //int pageSize = length != null ? Convert.ToInt32(length) : 0;
-            //int skip = start != null ? Convert.ToInt32(start) : 0;
+           
             int recordsTotal = 0;
-            // db.Configuration.LazyLoadingEnabled = false;
-
-            var applicantRegistrationList = new List<ApplicantRegistration>();// = db.ApplicantRegistrations.OrderByDescending(x=>x.FormSubmitted).ThenBy(x=>x.Dist).ToList();
+            var applicantRegistrationList = new List<ApplicantRegistration>();
             var _dist = db.DistMaster.ToList();
             var _tal = db.TalMaster.ToList();
             var _vil = db.VillageMaster.ToList();
@@ -182,9 +129,176 @@ namespace Mahamesh.Controllers
                     item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
                 }
             }
+            else if (searchVil == "Component")
+            {
+               // var _compList = _applicant.CompNumber != null ? _applicant.CompNumber.Split(',').ToList() : null;
+                var d = db.ApplicantRegistrations.OrderByDescending(x => x.FormSubmitted).Where(x => x.CompNumber.Contains((searchName).ToString())).ToList();
+                foreach (var item in d)
+                {
+                    var _compList =  item.CompNumber.Trim().Split(',').ToList();
+                    item.CompNumberList1 = _compList;
+                    item.DistrictName = _dist.Where(x => x.Dist_Code == item.Dist).Select(x => x.DistName).FirstOrDefault();
+                    item.TalukaName = _tal.Where(x => x.Tal_Code == item.Tahashil).Select(x => x.TalName).FirstOrDefault();
+                    item.VilName = _vil.Where(x => x.Village_Code == item.VillageName).Select(x => x.VillageName).FirstOrDefault();
+                }
+                applicantRegistrationList = d.Where(x => x.CompNumberList1.Any(y => y == searchName)).ToList();
+            }
             recordsTotal = applicantRegistrationList.Count();
             //Paging     
             var data = applicantRegistrationList.ToList();
+
+            foreach (var item in data)
+            {
+               var _compList = item.CompNumber != null ? item.CompNumber.Split(',').ToList() : null;
+                if (item.Age > 60 || item.Age < 18)
+                {
+                    item.IsAgeProper = false;
+                }
+                else
+                {
+                    item.IsAgeProper = true;
+                }
+                if (item.Child2006 > 2)
+                {
+                    item.IsChildCountProper = false;
+                }
+                else
+                {
+                    item.IsChildCountProper = true;
+                }
+                if (item.CompNumber != null)
+                {
+                    if ((_compList.Contains("1") || _compList.Contains("2")) && (_compList.Contains("4") || _compList.Contains("3") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("8") || _compList.Contains("9") || _compList.Contains("10")
+                         || _compList.Contains("11") || _compList.Contains("12") || _compList.Contains("13") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("3")) && (_compList.Contains("4") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("4")) && (_compList.Contains("3") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("5")) && (_compList.Contains("4") || _compList.Contains("3")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("6")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("3") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("7")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("3") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("8")) && (_compList.Contains("9") || _compList.Contains("10")
+                    || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("9")) && (_compList.Contains("8") || _compList.Contains("10")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("10")) && (_compList.Contains("9") || _compList.Contains("8")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    if ((_compList.Contains("11")) && (_compList.Contains("9") || _compList.Contains("10")
+                  || _compList.Contains("8") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("12")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("13")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("13")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("12")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                }
+              
+                if (db.ApplicantRegistrations.Where(x=>x.AdharCardNo == item.AdharCardNo &&  x.FormSubmitted == true).ToList().Count > 1)
+                {
+                    item.IsAadharUnique = false;
+                }
+                else
+                {
+                    item.IsAadharUnique = true;
+                }
+                if (item.Photo == null)
+                {
+                    item.IsPhotoAvailable = false;
+                }
+                else
+                {
+                    item.IsPhotoAvailable = true;
+                }
+                if(db.BeneficiarySelectedList2018.Any(x=>x.Aadhar == item.AdharCardNo))
+                {
+                    item.IsPreviouslySelected = true;
+                }
+                else
+                {
+                    item.IsPreviouslySelected = false;
+                }
+
+            }
             //Returning Json Data    
             return Json( data, JsonRequestBehavior.AllowGet);
 
@@ -244,7 +358,7 @@ namespace Mahamesh.Controllers
             model.ApplicantsListByTal = new List<ApplicationListsViewModel>();
             model.ApplicantsListByComp = new List<ApplicationListsViewModel>();
 
-            var list = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true).ToList();
+            var list = db.ApplicantRegistrations.ToList();
             var districts = db.DistMaster.ToList();
             var talukaList = db.TalMaster.ToList();
             var districtTarget = db.DistrictTarget.ToList();
@@ -278,7 +392,7 @@ namespace Mahamesh.Controllers
                     var model2 = new ApplicationListsViewModel();
 
                     var target2 = talukaTarget.Where(x => x.Name_Of_Taluka.Trim() == taluka.Tal_Mr.Trim() && x.Name_of_District.Trim() == item.District_Mr.Trim()).FirstOrDefault();
-                    model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model2.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code && x.Dist == item.Dist_Code).Count();
                     model2.CountByDistrict = data;
                     model2.DistrictCode = item.Dist_Code;
                     model2.DistrictName = item.District_Mr;
@@ -299,22 +413,23 @@ namespace Mahamesh.Controllers
                     listModelTal.Add(model2);
 
                     var model3 = new ApplicationListsViewModel();
-                    model3.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code).Count();
+                    model3.CountByTaluka = list.Where(x => x.Tahashil == taluka.Tal_Code && x.Dist == item.Dist_Code).Count();
                     model3.CountByDistrict = data;
                     model3.DistrictCode = item.Dist_Code;
                     model3.DistrictName = item.DistName;
                     model3.TalukaName = taluka.Tal_Mr;
                     model3.TalukaCode = taluka.Tal_Code;
                     //Component-wise
-                    var _talukaList = list.Where(x => x.Tahashil == taluka.Tal_Code).ToList();
-                    for (int k = 0; k < 15; k++)
+                    var _talukaList = list.Where(x => x.Tahashil == taluka.Tal_Code && x.Dist == item.Dist_Code).ToList();
+                    int k = 0;
+                    for (k = 0; k < 15; k++)
                     {
                         int _count = 0;
                         foreach (var _item in _talukaList.Where(x => x.CompNumber != null))
                         {
 
                             var d = _item.CompNumber;
-                            var _comps = d.Split(',').ToList();
+                            var _comps = d.Trim().Split(',').ToList();
                             for (int j = 0; j < _comps.Count; j++)
                             {
                                 _comps[j] = _comps[j].Trim();
@@ -325,67 +440,7 @@ namespace Mahamesh.Controllers
                                 _count += 1;
                             }
 
-                            //if (_comps.Any(x => x == "1"))
-                            //{
-                            //    model3.CountByComponent1 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "2"))
-                            //{
-                            //    model3.CountByComponent2 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "3"))
-                            //{
-                            //    model3.CountByComponent3 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "4"))
-                            //{
-                            //    model3.CountByComponent4 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "5"))
-                            //{
-                            //    model3.CountByComponent5 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "6"))
-                            //{
-                            //    model3.CountByComponent6 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "7"))
-                            //{
-                            //    model3.CountByComponent7 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "8"))
-                            //{
-                            //    model3.CountByComponent8 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "9"))
-                            //{
-                            //    model3.CountByComponent9 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "10"))
-                            //{
-                            //    model3.CountByComponent10 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "11"))
-                            //{
-                            //    model3.CountByComponent11 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "12"))
-                            //{
-                            //    model3.CountByComponent12 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "13"))
-                            //{
-                            //    model3.CountByComponent13 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "14"))
-                            //{
-                            //    model3.CountByComponent14 += 1;
-                            //}
-                            //if (_comps.Any(x => x == "15"))
-                            //{
-                            //    model3.CountByComponent15 += 1;
-                            //}
-
+                           
                         }
                         if (k == 0)
                         {
@@ -3978,25 +4033,741 @@ namespace Mahamesh.Controllers
             return View(model);
         }
 
-        public ActionResult PrelimList_Dist(FormCollection form)
+        public ActionResult PrelimList_Dist(FormCollection form, string dist)
         {
-            var distCode = Convert.ToInt32(form["District"]);
+            var distCode = Convert.ToInt32(form["DistrictVal"]);
+            if (dist != "" && dist != null)
+                distCode = Convert.ToInt32(dist);
+
             var model = new OfficerLogin();
-            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
-            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
-            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().OrderBy(x => x.Component).ToList();
-            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().OrderBy(x => x.Component).ToList();
-            var talukaList = db.SelectedGeneral.Select(x => x.TalukaCode).Distinct();
             model.SelectedList = new SelectedListViewModel();
             model.SelectedList.SelectedFemaleList = new List<SelectedFemale>();
             model.SelectedList.SelectedHandicappedList = new List<SelectedHandicapped>();
             model.SelectedList.SelectedGeneralList = new List<SelectedGeneral>();
             model.SelectedList.WaitingList = new List<SelectedGeneral>();
+
+            var selectedHandicapped = db.SelectedHandicapped.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedFemale = db.SelectedFemale.Where(x => x.DistCode == distCode).OrderBy(x => x.Component).ToList();
+            var selectedGeneral = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Selected").Distinct().OrderBy(x => x.Component).ToList();
+            var selectedWaiting = db.SelectedGeneral.Where(x => x.DistCode == distCode && x.Type == "Waiting").Distinct().OrderBy(x => x.Component).ToList();
+            var talukaList = db.SelectedGeneral.Select(x => x.TalukaCode).Distinct();
+            var applications = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == distCode).ToList();
+
+            foreach (var item in selectedWaiting)
+            {
+                var _applicant = applications.Where(x => x.Id == item.ApplicationId).FirstOrDefault();
+                var _compList = _applicant.CompNumber != null ? _applicant.CompNumber.Split(',').ToList() : null;
+                if (_applicant.Age> 60 || _applicant.Age < 18)
+                {
+                    item.IsAgeProper = false;
+                }
+                else
+                {
+                    item.IsAgeProper = true;
+                }
+
+                if (_applicant.Photo == null)
+                {
+                    item.IsPhotoAvailable = false;
+                }
+                else
+                {
+                    item.IsPhotoAvailable = true;
+                }
+
+                if (_applicant.Child2006 > 2)
+                {
+                    item.IsChildCountProper = false;
+                }
+                else
+                {
+                    item.IsChildCountProper = true;
+                }
+
+                if (_compList != null)
+                {
+                    if ((_compList.Contains("1") || _compList.Contains("2")) && (_compList.Contains("4") || _compList.Contains("3") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("8") || _compList.Contains("9") || _compList.Contains("10")
+                         || _compList.Contains("11") || _compList.Contains("12") || _compList.Contains("13") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("3")) && (_compList.Contains("4") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("4")) && (_compList.Contains("3") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("5")) && (_compList.Contains("4") || _compList.Contains("3")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("6")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("3") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("7")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("3") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("8")) && (_compList.Contains("9") || _compList.Contains("10")
+                    || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("9")) && (_compList.Contains("8") || _compList.Contains("10")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("10")) && (_compList.Contains("9") || _compList.Contains("8")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("11")) && (_compList.Contains("9") || _compList.Contains("10")
+                  || _compList.Contains("8") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("12")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("13")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("13")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("12")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                }
+
+                if (db.ApplicantRegistrations.Where(x => x.AdharCardNo == item.AadharNo && x.FormSubmitted == true).ToList().Count > 1)
+                {
+                    item.IsAadharUnique = false;
+                }
+                else
+                {
+                    item.IsAadharUnique = true;
+                }
+
+                if(_applicant.CompNumber.Contains(item.Component.ToString()))
+                {
+                    item.IsWrongEntry = false;
+                }
+                else
+                {
+                    item.IsWrongEntry = true;
+                }
+
+                if(selectedGeneral.Where(x=>x.Type == "Selected").Select(x=>x.ApplicationId).ToList().Contains(item.ApplicationId)
+                    || selectedFemale.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId)
+                    || selectedHandicapped.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId))
+                {
+                    item.IsSelectedTwice = true;
+                }
+                else
+                {
+                    item.IsSelectedTwice = false;
+                }
+                if (db.BeneficiarySelectedList2018.Any(x=>x.Aadhar == item.AadharNo))
+                {
+                    item.IsPreviouslySelected = true;
+                }
+                else
+                {
+                    item.IsPreviouslySelected = false;
+                }
+            }
+
+            foreach (var item in selectedGeneral)
+            {
+                var _applicant = applications.Where(x => x.Id == item.ApplicationId).FirstOrDefault();
+                var _compList = _applicant.CompNumber != null ? _applicant.CompNumber.Split(',').ToList() : null;
+                if (_applicant.Age > 60 || _applicant.Age < 18)
+                {
+                    item.IsAgeProper = false;
+                }
+                else
+                {
+                    item.IsAgeProper = true;
+                }
+
+                if (_applicant.Photo == null)
+                {
+                    item.IsPhotoAvailable = false;
+                }
+                else
+                {
+                    item.IsPhotoAvailable = true;
+                }
+
+                if (_applicant.Child2006 > 2)
+                {
+                    item.IsChildCountProper = false;
+                }
+                else
+                {
+                    item.IsChildCountProper = true;
+                }
+
+                if (_compList != null)
+                {
+                    if ((_compList.Contains("1") || _compList.Contains("2")) && (_compList.Contains("4") || _compList.Contains("3") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("8") || _compList.Contains("9") || _compList.Contains("10")
+                         || _compList.Contains("11") || _compList.Contains("12") || _compList.Contains("13") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("3")) && (_compList.Contains("4") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("4")) && (_compList.Contains("3") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("5")) && (_compList.Contains("4") || _compList.Contains("3")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("6")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("3") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("7")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("3") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("8")) && (_compList.Contains("9") || _compList.Contains("10")
+                    || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("9")) && (_compList.Contains("8") || _compList.Contains("10")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("10")) && (_compList.Contains("9") || _compList.Contains("8")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("11")) && (_compList.Contains("9") || _compList.Contains("10")
+                  || _compList.Contains("8") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("12")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("13")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("13")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("12")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                }
+                if (_applicant.CompNumber.Contains(item.Component.ToString()))
+                {
+                    item.IsWrongEntry = false;
+                }
+                else
+                {
+                    item.IsWrongEntry = true;
+                }
+
+                if (db.ApplicantRegistrations.Where(x => x.AdharCardNo == item.AadharNo && x.FormSubmitted == true).ToList().Count > 1)
+                {
+                    item.IsAadharUnique = false;
+                }
+                else
+                {
+                    item.IsAadharUnique = true;
+                }
+                if ( selectedFemale.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId)
+                   || selectedHandicapped.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId))
+                {
+                    item.IsSelectedTwice = true;
+                }
+                else
+                {
+                    item.IsSelectedTwice = false;
+                }
+                if (db.BeneficiarySelectedList2018.Any(x => x.Aadhar == item.AadharNo))
+                {
+                    item.IsPreviouslySelected = true;
+                }
+                else
+                {
+                    item.IsPreviouslySelected = false;
+                }
+            }
+
+            foreach (var item in selectedFemale)
+            {
+                var _applicant = applications.Where(x => x.Id == item.ApplicationId).FirstOrDefault();
+                var _compList = _applicant.CompNumber != null ? _applicant.CompNumber.Split(',').ToList() : null;
+                if (_applicant.Age > 60 || _applicant.Age < 18)
+                {
+                    item.IsAgeProper = false;
+                }
+                else
+                {
+                    item.IsAgeProper = true;
+                }
+
+                if (_applicant.Photo == null)
+                {
+                    item.IsPhotoAvailable = false;
+                }
+                else
+                {
+                    item.IsPhotoAvailable = true;
+                }
+
+                if (_applicant.Child2006 > 2)
+                {
+                    item.IsChildCountProper = false;
+                }
+                else
+                {
+                    item.IsChildCountProper = true;
+                }
+
+                if (_compList != null)
+                {
+                    if ((_compList.Contains("1") || _compList.Contains("2")) && (_compList.Contains("4") || _compList.Contains("3") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("8") || _compList.Contains("9") || _compList.Contains("10")
+                         || _compList.Contains("11") || _compList.Contains("12") || _compList.Contains("13") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("3")) && (_compList.Contains("4") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("4")) && (_compList.Contains("3") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("5")) && (_compList.Contains("4") || _compList.Contains("3")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("6")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("3") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("7")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("3") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("8")) && (_compList.Contains("9") || _compList.Contains("10")
+                    || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("9")) && (_compList.Contains("8") || _compList.Contains("10")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("10")) && (_compList.Contains("9") || _compList.Contains("8")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("11")) && (_compList.Contains("9") || _compList.Contains("10")
+                  || _compList.Contains("8") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("12")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("13")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("13")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("12")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                }
+                if (_applicant.CompNumber.Contains(item.Component.ToString()))
+                {
+                    item.IsWrongEntry = false;
+                }
+                else
+                {
+                    item.IsWrongEntry = true;
+                }
+                if (db.ApplicantRegistrations.Where(x => x.AdharCardNo == item.AadharNo && x.FormSubmitted == true).ToList().Count > 1)
+                {
+                    item.IsAadharUnique = false;
+                }
+                else
+                {
+                    item.IsAadharUnique = true;
+                }
+                if (selectedGeneral.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId)               
+                 || selectedHandicapped.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId))
+                {
+                    item.IsSelectedTwice = true;
+                }
+                else
+                {
+                    item.IsSelectedTwice = false;
+                }
+                if (db.BeneficiarySelectedList2018.Any(x => x.Aadhar == item.AadharNo))
+                {
+                    item.IsPreviouslySelected = true;
+                }
+                else
+                {
+                    item.IsPreviouslySelected = false;
+                }
+            }
+
+            foreach (var item in selectedHandicapped)
+            {
+                var _applicant = applications.Where(x => x.Id == item.ApplicationId).FirstOrDefault();
+                var _compList = _applicant.CompNumber != null ? _applicant.CompNumber.Split(',').ToList() : null;
+                if (_applicant.Age > 60 || _applicant.Age < 18)
+                {
+                    item.IsAgeProper = false;
+                }
+                else
+                {
+                    item.IsAgeProper = true;
+                }
+
+                if (_applicant.Photo == null)
+                {
+                    item.IsPhotoAvailable = false;
+                }
+                else
+                {
+                    item.IsPhotoAvailable = true;
+                }
+
+                if (_applicant.Child2006 > 2)
+                {
+                    item.IsChildCountProper = false;
+                }
+                else
+                {
+                    item.IsChildCountProper = true;
+                }
+
+                if (_compList != null)
+                {
+                    if ((_compList.Contains("1") || _compList.Contains("2")) && (_compList.Contains("4") || _compList.Contains("3") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("8") || _compList.Contains("9") || _compList.Contains("10")
+                         || _compList.Contains("11") || _compList.Contains("12") || _compList.Contains("13") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("3")) && (_compList.Contains("4") || _compList.Contains("5")
+                        || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("4")) && (_compList.Contains("3") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("5")) && (_compList.Contains("4") || _compList.Contains("3")
+                     || _compList.Contains("6") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("6")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("3") || _compList.Contains("7") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("7")) && (_compList.Contains("4") || _compList.Contains("5")
+                     || _compList.Contains("6") || _compList.Contains("3") || _compList.Contains("14") || _compList.Contains("15")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("8")) && (_compList.Contains("9") || _compList.Contains("10")
+                    || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("9")) && (_compList.Contains("8") || _compList.Contains("10")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("10")) && (_compList.Contains("9") || _compList.Contains("8")
+                  || _compList.Contains("11") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("11")) && (_compList.Contains("9") || _compList.Contains("10")
+                  || _compList.Contains("8") || _compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("12")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("13")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                    if ((_compList.Contains("13")) && (_compList.Contains("14") || _compList.Contains("15") || _compList.Contains("1") || _compList.Contains("2") || _compList.Contains("12")))
+                    {
+                        item.IsComponentProper = false;
+                    }
+                    else
+                    {
+                        item.IsComponentProper = true;
+                    }
+                }
+                if (_applicant.CompNumber.Contains(item.Component.ToString()))
+                {
+                    item.IsWrongEntry = false;
+                }
+                else
+                {
+                    item.IsWrongEntry = true;
+                }
+                if (db.ApplicantRegistrations.Where(x => x.AdharCardNo == item.AadharNo && x.FormSubmitted == true).ToList().Count > 1)
+                {
+                    item.IsAadharUnique = false;
+                }
+                else
+                {
+                    item.IsAadharUnique = true;
+                }
+                if (selectedGeneral.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId)
+                 || selectedFemale.Select(x => x.ApplicationId).ToList().Contains(item.ApplicationId))
+                {
+                    item.IsSelectedTwice = true;
+                }
+                else
+                {
+                    item.IsSelectedTwice = false;
+                }
+                if (db.BeneficiarySelectedList2018.Any(x => x.Aadhar == item.AadharNo))
+                {
+                    item.IsPreviouslySelected = true;
+                }
+                else
+                {
+                    item.IsPreviouslySelected = false;
+                }
+            }
+
+            model.district = distCode;
             model.SelectedList.SelectedFemaleList = selectedFemale;
             model.SelectedList.SelectedHandicappedList = selectedHandicapped;
-            model.district = distCode;
             model.SelectedList.SelectedGeneralList = selectedGeneral;
             model.SelectedList.WaitingList = selectedWaiting;
+
 
             return View(model);
         }

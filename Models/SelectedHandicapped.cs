@@ -26,12 +26,14 @@ namespace Mahamesh.Models
         public int Component { get; set; }
         public string Type { get; set; }
         public DateTime CreatedOn { get; set; }
+
+        public bool UploadEnabled { get; set; }
         [NotMapped]
-        public bool LDORecommended { get; set; }
+        public string LDORecommended { get; set; }
         [NotMapped]
-        public bool DAHORecommended { get; set; }
+        public string DAHORecommended { get; set; }
         [NotMapped]
-        public bool DDCRecommended { get; set; }
+        public string DDCRecommended { get; set; }
         [NotMapped]
         public string SubCaste { get; set; }
         [NotMapped]
@@ -40,7 +42,25 @@ namespace Mahamesh.Models
         public int ChildCount { get; set; }
         [NotMapped]
         public decimal CripplePercent { get; set; }
+        [NotMapped]
+        public bool IsAgeProper { get; set; }
 
+        [NotMapped]
+        public bool IsChildCountProper { get; set; }
+
+        [NotMapped]
+        public bool IsComponentProper { get; set; }
+
+        [NotMapped]
+        public bool IsAadharUnique { get; set; }
+        [NotMapped]
+        public bool IsWrongEntry { get; set; }
+        [NotMapped]
+        public bool IsPhotoAvailable { get; set; }
+        [NotMapped]
+        public bool IsSelectedTwice { get; set; }
+        [NotMapped]
+        public bool IsPreviouslySelected { get; set; }
     }
 
     public class SelectedFemale
@@ -63,12 +83,13 @@ namespace Mahamesh.Models
         public int Component { get; set; }
         public string Type { get; set; }
         public DateTime CreatedOn { get; set; }
+        public bool UploadEnabled { get; set; }
         [NotMapped]
-        public bool LDORecommended { get; set; }
+        public string LDORecommended { get; set; }
         [NotMapped]
-        public bool DAHORecommended { get; set; }
+        public string DAHORecommended { get; set; }
         [NotMapped]
-        public bool DDCRecommended { get; set; }
+        public string DDCRecommended { get; set; }
         [NotMapped]
         public string SubCaste { get; set; }
         [NotMapped]
@@ -77,6 +98,25 @@ namespace Mahamesh.Models
         public int ChildCount { get; set; }
         [NotMapped]
         public decimal CripplePercent { get; set; }
+        [NotMapped]
+        public bool IsAgeProper { get; set; }
+
+        [NotMapped]
+        public bool IsChildCountProper { get; set; }
+
+        [NotMapped]
+        public bool IsComponentProper { get; set; }
+
+        [NotMapped]
+        public bool IsAadharUnique { get; set; }
+        [NotMapped]
+        public bool IsWrongEntry { get; set; }
+        [NotMapped]
+        public bool IsPhotoAvailable { get; set; }
+        [NotMapped]
+        public bool IsSelectedTwice { get; set; }
+        [NotMapped]
+        public bool IsPreviouslySelected { get; set; }
     }
 
     public class SelectedGeneral
@@ -101,12 +141,13 @@ namespace Mahamesh.Models
         public DateTime CreatedOn { get; set; }
 
         public string IsValid { get; set; }
+        public bool UploadEnabled { get; set; }
         [NotMapped]
-        public bool LDORecommended { get; set; }
+        public string LDORecommended { get; set; }
         [NotMapped]
-        public bool DAHORecommended { get; set; }
+        public string DAHORecommended { get; set; }
         [NotMapped]
-        public bool DDCRecommended { get; set; }
+        public string DDCRecommended { get; set; }
         [NotMapped]
         public string SubCaste { get; set; }
         [NotMapped]
@@ -115,6 +156,24 @@ namespace Mahamesh.Models
         public int ChildCount { get; set; }
         [NotMapped]
         public decimal CripplePercent { get; set; }
+        [NotMapped]
+        public bool IsAgeProper { get; set; }
 
+        [NotMapped]
+        public bool IsChildCountProper { get; set; }
+
+        [NotMapped]
+        public bool IsComponentProper { get; set; }
+
+        [NotMapped]
+        public bool IsAadharUnique { get; set; }
+        [NotMapped]
+        public bool IsWrongEntry { get; set; }
+        [NotMapped]
+        public bool IsPhotoAvailable { get; set; }
+        [NotMapped]
+        public bool IsSelectedTwice { get; set; }
+        [NotMapped]
+        public bool IsPreviouslySelected { get; set; }
     }
 }

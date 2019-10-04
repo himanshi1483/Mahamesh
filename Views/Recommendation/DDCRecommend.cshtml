@@ -1,0 +1,81 @@
+﻿@model Mahamesh.Models.RecommendationViewModel
+
+@{
+    ViewBag.Title = "DDC Recommendation";
+}
+
+
+<div class="container-fluid" style="margin:150px; margin-top:10px !important;">
+    <div class="headerDashboard">
+        <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
+            <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
+        </div>
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="text-align:right">
+            <img src="~/Images/Raje.jpg" style="max-height:93px" class="img-responsive" alt="Raje Yashwant Holkar" />
+        </div>
+
+    </div>
+    @using (Html.BeginForm("DDCRecommend", "Recommendation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {<div class="panel panel-primary-2">
+            <div class="panel-heading panel-primary-2 text-center">
+                <h4>DDC Dashboard</h4>    @Html.HiddenFor(x => x.ApplicantId)
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered table-responsive">
+                    <tr>
+                        <td>Application No. : @Model._applicant.ApplicationNumber</td>
+                        <td>Name: @Model._applicant.ApName</td>
+                        <td><img src="@Model._applicant.Photo" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">Component Selected by Applicant: @Model.Preliminaries[0].Component</td>
+                    </tr>
+                </table>
+                <div class="text-left">
+                    <a class="btn btn-info" target="_blank" href="@Url.Action("Details", "ApplicantRegistrations", new { id = Model.ApplicantId})">View Application</a>
+                    @if (Model.Preliminaries[0].LDORecommended == "Yes")
+                    {
+                        <a class="btn btn-info" target="_blank" href="@Url.Action("LDORecommendation", "Recommendation", new { id = Model.ApplicantId})">View LDO Recommendation</a>
+                    }
+                    @if (Model.Preliminaries[0].DAHORecommended == "Yes")
+                    {
+                        <a class="btn btn-info" target="_blank" href="@Url.Action("DAHORecommendation", "Recommendation", new { id = Model.ApplicantId })">View DAHO Recommendation</a>
+                    }
+                </div>
+                <div style="margin-top:20px">
+                    <h4 class="text-center header-main">District Animal Husbandary Officer Remark/ Recommendation</h4>
+                    <table class="table table-bordered table-responsive table-striped">
+                        <tr>
+                            <td width="30%">आपण या अर्जदारास योजने अंतर्गत पुढील निवडी करीत शिफारस करू इच्छिता का:</td>
+                            <td width="20%"><input type="radio" name="Preliminaries[0].DDCRecommended" id="Approved" value="Yes" /><label for="Approved">Recommend</label></td>
+                            <td width="20%"><input type="radio" name="Preliminaries[0].DDCRecommended" id="Rejected" value="No" /><label for="Rejected">Not Recommend</label></td>
+                            <td width="30%">@Html.TextAreaFor(x => x.Preliminaries[0].DDCRemarks, new { @class = "form-control" })</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">शिफारस अधिकारी यांचे नाव:</td>
+                            <td>@Html.TextBoxFor(x => x.Preliminaries[0].DDCName, new { @class = "form-control" })</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="text-center">
+                        <a class="btn btn-danger" href="@Url.Action("OfficerDashboard", "Menu", new { username = User.Identity.Name})">Back</a>
+                        <button class="btn btn-primary" name="submit" value="save" type="submit">Save</button>
+                        <button class="btn btn-default" name="submit" value="submit" type="submit">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+
+<script>
+    $(document).ready(function () {
+        var IsChekced = "@Model.Preliminaries[0].DAHORecommended";
+      //  alert(IsChekced.toLowerCase());
+        if (IsChekced != "") {
+            $("input:radio[name='Preliminaries[0].DAHORecommended'][value='@Model.Preliminaries[0].DAHORecommended.ToString()']").prop('checked', true);
+        }
+    });
+</script>

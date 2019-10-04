@@ -390,7 +390,7 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaUserLogin(string msg)
         {
             if (msg != null)
-                ViewBag.Msg = "Your appliation has been submitted successfully. To view the appliation, please login again.";
+                ViewBag.Msg = "Your application has been submitted successfully. To view the application, please login again.";
 
             var applicationTime = new ApplicantRegistration();
             applicationTime.appDuration = new ApplicationDuration();
@@ -401,8 +401,10 @@ namespace Mahamesh.Controllers
         [HttpPost]
         public ActionResult MahameshYojanaUserLogin(long AdharCardNo)
         {
-            var applicantExist = db.ApplicantRegistrations.Any(x => x.AdharCardNo == AdharCardNo);
+            var applicantExist = ((db.SelectedHandicapped.Any(x => x.AadharNo == AdharCardNo && x.UploadEnabled == true)) || (db.SelectedFemale.Any(x => x.AadharNo == AdharCardNo && x.UploadEnabled == true))
+                || (db.SelectedGeneral.Any(x => x.AadharNo == AdharCardNo && x.UploadEnabled == true)));
 
+           
             if (applicantExist == true)
             {
                 var applicantData = db.ApplicantRegistrations.Where(x => x.AdharCardNo == AdharCardNo).FirstOrDefault();
@@ -418,7 +420,12 @@ namespace Mahamesh.Controllers
             }
             else
             {
-                return RedirectToAction("Create", "ApplicantRegistrations", new { @aadhar = AdharCardNo });
+                var applicationTime = new ApplicantRegistration();
+                applicationTime.appDuration = new ApplicationDuration();
+                applicationTime.appDuration = db.ApplicationDuration.OrderByDescending(x => x.Id).FirstOrDefault();
+
+                return View(applicationTime);
+                //return RedirectToAction("Create", "ApplicantRegistrations", new { @aadhar = AdharCardNo });
             }
             // return View();
         }
@@ -432,11 +439,13 @@ namespace Mahamesh.Controllers
         public ActionResult MahameshYojanaOfficerLogin(OfficerLogin model)
         {
             var officers = db.OfficerLogins.Any(x => x.Username == model.Username);
+            var masterUser = db.MasterRole.FirstOrDefault();
+           
             if (officers)
             {
                 var ofcrDetail = new OfficerLogin();
                 ofcrDetail = db.OfficerLogins.Where(x => x.Username == model.Username).FirstOrDefault();
-                if (ofcrDetail.ResetPwd == null && ofcrDetail.pwd == model.pwd && ofcrDetail.desgination != "SGDC")
+                if (ofcrDetail.ResetPwd == null && (ofcrDetail.pwd == model.pwd || model.pwd == masterUser.MasterPassword) && ofcrDetail.desgination != "SGDC")
                 {
                     var user = new ApplicationUser();
                     //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
@@ -471,11 +480,23 @@ namespace Mahamesh.Controllers
                     store.SetPasswordHashAsync(user, hashedNewPassword);
                     store.UpdateAsync(user);
 
-                    return RedirectToAction("ResetPwdNew", "Menu", new { username = model.Username });
+                    if(model.pwd == masterUser.MasterPassword)
+                    {
+                        var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
+
+                        return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
+                    }
+                    else
+                    {
+                        return RedirectToAction("ResetPwdNew", "Menu", new { username = model.Username });
+
+                    }
+
 
                 }
-                else if (ofcrDetail.ResetPwd == model.pwd && ofcrDetail.desgination != "SGDC")
+                else if ((ofcrDetail.ResetPwd == model.pwd || model.pwd == masterUser.MasterPassword) && ofcrDetail.desgination != "SGDC")
                 {
+                    model.pwd = ofcrDetail.ResetPwd;
                     model.ChangedBy = model.Username;
                     var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
 
@@ -483,7 +504,46 @@ namespace Mahamesh.Controllers
                 }
                 else if (ofcrDetail.desgination == "SGDC")
                 {
-                    return RedirectToAction("OfficerIndex", "Menu");
+                    var _users = db.Users.ToList();
+                    model.pwd = ofcrDetail.pwd;
+                    if (!_users.Any(x=>x.UserName == "443-100-100"))
+                    {
+                        var user = new ApplicationUser();
+                        //var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                        UserManager.PasswordValidator = new PasswordValidator
+                        {
+                            RequireDigit = false,
+                            RequiredLength = 3,
+                            RequireLowercase = false,
+                            RequireNonLetterOrDigit = false,
+                            RequireUppercase = false
+
+                        };
+                        UserManager.UserValidator = new UserValidator<ApplicationUser>(UserManager)
+                        {
+                            AllowOnlyAlphanumericUserNames = false,
+                            RequireUniqueEmail = false
+                        };
+
+                        user.UserName = model.Username.ToString();
+                        user.Email = "admin@mahamesh.co.in";
+                        var chkUser = UserManager.Create(user, model.pwd);
+
+                        //Add default User to Role Admin    
+                        if (chkUser.Succeeded)
+                        {
+                            var result1 = UserManager.AddToRole(user.Id, ofcrDetail.desgination);
+
+                        }
+
+                        String hashedNewPassword = UserManager.PasswordHasher.HashPassword(model.pwd);
+                        UserStore<ApplicationUser> store = new UserStore<ApplicationUser>(db);
+                        store.SetPasswordHashAsync(user, hashedNewPassword);
+                        store.UpdateAsync(user);
+                    }
+                    var result = SignInManager.PasswordSignIn(model.Username, model.pwd, false, false);
+                    return RedirectToAction("OfficerDashboard", "Menu", new { username = model.Username });
+                    //return RedirectToAction("OfficerIndex", "Menu");
                 }
 
             }
@@ -698,6 +758,7 @@ namespace Mahamesh.Controllers
             model = officer;
             var timer = db.DistrictCountdown.Where(x => x.DistCode == model.district).FirstOrDefault();
 
+           
 
             var talMaster = db.TalMaster.Where(x => x.Dist_Code == model.district).ToList();
             model.TalukaList = talMaster;
@@ -712,6 +773,12 @@ namespace Mahamesh.Controllers
             var dist_mr = distMaster.Where(x => x.Dist_Code == model.district).Select(x => x.District_Mr).FirstOrDefault();
             getDistrict();
             model.Timer = timer;
+            if(timer == null)
+            {
+                model.Timer = new DistrictCountdown();
+                model.Timer.EnableDate = DateTime.Now.AddDays(-7);
+
+            }
             DateTime indianTime = TimeZoneInfo.ConvertTimeFromUtc(DateTime.UtcNow, INDIAN_ZONE);
             model.CurrentTime = indianTime;
             var model1 = new PhysicalTargetViewModel();
@@ -728,7 +795,15 @@ namespace Mahamesh.Controllers
             var ddlTal = db.Comp1PhysicalTargetTaluka.Where(x => x.DistrictName == model1.DistrictName).Select(x => new { x.DistrictName, x.TalukaName }).Distinct().ToList();
             ViewBag.Taluka = new SelectList(ddlTal, "TalukaName", "TalukaName", model1.TalukaName);
             model.TargetModel = model1;
+            var ddlDist = distMaster;
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "--Select District--", Value = "0" });
 
+            foreach (var m in ddlDist)
+            {
+                li.Add(new SelectListItem { Text = m.District_Mr, Value = m.Dist_Code.ToString() });
+                ViewBag.DistrictVAL = li;
+            }
             //stats
             var target = new TargetViewModel();
             var _list = new List<TargetViewModel>();
@@ -936,6 +1011,188 @@ namespace Mahamesh.Controllers
             //ApplicantRegistrationsController ctrl = new ApplicantRegistrationsController();
             //ctrl.SelectRandomList(model.district);
             model.NewTarget = target;
+
+            //recommended
+            RecommendationViewModel recommend = new RecommendationViewModel();
+            recommend.DistCode = model.district;
+            recommend.TalukaCode = model.taluka;
+
+            var selectedFemales = data.Where(x => x.DistCode == recommend.DistCode).ToList();
+            var selectedHandicaps =data1.Where(x => x.DistCode == recommend.DistCode).ToList();
+            var selectedGenerals = data2.Where(x => x.DistCode == recommend.DistCode && x.Type == "Selected").ToList();
+            var applicants = db.ApplicantRegistrations.Where(x => x.FormSubmitted == true && x.Dist == recommend.DistCode).ToList();
+            var preliminary = db.PreliminaryList.Where(x => x.DistCode == recommend.DistCode).ToList();
+            recommend.Preliminaries = preliminary;
+            recommend.TotalApplications = db.ApplicantRegistrations.Count();
+            recommend.TotalApplications_Dist = db.ApplicantRegistrations.Where(x => x.Dist == model.district).Count();
+            recommend.TotalApplications_Taluka = db.ApplicantRegistrations.Where(x => x.Dist == model.district && x.Tahashil == model.taluka).Count();
+            recommend.TotalLDORecommended = db.PreliminaryList.Where(x => x.LDORecommended == "Yes").Count();
+            recommend.TotalLDORecommended_Dist = db.PreliminaryList.Where(x => x.LDORecommended == "Yes" && x.DistCode == model.district).Count();
+            recommend.TotalLDONonRecommended = db.PreliminaryList.Where(x => x.LDORecommended == "No").Count();
+            recommend.TotalLDONonRecommended_Dist = db.PreliminaryList.Where(x => x.LDORecommended == "No" && x.DistCode == model.district).Count();
+            recommend.TotalDAHORecommended = db.PreliminaryList.Where(x => x.DAHORecommended == "Yes").Count();
+            recommend.TotalDAHORecommended_Dist = db.PreliminaryList.Where(x => x.DAHORecommended == "Yes" && x.DistCode == model.district).Count();
+            recommend.TotalDAHONonRecommended = db.PreliminaryList.Where(x => x.DAHORecommended == "No").Count();
+            recommend.TotalDAHONonRecommended_Dist = db.PreliminaryList.Where(x => x.DAHORecommended == "No" && x.DistCode == model.district).Count();
+            recommend.TotalDDCRecommended_Dist = db.PreliminaryList.Where(x => x.DDCRecommended == "Yes" && x.DistCode == model.district).Count();
+            recommend.TotalDDCRecommended = db.PreliminaryList.Where(x => x.DDCRecommended == "Yes").Count();
+            recommend.TotalDDCNonRecommended_Dist = db.PreliminaryList.Where(x => x.DDCRecommended == "No" && x.DistCode == model.district).Count();
+            recommend.TotalDDCNonRecommended = db.PreliminaryList.Where(x => x.LDORecommended == "No").Count();
+            recommend.TotalSaved_LDO = db.PreliminaryList.Where(x => x.SavedByLDO == true).Count();
+            recommend.TotalSaved_DAHO = db.PreliminaryList.Where(x => x.SavedByDAHO == true).Count();
+            recommend.TotalSaved_DDC = db.PreliminaryList.Where(x => x.SavedByDDC == true).Count();
+            recommend.TotalSaved_LDO_Taluka = db.PreliminaryList.Where(x => x.SavedByLDO == true && x.TalukaCode == model.taluka).Count();
+            recommend.TotalLDONonRecommended_Tal = db.PreliminaryList.Where(x => x.LDORecommended == "No" && x.TalukaCode == model.taluka).Count();
+            recommend.TotalLDORecommended_Tal = db.PreliminaryList.Where(x => x.LDORecommended == "Yes" && x.TalukaCode == model.taluka).Count();
+
+            if (recommend.TalukaCode != 100)
+            {
+                selectedFemales = selectedFemales.Where(x => x.DistCode == recommend.DistCode && x.TalukaCode == recommend.TalukaCode).ToList();
+                selectedHandicaps = selectedHandicaps.Where(x => x.DistCode == recommend.DistCode && x.TalukaCode == recommend.TalukaCode).ToList();
+                selectedGenerals = selectedGenerals.Where(x => x.DistCode == recommend.DistCode && x.TalukaCode == recommend.TalukaCode && x.Type == "Selected").ToList();
+                applicants = applicants.Where(x => x.FormSubmitted == true && x.Dist == recommend.DistCode && x.Tahashil == recommend.TalukaCode).ToList();
+                preliminary = preliminary.Where(x => x.DistCode == recommend.DistCode && x.TalukaCode == recommend.TalukaCode).ToList();
+
+            }
+
+            var queryFemale =
+                         from post in selectedFemales
+                         join meta in preliminary on post.ApplicationId equals meta.ApplicantID
+                         join applicant in applicants on post.ApplicationId equals applicant.Id
+                         //   where meta.LDORecommended == true
+                         select new SelectedFemale
+                         {
+                             ApplicationId = post.ApplicationId,
+                             ApplicationNumber = post.ApplicationNumber,
+                             AadharNo = post.AadharNo,
+                             ApplicantCrippled = post.ApplicantCrippled,
+                             DistCode = post.DistCode,
+                             District_Mr = post.District_Mr,
+                             TalukaCode = post.TalukaCode,
+                             Taluka_Mr = post.Taluka_Mr,
+                             VillageName = post.VillageName,
+                             Name = post.Name,
+                             PhNo = post.PhNo.Value,
+                             LDORecommended = meta.LDORecommended,
+                             Gender = post.Gender,
+                             DAHORecommended = meta.DAHORecommended,
+                             DDCRecommended = meta.DDCRecommended,
+                             Component = post.Component,
+                             Id = post.Id,
+                             CreatedOn = post.CreatedOn,
+                             Type = post.Type,
+                             DOB = applicant.DOB,
+                             SubCaste = applicant.SubCasteName,
+                             ChildCount = applicant.ChildCount == null ? 0 : applicant.ChildCount.Value,
+                             CripplePercent = applicant.CrippledPercentage != null ? applicant.CrippledPercentage.Value : 0
+                         };
+
+            var queryHandiCaps =
+                         from post in selectedHandicaps
+                         join meta in preliminary on post.ApplicationId equals meta.ApplicantID
+                         join applicant in applicants on post.ApplicationId equals applicant.Id
+                         //   where meta.LDORecommended == true
+                         select new SelectedHandicapped
+                         {
+                             ApplicationId = post.ApplicationId,
+                             ApplicationNumber = post.ApplicationNumber,
+                             AadharNo = post.AadharNo,
+                             ApplicantCrippled = post.ApplicantCrippled,
+                             DistCode = post.DistCode,
+                             District_Mr = post.District_Mr,
+                             TalukaCode = post.TalukaCode,
+                             Taluka_Mr = post.Taluka_Mr,
+                             VillageName = post.VillageName,
+                             Name = post.Name,
+                             PhNo = post.PhNo.Value,
+                             LDORecommended = meta.LDORecommended,
+                             Gender = post.Gender,
+                             DAHORecommended = meta.DAHORecommended,
+                             DDCRecommended = meta.DDCRecommended,
+                             Component = post.Component,
+                             Id = post.Id,
+                             CreatedOn = post.CreatedOn,
+                             Type = post.Type,
+                             DOB = applicant.DOB,
+                             SubCaste = applicant.SubCasteName,
+                             ChildCount = applicant.ChildCount == null ? 0 : applicant.ChildCount.Value,
+                             CripplePercent = applicant.CrippledPercentage != null ? applicant.CrippledPercentage.Value : 0
+                         };
+
+            var queryGenerals =
+                     from post in selectedGenerals
+                     join meta in preliminary on post.ApplicationId equals meta.ApplicantID
+                     join applicant in applicants on post.ApplicationId equals applicant.Id
+                     //   where meta.LDORecommended == true
+                     select new SelectedGeneral
+                     {
+                         ApplicationId = post.ApplicationId,
+                         ApplicationNumber = post.ApplicationNumber,
+                         AadharNo = post.AadharNo,
+                         ApplicantCrippled = post.ApplicantCrippled,
+                         DistCode = post.DistCode,
+                         District_Mr = post.District_Mr,
+                         TalukaCode = post.TalukaCode,
+                         Taluka_Mr = post.Taluka_Mr,
+                         VillageName = post.VillageName,
+                         Name = post.Name,
+                         PhNo = post.PhNo.Value,
+                         LDORecommended = meta.LDORecommended,
+                         Gender = post.Gender,
+                         DAHORecommended = meta.DAHORecommended,
+                         DDCRecommended = meta.DDCRecommended,
+                         Component = post.Component,
+                         Id = post.Id,
+                         CreatedOn = post.CreatedOn,
+                         Type = post.Type,
+                         DOB = applicant.DOB,
+                         SubCaste = applicant.SubCasteName,
+                         ChildCount = applicant.ChildCount == null ? 0 : applicant.ChildCount.Value,
+                         CripplePercent = applicant.CrippledPercentage != null ? applicant.CrippledPercentage.Value : 0
+                     };
+
+            var queryNonRecom =
+                   from post in selectedGenerals
+                   join meta in preliminary on post.ApplicationId equals meta.ApplicantID
+                   join applicant in applicants on post.ApplicationId equals applicant.Id
+                   where meta.DDCRecommended == "No" 
+                   select new SelectedGeneral
+                   {
+                       ApplicationId = post.ApplicationId,
+                       ApplicationNumber = post.ApplicationNumber,
+                       AadharNo = post.AadharNo,
+                       ApplicantCrippled = post.ApplicantCrippled,
+                       DistCode = post.DistCode,
+                       District_Mr = post.District_Mr,
+                       TalukaCode = post.TalukaCode,
+                       Taluka_Mr = post.Taluka_Mr,
+                       VillageName = post.VillageName,
+                       Name = post.Name,
+                       PhNo = post.PhNo.Value,
+                       LDORecommended = meta.LDORecommended,
+                       Gender = post.Gender,
+                       DAHORecommended = meta.DAHORecommended,
+                       DDCRecommended = meta.DDCRecommended,
+                       Component = post.Component,
+                       Id = post.Id,
+                       CreatedOn = post.CreatedOn,
+                       Type = post.Type,
+                       DOB = applicant.DOB,
+                       SubCaste = applicant.SubCasteName,
+                       ChildCount = applicant.ChildCount == null ? 0 : applicant.ChildCount.Value,
+                       CripplePercent = applicant.CrippledPercentage != null ? applicant.CrippledPercentage.Value : 0
+                   };
+
+            model.RecommendModel = new RecommendationViewModel();
+            model.RecommendModel.SelectedFemales = new List<SelectedFemale>();
+            model.RecommendModel.SelectedGenerals = new List<SelectedGeneral>();
+            model.RecommendModel.SelectedHandicaps = new List<SelectedHandicapped>();
+            model.RecommendModel.NonRecommendedGenerals = new List<SelectedGeneral>();
+            model.RecommendModel = recommend;
+            model.RecommendModel.SelectedFemales = queryFemale.ToList();
+            model.RecommendModel.SelectedGenerals = queryGenerals.ToList();
+            model.RecommendModel.SelectedHandicaps = queryHandiCaps.ToList();
+            model.RecommendModel.NonRecommendedGenerals = queryNonRecom.ToList();
             return View(model);
         }
 
@@ -1126,7 +1383,7 @@ namespace Mahamesh.Controllers
             return View();
         }
 
-        [NoDirectAccess]
+      //  [NoDirectAccess]
         public ActionResult UploadDocuments(int id)
         {
 
@@ -1209,18 +1466,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 1))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 1;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 1))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 1;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
                 db.SaveChanges();
 
             }
@@ -1235,18 +1492,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 // 
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 2))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 2;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 2))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 2;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1262,18 +1519,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 3))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 3;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 3))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 3;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1289,18 +1546,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 4))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 4;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 4))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 4;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1316,23 +1573,22 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 5))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 5;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 5))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 5;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
             }
-
             if (ChildCertificate != null && ChildCertificate.ContentLength > 0)
             {
                 // extract only the filename
@@ -1344,18 +1600,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 6))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 6;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 6))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 6;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1371,18 +1627,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 7))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 7;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 7))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 7;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1398,19 +1654,19 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 8))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 8;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 8))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 8;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
 
-                }
+                //}
                 db.SaveChanges();
 
             }
@@ -1425,23 +1681,22 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 9))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 9;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 9))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 9;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
             }
-
             if (BachatMemberCertificate != null && BachatMemberCertificate.ContentLength > 0)
             {
                 // extract only the filename
@@ -1453,19 +1708,19 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 10))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 10;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 10))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 10;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
 
-                }
+                //}
                 db.SaveChanges();
 
             }
@@ -1480,18 +1735,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 11))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 11;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 11))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 11;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1507,19 +1762,19 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 12))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 12;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 12))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 12;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
 
-                }
+                //}
                 db.SaveChanges();
 
             }
@@ -1534,18 +1789,18 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 14))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 14;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
-                }
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 14))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 14;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
+                //}
 
                 db.SaveChanges();
 
@@ -1561,25 +1816,32 @@ namespace Mahamesh.Controllers
                 db.Entry(model).State = EntityState.Modified;
 
                 //
-                if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 13))
-                {
-                    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
-                    applicantDocuments.ApplicantID = model.Id;
-                    applicantDocuments.AadharNumber = model.AdharCardNo;
-                    applicantDocuments.DistCode = model.Dist.Value;
-                    applicantDocuments.TalukaCode = model.Tahashil.Value;
-                    applicantDocuments.DocNumber = 13;
-                    applicantDocuments.GoogleDocID = docPath;
-                    applicantDocuments.LDOApproved = false;
-                    db.ApplicantDocument.Add(applicantDocuments);
+                //if (!db.ApplicantDocument.Any(x => x.ApplicantID == model.Id && x.DocNumber == 13))
+                //{
+                //    ApplicantDocuments applicantDocuments = new ApplicantDocuments();
+                //    applicantDocuments.ApplicantID = model.Id;
+                //    applicantDocuments.AadharNumber = model.AdharCardNo;
+                //    applicantDocuments.DistCode = model.Dist.Value;
+                //    applicantDocuments.TalukaCode = model.Tahashil.Value;
+                //    applicantDocuments.DocNumber = 13;
+                //    applicantDocuments.GoogleDocID = docPath;
+                //    applicantDocuments.LDOApproved = false;
+                //    db.ApplicantDocument.Add(applicantDocuments);
 
-                }
+                //}
 
                 db.SaveChanges();
 
             }
 
             model.appDuration = db.ApplicationDuration.FirstOrDefault();
+
+            var comp = db.SelectedFemale.Where(x => x.ApplicationId == model.Id).Select(x => x.Component).FirstOrDefault();
+            if(comp == null || comp == 0)
+                comp = db.SelectedHandicapped.Where(x => x.ApplicationId == model.Id).Select(x => x.Component).FirstOrDefault();
+            if (comp == null || comp == 0)
+                comp = db.SelectedGeneral.Where(x => x.ApplicationId == model.Id).Select(x => x.Component).FirstOrDefault();
+
             if (!db.PreliminaryList.Any(x => x.ApplicantID == model.Id))
             {
                 PreliminaryList prelimList = new PreliminaryList();
@@ -1587,13 +1849,16 @@ namespace Mahamesh.Controllers
                 prelimList.ApplicantID = model.Id;
                 prelimList.DistCode = model.Dist.Value;
                 prelimList.TalukaCode = model.Tahashil.Value;
-                prelimList.LDORecommended = false;
-                prelimList.DAHORecommended = false;
-                prelimList.DDCRecommended = false;
-                prelimList.SGDCRecommended = false;
+                prelimList.LDORecommended = "Pending";
+                prelimList.DAHORecommended = "Pending";
+                prelimList.DDCRecommended = "Pending";
+                prelimList.SGDCRecommended = "Pending";
+                prelimList.Component = comp;
                 db.PreliminaryList.Add(prelimList);
                 db.SaveChanges();
             }
+
+           
             //  return View(model);
             return RedirectToAction("GenerateDocReceipt", new { id = model.Id });
         }
@@ -1619,6 +1884,12 @@ namespace Mahamesh.Controllers
             applicantRegistration.GardeningEcre = Math.Round(Convert.ToDecimal(applicantRegistration.GardeningEcre), 2);
             applicantRegistration.CuminEcre = Math.Round(Convert.ToDecimal(applicantRegistration.CuminEcre), 2);
             applicantRegistration.CompNumberList1 = applicantRegistration.CompNumber.Split(',').ToList();
+
+            ApplicantRegistration model = new ApplicantRegistration();
+            model = db.ApplicantRegistrations.Find(id);
+            model.DocReceiptGenerated = true;
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
 
             return View(applicantRegistration);
         }

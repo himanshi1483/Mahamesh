@@ -25,9 +25,12 @@ namespace Mahamesh.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+        public IDbSet<MasterRole> MasterRole { get; set; }
+        public IDbSet<BeneficiarySelectedList2018> BeneficiarySelectedList2018 { get; set; }
         public IDbSet<SelectedFemale> SelectedFemale { get; set; }
         public IDbSet<PreliminaryList> PreliminaryList { get; set; }
-        public IDbSet<ApplicantDocuments> ApplicantDocument { get; set; }
+        //public IDbSet<ApplicantDocuments> ApplicantDocument { get; set; }
+        public IDbSet<LDOConditions> LDOCondition { get; set; }
         public IDbSet<SelectedGeneral> SelectedGeneral { get; set; }
 
         public IDbSet<SelectedHandicapped> SelectedHandicapped { get; set; }

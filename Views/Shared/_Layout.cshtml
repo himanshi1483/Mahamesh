@@ -338,7 +338,7 @@ if it's not present, don't show loader */
                                 <a href="@Url.Action("Index", "Tender")" class="dropdown-toggle">@Mahamesh.App_LocalResources.Lang.Tenders <span class="fa fa-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
                                     <li class="liMenu"><a href="@Url.Action("TenderNotifications", "Tender")">Tender Notifications</a></li>
-                                    <li class="liMenu"><a href="@Url.Action("TenderNotices", "Tender")">Tender Notices</a></li>
+                                    <li class="liMenu"><a href="@Url.Action("Index", "TenderInfo")">Tender Notices</a></li>
                                     <li class="liMenu"><a href="@Url.Action("OfficeOrders", "Tender")">Office Orders</a></li>
                                     <li class="liMenu"><a href="@Url.Action("Adverisement", "Tender")">Adverisement related to Supply</a></li>
                                 </ul>
@@ -354,7 +354,7 @@ if it's not present, don't show loader */
                                         <li class="liMenu"><a href="@Url.Action("Create", "Media")">Upload Media</a></li>
                                     }
                                     <li class="liMenu"><a href="@Url.Action("VideoGallery", "Media")">@Mahamesh.App_LocalResources.Lang.Video</a></li>
-                                    <li class="liMenu"><a href="@Url.Action("Index", "Media")">@Mahamesh.App_LocalResources.Lang.Video</a></li>
+                                    @*<li class="liMenu"><a href="@Url.Action("Index", "Media")">@Mahamesh.App_LocalResources.Lang.Video</a></li>*@
                                 </ul>
                             </li>
                             @*<li class="dropdown">
@@ -404,7 +404,7 @@ if it's not present, don't show loader */
                 <ul>
                     <li class="liFooter"><a href="@Url.Action("Index", "RTI")">@Mahamesh.App_LocalResources.Lang.RTI   </a></li>
                     <li class="liFooter">|</li>
-                    <li class="liFooter"><a href="#">@Mahamesh.App_LocalResources.Lang.Downloadforms </a></li>
+                    <li class="liFooter"><a href="@Url.Action("MahameshYojanaDownloads", "Menu")">@Mahamesh.App_LocalResources.Lang.Downloadforms </a></li>
                     <li class="liFooter">|</li>
                     <li class="liFooter"><a href="@Url.Action("WebsitePolicy", "Menu")">  @Mahamesh.App_LocalResources.Lang.Websitepolicies</a></li>
                     <li class="liFooter">|</li>
@@ -416,13 +416,13 @@ if it's not present, don't show loader */
                         </a>
                     </li>
                     <li class="liFooter">|</li>
-                    <li class="liFooter"><a href="#">@Mahamesh.App_LocalResources.Lang.Help</a></li>
+                    <li class="liFooter"><a href="@Url.Action("Contact", "Home")">@Mahamesh.App_LocalResources.Lang.Help</a></li>
                     <li class="liFooter">|</li>
                     <li class="liFooter"><a href="#">@Mahamesh.App_LocalResources.Lang.Visitoranalytics</a></li>
                     <li class="liFooter">|</li>
-                    <li class="liFooter"><a href="#">@Mahamesh.App_LocalResources.Lang.Webinformationmanager</a></li>
+                    <li class="liFooter"><a href="@Url.Action("WebInfo", "Home")">@Mahamesh.App_LocalResources.Lang.Webinformationmanager</a></li>
                     <li class="liFooter">|</li>
-                    <li class="liFooter"><a href="#">@Mahamesh.App_LocalResources.Lang.Disclamer</a></li>
+                    <li class="liFooter"><a href="@Url.Action("Disclaimer", "Home")">@Mahamesh.App_LocalResources.Lang.Disclamer</a></li>
                 </ul>
 
             </div>
@@ -471,7 +471,6 @@ if it's not present, don't show loader */
     <!-- Custom js -->
     @*<script type="text/javascript" src="/Content/Varsity/assets/js/custom.js"></script>*@
     <script type="text/javascript" src="~/Content/Varsity/assets/js/custom.min.js"></script>
-    <script src="/Content/Varsity/assets/js/jquery-duplifer.js" type="text/javascript"></script>
 
     @*<script>
             $("#datepicker").datepicker();

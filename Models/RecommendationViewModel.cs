@@ -15,8 +15,47 @@ namespace Mahamesh.Models
         public List<SelectedGeneral> WaitingList { get; set; }
         public List<PreliminaryList> Preliminaries { get; set; }
         public List<ApplicantDocuments> ApplicantDocuments { get; set; }
+        public List<LDOConditions> LDOConditions { get; set; }
         public  ApplicantRegistration _applicant { get; set; }
         public List<SelectedGeneral> NonRecommendedGenerals { get; set; }
+
+        public int TotalApplications { get; set; }
+        public int TotalRecommended { get; set; }
+        public int TotalNonRecommended { get; set; }
+        public int TotalPending { get; set; }
+        public int TotalApplications_Taluka { get; set; }
+
+        public int TotalRecommended_Taluka { get; set; }
+        public int TotalNonRecommended_Taluka { get; set; }
+        public int TotalPending_Taluka { get; set; }
+
+        public int TotalApplications_Dist { get; set; }
+
+        public int TotalRecommended_Dist { get; set; }
+        public int TotalNonRecommended_Dist { get; set; }
+        public int TotalPending_Dist { get; set; }
+        public int TotalSaved_LDO { get; set; }
+        public int TotalSaved_LDO_Taluka { get; set; }
+        public int TotalLDORecommended_Tal { get; set; }
+        public int TotalLDONonRecommended_Tal { get; set; }
+        public int TotalPendingLDO_Tal { get; set; }
+        public int TotalSaved_DAHO { get; set; }
+        public int TotalSaved_DDC { get; set; }
+        public int TotalLDORecommended { get; set; }
+        public int TotalLDONonRecommended { get; set; }
+        public int TotalDAHORecommended { get; set; }
+        public int TotalDAHONonRecommended { get; set; }
+        public int TotalDDCRecommended { get; set; }
+        public int TotalDDCNonRecommended { get; set; }
+
+        public int TotalLDORecommended_Dist { get; set; }
+        public int TotalLDONonRecommended_Dist { get; set; }
+        public int TotalDAHORecommended_Dist { get; set; }
+        public int TotalDAHONonRecommended_Dist { get; set; }
+        public int TotalDDCRecommended_Dist { get; set; }
+        public int TotalDDCNonRecommended_Dist { get; set; }
+
+        public int ApplicantId { get; set; }
         public int DistCode { get; set; }
         public string DistName { get; set; }
         public int TalukaCode { get; set; }

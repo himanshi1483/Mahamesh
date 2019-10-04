@@ -6,6 +6,7 @@
 <link href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css" rel="stylesheet" />
 <style>
+
     .no-js #loader {
         display: none;
     }
@@ -170,7 +171,7 @@
     }
 
     .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
-        font-size: 15px;
+        font-size: 13px;
         padding: 4.5px;
     }
 
@@ -362,38 +363,163 @@
         color: #abcd58;
     }
 </style>
+<style>
+    .tableheader {
+        background: #1a9b83 !important;
+        color: white;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+        padding: 5.5px;
+        line-height: 1.42857143;
+        vertical-align: top;
+        border-top: 1px solid #ddd;
+    }
+
+    .selected {
+        background-color: palevioletred !important;
+    }
+
+    .formNotSubmitted {
+        background-color: #f77f7f !important;
+    }
+
+    .ageBad {
+        background-color: #ffd800 !important;
+    }
+
+    .componentBad {
+        background-color: #c997dd !important;
+    }
+
+    .childBad {
+        background-color: #acacac !important;
+    }
+
+    .photoBad {
+        background-color: #8de2fe !important;
+    }
+
+    .aadharBad {
+        background-color: #88b7af !important;
+    }
+      .prevBad {
+        background-color: #e5e38e !important;
+    }
+
+    .ldoRow {
+        background-color: #d1e8c9 !important;
+    }
+
+    .dahoRow {
+        background-color: #fff6b3 !important;
+    }
+
+    .ddcRow {
+        background-color: #b5e5fd !important;
+    }
+
+    .ldoNoRow {
+        background-color: #e7cbd3 !important;
+    }
+
+    .dahoNoRow {
+        background-color: #f8b9b9 !important;
+    }
+
+    .ddcNoRow {
+        background-color: #e88463 !important;
+    }
+</style>
+<style type='text/css'>
+    .my-legend .legend-title {
+        text-align: left;
+        margin-bottom: 5px;
+        font-weight: bold;
+        font-size: 90%;
+    }
+
+    .my-legend .legend-scale ul {
+        margin: 0;
+        margin-bottom: 5px;
+        padding: 0;
+        float: left;
+        list-style: none;
+    }
+
+        .my-legend .legend-scale ul li {
+            font-size: 80%;
+            list-style: none;
+            margin-left: 0;
+            line-height: 18px;
+            margin-bottom: 2px;
+        }
+
+    .my-legend ul.legend-labels li span {
+        display: block;
+        float: left;
+        height: 16px;
+        width: 30px;
+        margin-right: 5px;
+        margin-left: 0;
+        border: 1px solid #999;
+    }
+
+    .my-legend .legend-source {
+        font-size: 70%;
+        color: #999;
+        clear: both;
+    }
+
+    .my-legend a {
+        color: #777;
+    }
+</style>
 <div class="se-pre-con1" style="display:none"></div>
 <div class="container-fluid body-content" id="#maincontent" style="margin-top:10px; margin-bottom: 150px;">
     <div class="panel panel-default" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-default text-center">
 
             <h4 class="text-center">Welcome @Model.desgination</h4>
-
-            <h5>Distict Code: @Model.district - District Name: @Model.DistName</h5>
+            @if (!User.IsInRole("SGDC"))
+            {
+                <h5>Distict Code: @Model.district - District Name: @Model.DistName</h5>
+            }
 
         </div>
         <div class="panel-body">
             <div class="col-md-2">
                 <ul class="vertical-nav">
-                    @if (User.IsInRole("DDC"))
+                    @if (User.IsInRole("DDC") || User.IsInRole("MasterUser"))
                     {
                         <li style="background-color:#F03A47"><a id="link1" href="#">View Login Details</a></li>
                     }
 
                     @*<li style="background-color:#3C3744"><a id="link2" href="#">View Targets</a></li>*@
                     @*<li style="background-color:#716D77"><a id="link6" href="@Url.Action("ApplicationIndexByDistrict", "APplicantRegistrations")">View Application Target</a></li>*@
-                    @if (User.IsInRole("DDC"))
+                    @if (User.IsInRole("DDC") || User.IsInRole("MasterUser"))
                     {
                         <li style="background-color:#276FBF"><a id="link3" href="#">View Application Statistics</a></li>
+                        <li style="background-color:#F03A47"><a id="link12" href="@Url.Action("PrelimList_Dist", "ApplicantRegistrations", new { dist = Model.district.ToString()})">View Selected List</a></li>
                         <li style="background-color:#183059"><a href="#" id="link4">Generate Random List</a></li>
-                        <li style="background-color:#C46D73"><a href="#">Preliminary Document Scrutiny</a></li>
+                        <li style="background-color:#C46D73"><a id="link9" href="#">Preliminary Document Scrutiny</a></li>
                         <li style="background-color:#0294A5"><a href="#">Final Beneficiary List</a></li>
                     }
-                    @if (User.IsInRole("DAHO") || User.IsInRole("LDO"))
+                    @if (User.IsInRole("DAHO") || User.IsInRole("LDO") || User.IsInRole("MasterUser"))
                     {
-                        <li style="background-color:#F03A47"><a href="#">View Preliminary List</a></li>
-                        <li style="background-color:#276FBF"><a href="#">Preliminary Scrutiny</a></li>
+                        <li style="background-color:#F03A47"><a href="@Url.Action("PrelimList_Dist", "ApplicantRegistrations", new { dist = Model.district.ToString()})">View Preliminary List</a></li>
+
+                        <li style="background-color:#276FBF"><a id="link8" href="#">Preliminary Scrutiny</a></li>
+
                         <li style="background-color:#183059"><a href="#">View Final List</a></li>
+                    }
+                    @if (User.IsInRole("SGDC") || User.IsInRole("MasterUser"))
+                    {
+
+                        <li style="background-color:#F03A47"><a id="link10" href="#">View Applications</a></li>
+                        <li style="background-color:lightsteelblue"><a id="link11" href="#" onclick="showPopup();">View Selected List</a></li>
                     }
                     <li style="background-color:#716D77"><a href="@Url.Action("ResetPwdNew", "Menu" , new { username = Model.Username})">Change Password</a></li>
                     <li style="background-color:#19477A">
@@ -404,10 +530,28 @@
                         }
                     </li>
                 </ul>
+                @if (User.IsInRole("SGDC") || User.IsInRole("DDC") || User.IsInRole("MasterUser"))
+                {
+                    <div id="legendDiv" class='my-legend' style="float:left;display:none">
+                        <div class='legend-title'>Improper Entries</div>
+                        <div class='legend-scale'>
+                            <ul class='legend-labels'>
+                                <li><span style='background:#f77f7f;'></span>Form Not Submitted</li>
+                                <li><span style='background:#ffd800;'></span>Age not in permitted range (greater than 60 or less than 18)</li>
+                                <li><span style='background:#c997dd;'></span>Incorrect Component Selection</li>
+                                <li><span style='background:#acacac;'></span>No. of Child after 2001 greater than 2</li>
+                                <li><span style='background:#8de2fe;'></span>Photo not uploaded</li>
+                                <li><span style='background:#88b7af;'></span>Duplicate Aadhar</li>
+                                <li><span style='background:#e5e38e;'></span>Beneficiary Selected in 2018</li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                }
             </div>
             @*<div class="col-lg-1"></div>*@
             <div class="col-md-9">
-                @if (User.IsInRole("DDC"))
+                @if (User.IsInRole("DDC") || User.IsInRole("MasterUser"))
                 {
                     <div id="tab1">
                         <table class="table table-bordered table-striped3 table-responsive">
@@ -1184,7 +1328,7 @@
                         </tbody>
                     </table>
                 </div>
-                @if (User.IsInRole("DDC"))
+                @if (User.IsInRole("DDC") || User.IsInRole("MasterUser"))
                 {
                     <div id="tab4" class="text-center" style="display:none">
                         <p style="text-align:center;font-size:25px;color:#fe5719;margin-bottom:10px" id="btnText">Button will be activated after - </p>
@@ -1457,6 +1601,598 @@
                     </div>
 
                 }
+                @if (User.IsInRole("SGDC") || User.IsInRole("MasterUser"))
+                {
+                    <div id="tab7" style="display:none">
+                        <div class="col-lg-12" style="background-color:#f5f5f5;margin-bottom:20px;padding-bottom:20px;">
+
+                            <h4 class="text-center text-info">Filter Records</h4>
+                            <div class="col-lg-5 text-right" style="padding-right:50px">
+                                Filter By:
+                                <select id="ddlSearch" class="btn btn-primary dropdown-toggle" name="ddlSearch" type="button" data-toggle="dropdown">
+                                    <option value="Name">Applicant Name</option>
+                                    <option value="Aadhar">Aadhar Number</option>
+                                    <option value="Component">Component</option>
+                                    <option value="DistCode">District Code</option>
+                                    <option value="DistName">District Name</option>
+                                    <option value="Tahashil">Taluka Code</option>
+                                    <option value="TalukaName">Taluka Name</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-3"><input type="text" class="form-control" name="txtSearch" id="txtSearch" /></div>
+                            <div class="col-lg-3"> <input type="button" class="btn btn-primary btn-md" value="Filter" id="btnFilter" /></div>
+                        </div>
+                        <table id="applicanttbl1" class="display table table-bordered table-striped table-responsive infinite-scroll" style="width:100%">
+                            <thead>
+
+                                <tr class="tableheader">
+                                    <th width="2%">Sr. No.</th>
+                                    <th width="10%">Name</th>
+                                    <th width="8%"> Application No.</th>
+                                    <th width="8%">
+                                        District Name
+                                    </th>
+                                    <th width="10%">
+                                        Taluka Name
+                                    </th>
+                                    <th width="10%">
+                                        Village Name
+                                    </th>
+                                    <th width="5%">
+                                        District Code
+                                    </th>
+                                    <th width="7%"> Taluka Code</th>
+                                    <th width="8%">
+                                        Village Code
+                                    </th>
+                                    <th width="10%"> Aadhar Card No</th>
+                                    <th width="2%">
+                                        Component
+                                    </th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th style="display:none"></th>
+                                    <th width="10%"></th>
+                                    <th width="10%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+
+                        </table>
+
+                        @*<div class='my-legend'>
+                                <div class='legend-title'>Improper Entries</div>
+                                <div class='legend-scale'>
+                                    <ul class='legend-labels'>
+                                        <li><span style='background:#f77f7f;'></span>Form Not Submitted</li>
+                                        <li><span style='background:#ffd800;'></span>Age not in permitted range (greater than 60 or less than 18)</li>
+                                        <li><span style='background:#c997dd;'></span>Incorrect Component Selection</li>
+                                        <li><span style='background:#acacac;'></span>No. of Child after 2001 greater than 2</li>
+                                        <li><span style='background:#8de2fe;'></span>Photo not uploaded</li>
+                                        <li><span style='background:#88b7af;'></span>Duplicate Aadhar</li>
+                                    </ul>
+                                </div>
+                            </div>*@
+                    </div>
+                }
+                @if (User.IsInRole("LDO") || User.IsInRole("MasterUser") || User.IsInRole("DAHO") || User.IsInRole("DDC"))
+                {
+                    <div id="tab8" style="display:none">
+                        <div class="panel-body">
+                            @if (User.IsInRole("LDO"))
+                            {
+                                <h4>Summary Report of Total No. of application submitted and Total no of aplication in process</h4>
+                                <table class="table table-bordered table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Applications - Submitted and In-Process</th>
+                                            <th class="text-center">Applications - Submitted</th>
+                                            <th class="text-center">Applications - In-Process</th>
+                                            <th class="text-center">Applications - Saved</th>
+                                            <th class="text-center">Applications - Recommended</th>
+                                            <th class="text-center">Applications - Non-Recommended</th>
+                                            <th class="text-center">Pending Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>@Model.RecommendModel.TotalApplications</td>
+                                            <td>@Model.RecommendModel.TotalApplications</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>@Model.RecommendModel.TotalRecommended</td>
+                                            <td>@Model.RecommendModel.TotalNonRecommended</td>
+                                            <td>@Model.RecommendModel.TotalPending</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                            @if (User.IsInRole("DAHO"))
+                            {
+                                <h4>Summary Report of Total No. of application submitted and Total no of aplication in process</h4>
+                                <table class="table table-bordered table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Applications - Submitted and In-Process</th>
+                                            <th class="text-center">Applications - Submitted</th>
+                                            <th class="text-center">Applications - Saved by LDO</th>
+                                            <th class="text-center">Applications - Recommended by LDO</th>
+                                            <th class="text-center">Applications - Non Recommended by LDO</th>
+                                            <th class="text-center">Applications - Saved by DAHO</th>
+                                            <th class="text-center">Applications - Recommended by DAHO</th>
+                                            <th class="text-center">Applications - Non Recommended by DAHO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>@Model.RecommendModel.TotalApplications</td>
+                                            <td>@Model.RecommendModel.TotalApplications</td>
+                                            <td>@Model.RecommendModel.TotalSaved_LDO</td>
+                                            <td>@Model.RecommendModel.TotalLDORecommended</td>
+                                            <td>@Model.RecommendModel.TotalLDONonRecommended</td>
+                                            <td>@Model.RecommendModel.TotalSaved_DAHO</td>
+                                            <td>@Model.RecommendModel.TotalDAHORecommended</td>
+                                            <td>@Model.RecommendModel.TotalDAHONonRecommended</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+
+                            @if (User.IsInRole("LDO"))
+                            {<hr />
+                                <h4>Summary Report of Total No. of application submitted and Total no of aplication in process - Taluka: @Model.RecommendModel.TalukaName  Taluka Code: @Model.RecommendModel.TalukaCode</h4>
+                                <table class="table table-bordered table-responsive table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">Applications - Submitted and In-Process</th>
+                                            <th class="text-center">Applications - Submitted</th>
+                                            <th class="text-center">Applications - In-Process</th>
+                                            <th class="text-center">Applications - Saved</th>
+                                            <th class="text-center">Applications - Recommended</th>
+                                            <th class="text-center">Applications - Non-Recommended</th>
+                                            <th class="text-center">Pending Cases</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>@Model.RecommendModel.TotalApplications_Taluka</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>@Model.RecommendModel.TotalSaved_LDO_Taluka</td>
+                                            <td>@Model.RecommendModel.TotalLDORecommended_Tal</td>
+                                            <td>@Model.RecommendModel.TotalLDONonRecommended_Tal</td>
+                                            <td>@Model.RecommendModel.TotalPendingLDO_Tal</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            }
+                            @if (User.IsInRole("DAHO") || User.IsInRole("DDC"))
+                            {
+                                <hr />
+                                <h4>Summary Report of Total No. of application submitted and Total no of aplication in process - District: @Model.RecommendModel.DistName  District Code: @Model.RecommendModel.DistCode</h4>
+                                <table class="table table-bordered table-responsive table-striped">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th class="text-center">Authority</th>
+                                            <th class="text-center">Applications - Submitted/Saved</th>
+
+                                            <th class="text-center">Applications - Recommended</th>
+                                            <th class="text-center">Applications - Non-Recommended</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="text-center">
+                                            <td>Applicant</td>
+                                            <td>@Model.RecommendModel.TotalApplications_Dist</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>LDO</td>
+                                            <td>0</td>
+                                            <td>@Model.RecommendModel.TotalLDORecommended_Dist</td>
+                                            <td>@Model.RecommendModel.TotalLDONonRecommended_Dist</td>
+                                        </tr>
+                                        <tr class="text-center">
+                                            <td>DAHO</td>
+                                            <td>0</td>
+                                            <td>@Model.RecommendModel.TotalDAHORecommended_Dist</td>
+                                            <td>@Model.RecommendModel.TotalDAHONonRecommended_Dist</td>
+                                        </tr>
+                                        @if (User.IsInRole("DDC"))
+                                        {
+                                            <tr>
+                                                <td>DDC</td>
+                                                <td>0</td>
+                                                <td>@Model.RecommendModel.TotalDDCRecommended_Dist</td>
+                                                <td>@Model.RecommendModel.TotalDDCNonRecommended_Dist</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                        </div>
+                        <div class="panel-body">
+                            @if ((Model.RecommendModel.Preliminaries[0].LDORecommended == "Yes" && User.IsInRole("DAHO")) || (Model.RecommendModel.Preliminaries[0].DAHORecommended == "Yes" && User.IsInRole("DDC")) || (User.IsInRole("LDO")))
+                            {
+                                <h4>Complete List of Recommended Female Applications</h4>
+                                <table class="table table-bordered table-responsive" id="recommendedTable_female">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>Application Number</th>
+                                            <th>Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Child Count</th>
+                                            <th>Sub-Caste</th>
+                                            <th>District</th>
+                                            <th>Taluka</th>
+                                            <th>Village</th>
+                                            <th>Aadhar No.</th>
+                                            <th>Crippled</th>
+                                            <th>Crippled %</th>
+                                            <th>Status</th>
+                                            <th>Submit Datetime</th>
+                                            @if (User.IsInRole("LDO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DAHO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DDC"))
+                                            {
+                                                <th></th>
+                                            }
+                                            <th style="display:none">LDO Recommended</th>
+                                            <th style="display:none">DAHO Recommended</th>
+                                            <th style="display:none">DDC Recommended</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RecommendModel.SelectedFemales.Count; i++)
+                                        {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].ApplicationNumber</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].Name</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].PhNo</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].DOB</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].Gender</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].ChildCount</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].SubCaste</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].District_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].Taluka_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].VillageName</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].AadharNo</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].ApplicantCrippled</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].CripplePercent</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].LDORecommended</td>
+                                            <td>@Model.RecommendModel.SelectedFemales[i].CreatedOn</td>
+                                            @if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].SavedByLDO == true || Model.RecommendModel.Preliminaries[0].LDORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View</a></td>
+                                            }
+                                            else if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].LDORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("LDORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].SavedByDAHO == true || Model.RecommendModel.Preliminaries[0].DAHORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommend", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].DAHORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].SavedByDDC == true || Model.RecommendModel.Preliminaries[0].DDCRecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommend", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].DDCRecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedFemales[i].ApplicationId })">View</a></td>
+                                            }
+                                            <td style="display:none">@Model.RecommendModel.SelectedFemales[i].LDORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedFemales[i].DAHORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedFemales[i].DDCRecommended</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <h4>Complete List of Recommended Handicapped Applications</h4>
+                                <table class="table table-bordered table-responsive" id="recommendedTable_handicapped">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>Application Number</th>
+                                            <th>Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Child Count</th>
+                                            <th>Sub-Caste</th>
+                                            <th>District</th>
+                                            <th>Taluka</th>
+                                            <th>Village</th>
+                                            <th>Aadhar No.</th>
+                                            <th>Crippled</th>
+                                            <th>Crippled %</th>
+                                            <th>Status</th>
+                                            <th>Submit Datetime</th>
+                                            @if (User.IsInRole("LDO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DAHO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DDC"))
+                                            {
+                                                <th></th>
+                                            }
+                                            <th style="display:none">LDO Recommended</th>
+                                            <th style="display:none">DAHO Recommended</th>
+                                            <th style="display:none">DDC Recommended</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RecommendModel.SelectedHandicaps.Count; i++)
+                                        {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].ApplicationNumber</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].Name</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].PhNo</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].DOB</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].Gender</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].ChildCount</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].SubCaste</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].District_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].Taluka_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].VillageName</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].AadharNo</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].ApplicantCrippled</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].CripplePercent</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].LDORecommended</td>
+                                            <td>@Model.RecommendModel.SelectedHandicaps[i].CreatedOn</td>
+                                            @if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].SavedByLDO == true || Model.RecommendModel.Preliminaries[0].LDORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View</a></td>
+                                            }
+                                            else if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].LDORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("LDORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].SavedByDAHO == true || Model.RecommendModel.Preliminaries[0].DAHORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommend", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].DAHORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].SavedByDDC == true || Model.RecommendModel.Preliminaries[0].DDCRecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommend", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].DDCRecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedHandicaps[i].ApplicationId })">View</a></td>
+                                            }
+                                            <td style="display:none">@Model.RecommendModel.SelectedHandicaps[i].LDORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedHandicaps[i].DAHORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedHandicaps[i].DDCRecommended</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <h4>Complete List of Recommended General Applications</h4>
+                                <table class="table table-bordered table-responsive" id="recommendedTable_gen">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>Application Number</th>
+                                            <th>Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Child Count</th>
+                                            <th>Sub-Caste</th>
+                                            <th>District</th>
+                                            <th>Taluka</th>
+                                            <th>Village</th>
+                                            <th>Aadhar No.</th>
+                                            <th>Crippled</th>
+                                            <th>Crippled %</th>
+                                            <th>Status</th>
+                                            <th>Submit Datetime</th>
+                                            @if (User.IsInRole("LDO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DAHO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DDC"))
+                                            {
+                                                <th></th>
+                                            }
+                                            <th style="display:none">LDO Recommended</th>
+                                            <th style="display:none">DAHO Recommended</th>
+                                            <th style="display:none">DDC Recommended</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RecommendModel.SelectedGenerals.Count; i++)
+                                        {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].ApplicationNumber</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].Name</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].PhNo</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].DOB</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].Gender</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].ChildCount</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].SubCaste</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].District_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].Taluka_Mr</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].VillageName</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].AadharNo</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].ApplicantCrippled</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].CripplePercent</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].LDORecommended</td>
+                                            <td>@Model.RecommendModel.SelectedGenerals[i].CreatedOn</td>
+                                            @if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].SavedByLDO == true || Model.RecommendModel.Preliminaries[0].LDORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            else if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].LDORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("LDORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].SavedByDAHO == true || Model.RecommendModel.Preliminaries[0].DAHORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommend", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].DAHORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].SavedByDDC == true || Model.RecommendModel.Preliminaries[0].DDCRecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommend", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].DDCRecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommendation", "Recommendation", new { id = Model.RecommendModel.SelectedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            <td style="display:none">@Model.RecommendModel.SelectedGenerals[i].LDORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedGenerals[i].DAHORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.SelectedGenerals[i].DDCRecommended</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                <hr />
+                                <h4>Complete List of Non-Recommended Applications</h4>
+                                <table class="table table-bordered table-responsive" id="nonrecommendedTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Sr. No.</th>
+                                            <th>Application Number</th>
+                                            <th>Name</th>
+                                            <th>Mobile No.</th>
+                                            <th>DOB</th>
+                                            <th>Gender</th>
+                                            <th>Child Count</th>
+                                            <th>Sub-Caste</th>
+                                            <th>District</th>
+                                            <th>Taluka</th>
+                                            <th>Village</th>
+                                            <th>Aadhar No.</th>
+                                            <th>Crippled</th>
+                                            <th>Crippled %</th>
+                                            <th>Status</th>
+                                            <th>Submit Datetime</th>
+                                            @if (User.IsInRole("LDO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DAHO"))
+                                            {
+                                                <th></th>
+                                            }
+                                            @if (User.IsInRole("DDC"))
+                                            {
+                                                <th></th>
+                                            }
+                                            <th style="display:none">LDO Recommended</th>
+                                            <th style="display:none">DAHO Recommended</th>
+                                            <th style="display:none">DDC Recommended</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @for (int i = 0; i < Model.RecommendModel.NonRecommendedGenerals.Count; i++)
+                                        {
+                                        <tr>
+                                            <td>@(i + 1)</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].ApplicationNumber</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].Name</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].PhNo</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].DOB</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].Gender</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].ChildCount</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].SubCaste</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].District_Mr</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].Taluka_Mr</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].VillageName</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].AadharNo</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].ApplicantCrippled</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].CripplePercent</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].LDORecommended</td>
+                                            <td>@Model.RecommendModel.NonRecommendedGenerals[i].CreatedOn</td>
+                                            @if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].SavedByLDO == true || Model.RecommendModel.Preliminaries[0].LDORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("RecommenendApplicant", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            else if (User.IsInRole("LDO") && (Model.RecommendModel.Preliminaries[0].LDORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("LDORecommendation", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].SavedByDAHO == true || Model.RecommendModel.Preliminaries[0].DAHORecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommend", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DAHO") && (Model.RecommendModel.Preliminaries[0].DAHORecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DAHORecommendation", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            @if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].SavedByDDC == true || Model.RecommendModel.Preliminaries[0].DDCRecommended == "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommend", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View </a></td>
+                                            }
+                                            else if (User.IsInRole("DDC") && (Model.RecommendModel.Preliminaries[0].DDCRecommended != "Pending"))
+                                            {
+                                                <td><a class="btn btn-sm btn-danger" href="@Url.Action("DDCRecommendation", "Recommendation", new { id = Model.RecommendModel.NonRecommendedGenerals[i].ApplicationId })">View</a></td>
+                                            }
+                                            <td style="display:none">@Model.RecommendModel.NonRecommendedGenerals[i].LDORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.NonRecommendedGenerals[i].DAHORecommended</td>
+                                            <td style="display:none">@Model.RecommendModel.NonRecommendedGenerals[i].DDCRecommended</td>
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            }
+                            <div id="legendDiv2" class='my-legend' style="float:left;">
+                                <div class='legend-title'>Recommended Status</div>
+                                <div class='legend-scale'>
+                                    <ul class='legend-labels'>
+                                        <li><span style='background:#d1e8c9;'></span>LDO Recommended</li>
+                                        <li><span style='background:#e7cbd3;'></span>LDO Non Recommended</li>
+                                        <li><span style='background:#fff6b3;'></span>DAHO Recommended</li>
+                                        <li><span style='background:#f8b9b9;'></span>DAHO Non Recommneded</li>
+                                        <li><span style='background:#b5e5fd;'></span>DDC Recommended</li>
+                                        <li><span style='background:#e88463;'></span>DDC Non Recommended</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -1470,8 +2206,137 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js" type="text/javascript"></script>
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a id="btnClose" class="close" data-dismiss="modal" aria-hidden="true">&times;</a>
 
+            </div>
+            @using (Html.BeginForm("PrelimList_Dist", "ApplicantRegistrations", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    <div class="form-group">
+                        @Html.Label("District", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("DistrictVal", (IEnumerable<SelectListItem>)ViewBag.DistrictVAL, "Select", new { @class = "form-control" })
+                    </div>
+
+                </div>
+                <div class="modal-bottom text-center" style="padding:10px"> <button class="btn btn-default" type="submit">Submit</button></div>
+            }
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function showPopup() {
+        $("#myModal").modal('show');
+
+    }
+</script>
+<script>
+
+    $('#btnFilter').click(function () {
+        $('#applicanttbl1').DataTable().clear().destroy();
+        var searchCriteria = $("#ddlSearch option:selected").val();
+        var searchVal = $('#txtSearch').val().trim();
+        $.ajax({
+            type: 'GET',
+            beforeSend: function () {
+              $('.se-pre-con').show();
+            },
+            url: '@Url.Action("GetApplicantList", "ApplicantRegistrations")',
+            dataType: 'json',
+            data: { searchVil: searchCriteria, searchName: searchVal },
+            success: function (result) {
+
+                $('#applicanttbl1 tbody').empty();
+                $.each(result, function (i, item) {
+                    var rows = "<tr>"
+                        + "<td>" + (i + 1) + "</td>"
+                        + "<td>" + item.ApplicationNumber + "</td>"
+                        + "<td>" + item.ApName + "</td>"
+                        + "<td>" + item.DistrictName + "</td>"
+                        + "<td>" + item.TalukaName + "</td>"
+                        + "<td>" + item.VilName + "</td>"
+                        + "<td>" + item.Dist + "</td>"
+                        + "<td>" + item.Tahashil + "</td>"
+                        + "<td>" + item.VillageName + "</td>"
+                        + "<td>" + item.AdharCardNo + "</td>"
+                        + "<td>" + item.CompNumber + "</td>"
+                        + "<td style='display:none'>" + item.FormSubmitted + "</td>"
+                        + "<td style='display:none'>" + item.IsAgeProper + "</td>"
+                        + "<td style='display:none'>" + item.IsChildCountProper + "</td>"
+                        + "<td style='display:none'>" + item.IsAadharUnique + "</td>"
+                        + "<td style='display:none'>" + item.IsComponentProper + "</td>"
+                        + "<td style='display:none'>" + item.IsPhotoAvailable + "</td>"
+                          + "<td style='display:none'>" + item.IsPreviouslySelected + "</td>"
+                        + "<td><a class='btn btn-info' href='/ApplicantRegistrations/Details/" + item.Id + "'>Details</a></td>"
+                        +  "<td><a class='btn btn-info' href='/ApplicantRegistrations/GenerateReceipt/" + item.Id + "'>Receipt</a></td>"
+
+                        + "</tr>";
+                    $('#applicanttbl1 tbody').append(rows);
+
+                });
+                $('#applicanttbl1').DataTable({
+
+                    dom: 'Bfrtip',
+                    buttons: [
+                        { extend: 'copyHtml5' },
+                        { extend: 'excelHtml5'},
+                        { extend: 'csvHtml5'},
+                        { extend: 'pdfHtml5'},
+                    ],
+                    "paging": false,
+                      sortable: true,
+                    searching: true
+                });
+
+                $("#applicanttbl1 tr").each(function () {
+
+                      var form_val = $(this).find("td:eq(11)").text();
+
+                      var age_val = $(this).find("td:eq(12)").text();
+                      var child_val = $(this).find("td:eq(13)").text();
+                      var aadhar_val = $(this).find("td:eq(14)").text();
+                      var comp_val = $(this).find("td:eq(15)").text();
+                    var photo_val = $(this).find("td:eq(16)").text();
+                     var previous_val = $(this).find("td:eq(17)").text();
+                     // console.log(col_val + $(this).find("td:eq(2)").text());
+                      if (form_val == 'false')
+                      {
+                          $(this).addClass('formNotSubmitted');
+                          $(this).find("td:eq(19) a").hide();
+                      }
+                      else if (age_val == 'false') {
+                          $(this).addClass('ageBad');
+                      }
+                      else if (child_val == 'false') {
+                          $(this).addClass('childBad');
+                      }
+                      else if (comp_val == 'false') {
+                          $(this).addClass('componentBad');
+                      }
+                     else if (photo_val == 'false') {
+                          $(this).addClass('photoBad');
+                      }
+                      else if (aadhar_val == 'false') {
+                          $(this).addClass('aadharBad');
+                    }
+                     else if (previous_val == 'true') {
+                          $(this).addClass('prevBad');
+                      }
+                  });
+
+            },
+             complete: function () {
+                // Show image container
+                 $('.se-pre-con').hide();
+
+            }
+        });
+    })
+</script>
 <script>
 
     $('#tblStats').DataTable({
@@ -1480,23 +2345,184 @@
             { extend: 'copyHtml5', footer: true },
             { extend: 'excelHtml5', footer: true },
             { extend: 'csvHtml5', footer: true },
-            { extend: 'pdfHtml5', footer: true },
-            { extend: 'print', footer: true }
+            { extend: 'pdfHtml5', footer: true }
         ],
         "paging": false,
         "ordering": false,
-        "bSort" : false
+        "bSort": false
     });
 
+    $('#recommendedTable_female').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true }
+        ],
+        "paging": false,
+        "ordering": false,
+        "bSort": false
+    });
+    $("#recommendedTable_female tr").each(function () {
 
+        var ldo_val = $(this).find("td:eq(17)").text();
+
+        var daho_val = $(this).find("td:eq(18)").text();
+        var ddc_val = $(this).find("td:eq(19)").text();
+        if (ddc_val == 'Yes' && daho_val != 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('ddcRow');
+        }
+        else if (ddc_val == 'No' && daho_val != 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('ddcNoRow');
+        }
+
+        if (daho_val == 'Yes' && ddc_val == 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('dahoRow');
+        }
+        else if (daho_val == 'No' && ddc_val == 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('dahoNoRow');
+        }
+        if (ldo_val == 'Yes' && ddc_val == 'Pending' && daho_val == 'Pending') {
+            $(this).addClass('ldoRow');
+        }
+        else  if (ldo_val == 'No' && ddc_val == 'Pending' && daho_val == 'Pending'){
+            $(this).addClass('ldoNoRow');
+        }
+
+
+    });
+    $('#recommendedTable_handicapped').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true }
+        ],
+        "paging": false,
+        "ordering": false,
+        "bSort": false
+    });
+    $("#recommendedTable_handicapped tr").each(function () {
+
+        var ldo_val = $(this).find("td:eq(17)").text();
+
+        var daho_val = $(this).find("td:eq(18)").text();
+        var ddc_val = $(this).find("td:eq(19)").text();
+
+        if (ddc_val == 'Yes' && daho_val != 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('ddcRow');
+        }
+        else if (ddc_val == 'No' && daho_val != 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('ddcNoRow');
+        }
+
+        if (daho_val == 'Yes' && ddc_val == 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('dahoRow');
+        }
+        else if (daho_val == 'No' && ddc_val == 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('dahoNoRow');
+        }
+        if (ldo_val == 'Yes' && ddc_val == 'Pending' && daho_val == 'Pending') {
+            $(this).addClass('ldoRow');
+        }
+        else  if (ldo_val == 'No' && ddc_val == 'Pending' && daho_val == 'Pending'){
+            $(this).addClass('ldoNoRow');
+        }
+
+    });
+    $('#recommendedTable_gen').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true }
+        ],
+        "paging": false,
+        "ordering": false,
+        "bSort": false
+    });
+    $("#recommendedTable_gen tr").each(function () {
+
+        var ldo_val = $(this).find("td:eq(17)").text();
+
+        var daho_val = $(this).find("td:eq(18)").text();
+        var ddc_val = $(this).find("td:eq(19)").text();
+
+      if (ddc_val == 'Yes' && daho_val != 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('ddcRow');
+        }
+        else if (ddc_val == 'No' && daho_val != 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('ddcNoRow');
+        }
+
+        if (daho_val == 'Yes' && ddc_val == 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('dahoRow');
+        }
+        else if (daho_val == 'No' && ddc_val == 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('dahoNoRow');
+        }
+        if (ldo_val == 'Yes' && ddc_val == 'Pending' && daho_val == 'Pending') {
+            $(this).addClass('ldoRow');
+        }
+        else  if (ldo_val == 'No' && ddc_val == 'Pending' && daho_val == 'Pending'){
+            $(this).addClass('ldoNoRow');
+        }
+
+    });
+    $('#nonrecommendedTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            { extend: 'copyHtml5', footer: true },
+            { extend: 'excelHtml5', footer: true },
+            { extend: 'csvHtml5', footer: true },
+            { extend: 'pdfHtml5', footer: true }
+        ],
+        "paging": false,
+        "ordering": false,
+        "bSort": false
+    });
+    $("#nonrecommendedTable tr").each(function () {
+
+        var ldo_val = $(this).find("td:eq(17)").text();
+
+        var daho_val = $(this).find("td:eq(18)").text();
+        var ddc_val = $(this).find("td:eq(19)").text();
+
+        if (ddc_val == 'Yes' && daho_val != 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('ddcRow');
+        }
+        else if (ddc_val == 'No' && daho_val != 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('ddcNoRow');
+        }
+
+        if (daho_val == 'Yes' && ddc_val == 'Pending' && ldo_val != 'Pending') {
+            $(this).addClass('dahoRow');
+        }
+        else if (daho_val == 'No' && ddc_val == 'Pending' && ldo_val != 'Pending'){
+            $(this).addClass('dahoNoRow');
+        }
+        if (ldo_val == 'Yes' && ddc_val == 'Pending' && daho_val == 'Pending') {
+            $(this).addClass('ldoRow');
+        }
+        else  if (ldo_val == 'No' && ddc_val == 'Pending' && daho_val == 'Pending'){
+            $(this).addClass('ldoNoRow');
+        }
+
+    });
 </script>
 <script type="text/javascript">
     $(document).ready(function () {
        var d = '@Model.isGenerated';
 
         var dateNow = new Date('@Model.CurrentTime');
-
-        var enableDate = new Date('@Model.Timer.EnableDate.Value');
+        @*var enableDate = new Date();
+        if (@Model.Timer != null)
+        {*@
+       var  enableDate = new Date('@Model.Timer.EnableDate.Value');
+      //  }
         //alert(dateNow);
 
         if (dateNow >= enableDate) {
@@ -1518,6 +2544,9 @@
             $("#tab3").hide();
             $("#tab4").hide();
             $("#tab5").hide();
+            $("#tab7").hide();
+            $("#tab8").hide();
+              $("#legendDiv").hide();
         });
         $("#link2").click(function () {
             $("#tab2").toggle();
@@ -1525,6 +2554,9 @@
             $("#tab3").hide();
             $("#tab4").hide();
             $("#tab5").hide();
+            $("#tab7").hide();
+             $("#tab8").hide();
+               $("#legendDiv").hide();
         });
         $("#link3").click(function () {
             $("#tab3").toggle();
@@ -1532,12 +2564,18 @@
             $("#tab2").hide();
             $("#tab4").hide();
             $("#tab5").hide();
+            $("#tab7").hide();
+             $("#tab8").hide();
+               $("#legendDiv").hide();
         });
         $("#link4").click(function () {
            // $("#tab4").toggle();
             $("#tab3").hide();
             $("#tab1").hide();
             $("#tab2").hide();
+            $("#tab7").hide();
+             $("#tab8").hide();
+               $("#legendDiv").hide();
           //  $("#tab5").hide();
                if (d  == 'True') {
                 $("#tab4").hide();
@@ -1547,11 +2585,41 @@
 
             else {
                   $("#tab4").toggle();
-                $("#tab5").hide();
+                   $("#tab5").hide();
+
             }
         });
 
-
+         $("#link10").click(function () {
+            $("#tab3").hide();
+            $("#tab1").hide();
+            $("#tab2").hide();
+            $("#tab4").hide();
+            $("#tab5").hide();
+            $("#tab7").toggle();
+             $("#legendDiv").toggle();
+                $("#tab8").hide();
+         });
+         $("#link8").click(function () {
+            $("#tab3").hide();
+            $("#tab1").hide();
+            $("#tab2").hide();
+            $("#tab4").hide();
+            $("#tab5").hide();
+            $("#tab7").hide();
+             $("#legendDiv").hide();
+              $("#tab8").toggle();
+         });
+         $("#link9").click(function () {
+            $("#tab3").hide();
+            $("#tab1").hide();
+            $("#tab2").hide();
+            $("#tab4").hide();
+            $("#tab5").hide();
+            $("#tab7").hide();
+             $("#legendDiv").hide();
+              $("#tab8").toggle();
+        });
 
     });
 </script>
@@ -1612,8 +2680,7 @@
                         { extend: 'copyHtml5', footer: true },
                         { extend: 'excelHtml5', footer: true },
                         { extend: 'csvHtml5', footer: true },
-                        { extend: 'pdfHtml5', footer: true },
-                        { extend: 'print', footer: true }
+                        { extend: 'pdfHtml5', footer: true }
                     ],
                     "paging": false
                 });
@@ -2213,8 +3280,11 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+    if (document.getElementById("demo") != null) {
+          document.getElementById("demo").innerHTML = days + "d " + hours + "h "
   + minutes + "m " + seconds + "s ";
+    }
+
 
   // If the count down is over, write some text
   if (distance < 0) {

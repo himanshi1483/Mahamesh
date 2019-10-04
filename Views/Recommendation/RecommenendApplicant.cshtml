@@ -1,11 +1,11 @@
 ﻿@model Mahamesh.Models.RecommendationViewModel
-
+@using Mahamesh.Models
 @{
     ViewBag.Title = "Recommend Applicant";
 }
 
 
-<div class="container" style="margin-bottom:150px;">
+<div class="container-fluid" style="margin:150px;">
     <div class="headerDashboard">
         <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 headerText">
             <h2>राजे यशवंतराव होळकर महामेष योजना</h2>
@@ -15,36 +15,257 @@
         </div>
 
     </div>
-    <div class="panel panel-primary-2">
-        <div class="panel-heading panel-primary-2 text-center">
-            <h4>LDO Dashboard</h4>
-            <div class="alert alert-info text-center">Authorized as : Livestock Developement Officer - Dist: @Model.DistCode  Taluka: @Model.TalukaCode</div>
-        </div>
-        <div class="panel-body">
-            <div>
-                <div class="alert alert-info text-left" style="float:left">@Model._applicant.ApplicationNumber</div>
-                <div style="float:right"><img src="@Model._applicant.Photo" /></div>
+    @using (Html.BeginForm("RecommenendApplicant", "Recommendation", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {<div class="panel panel-primary-2">
+            <div class="panel-heading panel-primary-2 text-center">
+                <h4>LDO Dashboard</h4>    @Html.HiddenFor(x => x.ApplicantId)
+                <div class="alert alert-info text-center">Authorized as : Livestock Developement Officer - Dist: @Model.DistCode  Taluka: @Model.TalukaCode</div>
             </div>
-            <table>
-                <tr>
-                    <td>1.</td>
-                    <td>अर्जदाराचे नाव:</td>
-                    <td>@Model._applicant.ApName</td>
-                    <td>
-                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download" target="_blank"
-                           class="btn btn-link">आधार कार्ड</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td>पत्रव्यवहाराचा पत्ता:</td>
-                    <td>@Model._applicant.VilName - @Model._applicant.TalukaName - @</td>
-                    <td>
-                        <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.AdharCardFU&export=download" target="_blank"
-                           class="btn btn-link">आधार कार्ड</a>
-                    </td>
-                </tr>
-            </table>
+            <div class="panel-body">
+                <div>
+                    <div class="alert alert-info text-left" style="float:left">Application Number: @Model._applicant.ApplicationNumber</div>
+                    <div style="float:right"><img src="@Model._applicant.Photo" /></div>
+                </div>
+                <table class="table table-bordered table-responsive table-striped">
+                    @for (int i = 0; i < 24; i++)
+                    {
+                        <tr>
+                            @Html.HiddenFor(x => x.LDOConditions[i].Id)
+                            <td width="1%">@Model.LDOConditions[i].ConditionNo</td>
+                            <td width="14%">@Model.LDOConditions[i].ApprovalCondition :</td>
+                            <td width="15%">@Model.LDOConditions[i].ApprovalValue</td>
+                            <td width="30%">
+                                @if (Model.LDOConditions[i].GoogleDocID != "")
+                                {
+                                    <a href="https://drive.google.com/a/aarushsystems.com/uc?authuser=6&id=@Model.LDOConditions[i].GoogleDocID&export=download" target="_blank"
+                                       class="btn btn-link">@Model.LDOConditions[i].DocName</a>
+
+                                }
+                                else
+                                {
+                                    <span>@Model.LDOConditions[i].DocName</span>
+                                }
+                            </td>
+                            <td width="10%"><input type="radio" name="LDOConditions[@i].LDOApproved" id="Approved" value="true" /><label for="Approved">Approved</label></td>
+                            <td width="10%"><input type="radio" name="LDOConditions[@i].LDOApproved" id="Rejected" value="false" /><label for="Rejected">Not Approved</label></td>
+                            <td width="20%">@Html.TextBoxFor(x => x.LDOConditions[i].LDORemarks, new { @class = "form-control" })</td>
+                        </tr>
+                    }
+
+                </table>
+                <hr />
+                <h5>
+                    योजनेअंतर्गत अर्जदराने निवडलेले उपघटक
+                </h5>
+                <table class="table table-condensed table-responsive table-striped">
+                    <thead>
+                        <tr>
+                            <th>योजना क्रमांक	</th>
+                            <th>
+                                योजनेच नाव
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @Html.HiddenFor(x => x.LDOConditions[24].Id)
+                        @if (Model.LDOConditions[24].ApprovalValue != null && @Model.LDOConditions[24].ApprovalValue != "0")
+                        {
+                            <tr>
+                                <td>@Model.LDOConditions[24].ApprovalValue</td>
+                                <td>@Model.LDOConditions[24].ComponentDesc</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+                <table class="table table-condensed table-striped table-responsive">
+
+                    <tr>
+                        <td>@Model.LDOConditions[24].ConditionNo</td>
+                        <td>@Model.LDOConditions[24].ApprovalCondition :</td>
+
+
+                        <td><input type="radio" name="LDOConditions[24].LDOApproved" id="Approved" value="true" /><label for="Approved">Approved</label></td>
+                        <td><input type="radio" name="LDOConditions[24].LDOApproved" id="Rejected" value="false" /><label for="Rejected">Not Approved</label></td>
+                        <td>@Html.TextBoxFor(x => x.LDOConditions[24].LDORemarks, new { @class = "form-control" })</td>
+                    </tr>
+
+                </table>
+             
+                <hr />
+                <h4>Livestock Development Officer (Extension) Remark/ Recommendation</h4>
+                <table class="table table-condensed table-responsive table-striped">
+                    <tr>
+                        <td>24.</td>
+                        <td>आपण या अर्जदारास योजने अंतर्गत पुढील निवडी करीत शिफारस करू इच्छिता का:</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td><input type="radio" name="Preliminaries[0].LDORecommended" id="Recommend" value="Yes" /><label for="Recommend">Recommend</label></td>
+                        <td><input type="radio" name="Preliminaries[0].LDORecommended" id="NonRecommend" value="No" /><label for="NonRecommend">Not Recommend</label></td>
+                        <td>@Html.TextBoxFor(x => x.Preliminaries[0].LDORemarks, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <td>25.</td>
+                        <td>शिफारस अधिकारी यांचे नाव:</td>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.TextBoxFor(x => x.Preliminaries[0].LDOName, new { @class = "form-control" })</td>
+                    </tr>
+                </table>
+                <div class="text-center">
+                    <a class="btn btn-danger" href="@Url.Action("OfficerDashboard", "Menu", new { username = User.Identity.Name})">Back</a>
+                    <button class="btn btn-primary" name="submit" value="save" type="submit">Save</button>
+                    <button class="btn btn-default" name="submit" value="submit" type="submit">Submit</button>
+                </div>
+            </div>
         </div>
-    </div>
+    }
 </div>
+<script src="/Content/Varsity/assets/js/jquery.min.js" type="text/javascript"></script>
+
+<script>
+   
+        var IsChekced = "@Model.Preliminaries[0].LDORecommended";
+       // alert(IsChekced.toLowerCase());
+        if (IsChekced != "") {
+            $("input:radio[name='Preliminaries[0].LDORecommended'][value='@Model.Preliminaries[0].LDORecommended.ToString()']").prop('checked', true);
+        }
+
+        var IsChekced1 = "@Model.LDOConditions[0].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChekced1 != "") {
+            $("input:radio[name='LDOConditions[0].LDOApproved'][value='@Model.LDOConditions[0].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+
+         var IsChecked1 = "@Model.LDOConditions[1].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked1 != "") {
+            $("input:radio[name='LDOConditions[1].LDOApproved'][value='@Model.LDOConditions[1].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+
+
+         var IsChecked2 = "@Model.LDOConditions[2].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked2 != "") {
+            $("input:radio[name='LDOConditions[2].LDOApproved'][value='@Model.LDOConditions[2].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+
+           var IsChecked3 = "@Model.LDOConditions[3].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked3 != "") {
+            $("input:radio[name='LDOConditions[3].LDOApproved'][value='@Model.LDOConditions[3].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+
+           var IsChecked4 = "@Model.LDOConditions[4].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked4 != "") {
+            $("input:radio[name='LDOConditions[4].LDOApproved'][value='@Model.LDOConditions[4].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked5 = "@Model.LDOConditions[5].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked5 != "") {
+            $("input:radio[name='LDOConditions[5].LDOApproved'][value='@Model.LDOConditions[5].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked6 = "@Model.LDOConditions[6].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked6 != "") {
+            $("input:radio[name='LDOConditions[6].LDOApproved'][value='@Model.LDOConditions[6].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked7 = "@Model.LDOConditions[7].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked7 != "") {
+            $("input:radio[name='LDOConditions[7].LDOApproved'][value='@Model.LDOConditions[7].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked8 = "@Model.LDOConditions[8].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked8 != "") {
+            $("input:radio[name='LDOConditions[8].LDOApproved'][value='@Model.LDOConditions[8].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked9 = "@Model.LDOConditions[9].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked9 != "") {
+            $("input:radio[name='LDOConditions[9].LDOApproved'][value='@Model.LDOConditions[9].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked10 = "@Model.LDOConditions[10].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked10 != "") {
+            $("input:radio[name='LDOConditions[10].LDOApproved'][value='@Model.LDOConditions[10].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked11 = "@Model.LDOConditions[11].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked11 != "") {
+            $("input:radio[name='LDOConditions[11].LDOApproved'][value='@Model.LDOConditions[11].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked12 = "@Model.LDOConditions[12].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked12 != "") {
+            $("input:radio[name='LDOConditions[12].LDOApproved'][value='@Model.LDOConditions[12].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked13 = "@Model.LDOConditions[13].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked13 != "") {
+            $("input:radio[name='LDOConditions[13].LDOApproved'][value='@Model.LDOConditions[13].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked14 = "@Model.LDOConditions[14].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked14 != "") {
+            $("input:radio[name='LDOConditions[14].LDOApproved'][value='@Model.LDOConditions[14].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked15 = "@Model.LDOConditions[15].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked15 != "") {
+            $("input:radio[name='LDOConditions[15].LDOApproved'][value='@Model.LDOConditions[15].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked16 = "@Model.LDOConditions[16].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked16 != "") {
+            $("input:radio[name='LDOConditions[16].LDOApproved'][value='@Model.LDOConditions[16].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked17 = "@Model.LDOConditions[17].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked17 != "") {
+            $("input:radio[name='LDOConditions[17].LDOApproved'][value='@Model.LDOConditions[17].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked18 = "@Model.LDOConditions[18].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked18 != "") {
+            $("input:radio[name='LDOConditions[18].LDOApproved'][value='@Model.LDOConditions[18].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked19 = "@Model.LDOConditions[19].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked19 != "") {
+            $("input:radio[name='LDOConditions[19].LDOApproved'][value='@Model.LDOConditions[19].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked20 = "@Model.LDOConditions[20].LDOApproved";
+        //alert(IsChecked20);
+        if (IsChecked20 != "") {
+            $("input:radio[name='LDOConditions[20].LDOApproved'][value='@Model.LDOConditions[20].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked21 = "@Model.LDOConditions[21].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked21 != "") {
+            $("input:radio[name='LDOConditions[21].LDOApproved'][value='@Model.LDOConditions[21].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+          var IsChecked22 = "@Model.LDOConditions[22].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked22 != "") {
+            $("input:radio[name='LDOConditions[22].LDOApproved'][value='@Model.LDOConditions[22].LDOApproved.ToString().ToLower()']").prop('checked', true);
+    }
+         var IsChecked23 = "@Model.LDOConditions[23].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked23 != "") {
+            $("input:radio[name='LDOConditions[23].LDOApproved'][value='@Model.LDOConditions[23].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+           var IsChecked24 = "@Model.LDOConditions[24].LDOApproved";
+       // alert(IsChekced.toLowerCase());
+        if (IsChecked24 != "") {
+            $("input:radio[name='LDOConditions[24].LDOApproved'][value='@Model.LDOConditions[24].LDOApproved.ToString().ToLower()']").prop('checked', true);
+        }
+
+</script>

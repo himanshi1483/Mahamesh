@@ -41,6 +41,9 @@ namespace Mahamesh.Models
         public string ChangedBy { get; set; }
 
         [NotMapped]
+        public RecommendationViewModel RecommendModel { get; set; }
+
+        [NotMapped]
         public PhysicalTargetViewModel TargetModel { get; set; }
 
         [NotMapped]
