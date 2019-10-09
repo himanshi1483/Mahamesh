@@ -2912,7 +2912,7 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat units. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development. First hand informati [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat farming business. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development..
         /// </summary>
         public static string VisionText {
             get {
