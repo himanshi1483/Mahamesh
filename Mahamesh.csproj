@@ -794,6 +794,9 @@
     <Content Include="Images\Popup.jpg" />
     <Content Include="Images\Prod1.jpg" />
     <Content Include="Images\Prod10.jpg" />
+    <Content Include="Images\Prod11.jpg" />
+    <Content Include="Images\Prod12.jpg" />
+    <Content Include="Images\Prod13.jpg" />
     <Content Include="Images\Prod2.jpg" />
     <Content Include="Images\Prod3.jpg" />
     <Content Include="Images\Prod4.jpg" />
