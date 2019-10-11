@@ -18,7 +18,7 @@
 <div class="container body-content" id="#maincontent" style="margin-top:20px; margin-bottom: 150px;">
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary-2">
-            <h3 class="panel-title">Ministers</h3>
+            <h3 class="panel-title">@Resource.Lang.Ministers</h3>
         </div>
         <div class="panel-body">
             <div class="row">
@@ -26,26 +26,24 @@
                     <thead>
                         <tr>
                             <th>
-                                Sr.No.
+                                @Resource.Lang.SrNo
                             </th>
-                            <th class="text-center">Minister Name</th>
+                            <th class="text-center">@Resource.Lang.MInistersName</th>
                             <th class="text-center">
-                                Office Address
+                                @Resource.Lang.MinisterAdd
                             </th>
-                            <th class="text-center">Phone No.</th>
-                            <th class="text-center">Email Id</th>
+                            <th class="text-center">@Resource.Lang.PhoneNumber</th>
+                            <th class="text-center">@Resource.Lang.EmailID</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="text-center">1.</td>
                             <td>
-                                <p style="font-size:15px;font-weight:bold">Shri. Mahadev Jagannath Jankar</p>
-                                <p>Hon'ble Minister, Animal Husbandry,</p>
-                                <p> Dairy Development and Fisheries Development</p>
+                                @Html.Raw(Server.HtmlDecode(Resource.Lang.Minister1Name))
                             </td>
-                            <td><p>Madam Cama Road, Hutatma Rajguru Chowk, </p><p>Nariman Point, Churchgate,</p><p> Mumbai, Maharashtra 400032, India</p></td>
-                            <td>022- 22042314, 22042315 </td>
+                            <td>   @Html.Raw(Server.HtmlDecode(Resource.Lang.Minister1Address))</td>
+                            <td>@Resource.Lang.Minister1Phone </td>
                             <td>
                                 min.adf1@maharashtra.gov.in
                             </td>
@@ -53,11 +51,10 @@
                         <tr>
                             <td class="text-center">2.</td>
                             <td>
-                                <p style="font-size:15px;font-weight:bold">Shri.Arjun Panditrao Khotkar</p>
-                                <p> Hon'ble Minister for State , Textiles,</p>   <p> Animal Husbandry, Dairy Development and Fisheries Development</p>
+                                @Html.Raw(Server.HtmlDecode(Resource.Lang.Minister2Name))
                             </td>
-                            <td><p>Madam Cama Road, Hutatma Rajguru Chowk, </p><p>Nariman Point, Churchgate,</p><p> Mumbai, Maharashtra 400032, India</p></td>
-                            <td>022-22872415</td>
+                            <td>  @Html.Raw(Server.HtmlDecode(Resource.Lang.Minister1Address))</td>
+                            <td>@Resource.Lang.Minister2Phone</td>
                             <td>
                                 stmin.adfntextiles@maharashtra.gov.in
                             </td>

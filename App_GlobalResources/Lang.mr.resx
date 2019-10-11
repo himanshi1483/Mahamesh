@@ -384,7 +384,7 @@
     <value>मादी पिल्ले</value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>इतिहास</value>
+    <value>पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळाची स्थापना, उद्दिष्टे व कार्ये</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>मुख्य पान</value>
@@ -399,7 +399,7 @@
     <value>बागायती क्षेत्र (हे.)</value>
   </data>
   <data name="Keyofficials" xml:space="preserve">
-    <value>अधिकारी</value>
+    <value>मुख्यालयातील अधिकारी</value>
   </data>
   <data name="LandUnderBuilding" xml:space="preserve">
     <value>रस्ते, इमारत, तलाव (हे.)</value>
@@ -456,7 +456,7 @@
     <value>मंत्री</value>
   </data>
   <data name="Mission" xml:space="preserve">
-    <value>मिशन</value>
+    <value>ध्येय</value>
   </data>
   <data name="MobileNumber" xml:space="preserve">
     <value>मोबाईल क्रमांक</value>
@@ -507,10 +507,10 @@
     <value>जिरायती क्षेत्र (हे.)</value>
   </data>
   <data name="Objectoforganization" xml:space="preserve">
-    <value>संस्थेचे उद्दीष्ट्ये</value>
+    <value>पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळाचे ध्येय</value>
   </data>
   <data name="Officebeares" xml:space="preserve">
-    <value>पदाधीकारी</value>
+    <value>कार्यालय प्रमुख</value>
   </data>
   <data name="Organization" xml:space="preserve">
     <value>संस्था</value>
@@ -724,10 +724,10 @@
     <value>एकूण क्षेत्र (हे.)</value>
   </data>
   <data name="Variouscommittees" xml:space="preserve">
-    <value>विविध समित्या</value>
+    <value>महिला तक्रार निवारण समिती</value>
   </data>
   <data name="Vision" xml:space="preserve">
-    <value>ध्येय</value>
+    <value>दृष्टी</value>
   </data>
   <data name="VisionText" xml:space="preserve">
     <value>आम्ही राज्यातील मेंढी व शेळी पालकांच्या कल्यणाकरिता कार्यरत आहोत, तसेच शेळी मेंढी पालन आणि विपणन याबाबत उत्तम ज्ञान देऊन राज्यात शेळ्या मेंढ्यांची पुरवठा साखळी निर्माण करण्याकरिता कटिबद्द आहे. आम्ही मेंढी व शेळी पालकांकरीता कार्यक्षम स्थिती तसेच ज्ञान आधार तयार करीत आहोत ज्यामुळे आर्थिकदृष्ट्या सक्षम अशा प्रकारच्या मेंढी व शेळी पालन व्यवसायास गती मिळण्याची क्षमता निर्माण होईल. याचबरोबर राज्यातील अल्प, अत्यल्प तसेच भूमिहीन शेतकर्‍यांना शेळी मेंढी पालन व्यवसायाच्या माध्यमातून आर्थिक व सामाजिक विकासाच्या मुख्य प्रवाहात आणण्याकरिता प्रयत्नशील आहोत.</value>
@@ -1084,5 +1084,307 @@
   </data>
   <data name="Farms" xml:space="preserve">
     <value>प्रक्षेत्रे</value>
+  </data>
+  <data name="HistoryText" xml:space="preserve">
+    <value>&lt;ol style="font-size:15px !important"&gt;
+                    &lt;li&gt;पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळाची स्थापना कंपनी कायदा&amp;nbsp;&lt;strong&gt;1956 &lt;/strong&gt;अन्वये नोंदणी क्र.&amp;nbsp;20560/CTA नुसार दि. &lt;strong&gt;८ ऑगस्ट १९७८&lt;/strong&gt; रोजी करण्यात आली आहे.&lt;/li&gt;
+                    &lt;li&gt;महामंडळाच्या स्थापनेनंतर पशुसंवर्धन खात्याच्या ताब्यातील ९ मेष पैदास प्रक्षेत्रे व १ लोकर उपयोगिता केंद्र दि. १/११/१९७९ पासून आणि १ शेळी पैदास प्रक्षेत्र दि. &lt;strong&gt;७ ऑगस्ट १९८४&lt;/strong&gt; पासून महामंडळास हस्तांतरित करण्यात आली आहे.&lt;/li&gt;
+                    &lt;li&gt;त्यांनतर आदिवासी गोवारी शहिद स्मृती शेळी व पशुपालन संस्था बोंद्री, जि.नागपूर ही संस्था &amp;nbsp; &amp;nbsp;दि. ६ जुलै २०१० पासून महामंडळास हस्तांतरित करण्यात आलेली आहे.&lt;/li&gt;
+                &lt;/ol&gt;
+                &lt;h4 class="heading-green text-center" style="    padding-top: 10px;"&gt;उद्दिष्टे&lt;/h4&gt;
+                &lt;ol style="font-size:15px !important"&gt;
+                    &lt;li&gt;&amp;nbsp;महाराष्ट्रात विदेशी/स्थानिक/संकरित मेंढयांची पैदास प्रक्षेत्रे स्थापणे,&amp;nbsp;विस्तार करणे अथवा त्या पूर्नगठीत करणे.&lt;/li&gt;
+                    &lt;li&gt;&amp;nbsp;मेंढयांच्या पैदाशीकरिता उपयुक्त ठिकाणी अशा केंद्राची वाढ करणे.&lt;/li&gt;
+                    &lt;li&gt;&amp;nbsp;मेंढया आणि मेंढयांपासून उत्पादित होणा-या वस्तूंची आयात &amp;nbsp;निर्यात करणे, &amp;nbsp; &amp;nbsp;मेंढयांची पैदास करणे आणि विक्री करणे.&lt;/li&gt;
+                    &lt;li&gt;&amp;nbsp;स्थानिक मेंढयांची जात सुधारण्यासाठी संकरित पैदास कार्यक्रम हाती घेणे/ अथवा कार्यक्रमांना प्रोत्साहन देण्यासाठी शासनाला मदत करणे.&lt;/li&gt;
+                    &lt;li&gt;&amp;nbsp;मेंढयांच्या गुणवत्तेत सुधारणा घडवून मेष पालकांना प्रतिमेंढी मिळणा-या उत्पादनांत वाढ ‍ होऊन मेषपालन व्यवसाय किफायतशीर होण्यासाठी शासनाच्या मदतीने/मदतीशिवाय मेष विस्तार केंद्रे स्थापणे.&lt;/li&gt;
+                    &lt;li&gt;मेषपालनाला उत्तेजन देण्यासाठी सहकारी संस्था, व्यक्ती अथवा फर्म यांना बँकेमार्फत कर्ज मिळविणेकरिता प्रकल्प अहवाल तयार करण्यास मदत करणे. &amp;nbsp;&amp;nbsp;&lt;/li&gt;
+                &lt;/ol&gt;</value>
+  </data>
+  <data name="KeyOfficialsText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th class="text-center"&gt;
+                                अ.क्रं.
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;नाव&lt;/th&gt;
+                            &lt;th class="text-center"&gt;
+                                पद
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;दूरध्वनी क्रंमांक&lt;/th&gt;
+
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;१
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;डॉ. महेश बनसोडे&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;व्यवस्थापकीय संचालक&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;
+                                २
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;डॉ. गजानन सांगोले&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;महाव्यवस्थापक&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;
+                              ३
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;डॉ. सचिन टेकाडे&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;सहाय्यक संचालक&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr class="text-center"&gt;
+                            &lt;td&gt;
+                                ४
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;श्री. देवराम झांजरे&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;वित्तीय सल्लागार व प्रमुख लेखाअधिकारी&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr class="text-center"&gt;
+                            &lt;td&gt;
+                                ५
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;श्री. रमेश कदम&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;प्रशासकीय अधिकारी&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="Minister1Address" xml:space="preserve">
+    <value>&lt;p&gt;मादाम कामा रोड, हुतात्मा राजगुरू चौक, &lt;/p&gt;&lt;p&gt;नरिमन पॉइंट, चर्च गेट, &lt;/p&gt;&lt;p&gt; मंत्रालय, मुंबई, महाराष्ट्र ४०००३२, भारत&lt;/p&gt;</value>
+  </data>
+  <data name="Minister1Name" xml:space="preserve">
+    <value>&lt;p style="font-size:15px;font-weight:bold"&gt;श्री. महादेव जगन्नाथ जानकर, &lt;/p&gt;
+                                &lt;p&gt;मंत्री,पशुसंवर्धन,&lt;/p&gt;
+                                &lt;p&gt; दुग्धव्यवसाय विकास व मत्स्यव्यवसाय विभाग &lt;/p&gt;</value>
+  </data>
+  <data name="Minister1Phone" xml:space="preserve">
+    <value>०२२-२२०४२३१४, २२०४२३१५</value>
+  </data>
+  <data name="Minister2Name" xml:space="preserve">
+    <value>&lt;p style="font-size:15px;font-weight:bold"&gt;श्री. अर्जुन पंडितराव खोतकर&lt;/p&gt;
+                                &lt;p&gt;राज्यमंत्री, 
+वस्त्रोद्योग,&lt;/p&gt;   &lt;p&gt; पशुसंवर्धन, दुग्धव्यवसाय विकास व मत्स्यव्यवसाय विभाग&lt;/p&gt;</value>
+  </data>
+  <data name="Minister2Phone" xml:space="preserve">
+    <value>०२२- २२८७२४१५</value>
+  </data>
+  <data name="MinisterAdd" xml:space="preserve">
+    <value>कार्यालयीन पत्ता</value>
+  </data>
+  <data name="MInistersName" xml:space="preserve">
+    <value>मंत्री महोदय यांची नावे</value>
+  </data>
+  <data name="MissionText" xml:space="preserve">
+    <value>“राज्यामध्ये शेळी मेंढी पालन व्यवसायास गती देऊन शेतकरी तसेच शेळी मेंढी पालकांची  आर्थिक व सामाजिक प्रगती करणे”</value>
+  </data>
+  <data name="ObjectText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;1.&lt;/td&gt;
+                            &lt;td&gt;
+                              महाराष्ट्रात विदेशी/स्थानिक/संकरीत शेळ्या-मेंढ्यांची प्रक्षेत्रे स्थापणे व त्याचा विस्तार करणे.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;2.&lt;/td&gt;
+                            &lt;td&gt;
+                              शेळ्या/मेंढ्यांच्या पैदाशी करिता उपयुक्त ठिकाणी अशा केंद्राची वाढ करणे.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;3.&lt;/td&gt;
+                            &lt;td&gt;
+                              शेळ्या-मेंढया आणि त्यापासून उत्पादित होणार्‍या वस्तूंची आयात-निर्यात करणे, शेळ्या-मेंढ्यांची      
+    पैदास करणे आणि विक्री करणे.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;4.&lt;/td&gt;
+                            &lt;td&gt;
+                               स्थानिक शेळ्या-मेंढ्यांची जात सुधारण्यासाठी संकरीत पैदास कार्यक्रम हाती घेणे/अथवा    
+    कार्यक्रमांना प्रोत्साहन देण्यासाठी शासनाला मदत करणे.
+
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;5.&lt;/td&gt;
+                            &lt;td&gt;
+                               शेळ्या-मेंढ्यांच्या गुणवत्तेत सुधारणा घडवून पशुपालकांना प्रती शेळ्या-मेंढी पासून मिळणार्‍या 
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;6.&lt;/td&gt;
+                            &lt;td&gt;
+                                उत्पादनात वाढ होऊन शेळी-मेंढी पालन व्यवसाय किफायतशीर होण्यासाठी शासनाच्या    
+    मदतीने/मदतीशिवाय विस्तार केंद्रे स्थापणे.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="VariousCommitteeText" xml:space="preserve">
+    <value>&lt;table  class="table table-bordered table-responsive table-striped"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;&lt;strong&gt;अ.क्रं.&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;&lt;strong&gt;नाव&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;&lt;strong&gt;पदनाम&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;&lt;strong&gt;भ्रमणध्वनी क्रंमांक&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;१&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;सौ. शोभा सुभाष हंडाळ&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;अध्यक्ष&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;९७६३५६८३९९&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;२&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;श्रीमती. शैला अर्जुन राजगुरू&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;सदस्य&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;९८८११२८६७७&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;३&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;श्रीमती. संगीता प्रभाकर दवंडे&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;सदस्य&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;९६०४८५१५३०&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;४&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;श्रीमती. उज्वला मसदेकर&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;सदस्य&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;९८५०५२८०६३&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="49"&gt;
+&lt;p&gt;५&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="213"&gt;
+&lt;p&gt;श्री. रमेश तात्यासाहेब कदम&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="198"&gt;
+&lt;p&gt;सदस्य सचिव&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="155"&gt;
+&lt;p&gt;९४२३२०६८१९&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</value>
+  </data>
+  <data name="OfficeBearerText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td width="223"&gt;
+&lt;p&gt;&lt;strong&gt;नाव&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="126"&gt;
+&lt;p&gt;&lt;strong&gt;कार्यालयीन पत्ता&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="149"&gt;
+&lt;p&gt;&lt;strong&gt;दूरध्वनी क्रमांक&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="180"&gt;
+&lt;p&gt;&lt;strong&gt;ई-मेल&lt;/strong&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td width="223"&gt;
+&lt;p&gt;डॉ. महेश बापूराव बनसोडे, व्यवस्थापकीय संचालक, पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ लि. पुणे&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="126"&gt;
+&lt;p&gt;मेंढी फार्म, गोखलेनगर, पुणे ४११ ०१६, महाराष्ट्र, भारत&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="149"&gt;
+&lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
+&lt;/td&gt;
+&lt;td width="180"&gt;
+&lt;p&gt;&lt;a href="mailto:mdsagpune@gmail.com"&gt;mdsagpune@gmail.com&lt;/a&gt;&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;</value>
   </data>
 </root>

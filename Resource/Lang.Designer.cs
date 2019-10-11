@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Mahamesh.App_LocalResources {
+namespace Resource {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace Mahamesh.App_LocalResources {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -39,7 +39,7 @@ namespace Mahamesh.App_LocalResources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mahamesh.App_LocalResources.Lang", typeof(Lang).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Mahamesh.Resource.Lang", typeof(Lang).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -333,7 +333,7 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Audited report .
+        ///   Looks up a localized string similar to Annual Report .
         /// </summary>
         public static string Auditedreport {
             get {
@@ -993,7 +993,7 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Distribution of ram and buck for breeding .
+        ///   Looks up a localized string similar to Distribution of Ram and Buck for Breeding .
         /// </summary>
         public static string Distributionoframandbuckforbreeding {
             get {
@@ -1002,7 +1002,7 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Distribution of rams and ships.
+        ///   Looks up a localized string similar to Distribution of Ram and Sheeps.
         /// </summary>
         public static string Distributionoframsandships {
             get {
@@ -1281,6 +1281,18 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p style=&quot;text-align:justify;&quot;&gt;
+        ///                    Great Mahatma Gandhi honoured &lt;strong&gt;&apos;Goat as poor man&apos;s Cow&apos;&lt;/strong&gt; knowing its importance in upliftment of socioeconomic status of poor / marginal farmers. Sheep and Goat were the first food producing animals to be domesticated around 8000 BC in southeast Asia. Sheep and Goat are reared for meat, milk, hide, skin, wool, hairs and manure production. Sheep and Goat rearing is mainly concentrated in dry and scarcity areas.
+        ///                &lt;/p&gt;
+        ///        [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string HistoryText {
+            get {
+                return ResourceManager.GetString("HistoryText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
@@ -1376,6 +1388,25 @@ namespace Mahamesh.App_LocalResources {
         public static string Keyofficials {
             get {
                 return ResourceManager.GetString("Keyofficials", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table class=&quot;table table-bordered table-responsive table-striped&quot;&gt;
+        ///                    &lt;thead&gt;
+        ///                        &lt;tr&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;
+        ///                                Sr. No.
+        ///                            &lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;Name&lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;
+        ///                                Designation
+        ///                            &lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;Phone [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string KeyOfficialsText {
+            get {
+                return ResourceManager.GetString("KeyOfficialsText", resourceCulture);
             }
         }
         
@@ -1678,6 +1709,63 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;p&gt;Madam Cama Road, Hutatma Rajguru Chowk, &lt;/p&gt;&lt;p&gt;Nariman Point, Churchgate,&lt;/p&gt;&lt;p&gt; Mumbai, Maharashtra 400032, India&lt;/p&gt;.
+        /// </summary>
+        public static string Minister1Address {
+            get {
+                return ResourceManager.GetString("Minister1Address", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p style=&quot;font-size:15px;font-weight:bold&quot;&gt;Shri. Mahadev Jagannath Jankar&lt;/p&gt;
+        ///                                &lt;p&gt;Hon&apos;ble Minister, Animal Husbandry,&lt;/p&gt;
+        ///                                &lt;p&gt; Dairy Development and Fisheries Development&lt;/p&gt;.
+        /// </summary>
+        public static string Minister1Name {
+            get {
+                return ResourceManager.GetString("Minister1Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 022- 22042314, 22042315.
+        /// </summary>
+        public static string Minister1Phone {
+            get {
+                return ResourceManager.GetString("Minister1Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;p style=&quot;font-size:15px;font-weight:bold&quot;&gt;Shri.Arjun Panditrao Khotkar&lt;/p&gt;
+        ///                                &lt;p&gt; Hon&apos;ble Minister for State , Textiles,&lt;/p&gt;   &lt;p&gt; Animal Husbandry, Dairy Development and Fisheries Development&lt;/p&gt;.
+        /// </summary>
+        public static string Minister2Name {
+            get {
+                return ResourceManager.GetString("Minister2Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 022-22872415.
+        /// </summary>
+        public static string Minister2Phone {
+            get {
+                return ResourceManager.GetString("Minister2Phone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Office Address.
+        /// </summary>
+        public static string MinisterAdd {
+            get {
+                return ResourceManager.GetString("MinisterAdd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ministers.
         /// </summary>
         public static string Ministers {
@@ -1687,11 +1775,29 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Minister Name.
+        /// </summary>
+        public static string MInistersName {
+            get {
+                return ResourceManager.GetString("MInistersName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mission.
         /// </summary>
         public static string Mission {
             get {
                 return ResourceManager.GetString("Mission", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to “Economical and social progress of small and marginal farmers by boosting of sheep and goat farming business in the Maharashtra State”.
+        /// </summary>
+        public static string MissionText {
+            get {
+                return ResourceManager.GetString("MissionText", resourceCulture);
             }
         }
         
@@ -1890,6 +1996,44 @@ namespace Mahamesh.App_LocalResources {
         public static string Objectoforganization {
             get {
                 return ResourceManager.GetString("Objectoforganization", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table class=&quot;table table-bordered table-responsive table-striped&quot;&gt;
+        ///                    &lt;tbody&gt;
+        ///                        &lt;tr&gt;
+        ///                            &lt;td class=&quot;text-center&quot;&gt;1.&lt;/td&gt;
+        ///                            &lt;td&gt;
+        ///                                To establish, extend to reorganized sheep Breeding Farms of Exotic / Local / Cross-breed
+        ///                                sheep in the State.
+        ///                            &lt;/td&gt;
+        ///                        &lt;/tr&gt;
+        ///                        &lt;tr&gt;
+        ///                   [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string ObjectText {
+            get {
+                return ResourceManager.GetString("ObjectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table class=&quot;table table-bordered table-responsive table-striped&quot;&gt;
+        ///                    &lt;thead&gt;
+        ///                        &lt;tr&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;
+        ///                                Sr. No.
+        ///                            &lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;Name&lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;
+        ///                                Office Address
+        ///                            &lt;/th&gt;
+        ///                            &lt;th class=&quot;text-center&quot;&gt;Ph [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string OfficeBearerText {
+            get {
+                return ResourceManager.GetString("OfficeBearerText", resourceCulture);
             }
         }
         
@@ -2866,11 +3010,30 @@ namespace Mahamesh.App_LocalResources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Various  committees.
+        ///   Looks up a localized string similar to Women’s Grievance Redressed Committee.
         /// </summary>
         public static string Variouscommittees {
             get {
                 return ResourceManager.GetString("Variouscommittees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;table class=&quot;table table-bordered table-responsive table-striped&quot;&gt;
+        ///                    &lt;tbody&gt;
+        ///                        &lt;tr&gt;
+        ///                            &lt;td width=&quot;49&quot;&gt;
+        ///                                &lt;p&gt;&lt;strong&gt;Sr. No.&lt;/strong&gt;&lt;/p&gt;
+        ///                            &lt;/td&gt;
+        ///                            &lt;td width=&quot;242&quot;&gt;
+        ///                                &lt;p&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/p&gt;
+        ///                            &lt;/td&gt;
+        ///                            &lt;td width=&quot;170&quot;&gt;
+        ///                                &lt;p&gt;&lt;strong&gt;Designa [rest of string was truncated]&quot;;.
+        /// </summary>
+        public static string VariousCommitteeText {
+            get {
+                return ResourceManager.GetString("VariousCommitteeText", resourceCulture);
             }
         }
         

@@ -18,81 +18,97 @@
 <div class="container body-content" id="#maincontent" style="margin-top:20px; margin-bottom: 150px;">
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary-2">
-            <h3 class="panel-title">Key Officials</h3>
+            <h3 class="panel-title">@Resource.Lang.Keyofficials</h3>
         </div>
         <div class="panel-body">
             <div class="row">
-                <table class="table table-bordered table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">
-                                Sr. No.
-                            </th>
-                            <th class="text-center">Name</th>
-                            <th class="text-center">
-                                Designation
-                            </th>
-                            <th class="text-center">Phone No.</th>
+                @Html.Raw(Server.HtmlDecode(Resource.Lang.KeyOfficialsText))
+                @*<table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        अ.क्रं.
+                    </th>
+                    <th class="text-center">नाव</th>
+                    <th class="text-center">
+                        पद
+                    </th>
+                    <th class="text-center">दूरध्वनी क्रंमांक</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">1.</td>
-                            <td>
-                                Dr. Mahesh Bansode
-                            </td>
-                            <td>Managing Director</td>
-                            <td>020-25657112</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-center">2.</td>
-                            <td>
-                                Dr. G. W. Sangole
-                            </td>
-                            <td>General Manager</td>
-                            <td>020-25657112</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-center">3.</td>
-                            <td>
-                                Dr. S. H. Tekade
-                            </td>
-                            <td>Assistant Director</td>
-                            <td>020-256571122</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-center">4.</td>
-                            <td>
-                                Dr. V. A. Borase
-                            </td>
-                            <td>Farm Manager</td>
-                            <td>020-25657112</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-center">5.</td>
-                            <td>
-                                Shri. D. D. Zanjare
-                            </td>
-                            <td>Financial Advisor and Chief Account Officer </td>
-                            <td>020-25657112</td>
-
-                        </tr>
-                        <tr>
-                            <td class="text-center">6.</td>
-                            <td>
-                                Shri. R. T. Kadam
-                            </td>
-                            <td>Administrative Officer</td>
-                            <td>020-25657112</td>
-
-                        </tr>
-                    </tbody>
-                </table>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">१
+                    </td>
+                    <td>
+                        <p>डॉ. महेश बनसोडे</p>
+                    </td>
+                    <td>
+                        <p>व्यवस्थापकीय संचालक</p>
+                    </td>
+                    <td>
+                        <p>०२०-२५६५७११२</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                        २
+                    </td>
+                    <td>
+                        <p>डॉ. गजानन सांगोले</p>
+                    </td>
+                    <td>
+                        <p>महाव्यवस्थापक</p>
+                    </td>
+                    <td>
+                        <p>०२०-२५६५७११२</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-center">
+                      ३
+                    </td>
+                    <td>
+                        <p>डॉ. सचिन टेकाडे</p>
+                    </td>
+                    <td>
+                        <p>सहाय्यक संचालक</p>
+                    </td>
+                    <td>
+                        <p>०२०-२५६५७११२</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td>
+                        ४
+                    </td>
+                    <td>
+                        <p>श्री. देवराम झांजरे</p>
+                    </td>
+                    <td>
+                        <p>वित्तीय सल्लागार व प्रमुख लेखाअधिकारी</p>
+                    </td>
+                    <td>
+                        <p>०२०-२५६५७११२</p>
+                    </td>
+                </tr>
+                <tr class="text-center">
+                    <td>
+                        ५
+                    </td>
+                    <td>
+                        <p>श्री. रमेश कदम</p>
+                    </td>
+                    <td>
+                        <p>प्रशासकीय अधिकारी</p>
+                    </td>
+                    <td>
+                        <p>०२०-२५६५७११२</p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>*@
             </div>
 
         </div>

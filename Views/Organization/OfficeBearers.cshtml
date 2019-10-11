@@ -18,230 +18,231 @@
 <div class="container body-content" id="#maincontent" style="margin-top:20px; margin-bottom: 150px;">
     <div class="panel panel-primary-2" style="box-shadow: 0 2px 2px rgba(0,0,0,.3);">
         <div class="panel-heading panel-primary-2">
-            <h3 class="panel-title">Office Bearers</h3>
+            <h3 class="panel-title">@Resource.Lang.Officebeares</h3>
         </div>
         <div class="panel-body">
             <div class="row">
-                <table class="table table-bordered table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">
-                                Sr. No.
-                            </th>
-                            <th class="text-center">Name</th>
-                            <th class="text-center">
-                                Office Address
-                            </th>
-                            <th class="text-center">Phone No.</th>
-                            <th class="text-center">Email Id</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1.</td>
-                            <td>
-                                <p>Dr. Mahesh Bapurao Bansode,</p>
-                                <p>Managing Director</p>
-                                <p>Punyashlok Ahilyadevi Sheli Va Mendhi Vikas Mahamandal Ltd. Pune-16</p>
-                            </td>
-                            <td><p>Mendhi Farm,</p><p>Gokhalenagar,</p><p> Pune, Maharashtra 411016, India</p></td>
-                            <td>020- 25657112</td>
-                            <td>
-                                mdsagpune@gmail.com
-                            </td>
-                        </tr>
+             @Html.Raw(Server.HtmlDecode(Resource.Lang.OfficeBearerText))
+            @*<table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    Sr. No.
+                </th>
+                <th class="text-center">Name</th>
+                <th class="text-center">
+                    Office Address
+                </th>
+                <th class="text-center">Phone No.</th>
+                <th class="text-center">Email Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1.</td>
+                <td>
+                    <p>Dr. Mahesh Bapurao Bansode,</p>
+                    <p>Managing Director</p>
+                    <p>Punyashlok Ahilyadevi Sheli Va Mendhi Vikas Mahamandal Ltd. Pune-16</p>
+                </td>
+                <td><p>Mendhi Farm,</p><p>Gokhalenagar,</p><p> Pune, Maharashtra 411016, India</p></td>
+                <td>020- 25657112</td>
+                <td>
+                    mdsagpune@gmail.com
+                </td>
+            </tr>
 
-                    </tbody>
-                </table>
-                <hr />
-                <div class="heading">
-                    <h4 class="text-center">Head Office Staff</h4>
-                </div>
-                <table class="table table-bordered table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">
-                                @Mahamesh.App_LocalResources.Lang.SrNo
-                            </th>
-                            <th class="text-center">@Mahamesh.App_LocalResources.Lang.Name</th>
-                            <th class="text-center">
-                                @Mahamesh.App_LocalResources.Lang.Designation
-                            </th>
-                            <th class="text-center">@Mahamesh.App_LocalResources.Lang.PhoneNumber</th>
+        </tbody>
+    </table>*@
+            @*<hr />
+    <div class="heading">
+        <h4 class="text-center">Head Office Staff</h4>
+    </div>
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    @Resource.Lang.SrNo
+                </th>
+                <th class="text-center">@Resource.Lang.Name</th>
+                <th class="text-center">
+                    @Resource.Lang.Designation
+                </th>
+                <th class="text-center">@Resource.Lang.PhoneNumber</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">1.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.MaheshBansode1
-                            </td>
-                            <td>@Mahamesh.App_LocalResources.Lang.ManagingDirector</td>
-                            <td>020-25657112</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1.</td>
+                <td>
+                    @Resource.Lang.MaheshBansode1
+                </td>
+                <td>@Resource.Lang.ManagingDirector</td>
+                <td>020-25657112</td>
 
-                        </tr>
-                        <tr>
-                            <td class="text-center">2.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.GWSangole
-                            </td>
-                            <td>@Mahamesh.App_LocalResources.Lang.GeneralManager</td>
-                            <td>020-25657112</td>
+            </tr>
+            <tr>
+                <td class="text-center">2.</td>
+                <td>
+                    @Resource.Lang.GWSangole
+                </td>
+                <td>@Resource.Lang.GeneralManager</td>
+                <td>020-25657112</td>
 
-                        </tr>
-                        <tr>
-                            <td class="text-center">3.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.SHTekade
-                            </td>
-                            <td>@Mahamesh.App_LocalResources.Lang.AssistantDirector</td>
-                            <td>020-256571122</td>
+            </tr>
+            <tr>
+                <td class="text-center">3.</td>
+                <td>
+                    @Resource.Lang.SHTekade
+                </td>
+                <td>@Resource.Lang.AssistantDirector</td>
+                <td>020-256571122</td>
 
-                        </tr>
+            </tr>
 
-                        <tr>
-                            <td class="text-center">4.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.DDZanzare
-                            </td>
-                            <td>@Mahamesh.App_LocalResources.Lang.FinAdvisor </td>
-                            <td>020-25657112</td>
+            <tr>
+                <td class="text-center">4.</td>
+                <td>
+                    @Resource.Lang.DDZanzare
+                </td>
+                <td>@Resource.Lang.FinAdvisor </td>
+                <td>020-25657112</td>
 
-                        </tr>
-                        <tr>
-                            <td class="text-center">5.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.RTKadam
-                            </td>
-                            <td>@Mahamesh.App_LocalResources.Lang.AdministrativeOfficer</td>
-                            <td>020-25657112</td>
+            </tr>
+            <tr>
+                <td class="text-center">5.</td>
+                <td>
+                    @Resource.Lang.RTKadam
+                </td>
+                <td>@Resource.Lang.AdministrativeOfficer</td>
+                <td>020-25657112</td>
 
-                        </tr>
-                    </tbody>
-                </table>
-                <hr />
-                <div class="heading">
-                    <h4 class="text-center">@Mahamesh.App_LocalResources.Lang.InformationOfFarmManagers</h4>
-                </div>
-                <table class="table table-bordered table-responsive table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-center">
-                                @Mahamesh.App_LocalResources.Lang.SrNo
-                            </th>
-                            <th class="text-center">@Mahamesh.App_LocalResources.Lang.Name</th>
-                            <th class="text-center">
-                                @Mahamesh.App_LocalResources.Lang.Designation
-                            </th>
-                            <th class="text-center">@Mahamesh.App_LocalResources.Lang.PhoneNumber</th>
-                            <th class="text-center">@Mahamesh.App_LocalResources.Lang.MobileNumber</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-center">1.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.GajananSangole
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Padegaon</td>
-                            <td class="text-center">0240-2370449</td>
-                            <td class="text-center">8007333227</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">2.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.VBorse
-                            </td>
-                            <td>Farm Manager, Pune</td>
-                            <td class="text-center">020-25657112</td>
-                            <td class="text-center">9890194006</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">3.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.Ptonde
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Bilakhed</td>
-                            <td class="text-center">02589-222457</td>
-                            <td class="text-center">7709300121</td>
-                        </tr>
+            </tr>
+        </tbody>
+    </table>
+    <hr />
+    <div class="heading">
+        <h4 class="text-center">@Resource.Lang.InformationOfFarmManagers</h4>
+    </div>
+    <table class="table table-bordered table-responsive table-striped">
+        <thead>
+            <tr>
+                <th class="text-center">
+                    @Resource.Lang.SrNo
+                </th>
+                <th class="text-center">@Resource.Lang.Name</th>
+                <th class="text-center">
+                    @Resource.Lang.Designation
+                </th>
+                <th class="text-center">@Resource.Lang.PhoneNumber</th>
+                <th class="text-center">@Resource.Lang.MobileNumber</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-center">1.</td>
+                <td>
+                    @Resource.Lang.GajananSangole
+                </td>
+                <td>Farm Manager, @Resource.Lang.Padegaon</td>
+                <td class="text-center">0240-2370449</td>
+                <td class="text-center">8007333227</td>
+            </tr>
+            <tr>
+                <td class="text-center">2.</td>
+                <td>
+                    @Resource.Lang.VBorse
+                </td>
+                <td>Farm Manager, Pune</td>
+                <td class="text-center">020-25657112</td>
+                <td class="text-center">9890194006</td>
+            </tr>
+            <tr>
+                <td class="text-center">3.</td>
+                <td>
+                    @Resource.Lang.Ptonde
+                </td>
+                <td>Farm Manager, @Resource.Lang.Bilakhed</td>
+                <td class="text-center">02589-222457</td>
+                <td class="text-center">7709300121</td>
+            </tr>
 
-                        <tr>
-                            <td class="text-center">4.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.SDadas
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Ranjani</td>
-                            <td class="text-center">02341-244222</td>
-                            <td class="text-center">8141147677</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">5.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.PKarande
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Mahud</td>
-                            <td class="text-center">02187-202300</td>
-                            <td class="text-center">9545467589</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">6.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.PYedage
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Dahiwadi</td>
-                            <td class="text-center">02165-204480</td>
-                            <td class="text-center">7719075491</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">7.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.BSadar
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Pohara</td>
-                            <td class="text-center">0721-2020523</td>
-                            <td class="text-center">8793451030</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">8.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.Bkandhare
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Bondri</td>
-                            <td class="text-center">---</td>
-                            <td class="text-center">9665787295</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">9.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.RShaikh
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Ambajogai</td>
-                            <td class="text-center">02446-247239</td>
-                            <td class="text-center">8975364673</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">10.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.VSalave
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Mukhed</td>
-                            <td class="text-center">02461-202022</td>
-                            <td class="text-center">9405494770</td>
-                        </tr>
-                        <tr>
-                            <td class="text-center">11.</td>
-                            <td>
-                                @Mahamesh.App_LocalResources.Lang.AGhatare
-                            </td>
-                            <td>Farm Manager, @Mahamesh.App_LocalResources.Lang.Tirth</td>
-                            <td class="text-center">02471-259066</td>
-                            <td class="text-center">8975131626</td>
-                        </tr>
+            <tr>
+                <td class="text-center">4.</td>
+                <td>
+                    @Resource.Lang.SDadas
+                </td>
+                <td>Farm Manager, @Resource.Lang.Ranjani</td>
+                <td class="text-center">02341-244222</td>
+                <td class="text-center">8141147677</td>
+            </tr>
+            <tr>
+                <td class="text-center">5.</td>
+                <td>
+                    @Resource.Lang.PKarande
+                </td>
+                <td>Farm Manager, @Resource.Lang.Mahud</td>
+                <td class="text-center">02187-202300</td>
+                <td class="text-center">9545467589</td>
+            </tr>
+            <tr>
+                <td class="text-center">6.</td>
+                <td>
+                    @Resource.Lang.PYedage
+                </td>
+                <td>Farm Manager, @Resource.Lang.Dahiwadi</td>
+                <td class="text-center">02165-204480</td>
+                <td class="text-center">7719075491</td>
+            </tr>
+            <tr>
+                <td class="text-center">7.</td>
+                <td>
+                    @Resource.Lang.BSadar
+                </td>
+                <td>Farm Manager, @Resource.Lang.Pohara</td>
+                <td class="text-center">0721-2020523</td>
+                <td class="text-center">8793451030</td>
+            </tr>
+            <tr>
+                <td class="text-center">8.</td>
+                <td>
+                    @Resource.Lang.Bkandhare
+                </td>
+                <td>Farm Manager, @Resource.Lang.Bondri</td>
+                <td class="text-center">---</td>
+                <td class="text-center">9665787295</td>
+            </tr>
+            <tr>
+                <td class="text-center">9.</td>
+                <td>
+                    @Resource.Lang.RShaikh
+                </td>
+                <td>Farm Manager, @Resource.Lang.Ambajogai</td>
+                <td class="text-center">02446-247239</td>
+                <td class="text-center">8975364673</td>
+            </tr>
+            <tr>
+                <td class="text-center">10.</td>
+                <td>
+                    @Resource.Lang.VSalave
+                </td>
+                <td>Farm Manager, @Resource.Lang.Mukhed</td>
+                <td class="text-center">02461-202022</td>
+                <td class="text-center">9405494770</td>
+            </tr>
+            <tr>
+                <td class="text-center">11.</td>
+                <td>
+                    @Resource.Lang.AGhatare
+                </td>
+                <td>Farm Manager, @Resource.Lang.Tirth</td>
+                <td class="text-center">02471-259066</td>
+                <td class="text-center">8975131626</td>
+            </tr>
 
-                    </tbody>
-                </table>
+        </tbody>
+    </table>*@
             </div>
         </div>
     </div>

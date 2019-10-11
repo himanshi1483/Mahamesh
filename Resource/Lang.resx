@@ -1,0 +1,1447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AdministrativeOfficer" xml:space="preserve">
+    <value>Administrative Officer</value>
+  </data>
+  <data name="AGhatare" xml:space="preserve">
+    <value>Dr. Akshay Ghatare</value>
+  </data>
+  <data name="Ambajogai" xml:space="preserve">
+    <value>Ambajogai</value>
+  </data>
+  <data name="AmbajogaiAddress" xml:space="preserve">
+    <value>Ambejogai, Dist: Beed</value>
+  </data>
+  <data name="AmbajogaiAreaUndeGrazing" xml:space="preserve">
+    <value>18.01</value>
+  </data>
+  <data name="AmbajogaiAzola" xml:space="preserve">
+    <value>At this farm Azola Cultivation unit has been established for demonstration to the farmers.</value>
+  </data>
+  <data name="AmbajogaiDistribution" xml:space="preserve">
+    <value>Under various Government schemes, the Sheep &amp; Goat unit is distributed to the farmers.</value>
+  </data>
+  <data name="AmbajogaiEmail" xml:space="preserve">
+    <value>sgf.ambejogai@gmail.com</value>
+  </data>
+  <data name="AmbajogaiExtensionActivity" xml:space="preserve">
+    <value>Technical and scientific information of sheep and goat farming is providing to new entrepreneur by actively participating in agriculture/ livestock exhibition/fair/expo/ camps etc.</value>
+  </data>
+  <data name="AmbajogaiFarmManagerName" xml:space="preserve">
+    <value>Dr. Rahim Shaikh</value>
+  </data>
+  <data name="AmbajogaiFarmName" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="AmbajogaiFemaleKids" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="AmbajogaiFemaleSheep" xml:space="preserve">
+    <value>190</value>
+  </data>
+  <data name="AmbajogaiIrrigationLand" xml:space="preserve">
+    <value>4.57</value>
+  </data>
+  <data name="AmbajogaiLandUnderBuilding" xml:space="preserve">
+    <value>14.30</value>
+  </data>
+  <data name="AmbajogaiMaleKids" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="AmbajogaiMaleSheep" xml:space="preserve">
+    <value>55</value>
+  </data>
+  <data name="AmbajogaiMobileNumber" xml:space="preserve">
+    <value>+91-8975364673</value>
+  </data>
+  <data name="AmbajogaiNonIrrigationLand" xml:space="preserve">
+    <value>9.59</value>
+  </data>
+  <data name="AmbajogaiPhoneNumber" xml:space="preserve">
+    <value>02446-247239</value>
+  </data>
+  <data name="AmbajogaiProduction" xml:space="preserve">
+    <value>The Production and supply of fodder seeds and perennial fodder grasses by cultivating improved variety of fodder crops at the farm.</value>
+  </data>
+  <data name="AmbajogaiPurchase" xml:space="preserve">
+    <value>Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woollen products.</value>
+  </data>
+  <data name="AmbajogaiSupplyDetail" xml:space="preserve">
+    <value>Osmanabadi Goat breed is reared at this farm for breeding purpose. The farm produced superior quality bucks are reared up to attain reproductive age and then after the bucks are distributed to farmers for breeding of their ND livestock.</value>
+  </data>
+  <data name="AmbajogaiTotal" xml:space="preserve">
+    <value>291</value>
+  </data>
+  <data name="AmbajogaiTotalLand" xml:space="preserve">
+    <value>46.47</value>
+  </data>
+  <data name="AmbajogaiTraining" xml:space="preserve">
+    <value>Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Farm in every month.
+Fees: Rs. 500/- per trainee. 
+Duration: 3 days.</value>
+  </data>
+  <data name="Androidappongoogleplaystore" xml:space="preserve">
+    <value>Android app on google play store </value>
+  </data>
+  <data name="Animaltradingpolicy" xml:space="preserve">
+    <value>Animal trading policy </value>
+  </data>
+  <data name="AreaunderGrazing" xml:space="preserve">
+    <value>Area under Grazing Pasture (hectare)</value>
+  </data>
+  <data name="AssistantDirector" xml:space="preserve">
+    <value>Assistant Director</value>
+  </data>
+  <data name="Auditedreport" xml:space="preserve">
+    <value>Annual Report </value>
+  </data>
+  <data name="Availablestocks" xml:space="preserve">
+    <value>Available stocks </value>
+  </data>
+  <data name="BalasahebDodtale" xml:space="preserve">
+    <value>Hon. Shri. Balasaheb Dodtale
+ (State Minister Status)</value>
+  </data>
+  <data name="Beneficiarylist" xml:space="preserve">
+    <value>Beneficiary list </value>
+  </data>
+  <data name="Beneficiarylistpreliminaryandfinal" xml:space="preserve">
+    <value>Beneficiary list preliminary and final </value>
+  </data>
+  <data name="BerariGoat" xml:space="preserve">
+    <value>Berari Goat</value>
+  </data>
+  <data name="Bilakhed" xml:space="preserve">
+    <value>Bilakhed  </value>
+  </data>
+  <data name="BilakhedAreaunderGrazingPasture" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BilakhedDeccaniSheep" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="BilakhedEmailID" xml:space="preserve">
+    <value>Dr. Priyanka Tonde</value>
+  </data>
+  <data name="BilakhedFarmAddress" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="BilakhedFarmAddress1" xml:space="preserve">
+    <value>02589/222457</value>
+  </data>
+  <data name="BilakhedFodderPlantNursery" xml:space="preserve">
+    <value>To make available fodder plants for plantation which is useful in sheep and goat, fodder plant nursery is developed at farm. </value>
+  </data>
+  <data name="BilakhedIrrigationLand" xml:space="preserve">
+    <value>23.45</value>
+  </data>
+  <data name="BilakhedLandUnderBuilding" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="BilakhedMachineShearingProgram" xml:space="preserve">
+    <value>For improving the quality and quantity of wool of sheep, the machine shearing facility is providing to the sheep breeders by charging nominal cost. </value>
+  </data>
+  <data name="BilakhedMobileNumber" xml:space="preserve">
+    <value>02589/222457</value>
+  </data>
+  <data name="BilakhedNameofFarm" xml:space="preserve">
+    <value>Bilakhed, Dist: Jalgaon</value>
+  </data>
+  <data name="BilakhedNameofFarmManager" xml:space="preserve">
+    <value>-9075803827</value>
+  </data>
+  <data name="BilakhedNonIrrigationLand" xml:space="preserve">
+    <value>5.48</value>
+  </data>
+  <data name="BilakhedPhoneNumber" xml:space="preserve">
+    <value>sgf.bilakhed@gmail.com </value>
+  </data>
+  <data name="BilakhedSheep" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="BilakhedTotalLand" xml:space="preserve">
+    <value>14.55</value>
+  </data>
+  <data name="BilakhedTraining" xml:space="preserve">
+    <value>Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Farm in every month.
+Fees: Rs. 500/- per trainee. 
+Duration: 3 days.</value>
+  </data>
+  <data name="Bkandhare" xml:space="preserve">
+    <value>Dr. Balaji Kandhare</value>
+  </data>
+  <data name="Boardofdirectors" xml:space="preserve">
+    <value>Board of directors</value>
+  </data>
+  <data name="Bondri" xml:space="preserve">
+    <value>Bondri  </value>
+  </data>
+  <data name="BondriAreaunderGrazingPasture" xml:space="preserve">
+    <value>32.07</value>
+  </data>
+  <data name="BondriDeccaniSheep" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="BondriDemonstrationandproductionofAzola" xml:space="preserve">
+    <value>At this farm Azola Cultivation unit has been established for demonstration to the farmers. </value>
+  </data>
+  <data name="BondriEmailID" xml:space="preserve">
+    <value>sgf.bondri@gmail.com </value>
+  </data>
+  <data name="BondriFarmAddress" xml:space="preserve">
+    <value>Bondri, Dist: Nagpur</value>
+  </data>
+  <data name="BondriIrrigationLand" xml:space="preserve">
+    <value>0.2</value>
+  </data>
+  <data name="BondriLandUnderBuilding" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="BondriLocalBreed" xml:space="preserve">
+    <value>Local Breed</value>
+  </data>
+  <data name="BondriMobileNumber" xml:space="preserve">
+    <value>-7709300030</value>
+  </data>
+  <data name="BondriNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="BondriNameofFarmManager" xml:space="preserve">
+    <value>Dr. Balaji kandhare</value>
+  </data>
+  <data name="BondriNonIrrigationLand" xml:space="preserve">
+    <value>7.8</value>
+  </data>
+  <data name="BondriPhoneNumber" xml:space="preserve">
+    <value>---</value>
+  </data>
+  <data name="BondriPurchaseofWool" xml:space="preserve">
+    <value>Raw wool is purchased from shepherds at remunerative price and utilizes this wool for manufacturing of woolen products.</value>
+  </data>
+  <data name="BondriTotalLand" xml:space="preserve">
+    <value>42.07</value>
+  </data>
+  <data name="Breed" xml:space="preserve">
+    <value>Breed</value>
+  </data>
+  <data name="BSadar" xml:space="preserve">
+    <value>Dr. Bhushan Sadar</value>
+  </data>
+  <data name="Chairman" xml:space="preserve">
+    <value>Chairman</value>
+  </data>
+  <data name="Contactus" xml:space="preserve">
+    <value>Contact us/support   </value>
+  </data>
+  <data name="Dahiwadi" xml:space="preserve">
+    <value>Dahiwadi </value>
+  </data>
+  <data name="DahiwadiAreaunderGrazingPasture" xml:space="preserve">
+    <value>1.4</value>
+  </data>
+  <data name="DahiwadiEmailID" xml:space="preserve">
+    <value>sgf.dahiwadi@gmail.com </value>
+  </data>
+  <data name="DahiwadiFarmAddress" xml:space="preserve">
+    <value>Dahiwadi, Dist: Satara</value>
+  </data>
+  <data name="DahiwadiIrrigationLand" xml:space="preserve">
+    <value>3.5</value>
+  </data>
+  <data name="DahiwadiLandUnderBuilding" xml:space="preserve">
+    <value>72.17</value>
+  </data>
+  <data name="DahiwadiLonandSheep" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="DahiwadiMadgyalSheep" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="DahiwadiMobileNumber" xml:space="preserve">
+    <value>-9404296417</value>
+  </data>
+  <data name="DahiwadiNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="DahiwadiNameofFarmManager" xml:space="preserve">
+    <value>Shri. Pandurang Yedge</value>
+  </data>
+  <data name="DahiwadiNonIrrigationLand" xml:space="preserve">
+    <value>12.5</value>
+  </data>
+  <data name="DahiwadiOsmanabadiGoat" xml:space="preserve">
+    <value>70</value>
+  </data>
+  <data name="DahiwadiPhoneNumber" xml:space="preserve">
+    <value>02165/204480</value>
+  </data>
+  <data name="DahiwadiSangamneriGoat" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="DahiwadiSirohiGoat" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="DahiwadiTotalLand" xml:space="preserve">
+    <value>89.57</value>
+  </data>
+  <data name="DDZanzare" xml:space="preserve">
+    <value>Shri. D. D. Zanjare</value>
+  </data>
+  <data name="DeccaniSangamneri" xml:space="preserve">
+    <value>Deccani (Sangamneri) Sheep</value>
+  </data>
+  <data name="DemonstrationProduction" xml:space="preserve">
+    <value>Demonstration and production of Azola</value>
+  </data>
+  <data name="Departmentguidelines" xml:space="preserve">
+    <value>Department guidelines </value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Designation" xml:space="preserve">
+    <value>Designation</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Developmentactivity" xml:space="preserve">
+    <value>Development  activity</value>
+  </data>
+  <data name="Director" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="Disclamer" xml:space="preserve">
+    <value>Disclamer </value>
+  </data>
+  <data name="Distributionoframandbuckforbreeding" xml:space="preserve">
+    <value>Distribution of Ram and Buck for Breeding </value>
+  </data>
+  <data name="Distributionoframsandships" xml:space="preserve">
+    <value>Distribution of Ram and Sheeps</value>
+  </data>
+  <data name="Downloadforms" xml:space="preserve">
+    <value>Download forms </value>
+  </data>
+  <data name="Downloadstandardform" xml:space="preserve">
+    <value>Download standard form </value>
+  </data>
+  <data name="EmailID" xml:space="preserve">
+    <value>Email ID</value>
+  </data>
+  <data name="Expo" xml:space="preserve">
+    <value>Expo</value>
+  </data>
+  <data name="ExtensionActivity" xml:space="preserve">
+    <value>Extension Activity</value>
+  </data>
+  <data name="FacilitiesAvailable" xml:space="preserve">
+    <value>Facilities Available</value>
+  </data>
+  <data name="Facility" xml:space="preserve">
+    <value>Facility</value>
+  </data>
+  <data name="Farmactivities" xml:space="preserve">
+    <value>Farm activities</value>
+  </data>
+  <data name="FarmAddress" xml:space="preserve">
+    <value>Farm Address</value>
+  </data>
+  <data name="Farmdemonstration" xml:space="preserve">
+    <value>Farm demonstration </value>
+  </data>
+  <data name="Farmdistribution" xml:space="preserve">
+    <value>Farm distribution </value>
+  </data>
+  <data name="Farmextensionactivities" xml:space="preserve">
+    <value>Farm extension activities </value>
+  </data>
+  <data name="FarmfacilitiesAvailable" xml:space="preserve">
+    <value>Farm facilities Available </value>
+  </data>
+  <data name="FarmInformation" xml:space="preserve">
+    <value>Farm Information</value>
+  </data>
+  <data name="Farmlivestock" xml:space="preserve">
+    <value>Farm livestock </value>
+  </data>
+  <data name="Farmlocation" xml:space="preserve">
+    <value>Farm location</value>
+  </data>
+  <data name="FarmManager" xml:space="preserve">
+    <value>Farm Manager</value>
+  </data>
+  <data name="Farms" xml:space="preserve">
+    <value>Farms</value>
+  </data>
+  <data name="Feedandfodder" xml:space="preserve">
+    <value>Feed and fodder </value>
+  </data>
+  <data name="Feedback" xml:space="preserve">
+    <value>Feedback  </value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FemaleKids" xml:space="preserve">
+    <value>Female Kids</value>
+  </data>
+  <data name="FinAdvisor" xml:space="preserve">
+    <value>Financial Advisor and Chief Account Officer</value>
+  </data>
+  <data name="FodderPlantNursery" xml:space="preserve">
+    <value>Fodder Plant Nursery</value>
+  </data>
+  <data name="GajananSangole" xml:space="preserve">
+    <value>Dr. Gajanan Sangole</value>
+  </data>
+  <data name="GeneralManager" xml:space="preserve">
+    <value>General Manager</value>
+  </data>
+  <data name="Governmentguidelines" xml:space="preserve">
+    <value>Government guidelines </value>
+  </data>
+  <data name="GWSangole" xml:space="preserve">
+    <value>Dr. G. W. Sangole</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help  </value>
+  </data>
+  <data name="History" xml:space="preserve">
+    <value>History</value>
+  </data>
+  <data name="HistoryText" xml:space="preserve">
+    <value>&lt;p style="text-align:justify;"&gt;
+                    Great Mahatma Gandhi honoured &lt;strong&gt;'Goat as poor man's Cow'&lt;/strong&gt; knowing its importance in upliftment of socioeconomic status of poor / marginal farmers. Sheep and Goat were the first food producing animals to be domesticated around 8000 BC in southeast Asia. Sheep and Goat are reared for meat, milk, hide, skin, wool, hairs and manure production. Sheep and Goat rearing is mainly concentrated in dry and scarcity areas.
+                &lt;/p&gt;
+                &lt;p style="text-align:justify"&gt;
+                    Breed of sheep in Maharashtra is known as  &lt;strong&gt;'Deshi' or 'Deccani'&lt;/strong&gt;. This breed is not quite pure one. The yield of wool obtained from these sheep is not only low in quality but also of inferior quality. This wool is therefore used mainly for the production of country blankets. The sheep on Maharashtra are therefore reared mainly for meat and manure. Apart from wool and meat sheep are valued for their manure, some income also comes from sheep hairs. Inspire of these advantages and facts the status of shepherd community in the state has not appreciably improved. The nomadic and unstable life of breeders, their poor land holdings and financial positions, their illiteracy and ignorance about the improved techniques of breeding, feeding and management, wool harvesting and disease control measures are factors responsible for the backwardness of shepherd community in the state.
+                &lt;/p&gt;    &lt;p style="text-align:justify"&gt;
+                    To ameliorate the conditions of shepherd community in the state it was felt necessary to provide i. Better feeding facilities for the genetic improvement of the native sheep for higher production, both under stationary and nomadic type ii. Better feeding for both stationary and nomadic type iii. Intensive health cover and diagnostic facilities. iv. Services in wool harvesting and classification. v. Suitable marketing facilities know how about sheep rearing. In order to achieve this Government of Maharashtra vide its G.R. No. SDS 1078/143(1834)/5-ADF Dated 22 feb 1978 Established Sheep Development Corporation under the registration of companies act tone a state government private limited company the corporation was named as "Maharashtra Sheep Development Corporation" This Corporation will undertake activities in the field of better breeding facilities for the genetic improvement of native sheep, better feeding, provision of health cover and diagnostic facilities and services, harvesting and suitable marketing facilities for sheep products and to arrange for the dissemination of technical know how about sheep rearing amongst the shepherds.
+                &lt;/p&gt;
+                &lt;p style="text-align:justify"&gt;
+
+                    In order to undertake all above activities sheep breeding farms of the state government and the wool utilization centre at Pune mentioned below transferred to the Maharashtra Sheep Development corporation with effect from 1November 1979, along with staff working on farms with their respective posts including post of 'Assistant Director of Animal Husbandry (Sheep)' in the office of the Director of Animal Husbandry vide G.R. No. SDS-2677/52683-9-ADF(342) Dated: 31 October 1979.
+                &lt;/p&gt;
+                &lt;table class="table table-bordered table-striped"&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;1.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Pune (Only the office of the Manager Sheep Breeding Station &amp; its
+                            assets)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;2.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Mahud (Dist. Solapur)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;3.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Ranjani (Dist. Sangli)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;4.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Dahiwadi (Dist. Satara)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;5.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Padegaon (Dist. Aurangabad)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;6.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Ambejogai (Dist. Beed)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;7.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Tuljapur (Dist. Osmanabad)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;8.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Mukhed (Dist. Nanded)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;9.&lt;/td&gt;
+                        &lt;td&gt;
+                            Sheep Breeding Farm- Mukhed (Dist. Nanded)
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                    &lt;tr&gt;
+                        &lt;td class="text-center"&gt;10.&lt;/td&gt;
+                        &lt;td&gt;
+                            Wool Utilization Centre- Pune.
+                        &lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+                &lt;p&gt;
+                    In order to enable the Maharashtra Mendhi Va Sheli Vikas Mahamandal Ltd. to promote activity of goat rearing in a big way Government vide resolution No. MSDC 1082/11698/386/ADF-5 Dated 7 August 1984 transferred Goat Breeding Farm, Pohara, Dist. Amravati with the Animal Husbandry Department transferred to the Mahamandal along with posts on farm with effect from 1 September 1984.
+                &lt;/p&gt;
+                &lt;p&gt;
+                    The name of mahamandal has got revised in 1984 from Maharashtra Sheep Development Corporation to Maharashtra Mendhi Va Sheli Vikas Mahamandal and then in 2003 as Punyashloka Ahilyadevi Maharashtra Mendhi Va Sheli Vikas Mahamandal ltd. in the honour of great Punyashloka Ahilyadevi.
+                &lt;/p&gt;</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Implementedschemes" xml:space="preserve">
+    <value>Implemented  schemes</value>
+  </data>
+  <data name="Informationoffarmers" xml:space="preserve">
+    <value>Information of farmers </value>
+  </data>
+  <data name="InformationOfFarmManagers" xml:space="preserve">
+    <value>Information Of Farm Managers</value>
+  </data>
+  <data name="Informationregardingbreeding" xml:space="preserve">
+    <value>Information regarding breeding</value>
+  </data>
+  <data name="Informationregardingfeeding" xml:space="preserve">
+    <value>Information regarding feeding </value>
+  </data>
+  <data name="Informationregardinginsemination" xml:space="preserve">
+    <value>Information regarding insemination </value>
+  </data>
+  <data name="Informationreghospitals" xml:space="preserve">
+    <value>Information reg.hospitals-vets-dispensary </value>
+  </data>
+  <data name="Inprogressschemes" xml:space="preserve">
+    <value>In progress schemes</value>
+  </data>
+  <data name="IrrigationLand" xml:space="preserve">
+    <value>Irrigation Land (hectare)</value>
+  </data>
+  <data name="Keyofficials" xml:space="preserve">
+    <value>Key officials</value>
+  </data>
+  <data name="KeyOfficialsText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th class="text-center"&gt;
+                                Sr. No.
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;Name&lt;/th&gt;
+                            &lt;th class="text-center"&gt;
+                                Designation
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;Phone No.&lt;/th&gt;
+
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;1.&lt;/td&gt;
+                            &lt;td&gt;
+                                Dr. Mahesh Bansode
+                            &lt;/td&gt;
+                            &lt;td&gt;Managing Director&lt;/td&gt;
+                            &lt;td&gt;020-25657112&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;2.&lt;/td&gt;
+                            &lt;td&gt;
+                                Dr. G. W. Sangole
+                            &lt;/td&gt;
+                            &lt;td&gt;General Manager&lt;/td&gt;
+                            &lt;td&gt;020-25657112&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;3.&lt;/td&gt;
+                            &lt;td&gt;
+                                Dr. S. H. Tekade
+                            &lt;/td&gt;
+                            &lt;td&gt;Assistant Director&lt;/td&gt;
+                            &lt;td&gt;020-256571122&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;4.&lt;/td&gt;
+                            &lt;td&gt;
+                                Dr. V. A. Borase
+                            &lt;/td&gt;
+                            &lt;td&gt;Farm Manager&lt;/td&gt;
+                            &lt;td&gt;020-25657112&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;5.&lt;/td&gt;
+                            &lt;td&gt;
+                                Shri. D. D. Zanjare
+                            &lt;/td&gt;
+                            &lt;td&gt;Financial Advisor and Chief Account Officer &lt;/td&gt;
+                            &lt;td&gt;020-25657112&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;6.&lt;/td&gt;
+                            &lt;td&gt;
+                                Shri. R. T. Kadam
+                            &lt;/td&gt;
+                            &lt;td&gt;Administrative Officer&lt;/td&gt;
+                            &lt;td&gt;020-25657112&lt;/td&gt;
+
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="Lakshminarayan" xml:space="preserve">
+    <value>Hon. Shri. Lakshminarayan Mishra (I.A.S) Commissioner Animal Husbandry, Maharashtra State, Pune</value>
+  </data>
+  <data name="LandUnderBuilding" xml:space="preserve">
+    <value>Land Under Building, Roads, Percolation Tanks &amp; Forestation (hectare)</value>
+  </data>
+  <data name="ListofAvailablebreeds" xml:space="preserve">
+    <value>List of Available breeds </value>
+  </data>
+  <data name="Listofofficers" xml:space="preserve">
+    <value>List of officers </value>
+  </data>
+  <data name="Listofprogressivefarmers" xml:space="preserve">
+    <value>List of progressive farmers </value>
+  </data>
+  <data name="Listofvaccinations" xml:space="preserve">
+    <value>List of vaccinations /dieases/remedies </value>
+  </data>
+  <data name="LiveStockDetails" xml:space="preserve">
+    <value>LiveStock Details Updated Till 31st March 2019</value>
+  </data>
+  <data name="Livestockinsurance" xml:space="preserve">
+    <value>Livestock insurance </value>
+  </data>
+  <data name="MachineShearing" xml:space="preserve">
+    <value>Machine Shearing Program</value>
+  </data>
+  <data name="MadgyalSheep" xml:space="preserve">
+    <value>Madgyal Sheep</value>
+  </data>
+  <data name="Mahameshyojana" xml:space="preserve">
+    <value>Mahamesh yojana </value>
+  </data>
+  <data name="Mahameshyojnahighlights" xml:space="preserve">
+    <value>Mahamesh yojna 2019-2020 highlights-</value>
+  </data>
+  <data name="MaheshBansode" xml:space="preserve">
+    <value>Dr. Mahesh Bansode
+Managing Director, Punyashlok Ahilyadevi Maharashtra Mendhi va Sheli Vikas Mahamandal, Gokhalenagar, Pune</value>
+  </data>
+  <data name="MaheshBansode1" xml:space="preserve">
+    <value>Dr. Mahesh Bansode</value>
+  </data>
+  <data name="Mahud" xml:space="preserve">
+    <value>Mahud  </value>
+  </data>
+  <data name="MahudAreaunderGrazingPasture" xml:space="preserve">
+    <value>291.24</value>
+  </data>
+  <data name="MahudEmailID" xml:space="preserve">
+    <value>sgf.mahud@gmail.com </value>
+  </data>
+  <data name="MahudFarmAddress" xml:space="preserve">
+    <value>Mahud,  Dist: Solapur</value>
+  </data>
+  <data name="MahudIrrigationLand" xml:space="preserve">
+    <value>37.36</value>
+  </data>
+  <data name="MahudLandUnderBuilding" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="MahudMadgyalSheep" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="MahudMobileNumber" xml:space="preserve">
+    <value>89.96481259</value>
+  </data>
+  <data name="MahudNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="MahudNameofFarmManager" xml:space="preserve">
+    <value>Dr. Popat Karande</value>
+  </data>
+  <data name="MahudNonIrrigationLand" xml:space="preserve">
+    <value>57.09</value>
+  </data>
+  <data name="MahudOsmanabadiGoat" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="MahudPhoneNumber" xml:space="preserve">
+    <value>02187/202300</value>
+  </data>
+  <data name="MahudSupply" xml:space="preserve">
+    <value>Madgyal sheep and Osmanabadi Goat breed are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers.</value>
+  </data>
+  <data name="MahudTotalLand" xml:space="preserve">
+    <value>390.69</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MaleKids" xml:space="preserve">
+    <value>Male Kids</value>
+  </data>
+  <data name="ManagingDirector" xml:space="preserve">
+    <value>Managing Director</value>
+  </data>
+  <data name="Media" xml:space="preserve">
+    <value>Media  </value>
+  </data>
+  <data name="Minister1Address" xml:space="preserve">
+    <value>&lt;p&gt;Madam Cama Road, Hutatma Rajguru Chowk, &lt;/p&gt;&lt;p&gt;Nariman Point, Churchgate,&lt;/p&gt;&lt;p&gt; Mumbai, Maharashtra 400032, India&lt;/p&gt;</value>
+  </data>
+  <data name="Minister1Name" xml:space="preserve">
+    <value>&lt;p style="font-size:15px;font-weight:bold"&gt;Shri. Mahadev Jagannath Jankar&lt;/p&gt;
+                                &lt;p&gt;Hon'ble Minister, Animal Husbandry,&lt;/p&gt;
+                                &lt;p&gt; Dairy Development and Fisheries Development&lt;/p&gt;</value>
+  </data>
+  <data name="Minister1Phone" xml:space="preserve">
+    <value>022- 22042314, 22042315</value>
+  </data>
+  <data name="Minister2Name" xml:space="preserve">
+    <value>&lt;p style="font-size:15px;font-weight:bold"&gt;Shri.Arjun Panditrao Khotkar&lt;/p&gt;
+                                &lt;p&gt; Hon'ble Minister for State , Textiles,&lt;/p&gt;   &lt;p&gt; Animal Husbandry, Dairy Development and Fisheries Development&lt;/p&gt;</value>
+  </data>
+  <data name="Minister2Phone" xml:space="preserve">
+    <value>022-22872415</value>
+  </data>
+  <data name="MinisterAdd" xml:space="preserve">
+    <value>Office Address</value>
+  </data>
+  <data name="Ministers" xml:space="preserve">
+    <value>Ministers</value>
+  </data>
+  <data name="MInistersName" xml:space="preserve">
+    <value>Minister Name</value>
+  </data>
+  <data name="Mission" xml:space="preserve">
+    <value>Mission</value>
+  </data>
+  <data name="MissionText" xml:space="preserve">
+    <value>“Economical and social progress of small and marginal farmers by boosting of sheep and goat farming business in the Maharashtra State”</value>
+  </data>
+  <data name="MobileNumber" xml:space="preserve">
+    <value>Mobile Number</value>
+  </data>
+  <data name="Modelscheme" xml:space="preserve">
+    <value>Model scheme </value>
+  </data>
+  <data name="Mukhed" xml:space="preserve">
+    <value>Mukhed  </value>
+  </data>
+  <data name="MukhedAreaunderGrazingPasture" xml:space="preserve">
+    <value>58.22</value>
+  </data>
+  <data name="MukhedDeccaniSheep" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="MukhedEmailID" xml:space="preserve">
+    <value>salvevikram@rediffmail.com </value>
+  </data>
+  <data name="MukhedFarmAddress" xml:space="preserve">
+    <value>Mukhed, Dist: Nanded</value>
+  </data>
+  <data name="MukhedIrrigationLand" xml:space="preserve">
+    <value>1.4</value>
+  </data>
+  <data name="MukhedLandUnderBuilding" xml:space="preserve">
+    <value>42</value>
+  </data>
+  <data name="MukhedMobileNumber" xml:space="preserve">
+    <value>-9405494679</value>
+  </data>
+  <data name="MukhedNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="MukhedNameofFarmManager" xml:space="preserve">
+    <value>Dr. Vikram Salve </value>
+  </data>
+  <data name="MukhedNonIrrigationLand" xml:space="preserve">
+    <value>3.8</value>
+  </data>
+  <data name="MukhedPhoneNumber" xml:space="preserve">
+    <value>02461/202022</value>
+  </data>
+  <data name="MukhedSupply" xml:space="preserve">
+    <value>Deccani sheep breed is reared at this farm for breeding purpose. The farm produced superior quality rams are reared up to attain reproductive age and then after the rams are distributed to farmers.</value>
+  </data>
+  <data name="MukhedTotalLand" xml:space="preserve">
+    <value>105.42</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NameofFarm" xml:space="preserve">
+    <value>Name of Farm</value>
+  </data>
+  <data name="NameofFarmManager" xml:space="preserve">
+    <value>Name of Farm Manager</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>News </value>
+  </data>
+  <data name="NonIrrigationLand" xml:space="preserve">
+    <value>Non – Irrigation Land (hectare)</value>
+  </data>
+  <data name="Objectoforganization" xml:space="preserve">
+    <value>Object of organization</value>
+  </data>
+  <data name="ObjectText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;1.&lt;/td&gt;
+                            &lt;td&gt;
+                                To establish, extend to reorganized sheep Breeding Farms of Exotic / Local / Cross-breed
+                                sheep in the State.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;2.&lt;/td&gt;
+                            &lt;td&gt;
+                                To multiply such units at location convenient to sheep rising.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;3.&lt;/td&gt;
+                            &lt;td&gt;
+                                To import, export &amp; sell the sheep &amp; sheep products.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;4.&lt;/td&gt;
+                            &lt;td&gt;
+                                To take crossbreeding programme for up gradation of local sheep.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;5.&lt;/td&gt;
+                            &lt;td&gt;
+                                To establish, or reorganize sheep extension centres in collaboration with the State
+                                Government
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;6.&lt;/td&gt;
+                            &lt;td&gt;
+                                To finance, promote, establish &amp; administer &amp; assist institutions run by Government, Co-
+                                operatives.
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="OfficeBearerText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th class="text-center"&gt;
+                                Sr. No.
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;Name&lt;/th&gt;
+                            &lt;th class="text-center"&gt;
+                                Office Address
+                            &lt;/th&gt;
+                            &lt;th class="text-center"&gt;Phone No.&lt;/th&gt;
+                            &lt;th class="text-center"&gt;Email Id&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td&gt;1.&lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;p&gt;Dr. Mahesh Bapurao Bansode,&lt;/p&gt;
+                                &lt;p&gt;Managing Director&lt;/p&gt;
+                                &lt;p&gt;Punyashlok Ahilyadevi Sheli Va Mendhi Vikas Mahamandal Ltd. Pune-16&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;&lt;p&gt;Mendhi Farm,&lt;/p&gt;&lt;p&gt;Gokhalenagar,&lt;/p&gt;&lt;p&gt; Pune, Maharashtra 411016, India&lt;/p&gt;&lt;/td&gt;
+                            &lt;td&gt;020- 25657112&lt;/td&gt;
+                            &lt;td&gt;
+                                mdsagpune@gmail.com
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="Officebeares" xml:space="preserve">
+    <value>Office beares</value>
+  </data>
+  <data name="Officedocuments" xml:space="preserve">
+    <value>Office documents </value>
+  </data>
+  <data name="Officerlogin" xml:space="preserve">
+    <value>Officer login </value>
+  </data>
+  <data name="Ongoingschemes" xml:space="preserve">
+    <value>Ongoing schemes </value>
+  </data>
+  <data name="Organization" xml:space="preserve">
+    <value>Organization</value>
+  </data>
+  <data name="OsmanabadiGoat" xml:space="preserve">
+    <value>Osmanabadi Goat</value>
+  </data>
+  <data name="Ourfarms" xml:space="preserve">
+    <value>Our farms </value>
+  </data>
+  <data name="Padegaon" xml:space="preserve">
+    <value>Padegaon  </value>
+  </data>
+  <data name="PadegaonAreaunderGrazingPasture" xml:space="preserve">
+    <value>32.7</value>
+  </data>
+  <data name="PadegaonDeccaniSheep" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="PadegaonEmailID" xml:space="preserve">
+    <value>sgf.padegaon@gmail.com </value>
+  </data>
+  <data name="PadegaonFarmAddress" xml:space="preserve">
+    <value>Padegaon, Dist: Aurangabad</value>
+  </data>
+  <data name="PadegaonIrrigationLand" xml:space="preserve">
+    <value>8.7</value>
+  </data>
+  <data name="PadegaonLandUnderBuilding" xml:space="preserve">
+    <value>11.95</value>
+  </data>
+  <data name="PadegaonMobileNumber" xml:space="preserve">
+    <value>-8007333136</value>
+  </data>
+  <data name="PadegaonNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="PadegaonNameofFarmManager" xml:space="preserve">
+    <value>Dr. Gajanan Sangole</value>
+  </data>
+  <data name="PadegaonNonIrrigationLand" xml:space="preserve">
+    <value>43.92</value>
+  </data>
+  <data name="PadegaonOsmanabadiGoat" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="PadegaonPhoneNumber" xml:space="preserve">
+    <value>0240/2370449</value>
+  </data>
+  <data name="PadegaonSangamneriGoat" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="PadegaonSupply" xml:space="preserve">
+    <value>Deccani (Sangamneri) sheep and Osmanabadi Goat breed are  reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks are reared up to attain reproductive age and then after the rams &amp; bucks are distributed to farmers.</value>
+  </data>
+  <data name="PadegaonTotalLand" xml:space="preserve">
+    <value>97.27</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="Photos" xml:space="preserve">
+    <value>Photos </value>
+  </data>
+  <data name="Physicalandfinancialtargets" xml:space="preserve">
+    <value>Physical and financial targets </value>
+  </data>
+  <data name="PKarande" xml:space="preserve">
+    <value>Dr. Popat Karande</value>
+  </data>
+  <data name="Pohara" xml:space="preserve">
+    <value>Pohara </value>
+  </data>
+  <data name="PoharaAreaunderGrazingPasture" xml:space="preserve">
+    <value>152.05</value>
+  </data>
+  <data name="PoharaBerariGoat" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="PoharaEmailID" xml:space="preserve">
+    <value>sgf.pohara@gmail.com </value>
+  </data>
+  <data name="PoharaFarmAddress" xml:space="preserve">
+    <value>Pohara,  Dist: Amravati</value>
+  </data>
+  <data name="PoharaIrrigationLand" xml:space="preserve">
+    <value>9.5</value>
+  </data>
+  <data name="PoharaLandUnderBuilding" xml:space="preserve">
+    <value>5.8</value>
+  </data>
+  <data name="PoharaMobileNumber" xml:space="preserve">
+    <value>-9766577718</value>
+  </data>
+  <data name="PoharaNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="PoharaNameofFarmManager" xml:space="preserve">
+    <value>Dr. Bhushan Sadar</value>
+  </data>
+  <data name="PoharaNonIrrigationLand" xml:space="preserve">
+    <value>9.5</value>
+  </data>
+  <data name="PoharaOsmanabadiGoat" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="PoharaPhoneNumber" xml:space="preserve">
+    <value>0721/2020523</value>
+  </data>
+  <data name="PoharaTotalLand" xml:space="preserve">
+    <value>176.85</value>
+  </data>
+  <data name="Precautionduringnaturalcalamity" xml:space="preserve">
+    <value>Precaution during natural calamity </value>
+  </data>
+  <data name="Pressinformation" xml:space="preserve">
+    <value>Press information</value>
+  </data>
+  <data name="ProductionSupply" xml:space="preserve">
+    <value>Production &amp; Supply of Fodder Seed and Stumps of Perennial Grasses.</value>
+  </data>
+  <data name="Productsatfarm" xml:space="preserve">
+    <value>Products at farm </value>
+  </data>
+  <data name="Productswoolen" xml:space="preserve">
+    <value>Products woolen </value>
+  </data>
+  <data name="Projectstatus" xml:space="preserve">
+    <value>Project status </value>
+  </data>
+  <data name="Ptonde" xml:space="preserve">
+    <value>Dr. Priyanka Tonde</value>
+  </data>
+  <data name="PurchaseofWool" xml:space="preserve">
+    <value>Purchase of Wool</value>
+  </data>
+  <data name="PYedage" xml:space="preserve">
+    <value>Shri. Pandurang Yedage</value>
+  </data>
+  <data name="Ramdistribution" xml:space="preserve">
+    <value>Ram distribution </value>
+  </data>
+  <data name="Ranjani" xml:space="preserve">
+    <value>Ranjani</value>
+  </data>
+  <data name="RanjaniAreaunderGrazingPasture" xml:space="preserve">
+    <value>488.86</value>
+  </data>
+  <data name="RanjaniEmailID" xml:space="preserve">
+    <value> sgf.ranjani@gmail.com </value>
+  </data>
+  <data name="RanjaniFarmAddress" xml:space="preserve">
+    <value>Ranjani,  Dist: Sangli</value>
+  </data>
+  <data name="RanjaniIrrigationLand" xml:space="preserve">
+    <value>42.7</value>
+  </data>
+  <data name="RanjaniLandUnderBuilding" xml:space="preserve">
+    <value>66.59</value>
+  </data>
+  <data name="RanjaniMadgyalSheep" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="RanjaniMobileNumber" xml:space="preserve">
+    <value>-8329398278</value>
+  </data>
+  <data name="RanjaniNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="RanjaniNameofFarmManager" xml:space="preserve">
+    <value>Dr. Sachin Dadas</value>
+  </data>
+  <data name="RanjaniNonIrrigationLand" xml:space="preserve">
+    <value>117.3</value>
+  </data>
+  <data name="RanjaniOsmanabadiGoat" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="RanjaniPhoneNumber" xml:space="preserve">
+    <value>02341/244222</value>
+  </data>
+  <data name="RanjaniTotalLand" xml:space="preserve">
+    <value>715.45</value>
+  </data>
+  <data name="RanjiniSupplyDetail" xml:space="preserve">
+    <value>Madgyal sheep and Osmanabadi goat breeds are reared at this farm for breeding purpose. The farm produced superior quality rams &amp; bucks  are reared up to attain reproductive age and then after the rams &amp; bucks  are distributed to farmers.</value>
+  </data>
+  <data name="RShaikh" xml:space="preserve">
+    <value>Dr. Rahim Shaikh</value>
+  </data>
+  <data name="RTI" xml:space="preserve">
+    <value>RTI </value>
+  </data>
+  <data name="RTKadam" xml:space="preserve">
+    <value>Shri. R. T. Kadam</value>
+  </data>
+  <data name="SangamneriSheep" xml:space="preserve">
+    <value>Sangamneri Sheep</value>
+  </data>
+  <data name="Schemes" xml:space="preserve">
+    <value>Schemes</value>
+  </data>
+  <data name="SchemesYearwise" xml:space="preserve">
+    <value>Schemes Yearwise</value>
+  </data>
+  <data name="SDadas" xml:space="preserve">
+    <value>Dr. Sachin Dadas</value>
+  </data>
+  <data name="Sheepandgoattraining" xml:space="preserve">
+    <value>Sheep and goat training </value>
+  </data>
+  <data name="SheepGoatFarmingTraining" xml:space="preserve">
+    <value>Sheep and Goat Farming Training</value>
+  </data>
+  <data name="SheepGoatUnitDistribution" xml:space="preserve">
+    <value>Sheep and Goat Unit Distribution</value>
+  </data>
+  <data name="SheepTraining1" xml:space="preserve">
+    <value>Sheep &amp; Goat Management Training Program is conducted at Sheep &amp; Goat Development Corporation in every month.</value>
+  </data>
+  <data name="SheepTraining2" xml:space="preserve">
+    <value>Fees: Rs. 2000/- (In Rs. Two Thousand only) per trainee</value>
+  </data>
+  <data name="SheepTraining3" xml:space="preserve">
+    <value>Duration: 3 days</value>
+  </data>
+  <data name="SheepTraining4" xml:space="preserve">
+    <value>Contact : 020/25657112</value>
+  </data>
+  <data name="SheepTraining5" xml:space="preserve">
+    <value>Email ID : mdsagpune@gmail.com</value>
+  </data>
+  <data name="SHTekade" xml:space="preserve">
+    <value>Dr. S. H. Tekade</value>
+  </data>
+  <data name="SrNo" xml:space="preserve">
+    <value>Sr. No.</value>
+  </data>
+  <data name="StaffOfHeadOffice" xml:space="preserve">
+    <value>Staff Of Head Office</value>
+  </data>
+  <data name="Successstories" xml:space="preserve">
+    <value>Success stories </value>
+  </data>
+  <data name="SupplyofBucks" xml:space="preserve">
+    <value>Supply of Bucks for Breeding</value>
+  </data>
+  <data name="SupplyofBucksGoats" xml:space="preserve">
+    <value>Supply of Rams and Bucks for Breeding</value>
+  </data>
+  <data name="SupplyofRams" xml:space="preserve">
+    <value>Supply of Rams for Breeding</value>
+  </data>
+  <data name="Tenders" xml:space="preserve">
+    <value>Tenders</value>
+  </data>
+  <data name="Tirth" xml:space="preserve">
+    <value>Tirth  </value>
+  </data>
+  <data name="TirthAreaunderGrazingPasture" xml:space="preserve">
+    <value>45.4</value>
+  </data>
+  <data name="TirthEmailID" xml:space="preserve">
+    <value>sgf.tirth@gmail.com </value>
+  </data>
+  <data name="TirthFarmAddress" xml:space="preserve">
+    <value>Tirth,  Dist: Osmanabad</value>
+  </data>
+  <data name="TirthIrrigationLand" xml:space="preserve">
+    <value>16.43</value>
+  </data>
+  <data name="TirthLandUnderBuilding" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="TirthMobileNumber" xml:space="preserve">
+    <value>-9404872497</value>
+  </data>
+  <data name="TirthNameofFarm" xml:space="preserve">
+    <value>Punyashlok Ahilyadevi Sheep &amp; Goat Development Farm</value>
+  </data>
+  <data name="TirthNameofFarmManager" xml:space="preserve">
+    <value>Dr. Akshay Ghatare </value>
+  </data>
+  <data name="TirthNonIrrigationLand" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="TirthOsmanabadiGoat" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="TirthPhoneNumber" xml:space="preserve">
+    <value>02471/259066</value>
+  </data>
+  <data name="TirthTotalLand" xml:space="preserve">
+    <value>80.83</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="TotalLand" xml:space="preserve">
+    <value>Total Land (hectare)</value>
+  </data>
+  <data name="Training" xml:space="preserve">
+    <value>Training</value>
+  </data>
+  <data name="Usefullinks" xml:space="preserve">
+    <value>Useful links </value>
+  </data>
+  <data name="Userlogin" xml:space="preserve">
+    <value>User login </value>
+  </data>
+  <data name="Usermanual" xml:space="preserve">
+    <value>User manual</value>
+  </data>
+  <data name="Variouscommittees" xml:space="preserve">
+    <value>Women’s Grievance Redressed Committee</value>
+  </data>
+  <data name="VariousCommitteeText" xml:space="preserve">
+    <value>&lt;table class="table table-bordered table-responsive table-striped"&gt;
+                    &lt;tbody&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;&lt;strong&gt;Sr. No.&lt;/strong&gt;&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;&lt;strong&gt;Name&lt;/strong&gt;&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;&lt;strong&gt;Designation&lt;/strong&gt;&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;&lt;strong&gt;Mobile No.&lt;/strong&gt;&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;1&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;Mrs. Shobha Subhash Handal&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;Chairman&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;9763568399&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;2&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;Smt. Shaila Arjun Rajguru&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;Member&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;9881128677&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;3&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;Smt. Sangita Prabhakar Davande&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;Member&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;9604851530&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;4&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;Smt. Ujwala Masdekar&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;Member&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;9850528063&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td width="49"&gt;
+                                &lt;p&gt;5&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="242"&gt;
+                                &lt;p&gt;Shri. Ramesh Tatyasaheb Kadam&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="170"&gt;
+                                &lt;p&gt;Member Secretary&lt;/p&gt;
+                            &lt;/td&gt;
+                            &lt;td width="155"&gt;
+                                &lt;p&gt;9423206819&lt;/p&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;</value>
+  </data>
+  <data name="VBorse" xml:space="preserve">
+    <value>Dr. Veeraj Borse</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>Video  </value>
+  </data>
+  <data name="VijayChaudhari" xml:space="preserve">
+    <value>Hon. Shri. Vijay Choudhari
+Deputy Secretary, Department of Animal Husbandry, Dairy Development and Fishery, Mantralaya, Mumbai</value>
+  </data>
+  <data name="Vision" xml:space="preserve">
+    <value>Vision</value>
+  </data>
+  <data name="VisionText" xml:space="preserve">
+    <value>We are working for the welfare of the sheep and goat farming sector and want to consolidate the supply chain by providing wholesome knowledge of sheep and goat farming and marketing linkage. We have to create strong working condition and knowledge base for the sheep and goat farmers which have the potential to install economical viable sheep and goat farming business. We are also striving hard to bring small and marginal sheep and goat farmers into main stream of economical and social development.</value>
+  </data>
+  <data name="Visitoranalytics" xml:space="preserve">
+    <value>Visitor analytics </value>
+  </data>
+  <data name="VSalave" xml:space="preserve">
+    <value>Dr. Vikram Salave</value>
+  </data>
+  <data name="Webinformationmanager" xml:space="preserve">
+    <value>Web information manager </value>
+  </data>
+  <data name="Websitepolicies" xml:space="preserve">
+    <value>Website policies </value>
+  </data>
+  <data name="Woolenproducts" xml:space="preserve">
+    <value>Woolen products </value>
+  </data>
+  <data name="Youtubevideo" xml:space="preserve">
+    <value>Youtube video </value>
+  </data>
+</root>

@@ -171,7 +171,7 @@
 <div class="container body-content" id="#maincontent">
     <section>
         <div class="row col-lg-12">
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-3 text-center">
                 <figure class="figure">
                     <img src="~/Images/rsz_chairman2_opt.jpg" alt="chairman" class="figure-img img-responsive img-border" />
                     <figcaption class="text-center figure-caption">
@@ -184,18 +184,21 @@
             </div>
 
             <div class="col-lg-6 col-md-6 text-center">
-
-                <div class="hytPlayerWrapOuter">
+                <figure class="figure">
+                    <img src="~/Images/home.JPG" alt="home" class="figure-img img-responsive" style="height:333px;width:560px" />
+                   
+                </figure>
+                @*<div class="hytPlayerWrapOuter">
                     <div class="hytPlayerWrap">
                         <iframe width="560" height="315"
                                 src="https://www.youtube.com/embed/UI4jmZUI3yY?rel=0&enablejsapi=1"
                                 frameborder="0"></iframe>
                     </div>
-                </div>
+                </div>*@
             </div>
-            <div class="col-lg-3 col-md-3">
+            <div class="col-lg-3 col-md-3 text-center">
                 <figure class="figure">
-                    <img src="~/Images/MD3.png" alt="MD" class="figure-img img-responsive img-border" />
+                    <img src="~/Images/MD3.png" alt="MD" class="figure-img img-responsive img-border" style="height:295px"/>
                     <figcaption class="text-center figure-caption">
                         <strong> Dr. Mahesh Bansode</strong><br />
                         Managing Director
@@ -252,7 +255,7 @@
         </div>
     </section>
     <div class="mu-title" style="background:#edecec;padding-top:2px;">
-        <h5 style="font-weight:bold">@Mahamesh.App_LocalResources.Lang.Ourfarms</h5>
+        <h5 style="font-weight:bold">@Resource.Lang.Ourfarms</h5>
     </div>
     <section>
         <div class="row col-lg-12 col-md-12">
@@ -261,14 +264,14 @@
                 @*<nav id="menu">*@
                 <ul class="vertical-nav">
 
-                    <li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Mahamesh.App_LocalResources.Lang.Productsatfarm</a></li>
-                    <li><a href="@Url.Action("ProductsWool", "Menu")">@Mahamesh.App_LocalResources.Lang.Productswoolen</a></li>
-                    <li><a href="@Url.Action("DeptGuidelinesGR", "Menu")">@Mahamesh.App_LocalResources.Lang.Departmentguidelines</a></li>
-                    <li><a href="@Url.Action("BeneficiaryList", "Menu")">@Mahamesh.App_LocalResources.Lang.Beneficiarylist</a></li>
-                    <li><a href="@Url.Action("ProjectStatus", "Menu")">@Mahamesh.App_LocalResources.Lang.Projectstatus</a></li>
-                    <li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Mahamesh.App_LocalResources.Lang.Productsatfarm</a></li>
+                    <li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Resource.Lang.Productsatfarm</a></li>
+                    <li><a href="@Url.Action("ProductsWool", "Menu")">@Resource.Lang.Productswoolen</a></li>
+                    <li><a href="@Url.Action("DeptGuidelinesGR", "Menu")">@Resource.Lang.Departmentguidelines</a></li>
+                    <li><a href="@Url.Action("BeneficiaryList", "Menu")">@Resource.Lang.Beneficiarylist</a></li>
+                    <li><a href="@Url.Action("ProjectStatus", "Menu")">@Resource.Lang.Projectstatus</a></li>
+                    @*<li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Resource.Lang.Productsatfarm</a></li>*@
                     <li>
-                        <a href="@Url.Action("OfficeDocuments", "Menu")">@Mahamesh.App_LocalResources.Lang.Officedocuments</a>
+                        <a href="@Url.Action("OfficeDocuments", "Menu")">@Resource.Lang.Officedocuments</a>
                         <ul class="sub-menu">
                             <li><a href="@Url.Action("OfficeDocuments", "Menu")">Acts</a></li>
                             <li><a href="@Url.Action("OfficeDocuments", "Menu")">Circulars</a></li>
@@ -315,19 +318,19 @@
                             <!-- Start single service -->
                             <div class="mu-service-single" style="background:#fd4401">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Ambajogai", "Home")">@Mahamesh.App_LocalResources.Lang.Ambajogai</a></h4>
+                                <h4><a href="@Url.Action("Ambajogai", "Home")">@Resource.Lang.Ambajogai</a></h4>
                             </div>
                             <div class="mu-service-single">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Bilakhed", "Home")">@Mahamesh.App_LocalResources.Lang.Bilakhed</a></h4>
+                                <h4><a href="@Url.Action("Bilakhed", "Home")">@Resource.Lang.Bilakhed</a></h4>
                             </div>
                             <div class="mu-service-single">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Bondri", "Home")">@Mahamesh.App_LocalResources.Lang.Bondri</a></h4>
+                                <h4><a href="@Url.Action("Bondri", "Home")">@Resource.Lang.Bondri</a></h4>
                             </div>
                             <div class="mu-service-single">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Dahiwadi", "Home")">@Mahamesh.App_LocalResources.Lang.Dahiwadi</a></h4>
+                                <h4><a href="@Url.Action("Dahiwadi", "Home")">@Resource.Lang.Dahiwadi</a></h4>
                             </div>
                         </div>
                         <div class="row">
@@ -335,33 +338,33 @@
                             <!-- Start single service -->
                             <div class="mu-service-single" style="background:#df82a4">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Mahud", "Home")">@Mahamesh.App_LocalResources.Lang.Mahud</a></h4>
+                                <h4><a href="@Url.Action("Mahud", "Home")">@Resource.Lang.Mahud</a></h4>
                             </div>
                             <!-- Start single service -->
                             <!-- Start single service -->
                             <div class="mu-service-single" style="background:#c0054a">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Mukhed", "Home")">@Mahamesh.App_LocalResources.Lang.Mukhed</a></h4>
+                                <h4><a href="@Url.Action("Mukhed", "Home")">@Resource.Lang.Mukhed</a></h4>
                             </div>
                             <!-- Start single service -->
                             <!-- Start single service -->
                             <div class="mu-service-single" style="background:#fdc201">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Padegaon", "Home")">@Mahamesh.App_LocalResources.Lang.Padegaon</a></h4>
+                                <h4><a href="@Url.Action("Padegaon", "Home")">@Resource.Lang.Padegaon</a></h4>
                             </div>
                             <div class="mu-service-single" style="background:#82df8e">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Pohara", "Home")">@Mahamesh.App_LocalResources.Lang.Pohara</a></h4>
+                                <h4><a href="@Url.Action("Pohara", "Home")">@Resource.Lang.Pohara</a></h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="mu-service-single-50" style="background:#fe4c75">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Ranjini", "Home")">@Mahamesh.App_LocalResources.Lang.Ranjani</a></h4>
+                                <h4><a href="@Url.Action("Ranjini", "Home")">@Resource.Lang.Ranjani</a></h4>
                             </div>
                             <div class="mu-service-single-50" style="background:#fe7c4c">
                                 <span class="fa fa-list-alt"></span>
-                                <h4><a href="@Url.Action("Tirth", "Home")">@Mahamesh.App_LocalResources.Lang.Tirth</a></h4>
+                                <h4><a href="@Url.Action("Tirth", "Home")">@Resource.Lang.Tirth</a></h4>
                             </div>
 
                             <!-- Start single service -->
@@ -492,33 +495,33 @@
                 <ul class="vertical-nav">
 
 
-                    <li><a href="@Url.Action("AuditedReports", "Menu")">@Mahamesh.App_LocalResources.Lang.Auditedreport</a></li>
+                    <li><a href="@Url.Action("AuditedReports", "Menu")">@Resource.Lang.Auditedreport</a></li>
                     <li>
-                        <a href="#">@Mahamesh.App_LocalResources.Lang.Informationoffarmers</a>
+                        <a href="#">@Resource.Lang.Informationoffarmers</a>
                         <ul class="sub-menu1">
-                            <li><a href="@Url.Action("OfficersList", "Menu")">@Mahamesh.App_LocalResources.Lang.Listofofficers</a></li>
-                            <li><a href="@Url.Action("InseminationInformation", "Menu")">@Mahamesh.App_LocalResources.Lang.Informationregardinginsemination</a></li>
-                            <li><a href="@Url.Action("HospitalsInformation", "Menu")">@Mahamesh.App_LocalResources.Lang.Informationreghospitals</a></li>
-                            <li><a href="@Url.Action("BreedsAvailable", "Menu")">@Mahamesh.App_LocalResources.Lang.ListofAvailablebreeds</a></li>
-                            <li><a href="@Url.Action("VaccinationList", "Menu")">@Mahamesh.App_LocalResources.Lang.Listofvaccinations</a></li>
-                            <li><a href="@Url.Action("FeedingInformation", "Menu")">@Mahamesh.App_LocalResources.Lang.Informationregardingfeeding</a></li>
-                            <li><a href="@Url.Action("BreedingInformation", "Menu")">@Mahamesh.App_LocalResources.Lang.Informationregardingbreeding</a></li>
-                            <li><a href="@Url.Action("OngoingSchemes", "Menu")">@Mahamesh.App_LocalResources.Lang.Ongoingschemes</a></li>
-                            <li><a href="@Url.Action("AnimalTradingPolicy", "Menu")">@Mahamesh.App_LocalResources.Lang.Animaltradingpolicy</a></li>
+                            <li><a href="@Url.Action("OfficersList", "Menu")">@Resource.Lang.Listofofficers</a></li>
+                            <li><a href="@Url.Action("InseminationInformation", "Menu")">@Resource.Lang.Informationregardinginsemination</a></li>
+                            <li><a href="@Url.Action("HospitalsInformation", "Menu")">@Resource.Lang.Informationreghospitals</a></li>
+                            <li><a href="@Url.Action("BreedsAvailable", "Menu")">@Resource.Lang.ListofAvailablebreeds</a></li>
+                            <li><a href="@Url.Action("VaccinationList", "Menu")">@Resource.Lang.Listofvaccinations</a></li>
+                            <li><a href="@Url.Action("FeedingInformation", "Menu")">@Resource.Lang.Informationregardingfeeding</a></li>
+                            <li><a href="@Url.Action("BreedingInformation", "Menu")">@Resource.Lang.Informationregardingbreeding</a></li>
+                            <li><a href="@Url.Action("OngoingSchemes", "Menu")">@Resource.Lang.Ongoingschemes</a></li>
+                            <li><a href="@Url.Action("AnimalTradingPolicy", "Menu")">@Resource.Lang.Animaltradingpolicy</a></li>
 
                         </ul>
                     </li>
                     <li>
-                        <a href="@Url.Action("ModelScheme", "Menu")">@Mahamesh.App_LocalResources.Lang.Modelscheme</a>
+                        <a href="@Url.Action("ModelScheme", "Menu")">@Resource.Lang.Modelscheme</a>
                         <ul class="sub-menu1">
-                            <li><a href="@Url.Action("StockAvailability", "Menu")">@Mahamesh.App_LocalResources.Lang.Availablestocks</a></li>
-                            <li><a href="@Url.Action("FeedandFodder", "Menu")"> @Mahamesh.App_LocalResources.Lang.Feedandfodder</a></li>
+                            <li><a href="@Url.Action("StockAvailability", "Menu")">@Resource.Lang.Availablestocks</a></li>
+                            <li><a href="@Url.Action("FeedandFodder", "Menu")"> @Resource.Lang.Feedandfodder</a></li>
                         </ul>
                     </li>
-                    <li><a href="@Url.Action("SuccessStories", "Menu")">@Mahamesh.App_LocalResources.Lang.Successstories</a></li>
-                    <li><a href="@Url.Action("FarmersList", "Menu")">@Mahamesh.App_LocalResources.Lang.Listofprogressivefarmers</a></li>
-                    <li><a href="@Url.Action("LivestockInsurance", "Menu")">@Mahamesh.App_LocalResources.Lang.Livestockinsurance</a></li>
-                    <li><a href="@Url.Action("Precautions", "Menu")">@Mahamesh.App_LocalResources.Lang.Precautionduringnaturalcalamity</a></li>
+                    <li><a href="@Url.Action("SuccessStories", "Menu")">@Resource.Lang.Successstories</a></li>
+                    <li><a href="@Url.Action("FarmersList", "Menu")">@Resource.Lang.Listofprogressivefarmers</a></li>
+                    <li><a href="@Url.Action("LivestockInsurance", "Menu")">@Resource.Lang.Livestockinsurance</a></li>
+                    <li><a href="@Url.Action("Precautions", "Menu")">@Resource.Lang.Precautionduringnaturalcalamity</a></li>
                 </ul>
                 @*<section>
                         <div class="panel panel-default" style="margin-bottom: 15px!important;background-color:transparent !important">
@@ -566,7 +569,7 @@
 
         </div>
         <div class="mu-title" style="background:#ed7048;padding-top:2px;color:white">
-            <h5 style="font-weight:bold"><a href="@Url.Action("SheepGoatTraining", "Home")">@Mahamesh.App_LocalResources.Lang.Sheepandgoattraining</a></h5>
+            <h5 style="font-weight:bold"><a href="@Url.Action("SheepGoatTraining", "Home")">@Resource.Lang.Sheepandgoattraining</a></h5>
         </div>
         <div class="row col-lg-12 col-md-12">
             <div class="col-lg-6 col-md-6">
@@ -574,7 +577,7 @@
 
                     <div class="panel panel-default" style="background-color:transparent !important">
                         <div class="panel-heading">
-                            <span class="glyphicon glyphicon-list-alt"></span><b>@Mahamesh.App_LocalResources.Lang.Tenders</b>
+                            <span class="glyphicon glyphicon-list-alt"></span><b>@Resource.Lang.Tenders</b>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -598,7 +601,7 @@
                 <section>
                     <div class="panel panel-default" style="margin-bottom: 15px!important;background-color:transparent !important">
                         <div class="panel-heading">
-                            <span class="glyphicon glyphicon-list-alt"></span><b>@Mahamesh.App_LocalResources.Lang.News</b>
+                            <span class="glyphicon glyphicon-list-alt"></span><b>@Resource.Lang.News</b>
                         </div>
                         <div class="panel-body">
                             <div class="row">
