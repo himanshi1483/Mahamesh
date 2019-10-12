@@ -90,7 +90,7 @@ if it's not present, don't show loader */
         }
 
         .resizable {
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .sticky {
@@ -219,7 +219,7 @@ if it's not present, don't show loader */
                                     <img src="~/Images/logo1.png" height="110" width="110" style="float:left;padding:5px;" alt="Logo" class="img-responsive" />
                                     <div class="titleSite">
                                         <span style="font-size:15px !important">A Govt of Maharashtra Undertaking</span><br />
-                                        <h1 class="layoutH1">Punyashloka Ahilya Devi Maharashtra Mendhi Va Sheli Vikas Mahamandal</h1>
+                                                                                                                        <h1 class="layoutH1">Punyashloka Ahilyadevi Maharashtra Mendhi Va Sheli Vikas Mahamandal</h1>
                                     </div>
                                     <div class="titleSite" style="color:red">पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळ</div>
                                 </div>
@@ -257,16 +257,19 @@ if it's not present, don't show loader */
                     <div id="navbar" class="navbar-collapse collapse">
                         <ul id="top-menu" class="resizable nav navbar-nav main-nav">
 
-                            <li class="dropdown" id="home">
+                            <li id="home">
 
-                                <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">@Resource.Lang.Home <span class="fa fa-angle-down"></span></a>
-                                <ul class="dropdown-menu" role="menu">
+                                <a href="@Url.Action("Index", "Home")" class="dropdown-toggle">@Resource.Lang.Home </a>
+                                @*<ul class="dropdown-menu" role="menu">
                                     <li class="liMenu"><a href="@Url.Action("Vision", "Home")">@Resource.Lang.Vision</a></li>
                                     <li class="liMenu"><a href="@Url.Action("Mission", "Home")">@Resource.Lang.Mission</a></li>
                                     <li class="liMenu"><a href="@Url.Action("History", "Home")">@Resource.Lang.History</a></li>
 
-                                </ul>
+                                </ul>*@
                             </li>
+                            <li><a href="@Url.Action("Vision", "Home")">@Resource.Lang.Vision</a></li>
+                            <li><a href="@Url.Action("Mission", "Home")">@Resource.Lang.Mission</a></li>
+                            <li><a href="@Url.Action("History", "Home")">@Resource.Lang.History</a></li>
                             <li class="dropdown" id="org">
                                 <a href="#" class="dropdown-toggle">@Resource.Lang.Organization <span class="fa fa-angle-down"></span></a>
                                 <ul class="dropdown-menu" role="menu">
@@ -317,22 +320,19 @@ if it's not present, don't show loader */
                                     <span class="fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li class="liMenu"><a href="@Url.Action("Expo", "Event")">Expo</a></li>
+                                    @*<li class="liMenu"><a href="@Url.Action("Expo", "Event")">Expo</a></li>*@
                                     @*<li class="liMenu"><a href="@Url.Action("Training", "Event")">Training</a></li>*@
                                     <li class="liMenu"><a href="@Url.Action("Bakari_Id", "Event")">Bakri Id</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown" id="citizen">
-                                <a href="@Url.Action("Index", "CitizenCharter")" class="dropdown-toggle">
-                                    Citizen Charter
+                            @*<li class="dropdown" id="citizen">
+            <a href="@Url.Action("Index", "CitizenCharter")" class="dropdown-toggle">
+                Citizen Charter
 
-                                    @*<span class="fa fa-angle-down"></span>*@
-                                </a>
-                                @*<ul class="dropdown-menu" role="menu">
-                                        <li><a href="course.html">Course Archive</a></li>
-                                        <li><a href="course-detail.html">Course Detail</a></li>
-                                    </ul>*@
-                            </li>
+
+            </a>
+
+        </li>*@
                             @*<li><a href="gallery.html">Tender</a></li>*@
                             <li class="dropdown" id="tender">
                                 <a href="@Url.Action("Index", "Tender")" class="dropdown-toggle">@Resource.Lang.Tenders <span class="fa fa-angle-down"></span></a>
@@ -358,30 +358,30 @@ if it's not present, don't show loader */
                                 </ul>
                             </li>
                             @*<li class="dropdown">
-                                    <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
-                                        Useful Links
-                                    </a>
-                                </li>*@
+            <a href="@Url.Action("Index", "UsefulLinks")" class="dropdown-toggle">
+                Useful Links
+            </a>
+        </li>*@
                             <li class="liMenu" id="contact"><a href="@Url.Action("Contact", "Home")">@Resource.Lang.Contactus</a></li>
 
                             @*@if (User.Identity.IsAuthenticated)
-                                {
-                                    <li class="dropdown">
-                                        <a href="@Url.Action("AdminPanel","Menu")" class="dropdown-toggle">
-                                            Admin Panel
-                                            <span class="fa fa-angle-down"></span>
-                                        </a>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li><a href="@Url.Action("Index", "News")">News</a></li>
-                                            <li><a href="@Url.Action("Index", "TenderInfo")">Tenders</a></li>
-                                            <li><a href="@Url.Action("Index", "PressInformation")">Press Information</a></li>
-                                            <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
-                                            <li><a href="@Url.Action("Index", "ApplicantRegistrations")">Applications</a></li>
-                                            <li><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">Applications Count</a></li>
+        {
+            <li class="dropdown">
+                <a href="@Url.Action("AdminPanel","Menu")" class="dropdown-toggle">
+                    Admin Panel
+                    <span class="fa fa-angle-down"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="@Url.Action("Index", "News")">News</a></li>
+                    <li><a href="@Url.Action("Index", "TenderInfo")">Tenders</a></li>
+                    <li><a href="@Url.Action("Index", "PressInformation")">Press Information</a></li>
+                    <li><a href="@Url.Action("Index", "Feedback")">Feedback</a></li>
+                    <li><a href="@Url.Action("Index", "ApplicantRegistrations")">Applications</a></li>
+                    <li><a href="@Url.Action("ApplicationIndexByDistrict", "ApplicantRegistrations")">Applications Count</a></li>
 
-                                        </ul>
-                                    </li>
-                                }*@
+                </ul>
+            </li>
+        }*@
                         </ul>
                     </div><!--/.nav-collapse -->
 

@@ -201,7 +201,7 @@ Duration: 3 days.</value>
     <value>Android app on google play store </value>
   </data>
   <data name="Animaltradingpolicy" xml:space="preserve">
-    <value>Animal trading policy </value>
+    <value>National Policy For Small Ruminants</value>
   </data>
   <data name="AreaunderGrazing" xml:space="preserve">
     <value>Area under Grazing Pasture (hectare)</value>
@@ -348,7 +348,7 @@ Duration: 3 days.</value>
     <value>Chairman</value>
   </data>
   <data name="Contactus" xml:space="preserve">
-    <value>Contact us/support   </value>
+    <value>Contact Us  </value>
   </data>
   <data name="Dahiwadi" xml:space="preserve">
     <value>Dahiwadi </value>
@@ -411,7 +411,7 @@ Duration: 3 days.</value>
     <value>Demonstration and production of Azola</value>
   </data>
   <data name="Departmentguidelines" xml:space="preserve">
-    <value>Department guidelines </value>
+    <value>G.R./Guidelines</value>
   </data>
   <data name="Description" xml:space="preserve">
     <value>Description</value>
@@ -525,7 +525,7 @@ Duration: 3 days.</value>
     <value>Help  </value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>History</value>
+    <value>Establishment &amp; Object</value>
   </data>
   <data name="HistoryText" xml:space="preserve">
     <value>&lt;p style="text-align:justify;"&gt;
@@ -623,13 +623,13 @@ Duration: 3 days.</value>
     <value>Information Of Farm Managers</value>
   </data>
   <data name="Informationregardingbreeding" xml:space="preserve">
-    <value>Information regarding breeding</value>
+    <value>Breeding Policy of State</value>
   </data>
   <data name="Informationregardingfeeding" xml:space="preserve">
-    <value>Information regarding feeding </value>
+    <value>Feed &amp; Fooder</value>
   </data>
   <data name="Informationregardinginsemination" xml:space="preserve">
-    <value>Information regarding insemination </value>
+    <value>Information Regarding Breeding</value>
   </data>
   <data name="Informationreghospitals" xml:space="preserve">
     <value>Information reg.hospitals-vets-dispensary </value>
@@ -723,7 +723,7 @@ Duration: 3 days.</value>
     <value>Land Under Building, Roads, Percolation Tanks &amp; Forestation (hectare)</value>
   </data>
   <data name="ListofAvailablebreeds" xml:space="preserve">
-    <value>List of Available breeds </value>
+    <value>Breeds of Sheep &amp; Goat</value>
   </data>
   <data name="Listofofficers" xml:space="preserve">
     <value>List of officers </value>
@@ -732,7 +732,7 @@ Duration: 3 days.</value>
     <value>List of progressive farmers </value>
   </data>
   <data name="Listofvaccinations" xml:space="preserve">
-    <value>List of vaccinations /dieases/remedies </value>
+    <value>Vaccinations Schedule</value>
   </data>
   <data name="LiveStockDetails" xml:space="preserve">
     <value>LiveStock Details Updated Till 31st March 2019</value>
@@ -853,7 +853,7 @@ Managing Director, Punyashlok Ahilyadevi Maharashtra Mendhi va Sheli Vikas Maham
     <value>Mobile Number</value>
   </data>
   <data name="Modelscheme" xml:space="preserve">
-    <value>Model scheme </value>
+    <value>Project Economics</value>
   </data>
   <data name="Mukhed" xml:space="preserve">
     <value>Mukhed  </value>

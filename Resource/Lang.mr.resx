@@ -384,7 +384,7 @@
     <value>मादी पिल्ले</value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>पुण्यश्लोक अहिल्यादेवी महाराष्ट्र मेंढी व शेळी विकास महामंडळाची स्थापना, उद्दिष्टे व कार्ये</value>
+    <value>स्थापना व उद्दीष्ट</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>मुख्य पान</value>
@@ -1158,8 +1158,8 @@
                                 &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
                             &lt;/td&gt;
                         &lt;/tr&gt;
-                        &lt;tr class="text-center"&gt;
-                            &lt;td&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;
                                 ४
                             &lt;/td&gt;
                             &lt;td&gt;
@@ -1172,8 +1172,8 @@
                                 &lt;p&gt;०२०-२५६५७११२&lt;/p&gt;
                             &lt;/td&gt;
                         &lt;/tr&gt;
-                        &lt;tr class="text-center"&gt;
-                            &lt;td&gt;
+                        &lt;tr&gt;
+                            &lt;td class="text-center"&gt;
                                 ५
                             &lt;/td&gt;
                             &lt;td&gt;

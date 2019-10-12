@@ -4,7 +4,6 @@
 }
 <style>
     .marquee {
-    
     }
     /* Move it (define the animation) */
     @@-moz-keyframes example1 {
@@ -186,19 +185,19 @@
             <div class="col-lg-6 col-md-6 text-center">
                 <figure class="figure">
                     <img src="~/Images/home.JPG" alt="home" class="figure-img img-responsive" style="height:333px;width:560px" />
-                   
+
                 </figure>
                 @*<div class="hytPlayerWrapOuter">
-                    <div class="hytPlayerWrap">
-                        <iframe width="560" height="315"
-                                src="https://www.youtube.com/embed/UI4jmZUI3yY?rel=0&enablejsapi=1"
-                                frameborder="0"></iframe>
-                    </div>
-                </div>*@
+                        <div class="hytPlayerWrap">
+                            <iframe width="560" height="315"
+                                    src="https://www.youtube.com/embed/UI4jmZUI3yY?rel=0&enablejsapi=1"
+                                    frameborder="0"></iframe>
+                        </div>
+                    </div>*@
             </div>
             <div class="col-lg-3 col-md-3 text-center">
                 <figure class="figure">
-                    <img src="~/Images/MD3.png" alt="MD" class="figure-img img-responsive img-border" style="height:295px"/>
+                    <img src="~/Images/MD3.png" alt="MD" class="figure-img img-responsive img-border" style="height:295px" />
                     <figcaption class="text-center figure-caption">
                         <strong> Dr. Mahesh Bansode</strong><br />
                         Managing Director
@@ -228,15 +227,29 @@
                     </div>
                     <div class="mu-service-single" style="background:#6eb00f">
                         <span class="fa fa-list-alt"></span>
-                        <h5><a href="@Url.Action("Bakari_id", "Event")" style="color:white !important">बकरी - ईद</a></h5>
-                        <h4><a href="@Url.Action("Bakari_id", "Event")" style="color:white !important">Bakari  -  Id</a></h4>
+                        <h5>
+                            <a href="@Url.Action("Bakari_id", "Event")" style="color:white !important">
+                                प्रक्षेत्रावरील उत्पादने
+                            </a>
+                        </h5>
+                        <h4>
+                            <a href="@Url.Action("Bakari_id", "Event")" style="color:white !important">
+                                Farm Product
+                            </a>
+                        </h4>
                     </div>
                     <!-- Start single service -->
                     <!-- Start single service -->
                     <div class="mu-service-single" style="background:#4d56fa">
                         <span class="fa fa-list-alt"></span>
-                        <h5><a href="#" style="color:white !important">वितरण</a></h5>
-                        <h4>Ram Distribution</h4>
+                        <h5>
+                            <a href="#" style="color:white !important">
+                                शेळी व मेंढी पालन व्यवसाय प्रशिक्षण
+                            </a>
+                        </h5>
+                        <h4 style="font-size:16px !important">
+                            Goat & Sheep Farming Training
+                        </h4>
                     </div>
                     <!-- Start single service -->
                     <!-- Start single service -->
@@ -244,7 +257,7 @@
                         <span class="fa fa-list-alt"></span>
                         <h5>
                             <a href="#" style="color:white !important">
-                                ऊनी उत्पादने
+                                लोकरीचे उत्पादने
                             </a>
                         </h5>
                         <h4><a href="@Url.Action("ProductsWool", "Menu")">Woolen Products</a></h4>
@@ -264,7 +277,7 @@
                 @*<nav id="menu">*@
                 <ul class="vertical-nav">
 
-                    <li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Resource.Lang.Productsatfarm</a></li>
+                    @*<li><a href="@Url.Action("ProductsAtFarm", "Menu")">@Resource.Lang.Productsatfarm</a></li>*@
                     <li><a href="@Url.Action("ProductsWool", "Menu")">@Resource.Lang.Productswoolen</a></li>
                     <li><a href="@Url.Action("DeptGuidelinesGR", "Menu")">@Resource.Lang.Departmentguidelines</a></li>
                     <li><a href="@Url.Action("BeneficiaryList", "Menu")">@Resource.Lang.Beneficiarylist</a></li>
@@ -281,6 +294,7 @@
                             <li><a href="@Url.Action("OfficeDocuments", "Menu")">Minutes of Meeting</a></li>
                         </ul>
                     </li>
+                    <li><a href="@Url.Action("AuditedReports", "Menu")">@Resource.Lang.Auditedreport</a></li>
                     @*<li><a href="@Url.Action("AuditedReports", "Menu")">Audited Reports</a></li>
                         <li>
                             <a href="@Url.Action("FarmersInformation", "Menu")">Information for Farmers</a>
@@ -495,18 +509,18 @@
                 <ul class="vertical-nav">
 
 
-                    <li><a href="@Url.Action("AuditedReports", "Menu")">@Resource.Lang.Auditedreport</a></li>
+
                     <li>
                         <a href="#">@Resource.Lang.Informationoffarmers</a>
                         <ul class="sub-menu1">
-                            <li><a href="@Url.Action("OfficersList", "Menu")">@Resource.Lang.Listofofficers</a></li>
+                            @*<li><a href="@Url.Action("OfficersList", "Menu")">@Resource.Lang.Listofofficers</a></li>*@
                             <li><a href="@Url.Action("InseminationInformation", "Menu")">@Resource.Lang.Informationregardinginsemination</a></li>
                             <li><a href="@Url.Action("HospitalsInformation", "Menu")">@Resource.Lang.Informationreghospitals</a></li>
                             <li><a href="@Url.Action("BreedsAvailable", "Menu")">@Resource.Lang.ListofAvailablebreeds</a></li>
                             <li><a href="@Url.Action("VaccinationList", "Menu")">@Resource.Lang.Listofvaccinations</a></li>
                             <li><a href="@Url.Action("FeedingInformation", "Menu")">@Resource.Lang.Informationregardingfeeding</a></li>
                             <li><a href="@Url.Action("BreedingInformation", "Menu")">@Resource.Lang.Informationregardingbreeding</a></li>
-                            <li><a href="@Url.Action("OngoingSchemes", "Menu")">@Resource.Lang.Ongoingschemes</a></li>
+                            @*<li><a href="@Url.Action("OngoingSchemes", "Menu")">@Resource.Lang.Ongoingschemes</a></li>*@
                             <li><a href="@Url.Action("AnimalTradingPolicy", "Menu")">@Resource.Lang.Animaltradingpolicy</a></li>
 
                         </ul>
@@ -514,10 +528,22 @@
                     <li>
                         <a href="@Url.Action("ModelScheme", "Menu")">@Resource.Lang.Modelscheme</a>
                         <ul class="sub-menu1">
-                            <li><a href="@Url.Action("StockAvailability", "Menu")">@Resource.Lang.Availablestocks</a></li>
-                            <li><a href="@Url.Action("FeedandFodder", "Menu")"> @Resource.Lang.Feedandfodder</a></li>
+                            @*<li><a href="@Url.Action("StockAvailability", "Menu")">@Resource.Lang.Availablestocks</a></li>
+                                <li><a href="@Url.Action("FeedandFodder", "Menu")"> @Resource.Lang.Feedandfodder</a></li>*@
+                            <li>
+                                <a href="#">
+                                    20+1 Goat Unit
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">50+2 Goat Unit</a>
+                            </li>
+                            <li>
+                                <a href="#"> 100+4 Goat Unit
+                                </a>
+                            </li>
                         </ul>
-                    </li>
+
                     <li><a href="@Url.Action("SuccessStories", "Menu")">@Resource.Lang.Successstories</a></li>
                     <li><a href="@Url.Action("FarmersList", "Menu")">@Resource.Lang.Listofprogressivefarmers</a></li>
                     <li><a href="@Url.Action("LivestockInsurance", "Menu")">@Resource.Lang.Livestockinsurance</a></li>

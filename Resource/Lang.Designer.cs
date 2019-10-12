@@ -19,7 +19,7 @@ namespace Resource {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Lang {
@@ -306,7 +306,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Animal trading policy .
+        ///   Looks up a localized string similar to National Policy For Small Ruminants.
         /// </summary>
         public static string Animaltradingpolicy {
             get {
@@ -741,7 +741,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Contact us/support   .
+        ///   Looks up a localized string similar to Contact Us  .
         /// </summary>
         public static string Contactus {
             get {
@@ -930,7 +930,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Department guidelines .
+        ///   Looks up a localized string similar to G.R./Guidelines.
         /// </summary>
         public static string Departmentguidelines {
             get {
@@ -1272,7 +1272,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to History.
+        ///   Looks up a localized string similar to Establishment &amp; Object.
         /// </summary>
         public static string History {
             get {
@@ -1329,7 +1329,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Information regarding breeding.
+        ///   Looks up a localized string similar to Breeding Policy of State.
         /// </summary>
         public static string Informationregardingbreeding {
             get {
@@ -1338,7 +1338,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Information regarding feeding .
+        ///   Looks up a localized string similar to Feed &amp; Fooder.
         /// </summary>
         public static string Informationregardingfeeding {
             get {
@@ -1347,7 +1347,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Information regarding insemination .
+        ///   Looks up a localized string similar to Information Regarding Breeding.
         /// </summary>
         public static string Informationregardinginsemination {
             get {
@@ -1429,7 +1429,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of Available breeds .
+        ///   Looks up a localized string similar to Breeds of Sheep &amp; Goat.
         /// </summary>
         public static string ListofAvailablebreeds {
             get {
@@ -1456,7 +1456,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to List of vaccinations /dieases/remedies .
+        ///   Looks up a localized string similar to Vaccinations Schedule.
         /// </summary>
         public static string Listofvaccinations {
             get {
@@ -1811,7 +1811,7 @@ namespace Resource {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Model scheme .
+        ///   Looks up a localized string similar to Project Economics.
         /// </summary>
         public static string Modelscheme {
             get {
